@@ -44,16 +44,3 @@ jobs:
           # /home/esgrimb/www/nuevo (confirmar la ruta real por SFTP antes).
           remote_path: ${{ secrets.FTP_SERVER_DIR }}
           sftpArgs: "-o ConnectTimeout=5"
-
-      # Diagnóstico temporal de solo lectura: para confirmar qué ha quedado
-      # realmente en el servidor tras la subida. No expone credenciales
-      # (GitHub enmascara los secrets en el log automáticamente). Quitar
-      # este paso una vez resuelto el problema de estilos en /nuevo.
-      - name: Listar carpeta remota (diagnóstico)
-        run: |
-          echo "--- raíz de FTP_SERVER_DIR ---"
-          curl -s --insecure -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
-            "sftp://${{ secrets.FTP_SERVER }}${{ secrets.FTP_SERVER_DIR }}/"
-          echo "--- _next/static/chunks ---"
-          curl -s --insecure -u "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
-            "sftp://${{ secrets.FTP_SERVER }}${{ secrets.FTP_SERVER_DIR }}/_next/static/chunks/"
