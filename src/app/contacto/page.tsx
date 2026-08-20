@@ -84,10 +84,22 @@ export default function Contacto() {
 
 function ContactForm() {
   return (
-    <form className="rounded-sm border border-line bg-paper-raised p-6">
+    <form
+      action="/contact.php"
+      method="post"
+      className="rounded-sm border border-line bg-paper-raised p-6"
+    >
       <h2 className="text-lg font-bold uppercase tracking-tight text-ink">
         Escríbenos para más información
       </h2>
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px]"
+      />
       <div className="mt-5 space-y-4">
         <Field label="Tu nombre" name="name" type="text" required />
         <Field label="Tu correo electrónico" name="email" type="email" required />

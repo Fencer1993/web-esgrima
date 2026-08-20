@@ -1,0 +1,40 @@
+# Club de Esgrima Torremolinos — reglas de Apache para el hosting OVH.
+# Generado junto al export estático de Next.js (ver next.config.ts).
+
+RewriteEngine On
+
+# 1) Forzar HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2) Forzar el dominio canónico con "www" (es el que tiene el tráfico y el
+#    posicionamiento en Google — ver auditoría SEO previa a esta migración)
+RewriteCond %{HTTP_HOST} ^esgrimatorremolinos\.com [NC]
+RewriteRule ^ https://www.esgrimatorremolinos.com%{REQUEST_URI} [L,R=301]
+
+# 3) URLs heredadas del WordPress anterior (permalinks sin resolver bajo
+#    /index.php/<slug>/), indexadas y con tráfico real: se redirigen 301
+#    a la misma ruta limpia para no perder el posicionamiento ganado.
+RewriteRule ^index\.php/horarios-y-precios/?$ /horarios-y-precios/ [L,R=301]
+RewriteRule ^index\.php/contacto/?$ /contacto/ [L,R=301]
+RewriteRule ^index\.php/instalaciones/?$ /instalaciones/ [L,R=301]
+RewriteRule ^index\.php/clase-gratis/?$ /clase-gratis/ [L,R=301]
+RewriteRule ^index\.php/esgrima-ninos/?$ /esgrima-ninos/ [L,R=301]
+RewriteRule ^index\.php/esgrima-para-adultos/?$ /esgrima-para-adultos/ [L,R=301]
+RewriteRule ^index\.php/esgrima-en-silla-de-ruedas/?$ /esgrima-en-silla-de-ruedas/ [L,R=301]
+RewriteRule ^index\.php/preguntas-frecuentes/?$ /preguntas-frecuentes/ [L,R=301]
+RewriteRule ^index\.php/politica-de-privacidad/?$ /politica-de-privacidad/ [L,R=301]
+RewriteRule ^index\.php/aviso-legal/?$ /aviso-legal/ [L,R=301]
+RewriteRule ^index\.php/politica-de-cookies-ue/?$ /politica-de-cookies-ue/ [L,R=301]
+
+# 4) Contenido heredado de la plantilla de demostración original y del
+#    post de bienvenida por defecto de WordPress: sin tráfico real, se
+#    redirigen a la home en vez de servir un 404.
+RewriteRule ^index\.php/skt-karate/?$ / [L,R=301]
+RewriteRule ^index\.php/skt-karate-2/?$ / [L,R=301]
+RewriteRule ^index\.php/2022/06/22/bonjour-tout-le-monde/?$ / [L,R=301]
+
+# 5) Cualquier otra URL /index.php/... que quedara suelta, a la home.
+RewriteRule ^index\.php/ / [L,R=301]
+
+ErrorDocument 404 /404.html
