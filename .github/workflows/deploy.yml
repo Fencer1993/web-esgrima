@@ -24,18 +24,18 @@ jobs:
       - name: Build static export
         run: npm run build
 
-      - name: Deploy to OVH via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      # El hosting OVH no soporta FTPS (FTP+TLS) — FileZilla lo confirma
+      # al conectar. Sí expone SFTP (SSH) en el puerto 22, que es lo que
+      # usamos aquí para no mandar la contraseña ni los archivos en claro.
+      - name: Deploy to OVH via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_SERVER }}
+          port: 22
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # Carpeta remota donde vive el sitio (ver guía de despliegue).
-          # Ej: "./" para el raíz del hosting, o "./nuevo/" para una carpeta de staging.
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          local-dir: ./out/
-          # No borra en el servidor lo que no venga del build: seguro por
-          # defecto mientras convivan archivos de WordPress. Se puede pasar
-          # a true más adelante, cuando el sitio estático sea lo único que
-          # haya en esa carpeta.
-          dangerous-clean-slate: false
+          local_path: ./out/*
+          # Ruta remota absoluta a la carpeta de staging, ej:
+          # /home/esgrimb/www/nuevo (confirmar la ruta real por SFTP antes).
+          remote_path: ${{ secrets.FTP_SERVER_DIR }}
+          sftpArgs: "-o ConnectTimeout=5"
