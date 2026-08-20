@@ -60,11 +60,4 @@ export const coaches = [
     phone: "+34 687 34 02 77",
     email: "vst@hotmail.es",
   },
-  {
-    name: "Rodrigo Lage",
-    role: "Técnico del Club",
-    bio: "Comenzó a hacer esgrima en Galicia hace 9 años, donde también se formó como técnico superior en actividades físico-deportivas. Disfruta de la esgrima tanto como tirador como técnico.",
-    phone: "+34 651 52 30 71",
-    email: null,
-  },
 ];

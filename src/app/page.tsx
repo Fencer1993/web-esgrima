@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Section, SectionHeading } from "@/components/Section";
+import { InstagramCta } from "@/components/InstagramCta";
 import { site, whatsappLink } from "@/content/site";
 import { programs, values, coaches } from "@/content/programs";
 
@@ -113,12 +114,16 @@ export default function Home() {
       </Section>
 
       <Section>
+        <InstagramCta />
+      </Section>
+
+      <Section tone="raised" className="border-y border-line">
         <SectionHeading
           eyebrow="Nuestro equipo"
           title="Los Entrenadores"
           lede="Cualificados para entrenar esgrima a las tres armas. Nos especializamos en sable en la esgrima a pie; en la esgrima adaptada incluimos las tres."
         />
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
           {coaches.map((c) => (
             <div key={c.name} className="rounded-sm border border-line bg-paper-raised p-6">
               <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">
@@ -147,7 +152,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section tone="raised" className="border-t border-line">
+      <Section className="border-t border-line">
         <div className="grid gap-10 lg:grid-cols-[3fr_2fr] lg:items-center">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">

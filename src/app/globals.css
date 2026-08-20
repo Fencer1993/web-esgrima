@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #14181d;
-  --ink-soft: #454e59;
-  --paper: #fbfaf7;
-  --paper-raised: #ffffff;
-  --line: #e4e1d8;
-  --steel: #2d4a63;
-  --steel-soft: #e8eef3;
-  --accent: #c8372a;
-  --accent-dark: #a12b20;
-  --accent-soft: #fbe8e5;
-  --good: #2a6b4f;
+  /* Bandera de Torremolinos: verde, blanco y azul celeste (Mediterráneo) */
+  --ink: #17232b;
+  --ink-soft: #47565f;
+  --ink-faint: #7a8890;
+  --paper: #ffffff;
+  --paper-raised: #f5f9f7;
+  --line: #dce6e1;
+  --steel: #2e8f53;
+  --steel-soft: #e7f3ec;
+  --accent: #1797d1;
+  --accent-dark: #12729e;
+  --accent-soft: #e3f3fa;
+  --good: #2e8f53;
 }
 
 @theme inline {
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
   --color-paper: var(--paper);
   --color-paper-raised: var(--paper-raised);
   --color-line: var(--line);
