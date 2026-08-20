@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# secretos de Instagram (generado en el deploy, ver instagram-config.example.php)
+public/instagram-config.php
+public/instagram-cache.json

@@ -29,6 +29,18 @@ jobs:
           # BASE_PATH) mientras probamos en la subcarpeta de staging.
           BASE_PATH: ${{ vars.BASE_PATH }}
 
+      # El token de Instagram nunca se guarda en el repositorio: se
+      # escribe aquí, en el runner, a partir de los secrets, y solo el
+      # archivo resultante (sin el token en texto en ningún commit)
+      # viaja al hosting por SFTP en el siguiente paso.
+      - name: Generar configuración de Instagram
+        run: |
+          cat > out/instagram-config.php <<PHP
+          <?php
+          define("INSTAGRAM_USER_ID", "${{ secrets.INSTAGRAM_USER_ID }}");
+          define("INSTAGRAM_ACCESS_TOKEN", "${{ secrets.INSTAGRAM_ACCESS_TOKEN }}");
+          PHP
+
       # El hosting OVH no soporta FTPS (FTP+TLS) — FileZilla lo confirma
       # al conectar. Sí expone SFTP (SSH) en el puerto 22, que es lo que
       # usamos aquí para no mandar la contraseña ni los archivos en claro.
@@ -44,23 +56,3 @@ jobs:
           # /home/esgrimb/www/nuevo (confirmar la ruta real por SFTP antes).
           remote_path: ${{ secrets.FTP_SERVER_DIR }}
           sftpArgs: "-o ConnectTimeout=5"
-
-      # Diagnóstico temporal: comprobar por HTTP real (no por SFTP) qué
-      # está sirviendo el hosting en /nuevo/, desde una red neutral, para
-      # descartar caché específica del navegador/red del usuario.
-      - name: Comprobar HTTP en vivo (diagnóstico)
-        run: |
-          echo "--- Cabeceras de /nuevo/ ---"
-          curl -sI "https://esgrimatorremolinos.com/nuevo/"
-          echo
-          echo "--- ¿El HTML de /nuevo/ referencia el CSS con prefijo /nuevo/? ---"
-          curl -s "https://esgrimatorremolinos.com/nuevo/" | grep -o 'href="[^"]*2zw9[^"]*"' || echo "no encontrado"
-          echo
-          echo "--- Cabeceras del propio index.html directamente ---"
-          curl -sI "https://esgrimatorremolinos.com/nuevo/index.html"
-          echo
-          echo "--- ¿Y el contenido de /nuevo/index.html directamente? ---"
-          curl -s "https://esgrimatorremolinos.com/nuevo/index.html" | grep -o 'href="[^"]*2zw9[^"]*"' || echo "no encontrado"
-          echo
-          echo "--- robots.txt (marcador único de nuestro build) ---"
-          curl -s "https://esgrimatorremolinos.com/nuevo/robots.txt"
