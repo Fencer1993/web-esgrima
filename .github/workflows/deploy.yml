@@ -44,3 +44,17 @@ jobs:
           # /home/esgrimb/www/nuevo (confirmar la ruta real por SFTP antes).
           remote_path: ${{ secrets.FTP_SERVER_DIR }}
           sftpArgs: "-o ConnectTimeout=5"
+
+      # Diagnóstico temporal: comprobar por HTTP real (no por SFTP) qué
+      # está sirviendo el hosting en /nuevo/, desde una red neutral, para
+      # descartar caché específica del navegador/red del usuario.
+      - name: Comprobar HTTP en vivo (diagnóstico)
+        run: |
+          echo "--- Cabeceras de /nuevo/ ---"
+          curl -sI "https://esgrimatorremolinos.com/nuevo/"
+          echo
+          echo "--- ¿El HTML de /nuevo/ referencia el CSS con prefijo /nuevo/? ---"
+          curl -s "https://esgrimatorremolinos.com/nuevo/" | grep -o 'href="[^"]*2zw9[^"]*"' || echo "no encontrado"
+          echo
+          echo "--- Cabeceras del propio index.html directamente ---"
+          curl -sI "https://esgrimatorremolinos.com/nuevo/index.html"
