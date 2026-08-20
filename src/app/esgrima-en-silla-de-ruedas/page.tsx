@@ -55,6 +55,7 @@ export default function SillaDeRuedas() {
         eyebrow="Esgrima adaptada"
         title="Esgrima en Silla de Ruedas"
         lede="La única sala de Andalucía con esgrima en silla de ruedas en sus entrenamientos habituales."
+        path="/esgrima-en-silla-de-ruedas"
       />
 
       <Section>

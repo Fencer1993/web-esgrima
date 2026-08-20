@@ -18,6 +18,7 @@ export default function Contacto() {
         eyebrow="Dónde estamos"
         title="Contacto"
         lede="Si quieres probar a hacer esgrima en nuestras instalaciones, solo tienes que venir con ropa deportiva, agua y toalla, 10 minutos antes para que podamos explicarte cómo funciona la clase."
+        path="/contacto"
       />
 
       <Section>

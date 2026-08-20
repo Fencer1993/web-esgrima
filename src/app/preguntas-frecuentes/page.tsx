@@ -32,6 +32,7 @@ export default function PreguntasFrecuentes() {
         eyebrow="Resolvemos tus dudas"
         title="Preguntas Frecuentes"
         lede="Aquí puedes resolver algunas preguntas que probablemente tendrás si te interesa hacer esgrima con nosotros."
+        path="/preguntas-frecuentes"
       />
       <Section>
         <FaqAccordion items={faq} />

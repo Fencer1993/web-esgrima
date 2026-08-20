@@ -18,6 +18,7 @@ export default function EsgrimaNinos() {
         eyebrow="6–12 años"
         title="Esgrima para Niños"
         lede="Los grandes deportistas empiezan a practicar desde niños."
+        path="/esgrima-ninos"
       />
 
       <Section>

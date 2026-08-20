@@ -28,7 +28,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-[13px] font-normal tracking-wide text-ink-soft transition-colors hover:text-accent"
+              className="link-touche text-[13px] font-normal tracking-wide text-ink-soft transition-colors hover:text-accent"
             >
               {item.label}
             </Link>
@@ -38,7 +38,7 @@ export function Header() {
         <div className="hidden lg:block">
           <a
             href={whatsappLink("Hola, quiero probar una clase gratis")}
-            className="inline-flex items-center rounded-full border border-accent px-4 py-1.5 text-[13px] font-medium tracking-wide text-accent transition-colors hover:bg-accent hover:text-white"
+            className="btn-blade inline-flex items-center rounded-full border border-accent px-4 py-1.5 text-[13px] font-medium tracking-wide text-accent transition-colors hover:bg-accent hover:text-white"
           >
             Clase gratis
           </a>

@@ -36,6 +36,7 @@ export default function ClaseGratis() {
         eyebrow="La palabra mágica: gratis"
         title="Primera Clase Gratis"
         lede="¿Quieres probar esgrima pero no te terminas de decidir? Ven el primer día gratis."
+        path="/clase-gratis"
       />
 
       <Section>

@@ -18,6 +18,7 @@ export default function EsgrimaAdultos() {
         eyebrow="Desde 13 años"
         title="Esgrima para Adultos"
         lede="Adolescentes desde 13 años y adultos hasta —por ejemplo— los 100 años pueden practicar esgrima con nosotros."
+        path="/esgrima-para-adultos"
       />
 
       <Section>

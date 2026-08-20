@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function AvisoLegal() {
   return (
     <>
-      <PageHero title="Aviso Legal" />
+      <PageHero title="Aviso Legal" path="/aviso-legal" />
       <Section>
         <div className="prose-legal max-w-2xl space-y-6 text-sm leading-relaxed text-ink-soft">
           <section>

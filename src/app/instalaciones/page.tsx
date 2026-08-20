@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Instalaciones() {
   return (
     <>
-      <PageHero eyebrow="Nuestro club" title="Instalaciones" />
+      <PageHero eyebrow="Nuestro club" title="Instalaciones" path="/instalaciones" />
 
       <Section>
         <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-ink-soft">

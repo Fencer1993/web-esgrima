@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function PoliticaDePrivacidad() {
   return (
     <>
-      <PageHero title="Política de Privacidad" />
+      <PageHero title="Política de Privacidad" path="/politica-de-privacidad" />
       <Section>
         <div className="max-w-2xl space-y-6 text-sm leading-relaxed text-ink-soft">
           <section>

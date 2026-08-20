@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Section, SectionHeading } from "@/components/Section";
 import { InstagramCta } from "@/components/InstagramCta";
+import { AthleteGrid } from "@/components/AthleteGrid";
 import { site, whatsappLink } from "@/content/site";
 import { programs, values, coaches } from "@/content/programs";
 
@@ -34,7 +35,7 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href={whatsappLink("Hola, quiero probar una clase gratis")}
-                className="inline-flex items-center rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark"
+                className="btn-blade inline-flex items-center rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark"
               >
                 ¡Ven y prueba gratis!
               </a>
@@ -78,12 +79,12 @@ export default function Home() {
 
       <Section>
         <SectionHeading eyebrow="Programas" title="Clases de Esgrima en Torremolinos" />
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="reveal grid gap-6 sm:grid-cols-3">
           {programs.map((p) => (
             <Link
               key={p.slug}
               href={`/${p.slug}`}
-              className="group flex flex-col justify-between rounded-sm border border-line bg-paper-raised p-6 transition-colors hover:border-accent"
+              className="group flex flex-col justify-between rounded-sm border border-line bg-paper-raised p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
             >
               <div>
                 <h3 className="text-xl font-semibold uppercase tracking-tight text-ink">
@@ -91,7 +92,7 @@ export default function Home() {
                 </h3>
                 <p className="mt-2 text-sm text-ink-soft">{p.tagline}</p>
               </div>
-              <span className="mt-6 text-sm font-semibold uppercase tracking-wide text-accent">
+              <span className="link-touche mt-6 self-start text-sm font-semibold uppercase tracking-wide text-accent">
                 Saber más →
               </span>
             </Link>
@@ -101,7 +102,7 @@ export default function Home() {
 
       <Section tone="raised" className="border-y border-line">
         <SectionHeading eyebrow="Club de Esgrima Torremolinos" title="Nuestros Valores" />
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div className="reveal grid gap-8 sm:grid-cols-3">
           {values.map((v) => (
             <div key={v.title}>
               <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">
@@ -114,21 +115,30 @@ export default function Home() {
       </Section>
 
       <Section>
-        <InstagramCta />
+        <div className="reveal">
+          <InstagramCta />
+        </div>
       </Section>
 
       <Section tone="raised" className="border-y border-line">
-        <SectionHeading
-          eyebrow="Nuestro equipo"
-          title="Los Entrenadores"
-          lede="Cualificados para entrenar esgrima a las tres armas. Nos especializamos en sable en la esgrima a pie; en la esgrima adaptada incluimos las tres."
-        />
-        <div className="grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
+        <SectionHeading eyebrow="Quiénes somos" title="Nuestro Equipo" />
+
+        <h3 className="font-display text-xl font-semibold uppercase tracking-tight text-ink">
+          Entrenadores
+        </h3>
+        <p className="mt-2 max-w-2xl text-sm text-ink-soft">
+          Cualificados para entrenar esgrima a las tres armas. Nos especializamos en sable en
+          la esgrima a pie; en la esgrima adaptada incluimos las tres.
+        </p>
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
           {coaches.map((c) => (
-            <div key={c.name} className="rounded-sm border border-line bg-paper-raised p-6">
-              <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">
+            <div
+              key={c.name}
+              className="rounded-sm border border-line bg-paper-raised p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
+            >
+              <h4 className="text-lg font-semibold uppercase tracking-tight text-ink">
                 {c.name}
-              </h3>
+              </h4>
               <p className="mt-1 text-xs font-medium uppercase tracking-wide text-accent">
                 {c.role}
               </p>
@@ -149,6 +159,16 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+
+        <h3 className="mt-14 font-display text-xl font-semibold uppercase tracking-tight text-ink">
+          Nuestros Deportistas
+        </h3>
+        <p className="mt-2 max-w-2xl text-sm text-ink-soft">
+          Los tiradores que representan al Club de Esgrima Torremolinos en competición.
+        </p>
+        <div className="mt-6">
+          <AthleteGrid />
         </div>
       </Section>
 
@@ -175,7 +195,7 @@ export default function Home() {
             </p>
             <a
               href="https://www.youtube.com/watch?v=wQD05TLU8Yo"
-              className="mt-2 block text-sm font-semibold text-accent underline underline-offset-4"
+              className="link-touche mt-2 inline-block text-sm font-semibold text-accent"
             >
               Ver esgrima de sable en acción →
             </a>
@@ -194,7 +214,7 @@ export default function Home() {
           </p>
           <a
             href={whatsappLink("Hola, quiero probar una clase gratis")}
-            className="inline-flex items-center rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark"
+            className="btn-blade inline-flex items-center rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark"
           >
             ¡Quiero probar!
           </a>

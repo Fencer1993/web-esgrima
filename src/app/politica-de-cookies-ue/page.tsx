@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function PoliticaDeCookies() {
   return (
     <>
-      <PageHero title="Política de Cookies" />
+      <PageHero title="Política de Cookies" path="/politica-de-cookies-ue" />
       <Section>
         <div className="max-w-2xl space-y-6 text-sm leading-relaxed text-ink-soft">
           <p>

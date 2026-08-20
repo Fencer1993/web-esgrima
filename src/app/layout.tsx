@@ -3,6 +3,7 @@ import { Archivo, Rajdhani, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { RevealController } from "@/components/RevealController";
 import { site } from "@/content/site";
 
 const archivo = Archivo({
@@ -36,6 +37,9 @@ export const metadata: Metadata = {
     siteName: site.name,
     url: site.url,
   },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -54,6 +58,27 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       addressRegion: site.address.region,
       addressCountry: site.address.country,
     },
+    priceRange: "€€",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        opens: "10:00",
+        closes: "12:30",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        opens: "18:30",
+        closes: "21:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Friday"],
+        opens: "20:00",
+        closes: "22:00",
+      },
+    ],
     sameAs: [site.social.instagram],
   };
 
@@ -67,6 +92,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <RevealController />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

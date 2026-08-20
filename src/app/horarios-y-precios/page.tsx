@@ -18,6 +18,7 @@ export default function HorariosYPrecios() {
         eyebrow="Únete al club"
         title="Horarios y Precios"
         lede="Cuatro grupos, cuatro horarios. Elige el tuyo."
+        path="/horarios-y-precios"
       />
 
       <Section>
