@@ -23,6 +23,11 @@ jobs:
 
       - name: Build static export
         run: npm run build
+        env:
+          # Vacío = se sirve desde la raíz del dominio. Se pone a "/nuevo"
+          # (Settings → Secrets and variables → Actions → Variables,
+          # BASE_PATH) mientras probamos en la subcarpeta de staging.
+          BASE_PATH: ${{ vars.BASE_PATH }}
 
       # El hosting OVH no soporta FTPS (FTP+TLS) — FileZilla lo confirma
       # al conectar. Sí expone SFTP (SSH) en el puerto 22, que es lo que

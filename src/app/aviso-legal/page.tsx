@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { site } from "@/content/site";
@@ -95,9 +96,9 @@ export default function AvisoLegal() {
             <p className="mt-2">
               El tratamiento de los datos personales facilitados a través de este sitio web se
               rige por nuestra{" "}
-              <a href="/politica-de-privacidad" className="font-semibold text-accent">
+              <Link href="/politica-de-privacidad" className="font-semibold text-accent">
                 Política de Privacidad
-              </a>
+              </Link>
               , conforme al Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018, de
               Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD).
             </p>

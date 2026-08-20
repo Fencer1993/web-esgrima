@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { site, whatsappLink } from "@/content/site";
@@ -85,7 +86,7 @@ export default function Contacto() {
 function ContactForm() {
   return (
     <form
-      action="/contact.php"
+      action="../contact.php"
       method="post"
       className="rounded-sm border border-line bg-paper-raised p-6"
     >
@@ -119,9 +120,9 @@ function ContactForm() {
         <label className="flex items-start gap-2 text-xs text-ink-soft">
           <input type="checkbox" required className="mt-0.5" />
           He leído y acepto la{" "}
-          <a href="/politica-de-privacidad" className="font-semibold text-accent">
+          <Link href="/politica-de-privacidad" className="font-semibold text-accent">
             política de privacidad
-          </a>
+          </Link>
         </label>
         <button
           type="submit"
