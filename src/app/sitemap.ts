@@ -6,6 +6,7 @@ const routes = [
   "esgrima-ninos",
   "esgrima-para-adultos",
   "esgrima-en-silla-de-ruedas",
+  "nuestro-equipo",
   "horarios-y-precios",
   "instalaciones",
   "clase-gratis",

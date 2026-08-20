@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Section, SectionHeading } from "@/components/Section";
 import { InstagramCta } from "@/components/InstagramCta";
-import { AthleteGrid } from "@/components/AthleteGrid";
 import { site, whatsappLink } from "@/content/site";
 import { programs, values, coaches } from "@/content/programs";
 
@@ -121,24 +120,20 @@ export default function Home() {
       </Section>
 
       <Section tone="raised" className="border-y border-line">
-        <SectionHeading eyebrow="Quiénes somos" title="Nuestro Equipo" />
-
-        <h3 className="font-display text-xl font-semibold uppercase tracking-tight text-ink">
-          Entrenadores
-        </h3>
-        <p className="mt-2 max-w-2xl text-sm text-ink-soft">
-          Cualificados para entrenar esgrima a las tres armas. Nos especializamos en sable en
-          la esgrima a pie; en la esgrima adaptada incluimos las tres.
-        </p>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
+        <SectionHeading
+          eyebrow="Nuestro equipo"
+          title="Los Entrenadores"
+          lede="Cualificados para entrenar esgrima a las tres armas. Nos especializamos en sable en la esgrima a pie; en la esgrima adaptada incluimos las tres."
+        />
+        <div className="grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
           {coaches.map((c) => (
             <div
               key={c.name}
               className="rounded-sm border border-line bg-paper-raised p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
             >
-              <h4 className="text-lg font-semibold uppercase tracking-tight text-ink">
+              <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">
                 {c.name}
-              </h4>
+              </h3>
               <p className="mt-1 text-xs font-medium uppercase tracking-wide text-accent">
                 {c.role}
               </p>
@@ -159,16 +154,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
-
-        <h3 className="mt-14 font-display text-xl font-semibold uppercase tracking-tight text-ink">
-          Nuestros Deportistas
-        </h3>
-        <p className="mt-2 max-w-2xl text-sm text-ink-soft">
-          Los tiradores que representan al Club de Esgrima Torremolinos en competición.
-        </p>
-        <div className="mt-6">
-          <AthleteGrid />
         </div>
       </Section>
 

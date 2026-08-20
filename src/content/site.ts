@@ -40,6 +40,7 @@ export const navigation = [
   { label: "Esgrima para Niños", href: "/esgrima-ninos" },
   { label: "Esgrima para Adultos", href: "/esgrima-para-adultos" },
   { label: "Esgrima en Silla de Ruedas", href: "/esgrima-en-silla-de-ruedas" },
+  { label: "Nuestro Equipo", href: "/nuestro-equipo" },
   { label: "Horarios y Precios", href: "/horarios-y-precios" },
   { label: "Instalaciones", href: "/instalaciones" },
   { label: "Preguntas Frecuentes", href: "/preguntas-frecuentes" },
