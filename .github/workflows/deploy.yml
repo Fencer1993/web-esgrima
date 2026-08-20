@@ -58,3 +58,9 @@ jobs:
           echo
           echo "--- Cabeceras del propio index.html directamente ---"
           curl -sI "https://esgrimatorremolinos.com/nuevo/index.html"
+          echo
+          echo "--- ¿Y el contenido de /nuevo/index.html directamente? ---"
+          curl -s "https://esgrimatorremolinos.com/nuevo/index.html" | grep -o 'href="[^"]*2zw9[^"]*"' || echo "no encontrado"
+          echo
+          echo "--- robots.txt (marcador único de nuestro build) ---"
+          curl -s "https://esgrimatorremolinos.com/nuevo/robots.txt"
