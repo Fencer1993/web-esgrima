@@ -2,6 +2,16 @@ export const site = {
   name: "Club de Esgrima Torremolinos",
   shortName: "Esgrima Torremolinos",
   domain: "esgrimatorremolinos.com",
+  legal: {
+    entityName: "Club de Esgrima Torremolinos",
+    cif: "G44658458",
+    legalForm: "Asociación deportiva sin ánimo de lucro (club deportivo)",
+    representative: "Carlos Soler Márquez",
+    representativeDni: "25710994F",
+    representativeRole: "Presidente",
+    // Nº de inscripción en el Registro Andaluz de Entidades Deportivas:
+    // pendiente de que el club lo facilite.
+  },
   url: "https://www.esgrimatorremolinos.com",
   description:
     "Club de esgrima en Torremolinos (Málaga). Clases de esgrima para niños desde 6 años, adolescentes, adultos y esgrima adaptada en silla de ruedas. Primera clase gratis.",

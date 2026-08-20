@@ -16,16 +16,16 @@ export default function PoliticaDePrivacidad() {
       <PageHero title="Política de Privacidad" />
       <Section>
         <div className="max-w-2xl space-y-6 text-sm leading-relaxed text-ink-soft">
-          {/* PENDIENTE: completar [Nombre/NIF] del responsable del tratamiento. */}
           <section>
             <h2 className="font-display text-lg font-bold uppercase tracking-tight text-ink">
               Responsable del tratamiento
             </h2>
             <p className="mt-2">
-              [Nombre completo o razón social del club], con domicilio en {site.address.line},{" "}
-              {site.address.postalCode} {site.address.city}, es el responsable del tratamiento
-              de los datos personales que nos facilites a través de este sitio web. Puedes
-              contactar con nosotros en {site.contact.email}.
+              {site.legal.entityName} (CIF {site.legal.cif}), con domicilio en{" "}
+              {site.address.line}, {site.address.postalCode} {site.address.city}, es el
+              responsable del tratamiento de los datos personales que nos facilites a través
+              de este sitio web. Puedes contactar con nosotros en {site.contact.email} o
+              dirigirte a nuestro representante legal, {site.legal.representative}.
             </p>
           </section>
 
