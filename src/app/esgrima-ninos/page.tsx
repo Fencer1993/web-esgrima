@@ -24,9 +24,11 @@ export default function EsgrimaNinos() {
       <Section>
         <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-ink-soft">
           <p>
-            Ponemos el límite en los seis años, de cara a la inclusión en juegos y a la
-            capacidad de adaptar la clase a edades madurativas demasiado distantes. Contamos
-            con entrenadores cualificados para trabajar con niños, ¡y lo hacemos jugando!
+            En el Club de Esgrima Torremolinos damos clase de esgrima para niños a partir de
+            los 6 años, en grupos reducidos y con entrenadores especializados en trabajar con
+            los más pequeños. Ponemos el límite en esa edad de cara a la inclusión en juegos y
+            a la capacidad de adaptar la clase a edades madurativas demasiado distantes:
+            trabajamos con grupos homogéneos, ¡y lo hacemos jugando!
           </p>
           <p>
             De poco nos sirve enseñar la técnica y las estrategias, o incluso realizar un

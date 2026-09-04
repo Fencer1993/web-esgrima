@@ -14,15 +14,20 @@ export const metadata: Metadata = {
 export default function Instalaciones() {
   return (
     <>
-      <PageHero eyebrow="Nuestro club" title="Instalaciones" path="/instalaciones" />
+      <PageHero
+        eyebrow="Nuestro club"
+        title="Instalaciones"
+        lede="Entrenamos en el Palacio de Deportes San Miguel de Torremolinos, con dos pistas de esgrima y una pista adaptada para silla de ruedas."
+        path="/instalaciones"
+      />
 
       <Section>
         <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-ink-soft">
           <p>
             Una de las cosas que más nos gusta de nuestro club, después de nuestros alumnos,
-            son las instalaciones en las que practicamos este deporte. Tenemos 2 pistas para
-            practicar y realizar asaltos, además de aparatos de señalización dispuestos en
-            alto para poder arbitrar con facilidad.
+            son las instalaciones en las que practicamos este deporte. Tenemos 2 pistas de
+            esgrima para practicar y realizar asaltos, además de aparatos de señalización
+            dispuestos en alto para poder arbitrar con facilidad.
           </p>
           <p>
             También disponemos de material de esgrima —chaquetas, guantes, caretas, chaquetas

@@ -49,8 +49,22 @@ const wheelchairFaq = [
 ];
 
 export default function SillaDeRuedas() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: wheelchairFaq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow="Esgrima adaptada"
         title="Esgrima en Silla de Ruedas"
@@ -62,11 +76,11 @@ export default function SillaDeRuedas() {
         <div className="grid gap-10 lg:grid-cols-[3fr_2fr]">
           <div className="space-y-4 text-sm leading-relaxed text-ink-soft">
             <p>
-              Esta modalidad busca incluir a personas cuya movilidad ha quedado reducida por
-              diversos motivos — paraplejia, tetraplejia u otras patologías que limiten o
-              impidan el movimiento del tren inferior. Nuestro entrenador Carlos Soler es
-              seleccionador nacional de Esgrima en Silla de Ruedas, así que tendrás al mejor
-              entrenador dándote clases.
+              En Torremolinos entrenamos esgrima en silla de ruedas dirigida por Carlos Soler,
+              seleccionador nacional de esta modalidad — así que tendrás al mejor entrenador
+              dándote clases. Busca incluir a personas cuya movilidad ha quedado reducida por
+              diversos motivos: paraplejia, tetraplejia u otras patologías que limiten o
+              impidan el movimiento del tren inferior.
             </p>
             <p>
               Promovemos la esgrima inclusiva: el club acoge tanto a deportistas de esgrima

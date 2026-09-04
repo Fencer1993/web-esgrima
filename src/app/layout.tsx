@@ -45,7 +45,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "SportsActivityLocation",
+    // Doble tipo: SportsActivityLocation describe el lugar donde se
+    // practica el deporte; ExerciseGym es el subtipo de LocalBusiness
+    // que sí admite formalmente priceRange y openingHoursSpecification.
+    "@type": ["SportsActivityLocation", "ExerciseGym"],
     name: site.name,
     url: site.url,
     telephone: site.contact.phone,
