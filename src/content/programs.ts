@@ -12,21 +12,21 @@ export const programs: Program[] = [
     title: "Esgrima para Niños",
     tagline: "Grupo para menores entre 6 y 12 años. Deporte lúdico.",
     ageRange: "6–12 años",
-    schedule: "Lunes, martes, miércoles y jueves de 18:30 a 19:30",
+    schedule: "Martes, miércoles, jueves y viernes de 18:30 a 19:30",
   },
   {
     slug: "esgrima-para-adultos",
     title: "Esgrima para Adultos",
     tagline: "Destinado a adolescentes desde 13 años y adultos.",
     ageRange: "Desde 13 años",
-    schedule: "Lunes, martes, miércoles y jueves de 19:30 a 21:00",
+    schedule: "Martes, miércoles, jueves y viernes de 19:30 a 21:00",
   },
   {
     slug: "esgrima-en-silla-de-ruedas",
     title: "Esgrima en Silla de Ruedas",
     tagline: "Clases para la diversidad funcional. Deporte inclusivo.",
     ageRange: "Todas las edades",
-    schedule: "Lunes, martes, miércoles y jueves de 10:00 a 12:30",
+    schedule: "Martes, miércoles, jueves y viernes de 10:00 a 12:30",
   },
 ];
 

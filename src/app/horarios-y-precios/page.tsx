@@ -17,7 +17,7 @@ export default function HorariosYPrecios() {
       <PageHero
         eyebrow="Únete al club"
         title="Horarios y Precios"
-        lede="Cuatro grupos, cuatro horarios. Elige el tuyo."
+        lede="Tres grupos, de martes a viernes. Elige el tuyo."
         path="/horarios-y-precios"
       />
 
@@ -41,10 +41,7 @@ export default function HorariosYPrecios() {
             <tbody>
               {schedule.map((s) => (
                 <tr key={s.group} className="border-b border-line last:border-none">
-                  <td className="px-4 py-3 font-medium text-ink">
-                    {s.group}
-                    {s.note && <p className="mt-1 text-xs font-normal text-ink-faint">{s.note}</p>}
-                  </td>
+                  <td className="px-4 py-3 font-medium text-ink">{s.group}</td>
                   <td className="px-4 py-3 text-ink-soft">{s.days}</td>
                   <td className="px-4 py-3 tabular text-ink-soft">{s.hours}</td>
                 </tr>

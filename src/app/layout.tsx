@@ -62,21 +62,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "10:00",
         closes: "12:30",
       },
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "18:30",
         closes: "21:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Friday"],
-        opens: "20:00",
-        closes: "22:00",
       },
     ],
     sameAs: [site.social.instagram],

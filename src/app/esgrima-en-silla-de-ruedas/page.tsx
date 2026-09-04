@@ -85,7 +85,7 @@ export default function SillaDeRuedas() {
                 <dt className="font-mono text-xs uppercase tracking-wide text-ink-faint">
                   Horario
                 </dt>
-                <dd className="mt-1 text-ink">Lunes, martes, miércoles y jueves, 10:00–12:30</dd>
+                <dd className="mt-1 text-ink">Martes, miércoles, jueves y viernes, 10:00–12:30</dd>
               </div>
               <div>
                 <dt className="font-mono text-xs uppercase tracking-wide text-ink-faint">

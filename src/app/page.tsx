@@ -67,9 +67,9 @@ export default function Home() {
                 Horarios
               </dt>
               <dd className="mt-1 text-paper/85">
-                Esgrima: L,M,X,J 18:30–21:00, V 20:00–22:00
+                Esgrima: M,X,J,V 18:30–21:00
                 <br />
-                Silla de ruedas: L,M,X,J 10:00–12:30
+                Silla de ruedas: M,X,J,V 10:00–12:30
               </dd>
             </div>
           </dl>

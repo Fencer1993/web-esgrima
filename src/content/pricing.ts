@@ -1,23 +1,17 @@
 export const schedule = [
   {
     group: "Niños (6–12 años, avanzado)",
-    days: "Lunes, martes, miércoles y jueves",
+    days: "Martes, miércoles, jueves y viernes",
     hours: "18:30 – 19:30",
   },
   {
     group: "Adolescentes y Adultos",
-    days: "Lunes, martes, miércoles y jueves",
+    days: "Martes, miércoles, jueves y viernes",
     hours: "19:30 – 21:00",
   },
   {
-    group: "Esgrima Ocio",
-    days: "Viernes",
-    hours: "20:00 – 22:00",
-    note: "Solo para adultos, o menores bajo supervisión. Entrenamiento libre.",
-  },
-  {
     group: "Esgrima en Silla de Ruedas",
-    days: "Lunes, martes, miércoles y jueves",
+    days: "Martes, miércoles, jueves y viernes",
     hours: "10:00 – 12:30",
   },
 ];

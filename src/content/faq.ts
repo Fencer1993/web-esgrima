@@ -73,7 +73,6 @@ export const faq: FaqItem[] = [
   },
   {
     question: "¿Cuántos días puedo entrenar a la semana?",
-    answer:
-      "De lunes a jueves, los cuatro días contemplados. Si además participas en Esgrima Ocio los viernes, puedes entrenar hasta 5 días por semana.",
+    answer: "De martes a viernes, los cuatro días contemplados cada semana.",
   },
 ];
