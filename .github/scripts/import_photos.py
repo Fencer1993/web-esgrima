@@ -22,18 +22,21 @@ def try_get(url, binary=False):
         print("  fail", url, e, file=sys.stderr)
         return None
 
-# 1. URLs de páginas: sitemaps de Yoast + rutas conocidas
+# 1. URLs de páginas: rutas conocidas (con y sin /index.php/) + sitemaps si responden
+SLUGS = ["esgrima-ninos", "esgrima-para-adultos", "esgrima-en-silla-de-ruedas",
+         "horarios-y-precios", "instalaciones", "clase-gratis", "preguntas-frecuentes",
+         "contacto", "politica-de-privacidad", "aviso-legal"]
 pages = {BASE + "/"}
-for sm in ("/sitemap_index.xml", "/page-sitemap.xml", "/post-sitemap.xml"):
+for slug in SLUGS:
+    for prefix in ("/", "/index.php/"):
+        url = f"{BASE}{prefix}{slug}/"
+        if try_get(url):
+            pages.add(url)
+            break
+for sm in ("/sitemap_index.xml", "/page-sitemap.xml", "/wp-sitemap.xml"):
     xml = try_get(BASE + sm)
     if xml:
-        for loc in re.findall(r"<loc>([^<]+)</loc>", xml):
-            if loc.endswith(".xml"):
-                sub = try_get(loc)
-                if sub:
-                    pages.update(re.findall(r"<loc>([^<]+\.(?:html?|/)?)</loc>", sub) or re.findall(r"<loc>([^<]+)</loc>", sub))
-            else:
-                pages.add(loc)
+        pages.update(l for l in re.findall(r"<loc>([^<]+)</loc>", xml) if not l.endswith(".xml"))
 pages = {p for p in pages if not re.search(r"\.(jpe?g|png|webp)$", p, re.I)}
 print(len(pages), "páginas")
 
@@ -41,6 +44,7 @@ print(len(pages), "páginas")
 found = collections.defaultdict(lambda: {"pages": set(), "alts": set()})
 for p in sorted(pages):
     html = try_get(p)
+    print(p, "->", len(html) if html else "sin respuesta")
     if not html:
         continue
     css_urls = re.findall(r'href=["\']([^"\']+\.css[^"\']*)["\']', html)
