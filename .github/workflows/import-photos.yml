@@ -1,0 +1,32 @@
+name: Importar fotos de la web original
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Rastrear y descargar
+        run: python3 .github/scripts/import_photos.py
+      - name: Optimizar
+        run: |
+          mkdir -p "$RUNNER_TEMP/opt" && cd "$RUNNER_TEMP/opt"
+          npm init -y >/dev/null && npm i sharp >/dev/null
+          cp "$GITHUB_WORKSPACE/.github/scripts/optimize.mjs" .
+          cd "$GITHUB_WORKSPACE"
+          node "$RUNNER_TEMP/opt/optimize.mjs" 2>&1 | tail -n 200
+      - name: Commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add public/images/import import/manifest.json
+          git commit -m "Import optimized photos from original WordPress site" || echo "nada que commitear"
+          git push
