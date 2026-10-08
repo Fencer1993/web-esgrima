@@ -47,6 +47,9 @@ for p in sorted(pages):
     print(p, "->", len(html) if html else "sin respuesta")
     if not html:
         continue
+    if "instalaciones" in p:
+        pathlib.Path("import").mkdir(exist_ok=True)
+        pathlib.Path("import/instalaciones.html").write_text(html)
     css_urls = re.findall(r'href=["\']([^"\']+\.css[^"\']*)["\']', html)
     blob = html
     for c in css_urls:
