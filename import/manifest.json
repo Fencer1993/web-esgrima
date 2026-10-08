@@ -31,11 +31,40 @@
   "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/07/cropped-1-8.png",
   "bytes": 52106,
   "pages": [
-   "/"
+   "/",
+   "/index.php/aviso-legal/",
+   "/index.php/clase-gratis/",
+   "/index.php/contacto/",
+   "/index.php/esgrima-en-silla-de-ruedas/",
+   "/index.php/esgrima-ninos/",
+   "/index.php/esgrima-para-adultos/",
+   "/index.php/horarios-y-precios/",
+   "/index.php/instalaciones/",
+   "/index.php/politica-de-privacidad/",
+   "/index.php/preguntas-frecuentes/"
   ],
   "alts": [
    "Club de Esgrima Torremolinos"
   ]
+ },
+ {
+  "file": "240_f_72777927_1kjdtrkggjboibbhhc4zmqh3fwnhl1fc.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/240_F_72777927_1KJdTrKgGjBoiBBHhc4ZmQh3fWNHL1fC.jpg",
+  "bytes": 16888,
+  "pages": [
+   "/index.php/horarios-y-precios/"
+  ],
+  "alts": []
+ },
+ {
+  "file": "262862841_5021467021231153_2838795470847419692_n.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/262862841_5021467021231153_2838795470847419692_n.jpg",
+  "bytes": 226369,
+  "pages": [
+   "/index.php/contacto/",
+   "/index.php/esgrima-para-adultos/"
+  ],
+  "alts": []
  },
  {
   "file": "esgrima-en-silla-de-ruedas.webp",
@@ -67,6 +96,17 @@
   "alts": []
  },
  {
+  "file": "naranja-negro-gimnasios-vuelta-al-negocio-fondo-banner-post-para-instagram-vertical.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/Naranja-Negro-Gimnasios-Vuelta-al-Negocio-Fondo-Banner-Post-para-Instagram-vertical.png",
+  "bytes": 714194,
+  "pages": [
+   "/index.php/clase-gratis/"
+  ],
+  "alts": [
+   "esgrima gratis malaga"
+  ]
+ },
+ {
   "file": "p1260638-rotated.webp",
   "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/P1260638-rotated.jpg",
   "bytes": 303497,
@@ -87,11 +127,116 @@
   ]
  },
  {
+  "file": "whatsapp-image-2022-08-02-at-16.31.21-1.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-02-at-16.31.21-1.jpeg",
+  "bytes": 144577,
+  "pages": [
+   "/index.php/esgrima-en-silla-de-ruedas/"
+  ],
+  "alts": [
+   "esgrima en silla de ruedas"
+  ]
+ },
+ {
+  "file": "whatsapp-image-2022-08-02-at-16.31.23-1.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-02-at-16.31.23-1.jpeg",
+  "bytes": 123310,
+  "pages": [
+   "/index.php/instalaciones/"
+  ],
+  "alts": [
+   "esgrima en torremolinos competicion"
+  ]
+ },
+ {
   "file": "whatsapp-image-2022-08-02-at-16.51.59-1.webp",
   "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-02-at-16.51.59-1.jpeg",
   "bytes": 127010,
   "pages": [
    "/"
+  ],
+  "alts": []
+ },
+ {
+  "file": "whatsapp-image-2022-08-04-at-17.06.48.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-04-at-17.06.48.jpeg",
+  "bytes": 121733,
+  "pages": [
+   "/index.php/instalaciones/"
+  ],
+  "alts": []
+ },
+ {
+  "file": "whatsapp-image-2022-08-04-at-17.10.36-2.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-04-at-17.10.36-2.jpeg",
+  "bytes": 334394,
+  "pages": [
+   "/index.php/instalaciones/"
+  ],
+  "alts": []
+ },
+ {
+  "file": "whatsapp-image-2022-08-04-at-17.10.37-1.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-04-at-17.10.37-1.jpeg",
+  "bytes": 118178,
+  "pages": [
+   "/index.php/instalaciones/"
+  ],
+  "alts": [
+   "campeones malaga esgrima"
+  ]
+ },
+ {
+  "file": "whatsapp-image-2022-08-04-at-17.10.37-2-1.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-04-at-17.10.37-2-1.jpeg",
+  "bytes": 119819,
+  "pages": [
+   "/index.php/instalaciones/"
+  ],
+  "alts": []
+ },
+ {
+  "file": "whatsapp-image-2022-08-04-at-17.10.37-2.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-04-at-17.10.37-2.jpeg",
+  "bytes": 346896,
+  "pages": [
+   "/index.php/instalaciones/"
+  ],
+  "alts": []
+ },
+ {
+  "file": "whatsapp-image-2022-08-04-at-17.10.38.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-04-at-17.10.38.jpeg",
+  "bytes": 90775,
+  "pages": [
+   "/index.php/instalaciones/"
+  ],
+  "alts": []
+ },
+ {
+  "file": "whatsapp-image-2022-08-04-at-17.10.40-2-1.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-04-at-17.10.40-2-1.jpeg",
+  "bytes": 91984,
+  "pages": [
+   "/index.php/instalaciones/"
+  ],
+  "alts": []
+ },
+ {
+  "file": "whatsapp-image-2022-08-04-at-17.10.41-3.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-04-at-17.10.41-3.jpeg",
+  "bytes": 196190,
+  "pages": [
+   "/index.php/instalaciones/"
+  ],
+  "alts": []
+ },
+ {
+  "file": "ahorros.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2022/08/ahorros.png",
+  "bytes": 16793,
+  "pages": [
+   "/index.php/horarios-y-precios/"
   ],
   "alts": []
  },
@@ -161,6 +306,17 @@
   "alts": []
  },
  {
+  "file": "imagen-de-whatsapp-2024-02-22-a-las-08.51.45_f42fb7f1.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2024/02/Imagen-de-WhatsApp-2024-02-22-a-las-08.51.45_f42fb7f1.jpg",
+  "bytes": 266558,
+  "pages": [
+   "/index.php/esgrima-ninos/"
+  ],
+  "alts": [
+   "esgrima niños málaga torremolinos"
+  ]
+ },
+ {
   "file": "rodrigo-entrenador-torremolinos.webp",
   "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2024/09/Rodrigo-entrenador-Torremolinos.jpg",
   "bytes": 39949,
@@ -168,5 +324,16 @@
    "/"
   ],
   "alts": []
+ },
+ {
+  "file": "promo-septiembre-2x1-1.webp",
+  "source": "https://www.esgrimatorremolinos.com/wp-content/uploads/2025/08/Promo-septiembre-2x1-1.png",
+  "bytes": 1556716,
+  "pages": [
+   "/index.php/horarios-y-precios/"
+  ],
+  "alts": [
+   "promoción esgrima"
+  ]
  }
 ]
