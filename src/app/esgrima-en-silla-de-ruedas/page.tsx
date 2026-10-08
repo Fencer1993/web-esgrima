@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
+import { Photo } from "@/components/Photo";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { whatsappLink } from "@/content/site";
 
@@ -39,7 +40,8 @@ const wheelchairFaq = [
   },
   {
     question: "¿Existe esgrima ocio para silla de ruedas?",
-    answer: "Sí, exactamente en las mismas condiciones que en el grupo de Adultos.",
+    answer:
+      "Sí, exactamente en las mismas condiciones que en el grupo de Adultos.",
   },
   {
     question: "¿Debo federarme?",
@@ -76,58 +78,76 @@ export default function SillaDeRuedas() {
         <div className="grid gap-10 lg:grid-cols-[3fr_2fr]">
           <div className="space-y-4 text-sm leading-relaxed text-ink-soft">
             <p>
-              En Torremolinos entrenamos esgrima en silla de ruedas dirigida por Carlos Soler,
-              seleccionador nacional de esta modalidad — así que tendrás al mejor entrenador
-              dándote clases. Busca incluir a personas cuya movilidad ha quedado reducida por
-              diversos motivos: paraplejia, tetraplejia u otras patologías que limiten o
-              impidan el movimiento del tren inferior.
+              En Torremolinos entrenamos esgrima en silla de ruedas dirigida por
+              Carlos Soler, seleccionador nacional de esta modalidad — así que
+              tendrás al mejor entrenador dándote clases. Busca incluir a
+              personas cuya movilidad ha quedado reducida por diversos motivos:
+              paraplejia, tetraplejia u otras patologías que limiten o impidan
+              el movimiento del tren inferior.
             </p>
             <p>
-              Promovemos la esgrima inclusiva: el club acoge tanto a deportistas de esgrima
-              convencional como a quienes tienen alguna discapacidad física, y realizamos
-              competiciones amistosas en las que participan de manera igualitaria ambos
-              perfiles. No solo apostamos por esta modalidad para el ocio, sino también para
-              la competición — contamos con deportistas de amplio palmarés internacional, como
-              el propio Carlos Soler, Antonio Garrido y Lorenzo Ribes.
+              Promovemos la esgrima inclusiva: el club acoge tanto a deportistas
+              de esgrima convencional como a quienes tienen alguna discapacidad
+              física, y realizamos competiciones amistosas en las que participan
+              de manera igualitaria ambos perfiles. No solo apostamos por esta
+              modalidad para el ocio, sino también para la competición —
+              contamos con deportistas de amplio palmarés internacional, como el
+              propio Carlos Soler, Antonio Garrido y Lorenzo Ribes.
             </p>
             <p>Podrás aprender las tres armas: espada, florete y sable.</p>
           </div>
 
-          <div className="rounded-sm border border-line bg-paper-raised p-6">
-            <dl className="space-y-4 text-sm">
-              <div>
-                <dt className="font-mono text-xs uppercase tracking-wide text-ink-faint">
-                  Horario
-                </dt>
-                <dd className="mt-1 text-ink">Martes, miércoles, jueves y viernes, 10:00–12:30</dd>
-              </div>
-              <div>
-                <dt className="font-mono text-xs uppercase tracking-wide text-ink-faint">
-                  Mensualidad
-                </dt>
-                <dd className="mt-1 tabular text-ink">
-                  30€/mes — incluye la oferta 2×1 y la prueba gratuita
-                </dd>
-              </div>
-              <div>
-                <dt className="font-mono text-xs uppercase tracking-wide text-ink-faint">
-                  Seguro federativo (FEDDF)
-                </dt>
-                <dd className="mt-1 tabular text-ink">70€/año</dd>
-              </div>
-            </dl>
-            <a
-              href={whatsappLink("Hola, quiero información sobre esgrima en silla de ruedas")}
-              className="mt-6 inline-flex w-full items-center justify-center rounded-sm bg-accent px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark"
-            >
-              Contactar con Carlos Soler
-            </a>
+          <div className="space-y-6">
+            <Photo
+              src="/images/programas/esgrima-silla-de-ruedas-torremolinos.webp"
+              alt="Esgrimista en silla de ruedas durante una competición de esgrima adaptada"
+              width={554}
+              height={1200}
+              className="aspect-[4/3] w-full rounded-sm border border-line object-cover object-[center_35%]"
+            />
+            <div className="rounded-sm border border-line bg-paper-raised p-6">
+              <dl className="space-y-4 text-sm">
+                <div>
+                  <dt className="font-mono text-xs uppercase tracking-wide text-ink-faint">
+                    Horario
+                  </dt>
+                  <dd className="mt-1 text-ink">
+                    Martes, miércoles, jueves y viernes, 10:00–12:30
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-xs uppercase tracking-wide text-ink-faint">
+                    Mensualidad
+                  </dt>
+                  <dd className="mt-1 tabular text-ink">
+                    30€/mes — incluye la oferta 2×1 y la prueba gratuita
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-xs uppercase tracking-wide text-ink-faint">
+                    Seguro federativo (FEDDF)
+                  </dt>
+                  <dd className="mt-1 tabular text-ink">70€/año</dd>
+                </div>
+              </dl>
+              <a
+                href={whatsappLink(
+                  "Hola, quiero información sobre esgrima en silla de ruedas",
+                )}
+                className="mt-6 inline-flex w-full items-center justify-center rounded-sm bg-accent px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark"
+              >
+                Contactar con Carlos Soler
+              </a>
+            </div>
           </div>
         </div>
       </Section>
 
       <Section tone="raised" className="border-t border-line">
-        <SectionHeading eyebrow="Dudas frecuentes" title="Esgrima Adaptada: Preguntas" />
+        <SectionHeading
+          eyebrow="Dudas frecuentes"
+          title="Esgrima Adaptada: Preguntas"
+        />
         <FaqAccordion items={wheelchairFaq} />
       </Section>
     </>

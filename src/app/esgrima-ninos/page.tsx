@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
+import { Photo } from "@/components/Photo";
 import { whatsappLink } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -22,6 +23,13 @@ export default function EsgrimaNinos() {
       />
 
       <Section>
+        <Photo
+          src="/images/programas/esgrima-ninos-torremolinos.webp"
+          alt="Grupo de niños del Club de Esgrima Torremolinos con sus entrenadores y equipación del club"
+          width={1200}
+          height={900}
+          className="mb-10 aspect-[16/9] w-full max-w-2xl rounded-sm border border-line object-cover object-[center_60%]"
+        />
         <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-ink-soft">
           <p>
             En el Club de Esgrima Torremolinos damos clase de esgrima para niños a partir de

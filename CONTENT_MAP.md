@@ -10,9 +10,9 @@ relativas a `src/`.
 | `/esgrima-ninos` | `app/esgrima-ninos/page.tsx` | `content/programs.ts` |
 | `/esgrima-para-adultos` | `app/esgrima-para-adultos/page.tsx` | `content/programs.ts` |
 | `/esgrima-en-silla-de-ruedas` | `app/esgrima-en-silla-de-ruedas/page.tsx` | FAQ inline en la propia página (`wheelchairFaq`) |
-| `/nuestro-equipo` | `app/nuestro-equipo/page.tsx` | `content/programs.ts` (coaches), `content/athletes.ts` |
+| `/nuestro-equipo` | `app/nuestro-equipo/page.tsx` | `content/programs.ts` (coaches + foto), `content/athletes.ts` |
 | `/horarios-y-precios` | `app/horarios-y-precios/page.tsx` | `content/pricing.ts` |
-| `/instalaciones` | `app/instalaciones/page.tsx` | `content/gallery.ts` |
+| `/instalaciones` | `app/instalaciones/page.tsx` | `content/gallery.ts` (foto, alt y pie de cada imagen) |
 | `/clase-gratis` | `app/clase-gratis/page.tsx` | pasos inline (`steps`) |
 | `/preguntas-frecuentes` | `app/preguntas-frecuentes/page.tsx` | `content/faq.ts` |
 | `/contacto` | `app/contacto/page.tsx` | `content/site.ts` |
@@ -31,6 +31,16 @@ relativas a `src/`.
   (`SportsActivityLocation`/`ExerciseGym`), fuentes.
 - `src/components/PageHero.tsx` — cabecera de cada página interior
   (eyebrow/título/lede) + JSON-LD `BreadcrumbList` automático.
+
+## Imágenes
+
+Fotos ya optimizadas (WebP, máx. 1200 px, sin EXIF) en
+`public/images/{galeria,equipo,programas}/` con nombre descriptivo.
+No hay optimizador en el export estático: reducir y comprimir *antes* de
+añadir una foto. Se pintan con `src/components/Photo.tsx` (antepone el
+`basePath` y fija width/height). El texto `alt` describe lo que se ve;
+el pie de foto va aparte en `gallery.ts`. `CoachCard.tsx` pinta las
+tarjetas de entrenadores (home y Nuestro Equipo).
 
 ## SEO por página
 

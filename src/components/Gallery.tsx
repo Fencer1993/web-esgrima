@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Photo } from "@/components/Photo";
 import { galleryItems, type GalleryCategory } from "@/content/gallery";
 
 const filters: Array<GalleryCategory | "Todo"> = ["Todo", "Entrenamientos", "Competiciones"];
@@ -11,7 +12,7 @@ export function Gallery() {
 
   return (
     <div>
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {filters.map((f) => (
           <button
             key={f}
@@ -31,14 +32,21 @@ export function Gallery() {
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
           <figure
-            key={item.caption}
-            className="flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-sm border border-line bg-steel-soft p-4"
+            key={item.src}
+            className="overflow-hidden rounded-sm border border-line bg-paper-raised"
           >
-            <span className="mb-2 font-mono text-[10px] uppercase tracking-wide text-steel">
-              {item.category}
-            </span>
-            <figcaption className="text-sm leading-snug text-ink-soft">
-              {item.caption}
+            <Photo
+              src={item.src}
+              alt={item.alt}
+              width={item.width}
+              height={item.height}
+              className="aspect-[4/3] w-full object-cover object-[center_30%]"
+            />
+            <figcaption className="p-4">
+              <span className="font-mono text-[10px] uppercase tracking-wide text-steel">
+                {item.category}
+              </span>
+              <p className="mt-1 text-sm leading-snug text-ink-soft">{item.caption}</p>
             </figcaption>
           </figure>
         ))}

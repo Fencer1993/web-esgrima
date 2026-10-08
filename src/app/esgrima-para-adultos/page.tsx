@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
+import { Photo } from "@/components/Photo";
 import { whatsappLink } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -22,6 +23,13 @@ export default function EsgrimaAdultos() {
       />
 
       <Section>
+        <Photo
+          src="/images/programas/esgrima-adultos-torremolinos.webp"
+          alt="Dos esgrimistas adultos en plena estocada durante una competición de sable"
+          width={1080}
+          height={750}
+          className="mb-10 aspect-[16/9] w-full max-w-2xl rounded-sm border border-line object-cover"
+        />
         <p className="max-w-2xl text-sm leading-relaxed text-ink-soft">
           Ofrecemos esgrima para adultos y adolescentes en Torremolinos, en un único grupo que
           entrena junto de martes a viernes. Adaptamos el entrenamiento a la edad y a las

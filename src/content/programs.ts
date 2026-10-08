@@ -52,6 +52,12 @@ export const coaches = [
     bio: "Esgrimista paralímpico, con participación en Pekín y Barcelona. Seleccionador nacional de esgrima en silla de ruedas y encargado del grupo infantil.",
     phone: "+34 616 94 00 91",
     email: "csolerm@hotmail.com",
+    photo: {
+      src: "/images/equipo/carlos-soler-entrenador-esgrima-torremolinos.webp",
+      alt: "Carlos Soler, presidente y entrenador de esgrima adaptada del Club de Esgrima Torremolinos",
+      width: 411,
+      height: 602,
+    },
   },
   {
     name: "Víctor Santiago",
@@ -59,5 +65,11 @@ export const coaches = [
     bio: "Esgrimista del club durante 15 años, con varias participaciones internacionales y 6 años de experiencia como entrenador. Competidor activo y entrenador del grupo de adolescentes y adultos.",
     phone: "+34 687 34 02 77",
     email: "vst@hotmail.es",
+    photo: {
+      src: "/images/equipo/victor-santiago-entrenador-esgrima-torremolinos.webp",
+      alt: "Víctor Santiago, director técnico y entrenador de esgrima del Club de Esgrima Torremolinos",
+      width: 518,
+      height: 533,
+    },
   },
 ];

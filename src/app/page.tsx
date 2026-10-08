@@ -4,6 +4,7 @@ import { Section, SectionHeading } from "@/components/Section";
 import { InstagramCta } from "@/components/InstagramCta";
 import { site, whatsappLink } from "@/content/site";
 import { programs, values, coaches } from "@/content/programs";
+import { CoachCard } from "@/components/CoachCard";
 
 export const metadata: Metadata = {
   title: "Clases de esgrima en Torremolinos, Málaga",
@@ -127,32 +128,7 @@ export default function Home() {
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
           {coaches.map((c) => (
-            <div
-              key={c.name}
-              className="rounded-sm border border-line bg-paper-raised p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
-            >
-              <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">
-                {c.name}
-              </h3>
-              <p className="mt-1 text-xs font-medium uppercase tracking-wide text-accent">
-                {c.role}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-ink-soft">{c.bio}</p>
-              <div className="mt-4 space-y-1 text-sm text-ink-soft">
-                <p>
-                  <a href={`tel:${c.phone.replace(/\s/g, "")}`} className="hover:text-ink">
-                    {c.phone}
-                  </a>
-                </p>
-                {c.email && (
-                  <p>
-                    <a href={`mailto:${c.email}`} className="hover:text-ink">
-                      {c.email}
-                    </a>
-                  </p>
-                )}
-              </div>
-            </div>
+            <CoachCard key={c.name} coach={c} />
           ))}
         </div>
       </Section>
