@@ -14,7 +14,7 @@ export const programs: Program[] = [
     title: "Esgrima para Niños",
     tagline: "Grupo para menores entre 6 y 12 años. Deporte lúdico.",
     ageRange: "6–12 años",
-    schedule: "Martes, miércoles, jueves y viernes de 18:30 a 19:30",
+    schedule: "Martes, miércoles y jueves de 18:30 a 19:30 (viernes, solo con autorización y supervisión de un adulto)",
     photo: "equipo-infantil-juvenil-esgrima-torremolinos-almeria",
   },
   {
@@ -30,7 +30,7 @@ export const programs: Program[] = [
     title: "Esgrima en Silla de Ruedas",
     tagline: "Clases para la diversidad funcional. Deporte inclusivo.",
     ageRange: "Todas las edades",
-    schedule: "Martes, miércoles, jueves y viernes de 10:00 a 12:30",
+    schedule: "Lunes, martes, miércoles y jueves de 10:00 a 12:30",
     photo: "podio-esgrima-adaptada-torneo-jaen",
   },
 ];
@@ -80,8 +80,8 @@ export const coaches = [
     photo: {
       src: "/images/equipo/victor-santiago-entrenador-esgrima-torremolinos.webp",
       alt: "Víctor Santiago, director técnico y entrenador de esgrima del Club de Esgrima Torremolinos, con careta y sable en la sala del club",
-      width: 640,
-      height: 800,
+      width: 520,
+      height: 650,
     },
   },
 ];

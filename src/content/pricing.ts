@@ -26,11 +26,16 @@ export const physicalTraining = {
   text: "Servicio extra sin coste para los deportistas del club. Consulta plazas y condiciones con la dirección técnica.",
 };
 
-export const schedule = [
+export const schedule: { group: string; days: string; hours: string; note?: string }[] = [
   ...competitionGroups.map((g) => ({ group: g.name, days: g.days, hours: g.hours })),
-  { group: "Niños (6–12 años)", days: weekdays, hours: "18:30 – 19:30" },
+  {
+    group: "Niños (6–12 años)",
+    days: "Martes, miércoles y jueves",
+    hours: "18:30 – 19:30",
+    note: "Los viernes, solo con autorización y supervisión de un adulto.",
+  },
   { group: "Adolescentes y Adultos", days: weekdays, hours: "19:30 – 21:00" },
-  { group: "Esgrima en Silla de Ruedas", days: weekdays, hours: "10:00 – 12:30" },
+  { group: "Esgrima en Silla de Ruedas", days: "Lunes, martes, miércoles y jueves", hours: "10:00 – 12:30" },
   {
     group: "Entrenamiento físico deportivo (gratis)",
     days: physicalTraining.days,
@@ -43,7 +48,7 @@ export const plans = [
     name: "Niños",
     price: "30€",
     period: "al mes",
-    features: ["4 clases semanales", "Uso gratuito de material", "Posibilidad de competir"],
+    features: ["3 clases semanales", "Uso gratuito de material", "Posibilidad de competir"],
   },
   {
     name: "Adultos",

@@ -294,6 +294,14 @@ export const galleryItems: GalleryItem[] = [
     height: 1200,
     alt: "Dos esgrimistas jóvenes con su entrenador en su debut en la prueba Quijote",
   },
+  {
+    caption: "El armero de nuestra sala: sables y caretas listos para la próxima clase.",
+    category: "En nuestra sala",
+    src: dir + "armero-sala-club-esgrima-torremolinos.webp",
+    width: 600,
+    height: 560,
+    alt: "Armero de madera con sables y caretas de esgrima colgados en la sala del club",
+  },
 ];
 
 // Busca una foto de la galería por un fragmento de su nombre de archivo.

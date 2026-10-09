@@ -113,7 +113,7 @@ export default function SillaDeRuedas() {
                     Horario
                   </dt>
                   <dd className="mt-1 text-ink">
-                    Martes, miércoles, jueves y viernes, 10:00–12:30
+                    Lunes, martes, miércoles y jueves, 10:00–12:30
                   </dd>
                 </div>
                 <div>

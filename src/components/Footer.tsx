@@ -61,26 +61,26 @@ export function Footer() {
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-14 sm:py-20 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <p className={headingClass}>Primera clase gratis</p>
-            <h2 className="mt-3 font-display text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl">
-              ¿Te atreves
+            <h2 className="mt-3 font-display text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl">
+              En guardia:
               <br />
-              con el <span className="text-accent">sable</span>?
+              tu primera clase es <span className="text-accent">gratis</span>
             </h2>
             <p className="mt-5 max-w-md text-base text-paper/75">
               Ven a probar sin compromiso. Te prestamos el material y te
               explicamos todo en tu primera clase.
             </p>
           </div>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="flex shrink-0 flex-col gap-4 sm:flex-row sm:items-center">
             <a
               href={whatsappLink("Hola, quiero probar una clase gratis")}
-              className="btn-blade inline-flex items-center justify-center rounded-sm bg-accent px-7 py-4 text-sm font-semibold uppercase tracking-wide text-white"
+              className="btn-blade inline-flex items-center justify-center whitespace-nowrap rounded-sm bg-accent px-7 py-4 text-sm font-semibold uppercase tracking-wide text-white"
             >
               Reservar por WhatsApp
             </a>
             <Link
               href="/clase-gratis"
-              className="link-touche inline-flex items-center gap-2 self-start py-2 text-sm font-semibold uppercase tracking-wide text-paper sm:self-auto"
+              className="link-touche inline-flex items-center gap-2 self-start whitespace-nowrap py-2 text-sm font-semibold uppercase tracking-wide text-paper sm:self-auto"
             >
               Cómo funciona la clase gratis
               <span aria-hidden="true">→</span>

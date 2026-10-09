@@ -30,8 +30,8 @@ export const pageHeroes: Record<string, { photo: string; position?: string }> = 
     position: "object-center",
   },
   "/preguntas-frecuentes": {
-    photo: "podio-masculino-torneo-jaen-esgrima-torremolinos",
-    position: "object-center",
+    photo: "armero-sala-club-esgrima-torremolinos",
+    position: "object-[center_25%]",
   },
   "/contacto": {
     photo: "medallistas-torneo-jaen-esgrima-torremolinos",

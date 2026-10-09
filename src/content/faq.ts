@@ -74,7 +74,7 @@ export const faq: FaqItem[] = [
   {
     question: "¿Cuántos días puedo entrenar a la semana?",
     answer:
-      "Los grupos regulares entrenan de martes a viernes, los cuatro días cada semana. Si compites, los lunes se suma una sesión de tecnificación.",
+      "Adolescentes y adultos, de martes a viernes. Niños, de martes a jueves (el viernes, solo con autorización y supervisión de un adulto). Esgrima en silla de ruedas, de lunes a jueves por la mañana. Si compites, los lunes se suma una sesión de tecnificación.",
   },
   {
     question: "¿Qué es el grupo de tecnificación deportiva?",

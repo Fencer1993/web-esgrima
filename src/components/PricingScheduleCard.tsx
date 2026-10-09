@@ -36,10 +36,12 @@ export function PricingScheduleCard({
   group,
   days,
   hours,
+  note,
 }: {
   group: string;
   days: string;
   hours: string;
+  note?: string;
 }) {
   const active = parseDays(days);
   const visible = DAYS.map((d, i) => ({ ...d, i })).filter(
@@ -78,6 +80,7 @@ export function PricingScheduleCard({
           {days}
         </p>
       )}
+      {note && <p className="mt-3 text-[11px] leading-snug text-ink-faint">* {note}</p>}
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function HorariosYPrecios() {
       <PageHero
         eyebrow="Únete al club"
         title="Horarios y Precios"
-        lede="Grupos de martes a viernes y tecnificación de competición los lunes. Elige el tuyo."
+        lede="Grupos de lunes a viernes, mañana y tarde, y tecnificación de competición los lunes. Elige el tuyo."
         path="/horarios-y-precios"
       />
 
@@ -27,7 +27,7 @@ export default function HorariosYPrecios() {
         <SectionHeading eyebrow="Cuándo entrenamos" title="Horarios" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {schedule.map((s) => (
-            <PricingScheduleCard key={s.group} group={s.group} days={s.days} hours={s.hours} />
+            <PricingScheduleCard key={s.group} group={s.group} days={s.days} hours={s.hours} note={s.note} />
           ))}
         </div>
         <p className="mt-4 max-w-2xl text-sm text-ink-soft">

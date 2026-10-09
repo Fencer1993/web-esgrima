@@ -117,11 +117,13 @@ export default function Home() {
                 Horarios
               </dt>
               <dd className="mt-1 text-paper/85">
-                Esgrima: M,X,J,V 18:30–21:00
+                Niños: M,X,J 18:30–19:30
+                <br />
+                Adultos: M,X,J,V 19:30–21:00
                 <br />
                 Tecnificación: lunes 18:00–22:00
                 <br />
-                Silla de ruedas: M,X,J,V 10:00–12:30
+                Silla de ruedas: L,M,X,J 10:00–12:30
               </dd>
             </div>
           </dl>
