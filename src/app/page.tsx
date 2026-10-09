@@ -56,8 +56,8 @@ export default function Home() {
         <Photo
           src="/images/portada/esgrima-sable-torremolinos-portada.webp"
           alt="Dos esgrimistas de sable en pleno asalto durante una competición"
-          width={1077}
-          height={698}
+          width={1800}
+          height={1166}
           priority
           className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
         />
