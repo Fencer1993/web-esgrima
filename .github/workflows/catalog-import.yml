@@ -11,8 +11,8 @@ on:
         description: "fetch o images"
         default: "fetch"
       suppliers:
-        description: "Proveedores para fetch (grant allstar villalbi)"
-        default: "grant allstar villalbi"
+        description: "Proveedores para fetch (grant allstar allstarspain villalbi)"
+        default: "grant allstar allstarspain villalbi"
 
 permissions:
   contents: write

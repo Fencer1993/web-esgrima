@@ -39,8 +39,9 @@ const decode = (s) =>
     .trim();
 
 // ---------------------------------------------------------------- Grant
-async function grant() {
-  const B = "https://grantesgrima.com/wp-json/wc/store/v1";
+// Tiendas WooCommerce (Grant Esgrima, Allstar España): API pública Store.
+async function woo(site, label) {
+  const B = `${site}/wp-json/wc/store/v1`;
   const cats = [];
   for (let p = 1; ; p++) {
     const page = await get(`${B}/products/categories?per_page=100&page=${p}`, "json");
@@ -63,7 +64,7 @@ async function grant() {
         url: x.permalink,
         sku: x.sku || "",
         type: x.type,
-        // Grant publica precios sin IVA (en céntimos).
+        // Precios en céntimos (Grant los publica sin IVA).
         price: x.prices?.price ? Number(x.prices.price) / 10 ** (x.prices.currency_minor_unit ?? 2) : null,
         priceMax: x.prices?.price_range?.max_amount
           ? Number(x.prices.price_range.max_amount) / 10 ** (x.prices.currency_minor_unit ?? 2)
@@ -76,7 +77,7 @@ async function grant() {
         text: decode(desc).slice(0, 300),
       });
     }
-    console.log(`Grant página ${p}: ${products.length}`);
+    console.log(`${label} página ${p}: ${products.length}`);
     if (page.length < 100) break;
     await sleep(500);
   }
@@ -220,9 +221,9 @@ async function villalbi() {
 }
 
 mkdirSync(OUT, { recursive: true });
-const only = (process.env.SUPPLIERS || "grant allstar villalbi").split(/[\s,]+/);
+const only = (process.env.SUPPLIERS || "grant allstar allstarspain villalbi").split(/[\s,]+/);
 if (only.includes("grant")) {
-  const g = await grant();
+  const g = await woo("https://grantesgrima.com", "Grant");
   writeFileSync(join(OUT, "grant.json"), JSON.stringify(g, null, 0));
   console.log(`Grant: ${g.products.length} productos, ${g.cats.length} categorías`);
 }
@@ -230,6 +231,11 @@ if (only.includes("allstar")) {
   const a = await allstar();
   writeFileSync(join(OUT, "allstar.json"), JSON.stringify(a, null, 0));
   console.log(`Allstar: ${a.products.length} productos`);
+}
+if (only.includes("allstarspain")) {
+  const a = await woo("https://allstarspain.com", "Allstar España");
+  writeFileSync(join(OUT, "allstarspain.json"), JSON.stringify(a, null, 0));
+  console.log(`Allstar España: ${a.products.length} productos, ${a.cats.length} categorías`);
 }
 if (only.includes("villalbi")) {
   const v = await villalbi();
