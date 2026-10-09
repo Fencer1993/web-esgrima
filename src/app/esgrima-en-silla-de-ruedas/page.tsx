@@ -101,7 +101,7 @@ export default function SillaDeRuedas() {
           <div className="space-y-6">
             <Photo
               src="/images/galeria/esgrimista-silla-de-ruedas-competicion-torremolinos.webp"
-              alt="Esgrimista en silla de ruedas con careta y arma durante una competición de esgrima adaptada"
+              alt="Antonio Garrido, esgrimista en silla de ruedas del club, en un asalto en la sala del club"
               width={554}
               height={1200}
               className="aspect-[4/5] w-full rounded-sm border border-line object-cover object-[center_40%]"
