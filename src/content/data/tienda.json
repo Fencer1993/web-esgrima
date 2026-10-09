@@ -1,0 +1,102 @@
+{
+  "intro": "Pide tu material a través del club. Hacemos pedidos periódicos a nuestros proveedores habituales: Yiang (iniciación) y Allstar y PBT (mayor calidad, competición avanzada). Si lo compras con nosotros te asesoramos, obtienes un pequeño descuento y te ahorras el envío.",
+  "orderEmail": "esgrimatorremolinos@gmail.com",
+  "products": [
+    {
+      "id": "careta-sable",
+      "name": "Careta de sable",
+      "supplier": "Yiang",
+      "category": "Protección",
+      "description": "Careta de sable para iniciación. Ejemplo — revisar precio y modelo.",
+      "price": "Consultar",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "photo": "",
+      "active": true
+    },
+    {
+      "id": "sable-completo",
+      "name": "Sable completo",
+      "supplier": "Allstar",
+      "category": "Armas",
+      "description": "Sable eléctrico montado, listo para entrenar. Ejemplo — revisar precio y modelo.",
+      "price": "Consultar",
+      "sizes": [],
+      "photo": "",
+      "active": true
+    },
+    {
+      "id": "chaqueta-blanca",
+      "name": "Chaqueta blanca de esgrima",
+      "supplier": "Yiang",
+      "category": "Ropa",
+      "description": "Chaqueta de esgrima homologada. Ejemplo — revisar precio y modelo.",
+      "price": "Consultar",
+      "sizes": [
+        "128",
+        "140",
+        "152",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "photo": "",
+      "active": true
+    },
+    {
+      "id": "pantalon-blanco",
+      "name": "Pantalón blanco de esgrima",
+      "supplier": "Yiang",
+      "category": "Ropa",
+      "description": "Pantalón de esgrima homologado. Ejemplo — revisar precio y modelo.",
+      "price": "Consultar",
+      "sizes": [
+        "128",
+        "140",
+        "152",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "photo": "",
+      "active": true
+    },
+    {
+      "id": "guante-sable",
+      "name": "Guante de sable",
+      "supplier": "PBT",
+      "category": "Accesorios",
+      "description": "Guante con puño para sable. Ejemplo — revisar precio y modelo.",
+      "price": "Consultar",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "photo": "",
+      "active": true
+    },
+    {
+      "id": "chaqueta-electrica-sable",
+      "name": "Chaqueta eléctrica (lamé) de sable",
+      "supplier": "PBT",
+      "category": "Ropa",
+      "description": "Chaqueta conductora para señalización eléctrica. Ejemplo — revisar precio y modelo.",
+      "price": "Consultar",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "photo": "",
+      "active": true
+    }
+  ]
+}

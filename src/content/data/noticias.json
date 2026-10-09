@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "slug": "nuevos-grupos-de-tecnificacion-lunes",
+      "date": "2026-10-09",
+      "type": "Noticia",
+      "title": "Grupos de tecnificación los lunes",
+      "summary": "Dos grupos de tecnificación los lunes por la tarde: de 13 a 18 años y para mayores de 18.",
+      "body": "Los lunes por la tarde tenemos dos grupos de tecnificación pensados para quien quiere competir.\n\nEl grupo de 13 a 18 años entrena de 18:00 a 20:00. Es una sesión específica de técnica, táctica y preparación de torneos.\n\nEl grupo de mayores de 18 entrena de 20:00 a 22:00: asaltos de nivel, trabajo táctico y plan de competición, tanto para quien ya compite como para quien quiere empezar a hacerlo.\n\nEl acceso a estos grupos requiere una evaluación previa del director técnico. Escríbenos por WhatsApp y te contamos cómo hacerla.",
+      "image": "/images/galeria/podio-absoluto-torneo-jaen-oro-torremolinos.webp",
+      "pinned": true
+    },
+    {
+      "slug": "deportistas-en-nuestro-equipo",
+      "date": "2026-10-09",
+      "type": "Noticia",
+      "title": "Ya puedes ver a nuestros deportistas en Nuestro Equipo",
+      "summary": "En la página Nuestro Equipo, además de los entrenadores, ya aparecen los deportistas del club.",
+      "body": "En la página Nuestro Equipo encontrarás a los entrenadores que te recibirán en tu primera clase y también a los deportistas que llevan el nombre del club a competición.\n\nPasa a conocerlos y, si te apetece formar parte del equipo, recuerda que la primera clase es gratis.",
+      "image": "/images/galeria/esgrimistas-adultos-club-torremolinos-torneo.webp",
+      "pinned": false
+    }
+  ]
+}
