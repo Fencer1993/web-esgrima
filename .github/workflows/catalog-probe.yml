@@ -1,0 +1,29 @@
+name: Explorar catálogos de proveedores
+
+# Temporal: inspecciona la estructura de la tienda de un proveedor para
+# preparar la importación del catálogo de sable (nombres, fotos, precios).
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Página a explorar"
+        default: "https://www.allstar.de"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explorar
+        env:
+          URL: ${{ inputs.url }}
+        run: |
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
+          curl -sSL -A "$UA" -o home.html -w "HTTP %{http_code} -> %{url_effective}\n" "$URL"
+          echo "== tamaño"; wc -c home.html
+          echo "== título"; grep -o '<title>[^<]*' home.html | head -2
+          echo "== generador / plataforma"; grep -oiE 'shopware|woocommerce|magento|shopify|prestashop|oxid|jtl|gambio|xt:commerce|plentymarkets' home.html | sort | uniq -c | head
+          echo "== enlaces relacionados con sable / textil / zapatillas"
+          grep -oE 'href="[^"]+"' home.html | sed 's/href="//;s/"$//' | grep -iE 'saebel|säbel|sabre|saber|sabel|textil|bekleid|cloth|jacke|jacket|hose|maske|mask|schuh|shoe|socke|strumpf|sock|klinge|blade|kabel|cord|zubeh|part' | sort -u | head -80
+          echo "== sitemap / robots"
+          BASE=$(python3 -c "import os,urllib.parse as u;p=u.urlparse(os.environ['URL']);print(f'{p.scheme}://{p.netloc}')")
+          curl -sSL -A "$UA" "$BASE/robots.txt" | head -30
