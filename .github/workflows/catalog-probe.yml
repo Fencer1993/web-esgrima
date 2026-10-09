@@ -1,0 +1,32 @@
+name: Explorar catálogos de proveedores
+
+# Temporal: inspecciona la tienda de un proveedor para preparar su importación.
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "URLs separadas por espacios"
+        required: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explorar
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
+          for URL in $URLS; do
+            echo "################ $URL"
+            curl -sSL -m 30 -A "$UA" -o home.html -w "HTTP %{http_code} -> %{url_effective}\n" "$URL" || { echo "sin respuesta"; continue; }
+            wc -c < home.html
+            grep -o '<title>[^<]*' home.html | head -1
+            echo "== plataforma"; grep -oiE 'shopware|woocommerce|magento|shopify|prestashop|wix|squarespace|jimdo|wordpress' home.html | sort | uniq -c | head
+            echo "== enlaces"
+            grep -oE 'href="[^"]+"' home.html | sed 's/href="//;s/"$//' | grep -viE '\.(css|js|png|jpg|svg|ico|woff2?)(\?|$)' | sort -u | head -120
+            BASE=$(python3 -c "import urllib.parse as u,sys;p=u.urlparse(sys.argv[1]);print(f'{p.scheme}://{p.netloc}')" "$(grep -o 'https\?://[^ ]*' <<< "$URL")")
+            echo "== robots"; curl -sSL -m 20 -A "$UA" "$BASE/robots.txt" | head -15
+            echo "== woo store api"; curl -sS -m 20 -A "$UA" "$BASE/wp-json/wc/store/v1/products?per_page=2" | head -c 600; echo
+            echo "== shopify"; curl -sS -m 20 -A "$UA" "$BASE/products.json?limit=2" | head -c 600; echo
+          done
