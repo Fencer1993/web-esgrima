@@ -33,6 +33,15 @@ jobs:
       # en WebP reducido (el repositorio lo corrige aparte, optimize-images.yml).
       - name: Optimizar fotos
         run: SHARP_DIR="$GITHUB_WORKSPACE" node .github/scripts/optimize-images.mjs
+      # Calendario desde SportMember (solo datos públicos). Sin credenciales
+      # no hace nada y la web muestra "muy pronto".
+      - name: Calendario de SportMember
+        env:
+          SPORTMEMBER_USER: ${{ secrets.SPORTMEMBER_USER }}
+          SPORTMEMBER_PASSWORD: ${{ secrets.SPORTMEMBER_PASSWORD }}
+          SPORTMEMBER_TEAMS: ${{ vars.SPORTMEMBER_TEAMS }}
+        run: node .github/scripts/sportmember-sync.mjs
+
       - name: Build (raíz del dominio)
         run: npm run build
         env:
@@ -53,6 +62,29 @@ jobs:
           define("GITHUB_CLIENT_ID", "${{ secrets.GITHUB_OAUTH_CLIENT_ID }}");
           define("GITHUB_CLIENT_SECRET", "${{ secrets.GITHUB_OAUTH_CLIENT_SECRET }}");
           PHP
+
+      # Datos que leen los PHP del servidor (tienda y área de gestión).
+      - name: Datos para tienda y gestión
+        run: |
+          cp src/content/data/tienda.json out/tienda-productos.json
+          node -e 'const d=require("./src/content/data/calendario.generated.json"); require("fs").writeFileSync("out/calendario.json", JSON.stringify(d.items||[]))'
+
+      # Área de gestión (/gestion/): usuario y contraseña desde secrets; la
+      # contraseña se guarda solo como hash. Sin secrets, queda "no configurada".
+      - name: Configuración de gestión
+        env:
+          GESTION_USER: ${{ secrets.GESTION_USER }}
+          GESTION_PASSWORD: ${{ secrets.GESTION_PASSWORD }}
+        run: |
+          if [ -z "$GESTION_USER" ] || [ -z "$GESTION_PASSWORD" ]; then
+            echo "Gestión sin configurar (faltan secrets)"; rm -f out/gestion/config.php; exit 0
+          fi
+          php -r '
+            $u = getenv("GESTION_USER");
+            $h = password_hash(getenv("GESTION_PASSWORD"), PASSWORD_DEFAULT);
+            file_put_contents("out/gestion/config.php", "<?php\ndefine(\"GESTION_USER\", " . var_export($u, true) . ");\ndefine(\"GESTION_PASS_HASH\", " . var_export($h, true) . ");\n");
+          '
+          php -l out/gestion/config.php
 
       - name: Carpeta raíz
         id: dest

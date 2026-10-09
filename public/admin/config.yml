@@ -302,3 +302,24 @@ collections:
               - { name: path, label: Ruta, widget: hidden }
               - { name: photo, label: Foto, widget: string, hint: "fragmento del nombre de una foto de la galería" }
               - { name: position, label: Encuadre, widget: string, required: false, hint: "object-[center_30%] = encuadre vertical; no tocar si no sabes" }
+
+      - name: tienda
+        label: Tienda del club
+        file: src/content/data/tienda.json
+        fields:
+          - { name: intro, label: Texto de introducción, widget: text }
+          - { name: orderEmail, label: Correo que recibe los pedidos, widget: string }
+          - name: products
+            label: Productos
+            widget: list
+            summary: "{{name}} · {{supplier}} · {{price}}"
+            fields:
+              - { name: id, label: "Identificador (sin espacios, ej. careta-sable)", widget: string }
+              - { name: name, label: Nombre, widget: string }
+              - { name: supplier, label: "Proveedor (Yiang, Allstar, PBT…)", widget: string }
+              - { name: category, label: Categoría, widget: select, options: ["Protección", "Armas", "Ropa", "Accesorios"] }
+              - { name: description, label: Descripción, widget: text }
+              - { name: price, label: "Precio del club (ej. 45€)", widget: string }
+              - { name: sizes, label: Tallas, widget: list, required: false, field: { name: talla, label: Talla, widget: string } }
+              - { name: photo, label: Foto, widget: image, required: false, media_folder: /public/images/tienda, public_folder: /images/tienda }
+              - { name: active, label: Visible en la tienda, widget: boolean, default: true }

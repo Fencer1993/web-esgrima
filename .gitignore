@@ -46,3 +46,4 @@ public/instagram-cache.json
 
 # Panel de edición: credenciales generadas en el despliegue
 public/admin-auth/config.php
+public/gestion/config.php
