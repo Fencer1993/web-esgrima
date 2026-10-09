@@ -40,8 +40,8 @@ export default function Home() {
               Club de Esgrima Torremolinos
             </h1>
             <p className="mt-5 max-w-lg text-lg text-paper/80">
-              Clases de esgrima para niños desde 6 años, adolescentes, adultos y esgrima
-              adaptada en silla de ruedas. Ven y prueba gratis.
+              Clases de esgrima para niños desde 6 años, adolescentes, adultos y
+              esgrima adaptada en silla de ruedas. Ven y prueba gratis.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
@@ -65,7 +65,8 @@ export default function Home() {
                 Dirección
               </dt>
               <dd className="mt-1 text-paper/85">
-                {site.address.line}, {site.address.postalCode} {site.address.city}
+                {site.address.line}, {site.address.postalCode}{" "}
+                {site.address.city}
               </dd>
             </div>
             <div>
@@ -91,7 +92,10 @@ export default function Home() {
       </section>
 
       <Section>
-        <SectionHeading eyebrow="Programas" title="Clases de Esgrima en Torremolinos" />
+        <SectionHeading
+          eyebrow="Programas"
+          title="Clases de Esgrima en Torremolinos"
+        />
         <div className="reveal grid gap-6 sm:grid-cols-3">
           {programs.map((p) => (
             <Link
@@ -122,34 +126,51 @@ export default function Home() {
           lede="Entrenamientos, torneos y podios de nuestros esgrimistas en Andalucía y en el circuito nacional."
         />
         <div className="grid gap-4 sm:grid-cols-3">
-          {[galleryItems[4], galleryItems[5], galleryItems[11]].map((g) => (
-            <figure key={g.src} className="reveal overflow-hidden rounded-sm border border-line">
-              <Photo
-                src={g.src}
-                alt={g.alt}
-                width={g.width}
-                height={g.height}
-                className="aspect-[4/3] w-full object-cover object-[center_30%]"
-              />
-            </figure>
-          ))}
+          {[
+            "podio-absoluto-torneo-jaen-oro",
+            "grupo-esgrimistas-club-torremolinos-sala",
+            "asalto-competicion-roquetas",
+          ]
+            .map((n) => galleryItems.find((g) => g.src.includes(n))!)
+            .map((g) => (
+              <figure
+                key={g.src}
+                className="reveal overflow-hidden rounded-sm border border-line"
+              >
+                <Photo
+                  src={g.src}
+                  alt={g.alt}
+                  width={g.width}
+                  height={g.height}
+                  className="aspect-[4/3] w-full object-cover object-[center_30%]"
+                />
+              </figure>
+            ))}
         </div>
         <p className="mt-6 text-sm">
-          <Link href="/instalaciones" className="link-touche font-semibold text-accent-dark">
+          <Link
+            href="/instalaciones"
+            className="link-touche font-semibold text-accent-dark"
+          >
             Ver toda la galería →
           </Link>
         </p>
       </Section>
 
       <Section tone="raised" className="border-y border-line">
-        <SectionHeading eyebrow="Club de Esgrima Torremolinos" title="Nuestros Valores" />
+        <SectionHeading
+          eyebrow="Club de Esgrima Torremolinos"
+          title="Nuestros Valores"
+        />
         <div className="reveal grid gap-8 sm:grid-cols-3">
           {values.map((v) => (
             <div key={v.title}>
               <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">
                 {v.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{v.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                {v.body}
+              </p>
             </div>
           ))}
         </div>
@@ -184,11 +205,13 @@ export default function Home() {
               Sable
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-soft">
-              Somos una de las pocas salas que practica sable en Andalucía. El sable permite
-              el tocado con el filo, contrafilo y punta — sin botón, a diferencia de espada y
-              florete. Es una modalidad muy dinámica que pide rapidez, toma de decisiones y
-              buenos reflejos. Al principio cuesta entender la dinámica de un asalto, pero en
-              poco tiempo se aprenden las reglas: es el arma que más gusta al público.
+              Somos una de las pocas salas que practica sable en Andalucía. El
+              sable permite el tocado con el filo, contrafilo y punta — sin
+              botón, a diferencia de espada y florete. Es una modalidad muy
+              dinámica que pide rapidez, toma de decisiones y buenos reflejos.
+              Al principio cuesta entender la dinámica de un asalto, pero en
+              poco tiempo se aprenden las reglas: es el arma que más gusta al
+              público.
             </p>
           </div>
           <div className="rounded-sm border border-line bg-paper p-6">
@@ -211,8 +234,9 @@ export default function Home() {
             No lo pienses más
           </h2>
           <p className="max-w-xl text-paper/75">
-            Ven y prueba a practicar esgrima con nosotros. Recibe una clase gratis y disfruta
-            del buen ambiente del Club de Esgrima Torremolinos.
+            Ven y prueba a practicar esgrima con nosotros. Recibe una clase
+            gratis y disfruta del buen ambiente del Club de Esgrima
+            Torremolinos.
           </p>
           <a
             href={whatsappLink("Hola, quiero probar una clase gratis")}
