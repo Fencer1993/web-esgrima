@@ -65,6 +65,17 @@ El JSON-LD del negocio (`layout.tsx`) y las imágenes del `sitemap.ts`
 salen de `gallery.ts` y `coaches`, así que al cambiar una foto ahí se
 actualizan solos.
 
+## Tienda
+
+`/tienda` (`app/tienda/page.tsx` + `components/ShopApp.tsx`, carrito y
+favoritos en `lib/shopStore.ts`) lee `content/data/tienda.json`. El
+catálogo de sable de Grant Esgrima y Allstar se importa con el workflow
+manual `catalog-import.yml`: paso `fetch` (guarda `data/catalog-raw/`),
+luego `python3 .github/scripts/catalog-build.py` (filtra lo de sable,
+traduce nombres de Allstar, conserva descripciones/visibilidad editadas)
+y paso `images` (descarga y optimiza las fotos a `public/images/tienda/`).
+Los pedidos van a `public/pedido.php` y se gestionan en `/gestion/`.
+
 ## Para asistentes de IA
 
 `/llms.txt` y `/llms-full.txt` se generan en el build desde `site.ts`,

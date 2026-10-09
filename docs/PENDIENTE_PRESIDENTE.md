@@ -25,7 +25,7 @@ Secretos `INSTAGRAM_USER_ID` e `INSTAGRAM_ACCESS_TOKEN` (cuenta Business/Creator
 
 ## 5. Datos y comprobaciones
 - **Registro Andaluz de Entidades Deportivas:** escribe el número en el panel → *Datos del club y contacto → Datos legales*.
-- **Tienda:** revisa en el panel → *Tienda* los productos de ejemplo (precio, modelo, tallas, fotos).
+- **Tienda:** ya están importados 316 productos de sable de Grant Esgrima y Allstar (nombre, foto, precio orientativo con IVA, tallas, mano y opciones). Te falta escribir tu descripción de cada uno en el panel → *Tienda* (vacía = no se muestra) y desmarcar *Visible* en lo que no quieras ofrecer. Si quieres añadir productos de Yiang, créalos a mano en el panel.
 - **Formulario de contacto:** envía un mensaje de prueba y comprueba que llega al Gmail del club.
 - **Google Search Console:** envía `https://www.esgrimatorremolinos.com/sitemap.xml`.
 - **OVH:** haz una copia de seguridad (archivos y base de datos) para poder limpiar los restos de WordPress.

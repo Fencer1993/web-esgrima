@@ -26,6 +26,8 @@ const labelCls = "text-xs font-medium uppercase tracking-wide text-ink-faint";
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
+const PAGE = 48;
+
 const norm = (s: string) =>
   s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
@@ -612,6 +614,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
   const store = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const [category, setCategory] = useState("Todo");
   const [query, setQuery] = useState("");
+  const [limit, setLimit] = useState(PAGE);
   const [openId, setOpenId] = useState<string | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
   const searchId = useId();
@@ -643,7 +646,10 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
               key={c}
               type="button"
               aria-pressed={category === c}
-              onClick={() => setCategory(c)}
+              onClick={() => {
+                setCategory(c);
+                setLimit(PAGE);
+              }}
               className={`flex shrink-0 items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${focusRing} ${
                 category === c
                   ? "border-accent bg-accent text-white"
@@ -668,7 +674,10 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
             id={searchId}
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setLimit(PAGE);
+            }}
             placeholder="Buscar producto o proveedor"
             className={`${inputCls} !mt-0 pl-9`}
           />
@@ -687,7 +696,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
         </p>
       ) : (
         <ul className="mt-3 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
-          {visible.map((p) => {
+          {visible.slice(0, limit).map((p) => {
             const fav = store.favs.includes(p.id);
             return (
               <li
@@ -740,6 +749,17 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
             );
           })}
         </ul>
+      )}
+      {visible.length > limit && (
+        <div className="mt-8 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setLimit((n) => n + PAGE)}
+            className={`rounded-sm border border-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-accent-dark hover:bg-accent-soft ${focusRing}`}
+          >
+            Ver más productos ({visible.length - limit})
+          </button>
+        </div>
       )}
 
       <button

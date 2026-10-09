@@ -165,6 +165,14 @@ def split_attrs(attrs):
     return dedup(sizes), hands, options
 
 
+SURCHARGE = re.compile(r"\(\+\s*([\d.,]+)\s*(?:\+\s*IVA|€)?\s*\)", re.I)
+
+
+def with_vat(text):
+    """Suplementos de Grant ("+2,69+IVA") a importe con IVA ("+3,25 €")."""
+    return SURCHARGE.sub(lambda m: "(+" + euro(float(m.group(1).replace(",", ".")) * IVA_ES) + ")", text)
+
+
 def grant_products():
     g = json.loads((RAW / "grant.json").read_text())
     out = []
@@ -181,6 +189,8 @@ def grant_products():
                 continue
         cat = hit[0] if hit else ("Caretas" if "careta" in n else "Calzado y medias")
         sizes, hands, options = split_attrs(p["attrs"])
+        for o in options:
+            o["values"] = [with_vat(v) for v in o["values"]]
         price = ""
         if p["price"]:
             v = p["price"] * IVA_ES
