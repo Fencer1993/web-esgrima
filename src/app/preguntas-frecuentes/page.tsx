@@ -31,7 +31,7 @@ export default function PreguntasFrecuentes() {
       <PageHero
         eyebrow="Resolvemos tus dudas"
         title="Preguntas Frecuentes"
-        lede="Aquí puedes resolver algunas preguntas que probablemente tendrás si te interesa hacer esgrima con nosotros."
+        lede="Si la esgrima te llama la atención, seguro que te surgen dudas. Aquí tienes respuestas claras a las preguntas que más nos hacen. Si falta alguna, escríbenos."
         path="/preguntas-frecuentes"
       />
       <Section>

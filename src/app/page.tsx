@@ -77,8 +77,10 @@ export default function Home() {
               <span style={{ animationDelay: "0.24s" }}>Torremolinos</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg text-paper/80">
-              Clases de esgrima para niños desde 6 años, adolescentes, adultos y
-              esgrima adaptada en silla de ruedas. Ven y prueba gratis.
+              Clases de esgrima en Torremolinos para niños desde 6 años,
+              adolescentes, adultos y esgrima adaptada en silla de ruedas.
+              Ponte la careta, saluda a tu rival y siente tu primer tocado. La
+              primera clase es gratis.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
@@ -136,6 +138,7 @@ export default function Home() {
         <SectionHeading
           eyebrow="Clases"
           title="Clases de Esgrima en Torremolinos"
+          lede="Elige tu grupo y ponte en guardia. Si nunca has cogido un sable, aquí empiezas desde cero y con el material a mano."
         />
         <div className="grid auto-rows-[15rem] gap-4 md:grid-cols-3 md:auto-rows-[17rem]">
           {[
@@ -148,7 +151,7 @@ export default function Home() {
             {
               href: "/horarios-y-precios#tecnificacion",
               title: "Tecnificación y Competición",
-              text: "Los lunes, sesión específica para quien quiere competir.",
+              text: "Los lunes, sesión específica para quien quiere competir y subir de nivel.",
               photo: "asalto-competicion-roquetas",
             },
           ].map((tile, i) => {
@@ -261,7 +264,7 @@ export default function Home() {
         <SectionHeading
           eyebrow="Nuestro equipo"
           title="Los Entrenadores"
-          lede="Cualificados para entrenar esgrima a las tres armas. Nos especializamos en sable en la esgrima a pie; en la esgrima adaptada incluimos las tres."
+          lede="Tus entrenadores están cualificados para enseñar las tres armas. En la esgrima a pie nos especializamos en sable; en la adaptada trabajamos las tres."
         />
         <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
           {coaches.map((c) => (
@@ -280,13 +283,12 @@ export default function Home() {
               Sable
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-soft">
-              Somos una de las pocas salas que practica sable en Andalucía. El
-              sable permite el tocado con el filo, contrafilo y punta — sin
-              botón, a diferencia de espada y florete. Es una modalidad muy
-              dinámica que pide rapidez, toma de decisiones y buenos reflejos.
-              Al principio cuesta entender la dinámica de un asalto, pero en
-              poco tiempo se aprenden las reglas: es el arma que más gusta al
-              público.
+              Somos una de las pocas salas que practica sable en Andalucía. Con
+              el sable puedes tocar con el filo, el contrafilo y la punta, y no
+              hay botón como en espada y florete. Es un arma muy dinámica, de
+              rapidez, decisiones al vuelo y buenos reflejos. Al principio cuesta
+              seguir un asalto, pero enseguida le pillas el truco a las reglas.
+              Y es, sin duda, la más espectacular de ver.
             </p>
           </div>
           <div className="rounded-sm border border-line bg-paper p-6">
@@ -309,9 +311,9 @@ export default function Home() {
             No lo pienses más
           </h2>
           <p className="max-w-xl text-paper/75">
-            Ven y prueba a practicar esgrima con nosotros. Recibe una clase
-            gratis y disfruta del buen ambiente del Club de Esgrima
-            Torremolinos.
+            Ven a probar la esgrima con nosotros. Tu primera clase es gratis y
+            te esperamos con el buen ambiente del Club de Esgrima Torremolinos.
+            Lo difícil es dar el primer paso a la pista.
           </p>
           <a
             href={whatsappLink("Hola, quiero probar una clase gratis")}

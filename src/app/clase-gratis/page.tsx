@@ -8,29 +8,29 @@ import { whatsappLink } from "@/content/site";
 export const metadata: Metadata = {
   title: "Prueba una Clase Gratis",
   description:
-    "¡Ven al Club de Esgrima Torremolinos y prueba tu primera clase totalmente gratis! Sin compromiso, pero sabemos que te va a gustar la esgrima.",
+    "Prueba tu primera clase de esgrima gratis en el Club de Esgrima Torremolinos. Sin compromiso, y con un sable en la mano desde el primer día.",
   alternates: { canonical: "/clase-gratis" },
 };
 
 const steps = [
   {
     title: "Calentamiento",
-    body: "Siempre realizamos un calentamiento general a base de juegos, y estiramos después de calentar.",
+    body: "Empezamos siempre con un calentamiento general a base de juegos, y estiramos después de calentar. Así se rompe el hielo y se entra en materia sin darse cuenta.",
     photo: galleryPhoto("clase-grupal-esgrima-sala-club-torremolinos"),
   },
   {
     title: "Desplazamientos básicos",
-    body: "El entrenador te enseñará los tres movimientos básicos: marcha (hacia adelante), romper (hacia atrás) y fondo (movimiento de ataque). No necesitas saberlos de antemano.",
+    body: "El entrenador te enseña los tres movimientos básicos: marcha (hacia adelante), romper (hacia atrás) y fondo (movimiento de ataque). No hace falta que los conozcas, para eso estamos.",
     photo: galleryPhoto("entrenamiento-infantil-esgrima-torremolinos"),
   },
   {
     title: "Trabajo técnico-táctico",
-    body: "Ejercicios técnico-tácticos y, después, asaltos dirigidos o libres. Es probable que el entrenador se quede contigo para una clase particular de iniciación.",
+    body: "Hacemos ejercicios técnico-tácticos y, después, asaltos dirigidos o libres. Es probable que el entrenador se quede contigo para darte una clase particular de iniciación.",
     photo: galleryPhoto("entrenamiento-asalto-sala-esgrima-torremolinos"),
   },
   {
     title: "Estiramientos finales",
-    body: "Terminamos con estiramientos para prevenir agujetas y lesiones — son muy importantes.",
+    body: "Terminamos con estiramientos para prevenir agujetas y lesiones. Son muy importantes y tu cuerpo te lo agradecerá al día siguiente.",
     photo: galleryPhoto("grupo-esgrimistas-club-torremolinos-sala-ayuntamiento"),
   },
 ];
@@ -41,7 +41,7 @@ export default function ClaseGratis() {
       <PageHero
         eyebrow="La palabra mágica: gratis"
         title="Primera Clase Gratis"
-        lede="¿Quieres probar esgrima pero no te terminas de decidir? Ven el primer día gratis."
+        lede="¿Te pica la curiosidad por la esgrima pero no acabas de decidirte? Ven a tu primera clase gratis y compruébalo con un sable en la mano."
         path="/clase-gratis"
       />
 
@@ -56,23 +56,23 @@ export default function ClaseGratis() {
         <div className="grid gap-10 lg:grid-cols-[3fr_2fr]">
           <div className="space-y-4 text-sm leading-relaxed text-ink-soft">
             <p>
-              Lo único que tendrás que traer es ropa y calzado deportivo, una botella de agua,
-              una toalla y muchas ganas de aprender.
+              Solo tienes que traer ropa y calzado deportivo, una botella de agua, una toalla
+              y muchas ganas de aprender. Del resto nos encargamos nosotros.
             </p>
             <p>
-              A pesar de lo que se muestre en la tele, la esgrima es, ante todo, un deporte.
-              Comprende una parte física que se entrena cada vez que pones en práctica los
-              nuevos aprendizajes que irás obteniendo. Pero olvídate de gente rica, duques o de
-              retar abofeteando con un guante.
+              Aunque en la tele se vea otra cosa, la esgrima es, ante todo, un deporte. Se
+              suda, se corre y se piensa rápido, y cada cosa nueva que aprendes la entrenas
+              con el cuerpo. Olvídate de duques, de gente rica y de retar a nadie abofeteándolo
+              con un guante.
             </p>
           </div>
           <div className="rounded-sm border border-line bg-paper-raised p-6">
             <p className="font-display text-lg font-bold uppercase tracking-tight text-ink">
-              ¿No te he convencido aún?
+              ¿Todavía dudas?
             </p>
             <p className="mt-2 text-sm text-ink-soft">
-              Echa un vistazo a la promo del 2x1. Vente con alguien más y si os apuntáis ambos,
-              te sale gratis la mensualidad.
+              Mira la promo del 2x1. Vente con alguien más y, si os apuntáis los dos, te sale
+              gratis la mensualidad.
             </p>
             <a
               href={whatsappLink("Hola, quiero pedir una clase gratis")}
@@ -118,7 +118,7 @@ export default function ClaseGratis() {
           ))}
         </ol>
         <p className="mx-auto mt-8 max-w-3xl pl-14 text-sm font-semibold text-ink md:pl-16">
-          ¡Sí, podrás coger el sable y practicar el primer día!
+          Y sí: el primer día ya coges el sable y practicas.
         </p>
       </Section>
     </>

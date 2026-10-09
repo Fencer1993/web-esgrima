@@ -24,21 +24,19 @@ export default function Instalaciones() {
       <Section>
         <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-ink-soft">
           <p>
-            Una de las cosas que más nos gusta de nuestro club, después de nuestros alumnos,
-            son las instalaciones en las que practicamos este deporte. Tenemos 2 pistas de
-            esgrima para practicar y realizar asaltos, además de aparatos de señalización
-            dispuestos en alto para poder arbitrar con facilidad.
+            Después de nuestros alumnos, lo que más queremos del club es la sala donde
+            entrenamos. Tiene 2 pistas de esgrima para practicar y hacer asaltos, y aparatos de
+            señalización colocados en alto para que el arbitraje sea fácil de seguir.
           </p>
           <p>
-            También disponemos de material de esgrima —chaquetas, guantes, caretas, chaquetas
-            eléctricas, pasantes— e incluso material deportivo para ejercicios de
-            acondicionamiento físico. Solo te pediremos que traigas ropa deportiva, agua y
-            toalla: el material de esgrima te lo facilita el entrenador.
+            Tenemos el material de esgrima: chaquetas, guantes, caretas, chaquetas eléctricas
+            y pasantes. También material deportivo para el acondicionamiento físico. Tú solo
+            traes ropa deportiva, agua y toalla, y el entrenador te da el resto.
           </p>
           <p>
-            Además, podemos enorgullecernos de ser una de las muy pocas salas de Andalucía que
-            cuenta con pista para hacer esgrima en silla de ruedas —también con su propio
-            aparato de señalización. Nos gusta poder presumir de esgrima inclusiva.
+            Y presumimos de algo más: somos una de las muy pocas salas de Andalucía con pista
+            para hacer esgrima en silla de ruedas, con su propio aparato de señalización. Nos
+            hace mucha ilusión poder presumir de esgrima inclusiva.
           </p>
         </div>
       </Section>
@@ -47,7 +45,7 @@ export default function Instalaciones() {
         <SectionHeading
           eyebrow="Galería"
           title="Entrenamientos y competiciones"
-          lede="Fotos de nuestro club y nuestros deportistas en acción (o en el podio)."
+          lede="Así se vive el club: nuestros deportistas en acción, y a veces en el podio."
         />
         <Gallery />
       </Section>
@@ -58,8 +56,8 @@ export default function Instalaciones() {
             Te esperamos en el Club de Esgrima Torremolinos
           </h2>
           <p className="max-w-xl text-paper/75">
-            Si te gustan nuestras instalaciones y nuestras fotos, seguro que querrás formar
-            parte del club. ¡Tenemos muy buen ambiente!
+            Si te gusta lo que ves en las fotos, ven a verlo en persona. Tenemos muy buen
+            ambiente y te sentirás en casa.
           </p>
           <a
             href={whatsappLink("Hola, quiero conocer las instalaciones")}

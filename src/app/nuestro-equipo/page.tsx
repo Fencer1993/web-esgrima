@@ -9,7 +9,7 @@ import { CoachCard } from "@/components/CoachCard";
 export const metadata: Metadata = {
   title: "Nuestro Equipo",
   description:
-    "Conoce a los entrenadores y deportistas del Club de Esgrima Torremolinos: quiénes dan las clases y quiénes nos representan en competición.",
+    "Conoce a los entrenadores y deportistas del Club de Esgrima Torremolinos: quién te enseñará en clase y quiénes nos representan en competición.",
   alternates: { canonical: "/nuestro-equipo" },
 };
 
@@ -19,7 +19,7 @@ export default function NuestroEquipo() {
       <PageHero
         eyebrow="Quiénes somos"
         title="Nuestro Equipo"
-        lede="Los entrenadores que dan las clases y los deportistas que representan al club en competición."
+        lede="Los entrenadores que te recibirán en tu primera clase y los deportistas que llevan el nombre del club a competición."
         path="/nuestro-equipo"
       />
 
@@ -27,7 +27,7 @@ export default function NuestroEquipo() {
         <SectionHeading
           eyebrow="Entrenadores"
           title="Quién te va a enseñar"
-          lede="Cualificados para entrenar esgrima a las tres armas. Nos especializamos en sable en la esgrima a pie; en la esgrima adaptada incluimos las tres."
+          lede="Están cualificados para entrenar las tres armas. En la esgrima a pie nos especializamos en sable; en la esgrima adaptada trabajamos las tres."
         />
         <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
           {coaches.map((c) => (
@@ -40,7 +40,7 @@ export default function NuestroEquipo() {
         <SectionHeading
           eyebrow="Deportistas"
           title="Nuestros Deportistas"
-          lede="Los tiradores que representan al Club de Esgrima Torremolinos en competición."
+          lede="Los tiradores que defienden los colores del Club de Esgrima Torremolinos en competición. Todos empezaron, como tú, con una primera clase."
         />
         <Photo
           src="/images/galeria/grupo-esgrimistas-club-torremolinos-sala-ayuntamiento.webp"

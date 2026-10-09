@@ -7,12 +7,12 @@ import { useEffect, useRef } from "react";
 // animación solo se aplica si el bloque entra en pantalla después.
 const stats = [
   { value: 61, label: "socios", detail: "y la familia sigue creciendo" },
-  { value: 5, label: "días a la semana", detail: "de lunes a viernes" },
-  { value: 6, label: "años", detail: "edad para empezar" },
+  { value: 5, label: "días a la semana", detail: "con la sala en marcha, de lunes a viernes" },
+  { value: 6, label: "años", detail: "edad desde la que puedes ponerte la careta" },
   {
     value: 36,
     label: "pruebas internacionales",
-    detail: "en la trayectoria de nuestros técnicos y tiradores",
+    detail: "a las espaldas de nuestros técnicos y tiradores",
   },
 ];
 

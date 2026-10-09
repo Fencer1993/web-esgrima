@@ -19,7 +19,7 @@ export default function HorariosYPrecios() {
       <PageHero
         eyebrow="Únete al club"
         title="Horarios y Precios"
-        lede="Grupos de lunes a viernes, mañana y tarde, y tecnificación de competición los lunes. Elige el tuyo."
+        lede="Hay grupos de lunes a viernes, por la mañana y por la tarde, y tecnificación de competición los lunes. Elige el que mejor te encaje y ven a probar."
         path="/horarios-y-precios"
       />
 
@@ -31,13 +31,13 @@ export default function HorariosYPrecios() {
           ))}
         </div>
         <p className="mt-4 max-w-2xl text-sm text-ink-soft">
-          Todos tenemos a alguien deseando coger un sable. No le enseñaremos a dejar a nadie
-          como un colador, pero os divertiréis igualmente.{" "}
+          Seguro que conoces a alguien con ganas de coger un sable. Aquí no se aprende a dejar
+          a nadie como un colador, pero os vais a divertir igual.{" "}
           <a
             href={whatsappLink("Hola, quiero más información sobre los horarios")}
             className="font-semibold text-accent underline underline-offset-4"
           >
-            Escríbenos para saber más
+            Escríbenos y te contamos más
           </a>
           .
         </p>
@@ -122,22 +122,22 @@ export default function HorariosYPrecios() {
       <Section>
         <SectionHeading eyebrow="Antes de empezar" title="Alquiler de material" />
         <p className="max-w-2xl text-sm leading-relaxed text-ink-soft">
-          Nosotros te ponemos todo el material necesario para que inicies la actividad.
-          Sabemos que al principio no sabes si te va a gustar la esgrima, así que preferimos
-          prestarte el material de manera gratuita durante el primer día y el primer mes en el
-          que te apuntes. A partir de ahí irás adquiriendo tu material poco a poco. El material
-          alquilado se queda en las instalaciones del club, no necesitas transportarlo a casa.
+          Para empezar no tienes que comprar nada: te ponemos todo el material necesario.
+          Sabemos que al principio no tienes claro si la esgrima te va a gustar, así que te lo
+          prestamos gratis el primer día y durante el primer mes en el que te apuntes. A
+          partir de ahí irás adquiriendo tu material poco a poco. El material alquilado se
+          queda en las instalaciones del club, así que no tienes que cargar con él a casa.
         </p>
       </Section>
 
       <Section tone="raised" className="border-t border-line">
         <SectionHeading eyebrow="Obligatorio para competir" title="Seguro federativo" />
         <p className="max-w-2xl text-sm leading-relaxed text-ink-soft">
-          Somos un club perteneciente a la Federación Andaluza de Esgrima (FAE), por lo que
-          nuestros deportistas deben estar asegurados para poder inscribirse al club. Este
-          seguro cubre en caso de accidente entrenando o compitiendo, y habilita para la
-          competición territorial y el Campeonato de Andalucía. Las cuotas las establece la
-          Federación Andaluza de Esgrima:
+          Somos un club de la Federación Andaluza de Esgrima (FAE), por lo que todos nuestros
+          deportistas deben estar asegurados para inscribirse al club. El seguro te cubre en
+          caso de accidente entrenando o compitiendo, y te habilita para la competición
+          territorial y el Campeonato de Andalucía. Las cuotas las establece la Federación
+          Andaluza de Esgrima:
         </p>
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {federationFees.map((f) => (

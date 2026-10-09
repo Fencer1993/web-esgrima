@@ -67,8 +67,8 @@ export function Footer() {
               tu primera clase es <span className="text-accent">gratis</span>
             </h2>
             <p className="mt-5 max-w-md text-base text-paper/75">
-              Ven a probar sin compromiso. Te prestamos el material y te
-              explicamos todo en tu primera clase.
+              Ven a probar sin compromiso. Te prestamos el material, te
+              explicamos todo y en tu primera clase ya te pones en guardia.
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-4 sm:flex-row sm:items-center">

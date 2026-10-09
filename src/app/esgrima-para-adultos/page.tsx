@@ -18,7 +18,7 @@ export default function EsgrimaAdultos() {
       <PageHero
         eyebrow="Desde 13 años"
         title="Esgrima para Adultos"
-        lede="Adolescentes desde 13 años y adultos hasta —por ejemplo— los 100 años pueden practicar esgrima con nosotros."
+        lede="Desde los 13 años y hasta, por ejemplo, los 100, puedes ponerte la careta y practicar esgrima con nosotros."
         path="/esgrima-para-adultos"
       />
 
@@ -36,11 +36,11 @@ export default function EsgrimaAdultos() {
         <p className="max-w-2xl text-sm leading-relaxed text-ink-soft">
           Ofrecemos esgrima para adultos y adolescentes en Torremolinos, en un grupo que
           entrena de martes a viernes, más una sesión de tecnificación los lunes para quien
-          quiere competir. Adaptamos el entrenamiento a la edad y a las
-          características físicas de cada deportista: desde quienes se acaban de iniciar hasta
-          quienes compiten a nivel andaluz o nacional, pasando por adultos y veteranos (30 años
-          en adelante) que practican por puro ocio. Y sí, también hay competición para los más
-          veteranos — el ambiente es muy bueno.
+          quiere competir. Adaptamos el entrenamiento a la edad y a las características de
+          cada deportista: están los que acaban de empezar, los que compiten a nivel andaluz
+          o nacional y los adultos y veteranos (30 años en adelante) que vienen por puro
+          ocio. Y sí, también hay competición para veteranos. El ambiente es de los que
+          enganchan.
         </p>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -49,8 +49,8 @@ export default function EsgrimaAdultos() {
               Esgrima Ocio
             </h3>
             <p className="mt-2 text-sm text-ink-soft">
-              ¿Quieres divertirte y hacer algo de deporte? Entrenas a tu ritmo, haces asaltos
-              por diversión — siempre hay espacio para el buen rollo.
+              ¿Quieres divertirte y moverte un poco? Entrenas a tu ritmo, te echas asaltos por
+              pura diversión y siempre hay sitio para el buen rollo.
             </p>
           </div>
           <div className="rounded-sm border border-line bg-paper-raised p-6">
@@ -58,7 +58,7 @@ export default function EsgrimaAdultos() {
               Esgrima Competición
             </h3>
             <p className="mt-2 text-sm text-ink-soft">
-              ¿Quieres entrenar y competir? El límite lo pones tú: clases individuales,
+              ¿Quieres entrenar y salir a competir? El límite lo pones tú: clases individuales,
               competición federada y estrategias avanzadas. Los lunes hay tecnificación
               deportiva, de 18:00 a 20:00 para 13 a 18 años y de 20:00 a 22:00 para mayores de 18.
             </p>
@@ -67,17 +67,17 @@ export default function EsgrimaAdultos() {
 
         <div className="mt-10 max-w-2xl space-y-4 text-sm leading-relaxed text-ink-soft">
           <p>
-            Nos gusta enseñar mediante el juego, pero también tenemos metodologías de
-            entrenamiento para competición: preparación física de base para todos los
-            deportistas, y entrenamientos más específicos para quienes compiten.
+            Nos gusta enseñar jugando, pero también tenemos metodología de entrenamiento para
+            competir: preparación física de base para todos y trabajo más específico para
+            quienes van a por los torneos.
           </p>
           <p>
-            Los entrenamientos incluyen calentamiento general y específico, estiramientos,
-            ejercicios de acondicionamiento físico —a veces con desplazamientos de esgrima—, y
-            trabajo técnico-táctico con sables, chaquetas y guantes. La seguridad es lo
-            primero. A partir de ahí, asaltos dirigidos o libres; si llevas poco tiempo,
-            recibirás clases individuales. Para finalizar, estiramientos para prevenir las
-            agujetas.
+            Cada sesión empieza con calentamiento general y específico, estiramientos y
+            ejercicios de acondicionamiento físico, a veces con desplazamientos de esgrima.
+            Después llega el trabajo técnico-táctico con sables, chaqueta y guantes, siempre
+            con la seguridad por delante. A partir de ahí, a tirar: asaltos dirigidos o
+            libres. Si llevas poco tiempo, recibirás clases individuales para ir cogiendo
+            soltura. Para terminar, estiramientos para prevenir las agujetas.
           </p>
         </div>
       </Section>

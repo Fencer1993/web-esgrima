@@ -18,7 +18,7 @@ export default function EsgrimaNinos() {
       <PageHero
         eyebrow="6–12 años"
         title="Esgrima para Niños"
-        lede="Los grandes deportistas empiezan a practicar desde niños."
+        lede="Una careta, un arma de gomaespuma y un grupo de amigos: así empieza la esgrima para niños en Torremolinos."
         path="/esgrima-ninos"
       />
 
@@ -36,29 +36,28 @@ export default function EsgrimaNinos() {
         <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-ink-soft">
           <p>
             En el Club de Esgrima Torremolinos damos clase de esgrima para niños a partir de
-            los 6 años, en grupos reducidos y con entrenadores especializados en trabajar con
-            los más pequeños. Ponemos el límite en esa edad de cara a la inclusión en juegos y
-            a la capacidad de adaptar la clase a edades madurativas demasiado distantes:
-            trabajamos con grupos homogéneos, ¡y lo hacemos jugando!
+            los 6 años, en grupos reducidos y con entrenadores que saben trabajar con los más
+            pequeños. Elegimos esa edad para poder jugar todos juntos y para que la clase se
+            ajuste a cada etapa: los grupos son homogéneos y lo hacemos jugando, ¡claro!
           </p>
           <p>
-            De poco nos sirve enseñar la técnica y las estrategias, o incluso realizar un
-            trabajo físico exigente, cuando son tan pequeños. Queremos que se lo pasen bien y
-            así aprendan: durante la hora que pasan con nosotros en las instalaciones estarán
-            jugando la gran mayoría del tiempo.
+            A estas edades, lo que más funciona es que se lo pasen bien. La técnica, la
+            estrategia y el esfuerzo físico llegan solos cuando uno se divierte, así que
+            durante la hora que pasan con nosotros estarán jugando la gran mayoría del tiempo.
+            Muchos salen sin darse cuenta de que han aprendido algo.
           </p>
           <h2 className="pt-4 font-display text-2xl font-bold uppercase tracking-tight text-ink">
             Seguridad lo primero
           </h2>
           <p>
-            Cuando tienen que hacer ejercicios relacionados con la esgrima están muy seguros —
-            de hecho, la esgrima es incluso más segura que el bádminton. Cuando son muy
-            pequeños se les dan armas de gomaespuma o de plástico, así como caretas de
-            plástico. Cuando son un poco más grandes y responsables, utilizan sables
-            convencionales.
+            En los ejercicios de esgrima van muy seguros. De hecho, la esgrima es incluso más
+            segura que el bádminton. Cuando son muy pequeños se les dan armas de gomaespuma o
+            de plástico y caretas de plástico. Cuando crecen un poco y se vuelven más
+            responsables, pasan a los sables convencionales, y ahí se sienten ya como
+            auténticos esgrimistas.
           </p>
           <p>
-            Si los pequeños quieren llegar a competir tendrían que adquirir su propia
+            Si un día les pica el gusanillo de competir, tendrán que adquirir su propia
             equipación, ya que las competiciones oficiales exigen material específico.
           </p>
         </div>

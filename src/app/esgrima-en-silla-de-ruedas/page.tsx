@@ -17,12 +17,12 @@ const wheelchairFaq = [
   {
     question: "¿Cómo funciona la esgrima en silla?",
     answer:
-      "Las sillas están ancladas a unos aparatos de fijación, por lo que los deportistas están siempre a una distancia determinada sin caerse de la silla. La distancia se fija con el brazo estirado, tocando con la punta del arma el codo contrario. Los tocados se producen con rapidez, especialmente en sable, lo que obliga a entrenar los reflejos — resulta muy entretenido.",
+      "Las sillas están ancladas a unos aparatos de fijación, por lo que los deportistas están siempre a una distancia determinada sin caerse de la silla. La distancia se fija con el brazo estirado, tocando con la punta del arma el codo contrario. Los tocados se producen con rapidez, especialmente en sable, lo que obliga a entrenar los reflejos. Resulta muy entretenido.",
   },
   {
     question: "¿Puedo entrenar si no tengo ninguna limitación física?",
     answer:
-      "Por supuesto, puedes entrenar con el resto del grupo — siempre agradecemos que compañeros de esgrima a pie vengan a probar. Para competir de manera oficial en esta modalidad sí es requisito tener una lesión que justifique el uso de la silla.",
+      "Por supuesto, puedes entrenar con el resto del grupo. Siempre agradecemos que compañeros de esgrima a pie vengan a probar. Para competir de manera oficial en esta modalidad sí es requisito tener una lesión que justifique el uso de la silla.",
   },
   {
     question: "¿Hay modalidades dentro de la esgrima en silla?",
@@ -71,7 +71,7 @@ export default function SillaDeRuedas() {
       <PageHero
         eyebrow="Esgrima adaptada"
         title="Esgrima en Silla de Ruedas"
-        lede="La única sala de Andalucía con esgrima en silla de ruedas en sus entrenamientos habituales."
+        lede="Somos la única sala de Andalucía con esgrima en silla de ruedas en sus entrenamientos habituales. Aquí tiras tú, con las mismas ganas que cualquiera."
         path="/esgrima-en-silla-de-ruedas"
       />
 
@@ -80,22 +80,25 @@ export default function SillaDeRuedas() {
           <div className="space-y-4 text-sm leading-relaxed text-ink-soft">
             <p>
               En Torremolinos entrenamos esgrima en silla de ruedas dirigida por
-              Carlos Soler, seleccionador nacional de esta modalidad — así que
-              tendrás al mejor entrenador dándote clases. Busca incluir a
+              Carlos Soler, seleccionador nacional de esta modalidad, así que
+              tendrás al mejor entrenador dándote clase. Está pensada para
               personas cuya movilidad ha quedado reducida por diversos motivos:
               paraplejia, tetraplejia u otras patologías que limiten o impidan
               el movimiento del tren inferior.
             </p>
             <p>
-              Promovemos la esgrima inclusiva: el club acoge tanto a deportistas
-              de esgrima convencional como a quienes tienen alguna discapacidad
-              física, y realizamos competiciones amistosas en las que participan
-              de manera igualitaria ambos perfiles. No solo apostamos por esta
-              modalidad para el ocio, sino también para la competición —
-              contamos con deportistas de amplio palmarés internacional, como el
-              propio Carlos Soler, Antonio Garrido y Lorenzo Ribes.
+              Aquí la esgrima es inclusiva de verdad: el club acoge tanto a
+              deportistas de esgrima convencional como a quienes tienen alguna
+              discapacidad física, y hacemos competiciones amistosas en las que
+              ambos perfiles participan en igualdad. La modalidad vale para el
+              ocio y también para competir: contamos con deportistas de amplio
+              palmarés internacional, como el propio Carlos Soler, Antonio
+              Garrido y Lorenzo Ribes.
             </p>
-            <p>Podrás aprender las tres armas: espada, florete y sable.</p>
+            <p>
+              Podrás aprender las tres armas, espada, florete y sable, y
+              descubrir lo rápido que se vive un asalto desde la silla.
+            </p>
           </div>
 
           <div className="space-y-6">

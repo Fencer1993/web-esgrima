@@ -19,12 +19,12 @@ export function CompetitionPromo() {
           Tecnificación deportiva
         </p>
         <h2 className="mt-2 max-w-2xl font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl">
-          Entrena para competir. Los lunes, a otro nivel.
+          ¿Quieres competir? Los lunes entrenamos para eso.
         </h2>
         <p className="mt-3 max-w-2xl text-base text-paper/80">
           Dos grupos de esgrima de competición, uno para adolescentes y otro
-          para mayores de 18 años, con una sesión específica cada lunes y el
-          director técnico del club, Víctor Santiago, preparando tus torneos.
+          para mayores de 18 años, con una sesión específica cada lunes. Víctor
+          Santiago, director técnico del club, te prepara para tus torneos.
         </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">

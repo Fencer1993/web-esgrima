@@ -7,7 +7,7 @@ import { site, whatsappLink } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contacto",
   description:
-    "Contacta con el Club de Esgrima Torremolinos. Ven a probar una clase gratis, escríbenos por WhatsApp o completa el formulario de contacto.",
+    "Contacta con el Club de Esgrima Torremolinos. Ven a probar una clase gratis, escríbenos por WhatsApp o rellena el formulario. Te respondemos encantados.",
   alternates: { canonical: "/contacto" },
 };
 
@@ -17,7 +17,7 @@ export default function Contacto() {
       <PageHero
         eyebrow="Dónde estamos"
         title="Contacto"
-        lede="Si quieres probar a hacer esgrima en nuestras instalaciones, solo tienes que venir con ropa deportiva, agua y toalla, 10 minutos antes para que podamos explicarte cómo funciona la clase."
+        lede="Para probar la esgrima con nosotros solo tienes que venir con ropa deportiva, agua y toalla, 10 minutos antes para que podamos explicarte cómo funciona la clase. Te estamos esperando."
         path="/contacto"
       />
 
@@ -28,12 +28,12 @@ export default function Contacto() {
               Manda un WhatsApp
             </h2>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-ink-soft">
-              También puedes escribirnos un mensaje al WhatsApp, dejar tu correo, o escribir
-              directamente a{" "}
+              Cuéntanos qué te gustaría saber por WhatsApp, deja tus datos en el formulario o
+              escribe directamente a{" "}
               <a href={`mailto:${site.contact.email}`} className="font-semibold text-accent">
                 {site.contact.email}
               </a>
-              . ¡Te esperamos!
+              . Estaremos encantados de atenderte.
             </p>
             <a
               href={whatsappLink("Hola, quiero información sobre el club")}

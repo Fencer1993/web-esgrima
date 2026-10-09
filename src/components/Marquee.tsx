@@ -35,8 +35,8 @@ export function Marquee({ count = 12 }: { count?: number }) {
           El Club en Imágenes
         </h2>
         <p className="mt-3 max-w-2xl text-base text-ink-soft">
-          Entrenamientos, torneos y podios de nuestros esgrimistas en Andalucía
-          y en el circuito nacional.
+          Así se vive el club: entrenamientos, torneos y podios de nuestros
+          esgrimistas en Andalucía y en el circuito nacional.
         </p>
       </div>
       <div className="marquee-mask">
