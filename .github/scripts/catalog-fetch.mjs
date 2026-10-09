@@ -1,4 +1,4 @@
-// Descarga el catálogo público de los proveedores (Grant Esgrima y Allstar)
+// Descarga el catálogo público de los proveedores (Grant Esgrima, Allstar y Villalbi)
 // en un formato compacto para preparar la tienda del club. No descarga
 // fotos: eso lo hace catalog-images.mjs con los productos ya elegidos.
 // Uso: node .github/scripts/catalog-fetch.mjs <carpeta-salida>
@@ -168,10 +168,71 @@ async function allstar() {
   return { products: [...seen.values()] };
 }
 
+// -------------------------------------------------------------- Villalbi
+// Tienda Shopify (villalbiesgrima.es, Fuengirola): catálogo público en
+// /products.json; las colecciones dicen a qué arma pertenece cada producto.
+async function villalbi() {
+  const B = "https://villalbiesgrima.es";
+  const handlesOf = async (col) => {
+    const out = new Set();
+    for (let p = 1; p < 20; p++) {
+      const d = await get(`${B}/collections/${col}/products.json?limit=250&page=${p}`, "json");
+      if (!d?.products?.length) break;
+      d.products.forEach((x) => out.add(x.handle));
+      if (d.products.length < 250) break;
+    }
+    return out;
+  };
+  const cols = {};
+  for (const c of ["sable", "espada", "florete", "bolsas-y-fundas", "caretas", "guantes", "hojas", "ropa", "armas", "iniciacion-primeras-compras"]) {
+    cols[c] = await handlesOf(c);
+    console.log(`Villalbi colección ${c}: ${cols[c].size}`);
+  }
+  const products = [];
+  for (let p = 1; p < 20; p++) {
+    const d = await get(`${B}/products.json?limit=250&page=${p}`, "json");
+    if (!d?.products?.length) break;
+    for (const x of d.products) {
+      const prices = x.variants.map((v) => Number(v.price)).filter((n) => n > 0);
+      products.push({
+        handle: x.handle,
+        name: decode(x.title),
+        url: `${B}/products/${x.handle}`,
+        type: x.product_type || "",
+        tags: x.tags || [],
+        cols: Object.keys(cols).filter((c) => cols[c].has(x.handle)),
+        price: prices.length ? Math.min(...prices) : null,
+        priceMax: prices.length ? Math.max(...prices) : null,
+        sku: x.variants[0]?.sku || "",
+        image: x.images?.[0]?.src || "",
+        attrs: Object.fromEntries(
+          (x.options || [])
+            .filter((o) => !(o.values.length === 1 && /default title/i.test(o.values[0])))
+            .map((o) => [decode(o.name), o.values.map(decode)]),
+        ),
+        available: x.variants.some((v) => v.available),
+        text: decode(x.body_html).slice(0, 300),
+      });
+    }
+    if (d.products.length < 250) break;
+  }
+  return { products };
+}
+
 mkdirSync(OUT, { recursive: true });
-const g = await grant();
-writeFileSync(join(OUT, "grant.json"), JSON.stringify(g, null, 0));
-console.log(`Grant: ${g.products.length} productos, ${g.cats.length} categorías`);
-const a = await allstar();
-writeFileSync(join(OUT, "allstar.json"), JSON.stringify(a, null, 0));
-console.log(`Allstar: ${a.products.length} productos`);
+const only = (process.env.SUPPLIERS || "grant allstar villalbi").split(/[\s,]+/);
+if (only.includes("grant")) {
+  const g = await grant();
+  writeFileSync(join(OUT, "grant.json"), JSON.stringify(g, null, 0));
+  console.log(`Grant: ${g.products.length} productos, ${g.cats.length} categorías`);
+}
+if (only.includes("allstar")) {
+  const a = await allstar();
+  writeFileSync(join(OUT, "allstar.json"), JSON.stringify(a, null, 0));
+  console.log(`Allstar: ${a.products.length} productos`);
+}
+if (only.includes("villalbi")) {
+  const v = await villalbi();
+  writeFileSync(join(OUT, "villalbi.json"), JSON.stringify(v, null, 0));
+  console.log(`Villalbi: ${v.products.length} productos`);
+}

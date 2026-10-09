@@ -10,6 +10,9 @@ on:
       step:
         description: "fetch o images"
         default: "fetch"
+      suppliers:
+        description: "Proveedores para fetch (grant allstar villalbi)"
+        default: "grant allstar villalbi"
 
 permissions:
   contents: write
@@ -28,6 +31,8 @@ jobs:
           node-version: 22
       - name: Catálogo
         if: inputs.step == 'fetch'
+        env:
+          SUPPLIERS: ${{ inputs.suppliers }}
         run: node .github/scripts/catalog-fetch.mjs data/catalog-raw
       - name: Fotos
         if: inputs.step == 'images'
