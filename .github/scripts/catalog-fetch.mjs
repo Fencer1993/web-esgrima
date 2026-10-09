@@ -69,6 +69,7 @@ async function woo(site, label) {
         priceMax: x.prices?.price_range?.max_amount
           ? Number(x.prices.price_range.max_amount) / 10 ** (x.prices.currency_minor_unit ?? 2)
           : null,
+        priceText: decode(x.price_html),
         image: x.images?.[0]?.src || "",
         cats: (x.categories || []).map((c) => c.slug),
         attrs: Object.fromEntries((x.attributes || []).map((a) => [decode(a.name), a.terms.map((t) => decode(t.name))])),
