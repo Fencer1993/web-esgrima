@@ -1,0 +1,35 @@
+name: Comprobar staging (/nuevo)
+
+on:
+  workflow_dispatch:
+    inputs:
+      base:
+        description: "URL base a comprobar"
+        default: "https://www.esgrimatorremolinos.com/nuevo"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: HTML, CSS y cabeceras servidas
+        run: |
+          B="${{ inputs.base }}"
+          for p in "/" "/horarios-y-precios/" "/robots.txt" "/.htaccess"; do
+            echo "== $B$p"; curl -sS -o /dev/null -w "%{http_code} %{content_type} %{size_download}B\n" -A "Mozilla/5.0" "$B$p"
+          done
+          echo "== Cabeceras de la portada"
+          curl -sSI -A "Mozilla/5.0" "$B/" | sed -n '1,25p'
+          curl -sSL -A "Mozilla/5.0" "$B/" -o home.html
+          echo "== ¿HTML nuevo? (busca marcadores de la versión actual)"
+          grep -o 'En guardia' home.html | head -1 || echo "NO contiene 'En guardia'"
+          grep -o 'generator" content="[^"]*"' home.html | head -1
+          echo "== Rutas de CSS/JS en el HTML servido"
+          grep -o 'href="[^"]*\.css[^"]*"' home.html | head -5
+          grep -o 'src="[^"]*_next[^"]*"' home.html | head -3
+          CSS=$(grep -o 'href="[^"]*\.css[^"]*"' home.html | head -1 | sed 's/href="//;s/"$//')
+          if [ -n "$CSS" ]; then
+            case "$CSS" in http*) U="$CSS";; /*) U="https://www.esgrimatorremolinos.com$CSS";; *) U="$B/$CSS";; esac
+            echo "== CSS: $U"; curl -sS -o /dev/null -w "%{http_code} %{content_type} %{size_download}B\n" "$U"
+          fi
+          echo "== Primeros 600 caracteres del HTML"
+          head -c 600 home.html; echo
