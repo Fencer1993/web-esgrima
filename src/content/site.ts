@@ -47,6 +47,33 @@ export const navigation = [
   { label: "Contacto", href: "/contacto" },
 ] as const;
 
+// Menú principal agrupado (cabecera). `navigation` sigue siendo la lista
+// plana que usan el pie de página y llms.txt.
+export const navMenu = [
+  {
+    label: "Programas",
+    items: [
+      { label: "Niños", href: "/esgrima-ninos", description: "Desde 6 años, aprendiendo jugando" },
+      { label: "Adultos", href: "/esgrima-para-adultos", description: "Ocio o competición, tú eliges" },
+      { label: "Silla de ruedas", href: "/esgrima-en-silla-de-ruedas", description: "Esgrima adaptada con la mejor dirección" },
+      { label: "Tecnificación", href: "/horarios-y-precios#tecnificacion", description: "Grupos de competición los lunes" },
+    ],
+  },
+  {
+    label: "El club",
+    items: [
+      { label: "Nuestro equipo", href: "/nuestro-equipo", description: "Entrenadores y deportistas" },
+      { label: "Instalaciones", href: "/instalaciones", description: "Dónde entrenamos y galería" },
+      { label: "Preguntas frecuentes", href: "/preguntas-frecuentes", description: "Material, edades, seguro y más" },
+    ],
+  },
+] as const;
+
+export const navLinks = [
+  { label: "Horarios y precios", href: "/horarios-y-precios" },
+  { label: "Contacto", href: "/contacto" },
+] as const;
+
 export const footerLinks = [
   { label: "Política de Privacidad", href: "/politica-de-privacidad" },
   { label: "Aviso Legal", href: "/aviso-legal" },

@@ -6,7 +6,7 @@ import { whatsappLink } from "@/content/site";
 // el horario aquí nunca difiere del de la tabla.
 export function CompetitionPromo() {
   return (
-    <section className="relative overflow-hidden bg-ink text-paper">
+    <section id="tecnificacion" className="relative scroll-mt-16 overflow-hidden bg-ink text-paper">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-24 top-0 h-full w-1/2 -skew-x-12 bg-steel/25"

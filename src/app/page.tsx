@@ -19,9 +19,17 @@ export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-line bg-ink text-paper">
+        <Photo
+          src="/images/portada/esgrima-sable-torremolinos-portada.webp"
+          alt="Dos esgrimistas de sable en pleno asalto durante una competición"
+          width={1077}
+          height={698}
+          priority
+          className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
+        />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 right-0 w-2/3 origin-top-right skew-x-[-12deg] bg-steel/50"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/35 lg:via-ink/70"
         />
         <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:py-28 lg:grid-cols-[3fr_2fr] lg:items-end">
           <div>
@@ -51,7 +59,7 @@ export default function Home() {
             </div>
           </div>
 
-          <dl className="grid grid-cols-1 gap-4 border-t border-paper/15 pt-6 text-sm sm:grid-cols-3 lg:border-t-0 lg:pt-0">
+          <dl className="grid grid-cols-1 gap-4 border-t border-paper/15 pt-6 text-sm sm:grid-cols-3 lg:rounded-sm lg:border lg:border-paper/10 lg:bg-ink/60 lg:p-5 lg:backdrop-blur-sm">
             <div>
               <dt className="font-mono text-xs uppercase tracking-wide text-paper/50">
                 Dirección

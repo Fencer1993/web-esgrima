@@ -1,87 +1,261 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { navigation, whatsappLink } from "@/content/site";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { navLinks, navMenu, whatsappLink } from "@/content/site";
+
+// Cabecera de cristal que se compacta al hacer scroll. Menús agrupados con
+// descripción (patrón de los NavigationMenu de shadcn/ui y Radix), sin
+// dependencias: abre con clic, ratón o teclado; Esc y clic fuera lo cierran.
+const subscribeScroll = (cb: () => void) => {
+  window.addEventListener("scroll", cb, { passive: true });
+  return () => window.removeEventListener("scroll", cb);
+};
+const isScrolled = () => window.scrollY > 8;
+
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 12 12"
+      className={`h-3 w-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+    >
+      <path
+        d="M2 4.5 6 8.5l4-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+    </svg>
+  );
+}
 
 export function Header() {
-  const [open, setOpen] = useState(false);
+  const pathname = usePathname().replace(/\/$/, "") || "/";
+  const scrolled = useSyncExternalStore(
+    subscribeScroll,
+    isScrolled,
+    () => false,
+  );
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menu, setMenu] = useState<string | null>(null);
+  const navRef = useRef<HTMLElement>(null);
+
+  const close = () => {
+    setMenu(null);
+    setMobileOpen(false);
+  };
+  // Los enlaces con ancla (#...) apuntan a un tramo de otra página: no marcan activa la sección.
+  const isActive = (href: string) =>
+    !href.includes("#") && pathname === href.replace(/\/$/, "");
+
+  useEffect(() => {
+    if (menu === null) return;
+    const onDown = (e: MouseEvent) => {
+      if (!navRef.current?.contains(e.target as Node)) setMenu(null);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenu(null);
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menu]);
+
+  useEffect(() => {
+    document.body.classList.toggle("overflow-hidden", mobileOpen);
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [mobileOpen]);
+
+  const trigger =
+    "relative inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-[13px] tracking-wide transition-colors";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/70 bg-paper/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-2.5">
-        <Link
-          href="/"
-          className="flex items-baseline gap-1.5"
-          onClick={() => setOpen(false)}
+    <>
+      <header
+        className={`sticky top-0 z-50 border-b backdrop-blur-xl transition-all duration-300 ${
+          scrolled
+            ? "border-line bg-paper/80 shadow-[0_1px_20px_-8px_rgba(23,35,43,0.25)]"
+            : "border-transparent bg-paper/95"
+        }`}
+      >
+        <div
+          className={`mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 transition-all duration-300 ${
+            scrolled ? "h-14" : "h-16"
+          }`}
         >
-          <span className="font-display text-lg font-medium tracking-tight text-ink">
-            Esgrima
-          </span>
-          <span className="font-display text-lg font-medium tracking-tight text-accent">
-            Torremolinos
-          </span>
-        </Link>
+          <Link
+            href="/"
+            className="group flex items-baseline gap-1.5"
+            onClick={close}
+          >
+            <span className="font-display text-lg font-semibold tracking-tight text-ink">
+              Esgrima
+            </span>
+            <span className="font-display text-lg font-semibold tracking-tight text-accent">
+              Torremolinos
+            </span>
+          </Link>
 
-        <nav className="hidden lg:flex lg:items-center lg:gap-7">
-          {navigation.slice(1).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="link-touche text-[13px] font-normal tracking-wide text-ink-soft transition-colors hover:text-accent"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+          <nav
+            ref={navRef}
+            aria-label="Principal"
+            className="hidden items-center gap-1 lg:flex"
+          >
+            {navMenu.map((group) => {
+              const open = menu === group.label;
+              const active = group.items.some((i) => isActive(i.href));
+              return (
+                <div
+                  key={group.label}
+                  className="relative"
+                  onMouseEnter={() => setMenu(group.label)}
+                  onMouseLeave={() => setMenu(null)}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={open}
+                    aria-controls={`menu-${group.label}`}
+                    onClick={() => setMenu(open ? null : group.label)}
+                    className={`${trigger} ${
+                      open || active
+                        ? "bg-accent-soft text-accent-dark"
+                        : "text-ink-soft hover:text-ink"
+                    }`}
+                  >
+                    {group.label}
+                    <Chevron open={open} />
+                  </button>
+                  <div
+                    id={`menu-${group.label}`}
+                    className={`absolute left-1/2 top-full w-72 -translate-x-1/2 pt-3 transition-all duration-200 ${
+                      open
+                        ? "visible translate-y-0 opacity-100"
+                        : "invisible -translate-y-1 opacity-0"
+                    }`}
+                  >
+                    <ul className="rounded-md border border-line bg-paper p-1.5 shadow-xl">
+                      {group.items.map((item) => (
+                        <li key={item.href}>
+                          <Link
+                            href={item.href}
+                            onClick={close}
+                            className={`block rounded-sm px-3 py-2.5 transition-colors hover:bg-paper-raised ${
+                              isActive(item.href) ? "bg-paper-raised" : ""
+                            }`}
+                          >
+                            <span className="block text-sm font-medium text-ink">
+                              {item.label}
+                            </span>
+                            <span className="block text-xs text-ink-faint">
+                              {item.description}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
+            {navLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={close}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={`${trigger} ${
+                  isActive(item.href)
+                    ? "bg-accent-soft text-accent-dark"
+                    : "text-ink-soft hover:text-ink"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-        <div className="hidden lg:block">
           <a
             href={whatsappLink("Hola, quiero probar una clase gratis")}
-            className="btn-blade inline-flex items-center rounded-full border border-accent px-4 py-1.5 text-[13px] font-medium tracking-wide text-accent transition-colors hover:bg-accent hover:text-white"
+            className="btn-blade hidden items-center rounded-full bg-accent px-4 py-1.5 text-[13px] font-medium tracking-wide text-white transition-colors hover:bg-accent-dark lg:inline-flex"
           >
             Clase gratis
           </a>
+
+          <button
+            type="button"
+            aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={mobileOpen}
+            aria-controls="menu-movil"
+            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-full hover:bg-paper-raised lg:hidden"
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            <span
+              className={`h-px w-5 bg-ink transition-transform ${mobileOpen ? "translate-y-[3.5px] rotate-45" : ""}`}
+            />
+            <span
+              className={`h-px w-5 bg-ink transition-transform ${mobileOpen ? "-translate-y-[3.5px] -rotate-45" : ""}`}
+            />
+          </button>
         </div>
-
-        <button
-          type="button"
-          aria-label="Abrir menú"
-          aria-expanded={open}
-          className="flex h-8 w-8 flex-col items-center justify-center gap-1.5 lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className={`h-px w-5 bg-ink transition-transform ${open ? "translate-y-[5px] rotate-45" : ""}`} />
-          <span className={`h-px w-5 bg-ink transition-opacity ${open ? "opacity-0" : ""}`} />
-          <span className={`h-px w-5 bg-ink transition-transform ${open ? "-translate-y-[5px] -rotate-45" : ""}`} />
-        </button>
-      </div>
-
-      {open && (
-        <nav className="border-t border-line/70 bg-paper lg:hidden">
-          <ul className="mx-auto flex max-w-6xl flex-col px-5 py-2">
-            {navigation.slice(1).map((item) => (
-              <li key={item.href} className="border-b border-line/70 last:border-none">
+      </header>
+      <div
+        id="menu-movil"
+        className={`fixed inset-x-0 bottom-0 z-40 overflow-y-auto bg-paper transition-all duration-300 lg:hidden ${
+          mobileOpen
+            ? "visible translate-y-0 opacity-100"
+            : "invisible -translate-y-2 opacity-0"
+        } ${scrolled ? "top-14" : "top-16"}`}
+      >
+        <nav aria-label="Móvil" className="mx-auto max-w-6xl px-5 pb-10 pt-4">
+          {navMenu.map((group) => (
+            <div key={group.label} className="mb-6">
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
+                {group.label}
+              </p>
+              <ul className="mt-2">
+                {group.items.map((item) => (
+                  <li key={item.href} className="border-b border-line/70">
+                    <Link
+                      href={item.href}
+                      onClick={close}
+                      className={`block py-3 ${isActive(item.href) ? "text-accent-dark" : "text-ink"}`}
+                    >
+                      <span className="block text-lg font-medium">
+                        {item.label}
+                      </span>
+                      <span className="block text-xs text-ink-faint">
+                        {item.description}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <ul className="mb-8">
+            {navLinks.map((item) => (
+              <li key={item.href} className="border-b border-line/70">
                 <Link
                   href={item.href}
-                  className="block py-3 text-sm font-normal text-ink-soft"
-                  onClick={() => setOpen(false)}
+                  onClick={close}
+                  className={`block py-3 text-lg font-medium ${isActive(item.href) ? "text-accent-dark" : "text-ink"}`}
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
-            <li className="py-3">
-              <a
-                href={whatsappLink("Hola, quiero probar una clase gratis")}
-                className="inline-flex items-center rounded-full border border-accent px-4 py-1.5 text-[13px] font-medium tracking-wide text-accent"
-              >
-                Clase gratis
-              </a>
-            </li>
           </ul>
+          <a
+            href={whatsappLink("Hola, quiero probar una clase gratis")}
+            className="btn-blade flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white"
+          >
+            Prueba una clase gratis
+          </a>
         </nav>
-      )}
-    </header>
+      </div>
+    </>
   );
 }
