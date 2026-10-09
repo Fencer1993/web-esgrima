@@ -14,6 +14,9 @@ const routes = [
   "clase-gratis",
   "preguntas-frecuentes",
   "contacto",
+  "noticias",
+  "calendario",
+  "tienda",
 ];
 
 export const dynamic = "force-static";

@@ -66,7 +66,7 @@ export default function Home() {
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/35 lg:via-ink/70"
         />
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:py-28 lg:grid-cols-[3fr_2fr] lg:items-end">
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:py-28 ">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
               {t.heroEyebrow}
@@ -96,37 +96,6 @@ export default function Home() {
             </div>
           </div>
 
-          <dl className="grid grid-cols-1 gap-4 border-t border-paper/15 pt-6 text-sm sm:grid-cols-3 lg:rounded-sm lg:border lg:border-paper/10 lg:bg-ink/60 lg:p-5 lg:backdrop-blur-sm">
-            <div>
-              <dt className="font-mono text-xs uppercase tracking-wide text-paper/50">
-                Dirección
-              </dt>
-              <dd className="mt-1 text-paper/85">
-                {site.address.line}, {site.address.postalCode}{" "}
-                {site.address.city}
-              </dd>
-            </div>
-            <div>
-              <dt className="font-mono text-xs uppercase tracking-wide text-paper/50">
-                Llámanos
-              </dt>
-              <dd className="mt-1 text-paper/85">{site.contact.phone}</dd>
-            </div>
-            <div>
-              <dt className="font-mono text-xs uppercase tracking-wide text-paper/50">
-                Horarios
-              </dt>
-              <dd className="mt-1 text-paper/85">
-                Niños: M,X,J 18:30–19:30
-                <br />
-                Adultos: M,X,J,V 19:30–21:00
-                <br />
-                Tecnificación: lunes 18:00–22:00
-                <br />
-                Silla de ruedas: L,M,X,J 10:00–12:30
-              </dd>
-            </div>
-          </dl>
         </div>
       </section>
 

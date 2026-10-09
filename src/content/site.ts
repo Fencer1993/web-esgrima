@@ -11,6 +11,9 @@ export const navigation = [
   { label: "Nuestro Equipo", href: "/nuestro-equipo" },
   { label: "Horarios y Precios", href: "/horarios-y-precios" },
   { label: "Instalaciones", href: "/instalaciones" },
+  { label: "Noticias", href: "/noticias" },
+  { label: "Calendario", href: "/calendario" },
+  { label: "Tienda", href: "/tienda" },
   { label: "Preguntas Frecuentes", href: "/preguntas-frecuentes" },
   { label: "Contacto", href: "/contacto" },
 ] as const;
@@ -32,6 +35,9 @@ export const navMenu = [
     items: [
       { label: "Nuestro equipo", href: "/nuestro-equipo", description: "Entrenadores y deportistas" },
       { label: "Instalaciones", href: "/instalaciones", description: "Dónde entrenamos y galería" },
+      { label: "Noticias y avisos", href: "/noticias", description: "Tablón de anuncios del club" },
+      { label: "Calendario", href: "/calendario", description: "Competiciones y eventos" },
+      { label: "Tienda", href: "/tienda", description: "Material con descuento de club" },
       { label: "Preguntas frecuentes", href: "/preguntas-frecuentes", description: "Material, edades, seguro y más" },
     ],
   },
