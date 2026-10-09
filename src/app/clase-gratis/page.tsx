@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { Photo } from "@/components/Photo";
 import { Section, SectionHeading } from "@/components/Section";
 import { whatsappLink } from "@/content/site";
 
@@ -40,6 +41,13 @@ export default function ClaseGratis() {
       />
 
       <Section>
+        <Photo
+          src="/images/galeria/equipo-esgrimistas-club-torremolinos-competicion.webp"
+          alt="Esgrimistas del club sonriendo juntos antes de una competición"
+          width={1200}
+          height={900}
+          className="mb-10 aspect-[16/9] w-full rounded-sm border border-line object-cover object-[center_40%]"
+        />
         <div className="grid gap-10 lg:grid-cols-[3fr_2fr]">
           <div className="space-y-4 text-sm leading-relaxed text-ink-soft">
             <p>

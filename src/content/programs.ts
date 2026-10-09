@@ -67,9 +67,9 @@ export const coaches = [
     email: "vst@hotmail.es",
     photo: {
       src: "/images/equipo/victor-santiago-entrenador-esgrima-torremolinos.webp",
-      alt: "Víctor Santiago, director técnico y entrenador de esgrima del Club de Esgrima Torremolinos",
-      width: 518,
-      height: 533,
+      alt: "Víctor Santiago, director técnico y entrenador de esgrima del Club de Esgrima Torremolinos, con careta y sable en la sala del club",
+      width: 640,
+      height: 800,
     },
   },
 ];

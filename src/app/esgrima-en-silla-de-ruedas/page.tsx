@@ -99,11 +99,11 @@ export default function SillaDeRuedas() {
 
           <div className="space-y-6">
             <Photo
-              src="/images/programas/esgrima-silla-de-ruedas-torremolinos.webp"
-              alt="Esgrimista en silla de ruedas durante una competición de esgrima adaptada"
-              width={554}
-              height={1200}
-              className="aspect-[4/3] w-full rounded-sm border border-line object-cover object-[center_35%]"
+              src="/images/galeria/entrenamiento-esgrima-silla-de-ruedas-torremolinos-grupo.webp"
+              alt="Grupo de esgrimistas con careta y un deportista en silla de ruedas durante un entrenamiento en la sala del club"
+              width={1200}
+              height={540}
+              className="aspect-[16/9] w-full rounded-sm border border-line object-cover"
             />
             <div className="rounded-sm border border-line bg-paper-raised p-6">
               <dl className="space-y-4 text-sm">

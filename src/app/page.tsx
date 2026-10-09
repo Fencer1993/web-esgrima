@@ -122,7 +122,7 @@ export default function Home() {
           lede="Entrenamientos, torneos y podios de nuestros esgrimistas en Andalucía y en el circuito nacional."
         />
         <div className="grid gap-4 sm:grid-cols-3">
-          {[galleryItems[0], galleryItems[7], galleryItems[5]].map((g) => (
+          {[galleryItems[4], galleryItems[5], galleryItems[11]].map((g) => (
             <figure key={g.src} className="reveal overflow-hidden rounded-sm border border-line">
               <Photo
                 src={g.src}
