@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { RevealController } from "@/components/RevealController";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { galleryItems } from "@/content/gallery";
 import { coaches } from "@/content/programs";
 import { site } from "@/content/site";
@@ -121,6 +122,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );
