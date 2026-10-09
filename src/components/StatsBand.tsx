@@ -1,20 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import cifras from "@/content/data/cifras.json";
 
 // Cifras que "cuentan" al aparecer (patrón NumberTicker de Magic UI). El
 // HTML ya trae el número final —buscadores y lectores sin JS lo ven—; la
 // animación solo se aplica si el bloque entra en pantalla después.
-const stats = [
-  { value: 61, label: "socios", detail: "y la familia sigue creciendo" },
-  { value: 5, label: "días a la semana", detail: "con la sala en marcha, de lunes a viernes" },
-  { value: 6, label: "años", detail: "edad desde la que puedes ponerte la careta" },
-  {
-    value: 36,
-    label: "pruebas internacionales",
-    detail: "a las espaldas de nuestros técnicos y tiradores",
-  },
-];
+const stats = cifras.stats;
 
 export function StatsBand() {
   const ref = useRef<HTMLDListElement>(null);

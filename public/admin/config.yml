@@ -249,3 +249,56 @@ collections:
               - { name: finalTitle, label: "Cierre: título", widget: string }
               - { name: finalText, label: "Cierre: texto", widget: text }
               - { name: finalCta, label: "Cierre: botón", widget: string }
+
+      - name: faq-silla
+        label: "Preguntas: silla de ruedas"
+        file: src/content/data/faq-silla.json
+        fields:
+          - name: items
+            label: Preguntas
+            widget: list
+            summary: "{{question}}"
+            fields:
+              - { name: question, label: Pregunta, widget: string }
+              - { name: answer, label: Respuesta, widget: text }
+
+      - name: clase-gratis
+        label: Pasos de la primera clase
+        file: src/content/data/clase-gratis.json
+        fields:
+          - name: steps
+            label: Pasos
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: title, label: Título, widget: string }
+              - { name: text, label: Texto, widget: text }
+              - { name: photo, label: Foto, widget: string, hint: "fragmento del nombre de una foto de la galería" }
+
+      - name: cifras
+        label: Cifras de la portada
+        file: src/content/data/cifras.json
+        fields:
+          - name: stats
+            label: Cifras
+            widget: list
+            summary: "{{value}} {{label}}"
+            fields:
+              - { name: value, label: Número, widget: number, value_type: int }
+              - { name: label, label: Etiqueta, widget: string }
+              - { name: detail, label: Detalle, widget: string }
+
+      - name: cabeceras
+        label: Fotos de cabecera
+        file: src/content/data/cabeceras.json
+        fields:
+          - name: items
+            label: Foto de cabecera de cada página
+            widget: list
+            summary: "{{path}}"
+            allow_add: false
+            allow_remove: false
+            fields:
+              - { name: path, label: Ruta, widget: hidden }
+              - { name: photo, label: Foto, widget: string, hint: "fragmento del nombre de una foto de la galería" }
+              - { name: position, label: Encuadre, widget: string, required: false, hint: "object-[center_30%] = encuadre vertical; no tocar si no sabes" }

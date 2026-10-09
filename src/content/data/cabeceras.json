@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "path": "/esgrima-ninos",
+      "photo": "esgrimistas-infantiles-descanso-competicion-torremolinos",
+      "position": "object-[center_78%]"
+    },
+    {
+      "path": "/esgrima-para-adultos",
+      "photo": "equipo-esgrimistas-club-torremolinos-competicion",
+      "position": "object-[center_32%]"
+    },
+    {
+      "path": "/esgrima-en-silla-de-ruedas",
+      "photo": "podio-esgrima-silla-de-ruedas-zamora",
+      "position": "object-[center_38%]"
+    },
+    {
+      "path": "/nuestro-equipo",
+      "photo": "esgrimistas-club-torremolinos-entre-asaltos",
+      "position": "object-[center_35%]"
+    },
+    {
+      "path": "/horarios-y-precios",
+      "photo": "equipo-infantil-juvenil-esgrima-torremolinos-almeria",
+      "position": "object-[center_55%]"
+    },
+    {
+      "path": "/instalaciones",
+      "photo": "clase-grupal-esgrima-sala-club-torremolinos",
+      "position": "object-center"
+    },
+    {
+      "path": "/clase-gratis",
+      "photo": "competicion-infantil-esgrima-torremolinos-grada",
+      "position": "object-center"
+    },
+    {
+      "path": "/preguntas-frecuentes",
+      "photo": "armero-sala-club-esgrima-torremolinos",
+      "position": "object-[center_25%]"
+    },
+    {
+      "path": "/contacto",
+      "photo": "medallistas-torneo-jaen-esgrima-torremolinos",
+      "position": "object-[center_30%]"
+    }
+  ]
+}

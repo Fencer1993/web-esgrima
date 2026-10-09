@@ -6,6 +6,11 @@ import { Photo } from "@/components/Photo";
 import { PhotoRow } from "@/components/PhotoRow";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { whatsappLink } from "@/content/site";
+import faqSilla from "@/content/data/faq-silla.json";
+
+const wheelchairFaq = faqSilla.items;
+
+
 
 export const metadata: Metadata = {
   title: "Esgrima en Silla de Ruedas",
@@ -13,44 +18,6 @@ export const metadata: Metadata = {
     "El Club de Esgrima Torremolinos es la única sala de Andalucía con esgrima en silla de ruedas. Deporte adaptado e inclusivo, entrenado por un seleccionador nacional.",
   alternates: { canonical: "/esgrima-en-silla-de-ruedas" },
 };
-
-const wheelchairFaq = [
-  {
-    question: "¿Cómo funciona la esgrima en silla?",
-    answer:
-      "Las sillas están ancladas a unos aparatos de fijación, por lo que los deportistas están siempre a una distancia determinada sin caerse de la silla. La distancia se fija con el brazo estirado, tocando con la punta del arma el codo contrario. Los tocados se producen con rapidez, especialmente en sable, lo que obliga a entrenar los reflejos. Resulta muy entretenido.",
-  },
-  {
-    question: "¿Puedo entrenar si no tengo ninguna limitación física?",
-    answer:
-      "Por supuesto, puedes entrenar con el resto del grupo. Siempre agradecemos que compañeros de esgrima a pie vengan a probar. Para competir de manera oficial en esta modalidad sí es requisito tener una lesión que justifique el uso de la silla.",
-  },
-  {
-    question: "¿Hay modalidades dentro de la esgrima en silla?",
-    answer:
-      "Sí: categoría A (la afección física no imposibilita el movimiento del tren inferior), categoría B (imposibilita el tren inferior pero conserva el movimiento abdominal) y categoría C (personas que han perdido la fuerza abdominal, como en casos de tetraplejia).",
-  },
-  {
-    question: "¿Debo comprar material?",
-    answer:
-      "El primer mes el uso del material del club es gratis. A partir del segundo mes puedes adquirir tu propio material o alquilar el material eléctrico (chaqueta eléctrica, careta y sable) a 5€ por pieza al mes.",
-  },
-  {
-    question: "Los horarios son de mañana, ¿puedo venir por la tarde?",
-    answer:
-      "Si hay algún compañero que pueda entrenar por la tarde, se abre esa posibilidad de manera puntual y con previo aviso a los entrenadores disponibles.",
-  },
-  {
-    question: "¿Existe esgrima ocio para silla de ruedas?",
-    answer:
-      "Sí, exactamente en las mismas condiciones que en el grupo de Adultos.",
-  },
-  {
-    question: "¿Debo federarme?",
-    answer:
-      "Sí, el seguro médico deportivo es obligatorio. Lo gestiona la FEDDF (Federación Española de Deportistas con Discapacidad Física); nosotros tramitamos tu licencia.",
-  },
-];
 
 export default function SillaDeRuedas() {
   const hero = pageText("/esgrima-en-silla-de-ruedas");

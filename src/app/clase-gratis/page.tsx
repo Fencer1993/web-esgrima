@@ -5,6 +5,7 @@ import { Photo } from "@/components/Photo";
 import { Section, SectionHeading } from "@/components/Section";
 import { galleryPhoto } from "@/content/gallery";
 import { whatsappLink } from "@/content/site";
+import claseGratis from "@/content/data/clase-gratis.json";
 
 export const metadata: Metadata = {
   title: "Prueba una Clase Gratis",
@@ -13,28 +14,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/clase-gratis" },
 };
 
-const steps = [
-  {
-    title: "Calentamiento",
-    body: "Empezamos siempre con un calentamiento general a base de juegos, y estiramos después de calentar. Así se rompe el hielo y se entra en materia sin darse cuenta.",
-    photo: galleryPhoto("clase-grupal-esgrima-sala-club-torremolinos"),
-  },
-  {
-    title: "Desplazamientos básicos",
-    body: "El entrenador te enseña los tres movimientos básicos: marcha (hacia adelante), romper (hacia atrás) y fondo (movimiento de ataque). No hace falta que los conozcas, para eso estamos.",
-    photo: galleryPhoto("entrenamiento-infantil-esgrima-torremolinos"),
-  },
-  {
-    title: "Trabajo técnico-táctico",
-    body: "Hacemos ejercicios técnico-tácticos y, después, asaltos dirigidos o libres. Es probable que el entrenador se quede contigo para darte una clase particular de iniciación.",
-    photo: galleryPhoto("entrenamiento-asalto-sala-esgrima-torremolinos"),
-  },
-  {
-    title: "Estiramientos finales",
-    body: "Terminamos con estiramientos para prevenir agujetas y lesiones. Son muy importantes y tu cuerpo te lo agradecerá al día siguiente.",
-    photo: galleryPhoto("grupo-esgrimistas-club-torremolinos-sala-ayuntamiento"),
-  },
-];
+const steps = claseGratis.steps.map((s) => ({
+  title: s.title,
+  body: s.text,
+  photo: galleryPhoto(s.photo),
+}));
 
 export default function ClaseGratis() {
   const hero = pageText("/clase-gratis");

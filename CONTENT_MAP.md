@@ -1,7 +1,9 @@
 # Mapa de contenido
 
 > **Datos editables desde el panel** (`/admin`, Sveltia CMS): horarios,
-> precios, equipo y deportistas, galería, FAQ, clases/valores y datos del
+> precios, equipo y deportistas, galería, FAQ (también `faq-silla.json`), pasos de la clase gratis
+> (`clase-gratis.json`), cifras de la portada (`cifras.json`), fotos de
+> cabecera (`cabeceras.json`), clases/valores y datos del
 > club viven en `src/content/data/*.json`. Los `.ts` de `src/content/` solo
 > los leen y tipan. Configuración del panel: `public/admin/config.yml`.
 > Inicio de sesión con GitHub: `public/admin-auth/*.php` (secrets
@@ -18,11 +20,11 @@ relativas a `src/`.
 | `/` | `app/page.tsx` | `content/site.ts`, `content/programs.ts`, `content/gallery.ts` (3 fotos) |
 | `/esgrima-ninos` | `app/esgrima-ninos/page.tsx` | `content/programs.ts` |
 | `/esgrima-para-adultos` | `app/esgrima-para-adultos/page.tsx` | `content/programs.ts` |
-| `/esgrima-en-silla-de-ruedas` | `app/esgrima-en-silla-de-ruedas/page.tsx` | FAQ inline en la propia página (`wheelchairFaq`) |
+| `/esgrima-en-silla-de-ruedas` | `app/esgrima-en-silla-de-ruedas/page.tsx` | `content/data/faq-silla.json` (FAQ + JSON-LD) |
 | `/nuestro-equipo` | `app/nuestro-equipo/page.tsx` | `content/programs.ts` (coaches + foto), `content/athletes.ts` |
 | `/horarios-y-precios` | `app/horarios-y-precios/page.tsx` | `content/pricing.ts` (horarios, tecnificación, entrenamiento físico, precios, bonos, licencias) |
 | `/instalaciones` | `app/instalaciones/page.tsx` | `content/gallery.ts` (foto, alt y pie de cada imagen) |
-| `/clase-gratis` | `app/clase-gratis/page.tsx` | pasos inline (`steps`) |
+| `/clase-gratis` | `app/clase-gratis/page.tsx` | `content/data/clase-gratis.json` (pasos; foto = fragmento de nombre de `gallery.ts`) |
 | `/preguntas-frecuentes` | `app/preguntas-frecuentes/page.tsx` | `content/faq.ts` |
 | `/contacto` | `app/contacto/page.tsx` | `content/site.ts` |
 | `/aviso-legal` | `app/aviso-legal/page.tsx` | `content/site.ts` (`site.legal`) |
@@ -53,8 +55,9 @@ relativas a `src/`.
 
 Fotos ya optimizadas (WebP, máx. 1200 px, sin EXIF) en
 `public/images/{galeria,equipo,programas}/` con nombre descriptivo.
-No hay optimizador en el export estático: reducir y comprimir *antes* de
-añadir una foto. Se pintan con `src/components/Photo.tsx` (antepone el
+Las fotos subidas desde el panel se optimizan solas
+(`.github/scripts/optimize-images.mjs`, en el despliegue y en
+`optimize-images.yml`). Se pintan con `src/components/Photo.tsx` (antepone el
 `basePath` y fija width/height). El texto `alt` describe lo que se ve;
 el pie de foto va aparte en `gallery.ts`. `CoachCard.tsx` pinta las
 tarjetas de entrenadores (home y Nuestro Equipo).
@@ -74,8 +77,8 @@ de las páginas según quién las lea.
 
 - `Marquee.tsx` — cinta infinita de fotos de la home (primeras 12 de
   `gallery.ts`: el orden de la galería decide qué sale).
-- `StatsBand.tsx` — cifras bajo la portada (array `stats` en el propio
-  archivo; solo datos verificables).
+- `StatsBand.tsx` — cifras bajo la portada (`content/data/cifras.json`; solo datos
+  verificables).
 - `Gallery.tsx` — galería en mampostería con visor (lightbox); los
   filtros salen de las categorías de `gallery.ts` ("En nuestra sala" =
   sala del club con tarima, armeros y espejos; "Competiciones" = resto).
@@ -84,13 +87,13 @@ de las páginas según quién las lea.
   (Horarios y Precios).
 - `PhotoRow.tsx` — fila de fotos con pie en las páginas de programas;
   recibe fragmentos de nombre de archivo de `gallery.ts`.
-- `PageHero.tsx` + `content/pageHeroes.ts` — foto de cabecera de cada
+- `PageHero.tsx` + `content/pageHeroes.ts` (lee `data/cabeceras.json`) — foto de cabecera de cada
   página interior (por ruta). Evitar repetir una foto que ya salga en
   el cuerpo de esa página.
 - `WhatsAppFloat.tsx` — botón flotante de WhatsApp (aparece al bajar).
 - Valores de la home: tarjetas con icono (`icon` en `values` de
   `programs.ts`, SVG en `app/page.tsx`).
-- Clase gratis: línea de tiempo con foto por paso (`steps` inline).
+- Clase gratis: línea de tiempo con foto por paso (`clase-gratis.json`).
 - Programas en la home: cuadrícula bento con la foto `photo` de cada
   programa en `programs.ts`.
 
