@@ -1,0 +1,26 @@
+name: Comprobar web en vivo
+
+# Manual: revisa en producción las páginas clave, que los PHP respondan,
+# que las carpetas privadas no se vean y qué teléfonos aparecen.
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comprobar
+        run: |
+          S=https://www.esgrimatorremolinos.com
+          UA="Mozilla/5.0"
+          for p in / /tienda/ /noticias/ /calendario/ /nuestro-equipo/ /contacto/ /gestion/ /admin/ /tienda-productos.json /_data/ /_data/pedidos.jsonl /gestion/config.php /llms.txt; do
+            printf "%-26s -> " "$p"; curl -sS -o /dev/null -w "%{http_code}\n" -A "$UA" "$S$p"
+          done
+          echo "== gestión (sin login)"; curl -sS -A "$UA" "$S/gestion/" | sed 's/<[^>]*>/ /g' | tr -s ' \n' ' ' | head -c 400; echo
+          echo "== pedido.php (pedido inválido, no se guarda)"; curl -sS -A "$UA" -X POST "$S/pedido.php" -H 'Content-Type: application/json' -d '{"name":"x","lines":[]}'; echo
+          echo "== contacto (GET)"; curl -sS -o /dev/null -w "%{http_code}\n" -A "$UA" "$S/contacto.php" || true
+          echo "== teléfonos en las páginas"
+          for p in / /nuestro-equipo/ /contacto/ /aviso-legal/ /esgrima-ninos/ /horarios-y-precios/ /llms.txt; do
+            curl -sS -A "$UA" "$S$p" | grep -oE '(\+?34[ ]?)?[6-9][0-9]{2} ?[0-9]{2} ?[0-9]{2} ?[0-9]{2}' | sort -u | sed "s#^#$p: #"
+          done
+          echo "== tienda"; curl -sS -A "$UA" "$S/tienda/" | grep -o 'productos' | head -1; curl -sS -A "$UA" "$S/tienda-productos.json" | python3 -c "import json,sys;d=json.load(sys.stdin);print(len(d['products']),'productos')"
