@@ -35,16 +35,23 @@ export const programs: Program[] = [
   },
 ];
 
-export const values = [
+export const values: {
+  icon: "companerismo" | "aprendizaje" | "inclusion";
+  title: string;
+  body: string;
+}[] = [
   {
+    icon: "companerismo",
     title: "Compañerismo",
     body: "La esgrima es un deporte individual, pero en esencia somos un equipo. Nadie pierde ni gana solo, nos apoyamos mutuamente.",
   },
   {
+    icon: "aprendizaje",
     title: "Aprendizaje guiado",
     body: 'Nuestros profesores te guían desde el inicio hasta la alta competición. No es solo "coger el palito" y hacer "touché", vas a sudar un poco más la camiseta.',
   },
   {
+    icon: "inclusion",
     title: "Inclusión",
     body: "Practicamos esgrima desde los 6 años, e incluimos Esgrima en Silla de Ruedas. Aquí hay esgrima para todos, sin importar edad o condición física previa.",
   },

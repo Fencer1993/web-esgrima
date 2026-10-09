@@ -164,10 +164,28 @@ export default function Home() {
           eyebrow="Club de Esgrima Torremolinos"
           title="Nuestros Valores"
         />
-        <div className="reveal grid gap-8 sm:grid-cols-3">
+        <div className="reveal grid gap-6 sm:grid-cols-3">
           {values.map((v) => (
-            <div key={v.title}>
-              <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">
+            <div
+              key={v.title}
+              className="rounded-2xl border border-line bg-paper p-6 transition duration-300 hover:-translate-y-1 hover:border-accent"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-accent-dark">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  {valueIcons[v.icon]}
+                </svg>
+              </span>
+              <h3 className="mt-5 text-lg font-semibold uppercase tracking-tight text-ink">
                 {v.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">

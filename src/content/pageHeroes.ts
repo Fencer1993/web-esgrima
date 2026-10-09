@@ -1,0 +1,40 @@
+// Foto de fondo de la cabecera de cada página interior (fragmento del nombre
+// de archivo en gallery.ts). Las páginas sin entrada (legales) no llevan foto.
+export const pageHeroes: Record<string, { photo: string; position?: string }> = {
+  "/esgrima-ninos": {
+    photo: "equipo-infantil-esgrima-torremolinos-competicion",
+    position: "object-[center_35%]",
+  },
+  "/esgrima-para-adultos": {
+    photo: "esgrimistas-adultos-club-torremolinos-torneo",
+    position: "object-[center_30%]",
+  },
+  "/esgrima-en-silla-de-ruedas": {
+    photo: "podio-esgrima-silla-de-ruedas-zamora",
+    position: "object-center",
+  },
+  "/nuestro-equipo": {
+    photo: "esgrimistas-club-torremolinos-entre-asaltos",
+    position: "object-[center_35%]",
+  },
+  "/horarios-y-precios": {
+    photo: "asalto-entrenamiento-pista-esgrima-torremolinos",
+    position: "object-[center_30%]",
+  },
+  "/instalaciones": {
+    photo: "clase-grupal-esgrima-sala-club-torremolinos",
+    position: "object-center",
+  },
+  "/clase-gratis": {
+    photo: "entrenamiento-infantil-esgrima-torremolinos",
+    position: "object-[center_30%]",
+  },
+  "/preguntas-frecuentes": {
+    photo: "asalto-juvenil-competicion-esgrima-torremolinos",
+    position: "object-[center_30%]",
+  },
+  "/contacto": {
+    photo: "medallistas-torneo-jaen-esgrima-torremolinos",
+    position: "object-[center_30%]",
+  },
+};

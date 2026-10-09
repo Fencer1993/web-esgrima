@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { site } from "@/content/site";
+import { galleryPhoto } from "@/content/gallery";
+import { pageHeroes } from "@/content/pageHeroes";
+import { Photo } from "./Photo";
 
 export function PageHero({
   eyebrow,
@@ -12,6 +15,9 @@ export function PageHero({
   lede?: string;
   path: string;
 }) {
+  const hero = pageHeroes[path];
+  const photo = hero ? galleryPhoto(hero.photo) : null;
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -32,10 +38,27 @@ export function PageHero({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 w-1/2 origin-top-right skew-x-[-12deg] bg-steel/40"
-      />
+      {photo && hero ? (
+        <>
+          <Photo
+            src={photo.src}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            priority
+            className={`absolute inset-0 h-full w-full object-cover ${hero.position ?? "object-center"}`}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40"
+          />
+        </>
+      ) : (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 w-1/2 origin-top-right skew-x-[-12deg] bg-steel/40"
+        />
+      )}
       <div className="relative mx-auto max-w-6xl px-5 py-16 sm:py-20">
         <nav
           aria-label="Ruta de navegación"

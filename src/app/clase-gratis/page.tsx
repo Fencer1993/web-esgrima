@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Photo } from "@/components/Photo";
 import { Section, SectionHeading } from "@/components/Section";
+import { galleryPhoto } from "@/content/gallery";
 import { whatsappLink } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -15,18 +16,22 @@ const steps = [
   {
     title: "Calentamiento",
     body: "Siempre realizamos un calentamiento general a base de juegos, y estiramos después de calentar.",
+    photo: galleryPhoto("clase-grupal-esgrima-sala-club-torremolinos"),
   },
   {
     title: "Desplazamientos básicos",
     body: "El entrenador te enseñará los tres movimientos básicos: marcha (hacia adelante), romper (hacia atrás) y fondo (movimiento de ataque). No necesitas saberlos de antemano.",
+    photo: galleryPhoto("entrenamiento-infantil-esgrima-torremolinos"),
   },
   {
     title: "Trabajo técnico-táctico",
     body: "Ejercicios técnico-tácticos y, después, asaltos dirigidos o libres. Es probable que el entrenador se quede contigo para una clase particular de iniciación.",
+    photo: galleryPhoto("entrenamiento-asalto-sala-esgrima-torremolinos"),
   },
   {
     title: "Estiramientos finales",
     body: "Terminamos con estiramientos para prevenir agujetas y lesiones — son muy importantes.",
+    photo: galleryPhoto("grupo-esgrimistas-club-torremolinos-sala-ayuntamiento"),
   },
 ];
 
@@ -80,19 +85,39 @@ export default function ClaseGratis() {
       </Section>
 
       <Section tone="raised" className="border-t border-line">
-        <SectionHeading eyebrow="Cómo funciona" title="¿Qué puedes esperar el primer día?" />
-        <ol className="grid gap-6 sm:grid-cols-2">
+        <SectionHeading eyebrow="Cómo funciona" title="Tu primera clase, paso a paso" />
+        <ol className="relative mx-auto max-w-3xl">
+          <span
+            aria-hidden="true"
+            className="absolute bottom-4 left-5 top-4 w-px -translate-x-1/2 bg-gradient-to-b from-accent via-steel to-line"
+          />
           {steps.map((s, i) => (
-            <li key={s.title} className="rounded-sm border border-line bg-paper-raised p-6">
-              <span className="font-mono text-xs text-accent">0{i + 1}</span>
-              <h3 className="mt-1 font-display text-lg font-semibold uppercase tracking-tight text-ink">
-                {s.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.body}</p>
+            <li key={s.title} className="reveal relative pb-8 pl-14 last:pb-0 md:pl-16">
+              <span className="absolute left-5 top-5 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border-2 border-accent bg-paper-raised font-mono text-sm font-bold text-accent">
+                {i + 1}
+              </span>
+              <div className="overflow-hidden rounded-sm border border-line bg-paper">
+                <div className="p-5 md:p-6">
+                  <p className="font-mono text-xs uppercase tracking-widest text-steel">
+                    Paso {i + 1} de {steps.length}
+                  </p>
+                  <h3 className="mt-1 font-display text-lg font-semibold uppercase tracking-tight text-ink">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.body}</p>
+                </div>
+                <Photo
+                  src={s.photo.src}
+                  alt={s.photo.alt}
+                  width={s.photo.width}
+                  height={s.photo.height}
+                  className="aspect-[16/9] w-full border-t border-line object-cover object-[center_30%] md:aspect-[2/1]"
+                />
+              </div>
             </li>
           ))}
         </ol>
-        <p className="mt-6 text-sm font-semibold text-ink">
+        <p className="mx-auto mt-8 max-w-3xl pl-14 text-sm font-semibold text-ink md:pl-16">
           ¡Sí, podrás coger el sable y practicar el primer día!
         </p>
       </Section>
