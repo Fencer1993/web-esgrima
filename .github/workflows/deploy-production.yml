@@ -46,7 +46,7 @@ jobs:
           sudo apt-get -qq update && sudo apt-get -qq install -y lftp
           mkdir -p ~/.ssh && ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
           SET="set net:max-retries 8; set net:reconnect-interval-base 5; set net:timeout 30; set sftp:auto-confirm yes; set mirror:parallel-transfer-count 2"
-          lftp -u "$USER" --env-password -e "$SET; mirror -R --verbose=1 --exclude "^index\\.html$" --exclude "^\\.htaccess$" out $REMOTE; bye" "sftp://$HOST"
+          lftp -u "$USER" --env-password -e "$SET; mirror -R --verbose=1 --exclude '^index\.html$' --exclude '^\.htaccess$' out $REMOTE; bye" "sftp://$HOST"
           lftp -u "$USER" --env-password -e "$SET; cd $REMOTE; put out/.htaccess -o .htaccess; put out/index.html -o index.html; bye" "sftp://$HOST"
 
       - name: Comprobar en vivo
