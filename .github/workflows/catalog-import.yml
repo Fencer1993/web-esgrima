@@ -1,0 +1,44 @@
+name: Importar catálogo de proveedores
+
+# Manual. "fetch": guarda el catálogo público de Grant Esgrima y Allstar en
+# data/catalog-raw/ (para seleccionar productos de sable). "images":
+# descarga y optimiza las fotos de los productos de tienda.json que tengan
+# imageSource. El resultado se sube a la rama como commit "Catálogo: …".
+on:
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "fetch o images"
+        default: "fetch"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: catalog-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Catálogo
+        if: inputs.step == 'fetch'
+        run: node .github/scripts/catalog-fetch.mjs data/catalog-raw
+      - name: Fotos
+        if: inputs.step == 'images'
+        run: |
+          mkdir -p "$RUNNER_TEMP/opt" && (cd "$RUNNER_TEMP/opt" && npm init -y >/dev/null && npm i sharp@0.34 >/dev/null)
+          SHARP_DIR="$RUNNER_TEMP/opt" node .github/scripts/catalog-images.mjs
+      - name: Guardar
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/catalog-raw public/images/tienda src/content/data/tienda.json 2>/dev/null || true
+          git diff --cached --quiet && { echo "Sin cambios"; exit 0; }
+          git commit -m "Catálogo: ${{ inputs.step }} de proveedores"
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done
