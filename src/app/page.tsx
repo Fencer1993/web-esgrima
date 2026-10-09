@@ -87,7 +87,7 @@ export default function Home() {
               <dd className="mt-1 text-paper/85">
                 Esgrima: M,X,J,V 18:30–21:00
                 <br />
-                Competición: lunes 18:00–22:00
+                Tecnificación: lunes 18:00–22:00
                 <br />
                 Silla de ruedas: M,X,J,V 10:00–12:30
               </dd>
