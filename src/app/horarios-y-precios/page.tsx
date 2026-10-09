@@ -3,11 +3,12 @@ import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { schedule, plans, bonos, federationFees } from "@/content/pricing";
 import { whatsappLink } from "@/content/site";
+import { CompetitionPromo } from "@/components/CompetitionPromo";
 
 export const metadata: Metadata = {
   title: "Horarios y Precios",
   description:
-    "Horarios de esgrima para niños, adultos y esgrima en silla de ruedas en Torremolinos. Precios desde 30€/mes, bonos de ahorro y alquiler de material incluido.",
+    "Horarios de esgrima para niños, adultos y silla de ruedas en Torremolinos, más tecnificación de competición los lunes. Precios desde 30€/mes, bonos y material incluido.",
   alternates: { canonical: "/horarios-y-precios" },
 };
 
@@ -17,7 +18,7 @@ export default function HorariosYPrecios() {
       <PageHero
         eyebrow="Únete al club"
         title="Horarios y Precios"
-        lede="Tres grupos, de martes a viernes. Elige el tuyo."
+        lede="Grupos de martes a viernes y tecnificación de competición los lunes. Elige el tuyo."
         path="/horarios-y-precios"
       />
 
@@ -62,9 +63,11 @@ export default function HorariosYPrecios() {
         </p>
       </Section>
 
+      <CompetitionPromo />
+
       <Section tone="raised" className="border-y border-line">
         <SectionHeading eyebrow="Cuotas mensuales" title="Precios" />
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-3">
           {plans.map((p) => (
             <div key={p.name} className="rounded-sm border border-line bg-paper-raised p-6">
               <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">

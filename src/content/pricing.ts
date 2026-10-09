@@ -1,18 +1,40 @@
+const weekdays = "Martes, miércoles, jueves y viernes";
+
+// Grupos de tecnificación deportiva: preparan la competición y entrenan los
+// lunes con el equipo técnico del club.
+export const competitionGroups = [
+  {
+    name: "Tecnificación · 13 a 18 años",
+    days: "Lunes",
+    hours: "18:00 – 20:00",
+    text: "Para adolescentes que quieren competir: técnica, táctica y preparación de torneos en una sesión específica.",
+  },
+  {
+    name: "Tecnificación · mayores de 18",
+    days: "Lunes",
+    hours: "20:00 – 22:00",
+    text: "Para adultos que compiten o quieren empezar a hacerlo: asaltos de nivel, trabajo táctico y plan de competición.",
+  },
+];
+
+// Servicio extra gratuito. Se concreta con la dirección técnica.
+export const physicalTraining = {
+  name: "Entrenamiento físico deportivo",
+  price: "Gratis",
+  days: "Martes y jueves",
+  hours: "18:30 – 19:30",
+  text: "Servicio extra sin coste para los deportistas del club. Consulta plazas y condiciones con la dirección técnica.",
+};
+
 export const schedule = [
+  ...competitionGroups.map((g) => ({ group: g.name, days: g.days, hours: g.hours })),
+  { group: "Niños (6–12 años)", days: weekdays, hours: "18:30 – 19:30" },
+  { group: "Adolescentes y Adultos", days: weekdays, hours: "19:30 – 21:00" },
+  { group: "Esgrima en Silla de Ruedas", days: weekdays, hours: "10:00 – 12:30" },
   {
-    group: "Niños (6–12 años, avanzado)",
-    days: "Martes, miércoles, jueves y viernes",
-    hours: "18:30 – 19:30",
-  },
-  {
-    group: "Adolescentes y Adultos",
-    days: "Martes, miércoles, jueves y viernes",
-    hours: "19:30 – 21:00",
-  },
-  {
-    group: "Esgrima en Silla de Ruedas",
-    days: "Martes, miércoles, jueves y viernes",
-    hours: "10:00 – 12:30",
+    group: "Entrenamiento físico deportivo (gratis)",
+    days: physicalTraining.days,
+    hours: physicalTraining.hours,
   },
 ];
 
@@ -37,10 +59,12 @@ export const plans = [
   },
   {
     name: "Clases privadas",
-    price: "20€",
-    period: "opcional",
+    price: "Desde 20€",
+    period: "por clase",
     features: [
-      "2 clases privadas mensuales",
+      "Clase suelta de 30 minutos: 20€",
+      "Clase de 1 hora completa: 30€",
+      "Día y hora a convenir con el profesor",
       "Asesoramiento técnico-táctico",
       "Posibilidad de grabar la clase",
     ],

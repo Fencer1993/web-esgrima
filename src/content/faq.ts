@@ -69,10 +69,26 @@ export const faq: FaqItem[] = [
   {
     question: "¿Cuántos grupos de esgrima hay en el club?",
     answer:
-      "Dos: esgrima en silla de ruedas (horario de mañana) y esgrima a pie (dos subgrupos por la tarde, niños y adolescentes/adultos).",
+      "Esgrima en silla de ruedas por la mañana; esgrima a pie por la tarde, con un grupo de niños y otro de adolescentes y adultos; y los lunes, dos grupos de tecnificación para competir (13 a 18 años y mayores de 18).",
   },
   {
     question: "¿Cuántos días puedo entrenar a la semana?",
-    answer: "De martes a viernes, los cuatro días contemplados cada semana.",
+    answer:
+      "Los grupos regulares entrenan de martes a viernes, los cuatro días cada semana. Si compites, los lunes se suma una sesión de tecnificación.",
+  },
+  {
+    question: "¿Qué es el grupo de tecnificación deportiva?",
+    answer:
+      "Es la sesión de los lunes pensada para quien quiere competir: 18:00–20:00 para 13 a 18 años y 20:00–22:00 para mayores de 18. Se trabaja técnica, táctica y preparación de torneos con el equipo técnico del club.",
+  },
+  {
+    question: "¿Hay entrenamiento físico en el club?",
+    answer:
+      "Sí. Ofrecemos entrenamiento físico deportivo gratuito los martes y jueves de 18:30 a 19:30. Consulta plazas y condiciones con la dirección técnica del club.",
+  },
+  {
+    question: "¿Cuánto cuestan las clases privadas?",
+    answer:
+      "Desde 20€: la clase suelta de 30 minutos cuesta 20€ y la clase de una hora completa, 30€. El día y la hora se acuerdan con el profesor.",
   },
 ];

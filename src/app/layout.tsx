@@ -67,6 +67,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Monday",
+        opens: "18:00",
+        closes: "22:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "10:00",
         closes: "12:30",

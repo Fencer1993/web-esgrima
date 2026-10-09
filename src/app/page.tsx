@@ -6,6 +6,7 @@ import { site, whatsappLink } from "@/content/site";
 import { programs, values, coaches } from "@/content/programs";
 import { CoachCard } from "@/components/CoachCard";
 import { Photo } from "@/components/Photo";
+import { CompetitionPromo } from "@/components/CompetitionPromo";
 import { galleryItems } from "@/content/gallery";
 
 export const metadata: Metadata = {
@@ -72,6 +73,8 @@ export default function Home() {
               <dd className="mt-1 text-paper/85">
                 Esgrima: M,X,J,V 18:30–21:00
                 <br />
+                Competición: lunes 18:00–22:00
+                <br />
                 Silla de ruedas: M,X,J,V 10:00–12:30
               </dd>
             </div>
@@ -101,6 +104,8 @@ export default function Home() {
           ))}
         </div>
       </Section>
+
+      <CompetitionPromo />
 
       <Section>
         <SectionHeading

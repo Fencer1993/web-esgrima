@@ -31,8 +31,9 @@ export default function EsgrimaAdultos() {
           className="mb-10 aspect-[16/9] w-full max-w-2xl rounded-sm border border-line object-cover"
         />
         <p className="max-w-2xl text-sm leading-relaxed text-ink-soft">
-          Ofrecemos esgrima para adultos y adolescentes en Torremolinos, en un único grupo que
-          entrena junto de martes a viernes. Adaptamos el entrenamiento a la edad y a las
+          Ofrecemos esgrima para adultos y adolescentes en Torremolinos, en un grupo que
+          entrena de martes a viernes, más una sesión de tecnificación los lunes para quien
+          quiere competir. Adaptamos el entrenamiento a la edad y a las
           características físicas de cada deportista: desde quienes se acaban de iniciar hasta
           quienes compiten a nivel andaluz o nacional, pasando por adultos y veteranos (30 años
           en adelante) que practican por puro ocio. Y sí, también hay competición para los más
@@ -55,7 +56,8 @@ export default function EsgrimaAdultos() {
             </h3>
             <p className="mt-2 text-sm text-ink-soft">
               ¿Quieres entrenar y competir? El límite lo pones tú: clases individuales,
-              competición federada y estrategias avanzadas.
+              competición federada y estrategias avanzadas. Los lunes hay tecnificación
+              deportiva, de 18:00 a 20:00 para 13 a 18 años y de 20:00 a 22:00 para mayores de 18.
             </p>
           </div>
         </div>

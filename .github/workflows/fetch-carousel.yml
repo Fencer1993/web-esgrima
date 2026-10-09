@@ -1,0 +1,43 @@
+name: Descargar fotos del carrusel original
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: python3 .github/scripts/fetch_carousel.py
+      - name: Optimizar
+        run: |
+          mkdir -p "$RUNNER_TEMP/opt" && cd "$RUNNER_TEMP/opt"
+          npm init -y >/dev/null && npm i sharp >/dev/null
+          cat > opt.mjs <<'JS'
+          import sharp from "sharp";
+          import { readdirSync, mkdirSync } from "node:fs";
+          import path from "node:path";
+          const raw = path.join(process.env.RUNNER_TEMP, "raw");
+          const out = path.join(process.env.GITHUB_WORKSPACE, "import/carousel");
+          mkdirSync(out, { recursive: true });
+          for (const f of readdirSync(raw)) {
+            const info = await sharp(path.join(raw, f)).rotate()
+              .resize({ width: 1200, height: 1200, fit: "inside", withoutEnlargement: true })
+              .webp({ quality: 76 }).toFile(path.join(out, path.parse(f).name.toLowerCase() + ".webp"));
+            console.log(f, info.width + "x" + info.height, info.size);
+          }
+          JS
+          node opt.mjs
+      - name: Commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add import
+          git commit -m "Fetch original carousel photos" || echo "nada"
+          git push
