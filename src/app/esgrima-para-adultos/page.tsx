@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { pageText } from "@/content/texts";
 import { Section } from "@/components/Section";
 import { PhotoRow } from "@/components/PhotoRow";
 import { whatsappLink } from "@/content/site";
@@ -13,12 +14,13 @@ export const metadata: Metadata = {
 };
 
 export default function EsgrimaAdultos() {
+  const hero = pageText("/esgrima-para-adultos");
   return (
     <>
       <PageHero
-        eyebrow="Desde 13 años"
-        title="Esgrima para Adultos"
-        lede="Desde los 13 años y sin límite de edad, puedes ponerte la careta y practicar esgrima con nosotros."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
         path="/esgrima-para-adultos"
       />
 

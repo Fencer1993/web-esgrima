@@ -10,6 +10,7 @@ import { Marquee } from "@/components/Marquee";
 import { StatsBand } from "@/components/StatsBand";
 import { CompetitionPromo } from "@/components/CompetitionPromo";
 import { galleryPhoto } from "@/content/gallery";
+import { homeText as t } from "@/content/texts";
 
 export const metadata: Metadata = {
   title: "Clases de esgrima en Torremolinos, Málaga",
@@ -68,7 +69,7 @@ export default function Home() {
         <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:py-28 lg:grid-cols-[3fr_2fr] lg:items-end">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
-              Torremolinos · Málaga
+              {t.heroEyebrow}
             </p>
             <h1 className="mt-4 text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl blur-in">
               <span style={{ animationDelay: "0.00s" }}>Club</span>{" "}
@@ -77,23 +78,20 @@ export default function Home() {
               <span style={{ animationDelay: "0.24s" }}>Torremolinos</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg text-paper/80">
-              Clases de esgrima en Torremolinos para niños desde 6 años,
-              adolescentes, adultos y esgrima adaptada en silla de ruedas.
-              Ponte la careta, saluda a tu rival y siente tu primer tocado. La
-              primera clase es gratis.
+              {t.heroLede}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href={whatsappLink("Hola, quiero probar una clase gratis")}
                 className="btn-blade inline-flex items-center rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark"
               >
-                ¡Ven y prueba gratis!
+                {t.heroCta}
               </a>
               <Link
                 href="/horarios-y-precios"
                 className="inline-flex items-center rounded-sm border border-paper/30 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-paper transition-colors hover:border-paper"
               >
-                Ver horarios y precios
+                {t.heroSecondaryCta}
               </Link>
             </div>
           </div>
@@ -308,18 +306,16 @@ export default function Home() {
       <Section>
         <div className="flex flex-col items-start gap-6 rounded-sm border border-line bg-ink px-6 py-12 text-paper sm:px-10">
           <h2 className="max-w-xl text-3xl font-bold uppercase tracking-tight sm:text-4xl">
-            No lo pienses más
+            {t.finalTitle}
           </h2>
           <p className="max-w-xl text-paper/75">
-            Ven a probar la esgrima con nosotros. Tu primera clase es gratis y
-            te esperamos con el buen ambiente del Club de Esgrima Torremolinos.
-            Lo difícil es dar el primer paso a la pista.
+            {t.finalText}
           </p>
           <a
             href={whatsappLink("Hola, quiero probar una clase gratis")}
             className="btn-blade inline-flex items-center rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark"
           >
-            ¡Quiero probar!
+            {t.finalCta}
           </a>
         </div>
       </Section>

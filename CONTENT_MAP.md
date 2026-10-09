@@ -31,6 +31,10 @@ relativas a `src/`.
 
 ## Compartido entre páginas
 
+- `src/content/data/textos.json` — cabecera (etiqueta/título/entradilla) de cada
+  página interior y textos principales de la home (editable en el panel);
+  se leen con `pageText(path)` / `homeText` de `src/content/texts.ts`. El H1
+  de la home es fijo (SEO).
 - `src/content/site.ts` — nombre, dirección, teléfono, email, redes,
   identidad legal, navegación (`navigation`, `footerLinks`).
 - `src/components/Header.tsx` — menú agrupado: `navMenu` (desplegables con

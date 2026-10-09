@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { pageText } from "@/content/texts";
 import { Section, SectionHeading } from "@/components/Section";
 import { schedule, plans, bonos, federationFees } from "@/content/pricing";
 import { whatsappLink } from "@/content/site";
@@ -14,12 +15,13 @@ export const metadata: Metadata = {
 };
 
 export default function HorariosYPrecios() {
+  const hero = pageText("/horarios-y-precios");
   return (
     <>
       <PageHero
-        eyebrow="Únete al club"
-        title="Horarios y Precios"
-        lede="Hay grupos de lunes a viernes, por la mañana y por la tarde, y tecnificación de competición los lunes. Elige el que mejor te encaje y ven a probar."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
         path="/horarios-y-precios"
       />
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { pageText } from "@/content/texts";
 import { Photo } from "@/components/Photo";
 import { Section, SectionHeading } from "@/components/Section";
 import { galleryPhoto } from "@/content/gallery";
@@ -36,12 +37,13 @@ const steps = [
 ];
 
 export default function ClaseGratis() {
+  const hero = pageText("/clase-gratis");
   return (
     <>
       <PageHero
-        eyebrow="La palabra mágica: gratis"
-        title="Primera Clase Gratis"
-        lede="¿Te pica la curiosidad por la esgrima pero no acabas de decidirte? Ven a tu primera clase gratis y compruébalo con un sable en la mano."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
         path="/clase-gratis"
       />
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { pageText } from "@/content/texts";
 import { Section } from "@/components/Section";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { faq } from "@/content/faq";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function PreguntasFrecuentes() {
+  const hero = pageText("/preguntas-frecuentes");
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -29,9 +31,9 @@ export default function PreguntasFrecuentes() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageHero
-        eyebrow="Resolvemos tus dudas"
-        title="Preguntas Frecuentes"
-        lede="Si la esgrima te llama la atención, seguro que te surgen dudas. Aquí tienes respuestas claras a las preguntas que más nos hacen. Si falta alguna, escríbenos."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
         path="/preguntas-frecuentes"
       />
       <Section>

@@ -1,0 +1,67 @@
+{
+  "paginas": [
+    {
+      "path": "/esgrima-ninos",
+      "eyebrow": "6–12 años",
+      "title": "Esgrima para Niños",
+      "lede": "Una careta, un arma de gomaespuma y un grupo de amigos: así empieza la esgrima para niños en Torremolinos."
+    },
+    {
+      "path": "/esgrima-para-adultos",
+      "eyebrow": "Desde 13 años",
+      "title": "Esgrima para Adultos",
+      "lede": "Desde los 13 años y sin límite de edad, puedes ponerte la careta y practicar esgrima con nosotros."
+    },
+    {
+      "path": "/esgrima-en-silla-de-ruedas",
+      "eyebrow": "Esgrima adaptada",
+      "title": "Esgrima en Silla de Ruedas",
+      "lede": "Somos la única sala de Andalucía con esgrima en silla de ruedas en sus entrenamientos habituales. Aquí tiras tú, con las mismas ganas que cualquiera."
+    },
+    {
+      "path": "/nuestro-equipo",
+      "eyebrow": "Quiénes somos",
+      "title": "Nuestro Equipo",
+      "lede": "Los entrenadores que te recibirán en tu primera clase y los deportistas que llevan el nombre del club a competición."
+    },
+    {
+      "path": "/horarios-y-precios",
+      "eyebrow": "Únete al club",
+      "title": "Horarios y Precios",
+      "lede": "Hay grupos de lunes a viernes, por la mañana y por la tarde, y tecnificación de competición los lunes. Elige el que mejor te encaje y ven a probar."
+    },
+    {
+      "path": "/instalaciones",
+      "eyebrow": "Nuestro club",
+      "title": "Instalaciones",
+      "lede": "Entrenamos en el Palacio de Deportes San Miguel de Torremolinos, con dos pistas de esgrima y una pista adaptada para silla de ruedas."
+    },
+    {
+      "path": "/clase-gratis",
+      "eyebrow": "La palabra mágica: gratis",
+      "title": "Primera Clase Gratis",
+      "lede": "¿Te pica la curiosidad por la esgrima pero no acabas de decidirte? Ven a tu primera clase gratis y compruébalo con un sable en la mano."
+    },
+    {
+      "path": "/preguntas-frecuentes",
+      "eyebrow": "Resolvemos tus dudas",
+      "title": "Preguntas Frecuentes",
+      "lede": "Si la esgrima te llama la atención, seguro que te surgen dudas. Aquí tienes respuestas claras a las preguntas que más nos hacen. Si falta alguna, escríbenos."
+    },
+    {
+      "path": "/contacto",
+      "eyebrow": "Dónde estamos",
+      "title": "Contacto",
+      "lede": "Para probar la esgrima con nosotros solo tienes que venir con ropa deportiva, agua y toalla, 10 minutos antes para que podamos explicarte cómo funciona la clase. Te estamos esperando."
+    }
+  ],
+  "inicio": {
+    "heroEyebrow": "Torremolinos · Málaga",
+    "heroLede": "Clases de esgrima en Torremolinos para niños desde 6 años, adolescentes, adultos y esgrima adaptada en silla de ruedas. Ponte la careta, saluda a tu rival y siente tu primer tocado. La primera clase es gratis.",
+    "heroCta": "¡Ven y prueba gratis!",
+    "heroSecondaryCta": "Ver horarios y precios",
+    "finalTitle": "No lo pienses más",
+    "finalText": "Ven a probar la esgrima con nosotros. Tu primera clase es gratis y te esperamos con el buen ambiente del Club de Esgrima Torremolinos. Lo difícil es dar el primer paso a la pista.",
+    "finalCta": "¡Quiero probar!"
+  }
+}

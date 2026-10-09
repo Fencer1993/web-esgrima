@@ -222,3 +222,30 @@ collections:
               - { name: representativeDni, label: DNI del representante, widget: string }
               - { name: representativeRole, label: Cargo, widget: string }
               - { name: registry, label: "N.º Registro Andaluz de Entidades Deportivas", widget: string, required: false }
+
+      - name: textos
+        label: Textos de las páginas
+        file: src/content/data/textos.json
+        fields:
+          - name: paginas
+            label: Cabecera de cada página
+            widget: list
+            summary: "{{title}}"
+            allow_add: false
+            allow_remove: false
+            fields:
+              - { name: path, label: Ruta, widget: hidden }
+              - { name: eyebrow, label: Etiqueta superior, widget: string }
+              - { name: title, label: Título, widget: string }
+              - { name: lede, label: Entradilla, widget: text }
+          - name: inicio
+            label: Página de inicio
+            widget: object
+            fields:
+              - { name: heroEyebrow, label: "Portada: etiqueta superior", widget: string }
+              - { name: heroLede, label: "Portada: texto bajo el título", widget: text }
+              - { name: heroCta, label: "Portada: botón principal", widget: string }
+              - { name: heroSecondaryCta, label: "Portada: botón secundario", widget: string }
+              - { name: finalTitle, label: "Cierre: título", widget: string }
+              - { name: finalText, label: "Cierre: texto", widget: text }
+              - { name: finalCta, label: "Cierre: botón", widget: string }

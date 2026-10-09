@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { pageText } from "@/content/texts";
 import { Section } from "@/components/Section";
 import { PhotoRow } from "@/components/PhotoRow";
 import { whatsappLink } from "@/content/site";
@@ -13,12 +14,13 @@ export const metadata: Metadata = {
 };
 
 export default function EsgrimaNinos() {
+  const hero = pageText("/esgrima-ninos");
   return (
     <>
       <PageHero
-        eyebrow="6–12 años"
-        title="Esgrima para Niños"
-        lede="Una careta, un arma de gomaespuma y un grupo de amigos: así empieza la esgrima para niños en Torremolinos."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
         path="/esgrima-ninos"
       />
 

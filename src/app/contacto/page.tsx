@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { pageText } from "@/content/texts";
 import { Section } from "@/components/Section";
 import { Photo } from "@/components/Photo";
 import { galleryPhoto } from "@/content/gallery";
@@ -15,13 +16,14 @@ export const metadata: Metadata = {
 };
 
 export default function Contacto() {
+  const hero = pageText("/contacto");
   const photo = galleryPhoto("clase-grupal-esgrima-sala-club-torremolinos");
   return (
     <>
       <PageHero
-        eyebrow="Dónde estamos"
-        title="Contacto"
-        lede="Para probar la esgrima con nosotros solo tienes que venir con ropa deportiva, agua y toalla, 10 minutos antes para que podamos explicarte cómo funciona la clase. Te estamos esperando."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
         path="/contacto"
       />
 

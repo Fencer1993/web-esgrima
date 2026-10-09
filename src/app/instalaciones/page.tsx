@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { pageText } from "@/content/texts";
 import { Section, SectionHeading } from "@/components/Section";
 import { Gallery } from "@/components/Gallery";
 import { galleryItems } from "@/content/gallery";
@@ -13,12 +14,13 @@ export const metadata: Metadata = {
 };
 
 export default function Instalaciones() {
+  const hero = pageText("/instalaciones");
   return (
     <>
       <PageHero
-        eyebrow="Nuestro club"
-        title="Instalaciones"
-        lede="Entrenamos en el Palacio de Deportes San Miguel de Torremolinos, con dos pistas de esgrima y una pista adaptada para silla de ruedas."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
         path="/instalaciones"
       />
 

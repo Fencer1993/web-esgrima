@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { pageText } from "@/content/texts";
 import { Section, SectionHeading } from "@/components/Section";
 import { AthleteGrid } from "@/components/AthleteGrid";
 import { coaches } from "@/content/programs";
@@ -14,12 +15,13 @@ export const metadata: Metadata = {
 };
 
 export default function NuestroEquipo() {
+  const hero = pageText("/nuestro-equipo");
   return (
     <>
       <PageHero
-        eyebrow="Quiénes somos"
-        title="Nuestro Equipo"
-        lede="Los entrenadores que te recibirán en tu primera clase y los deportistas que llevan el nombre del club a competición."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
         path="/nuestro-equipo"
       />
 

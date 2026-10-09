@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { pageText } from "@/content/texts";
 import { Section, SectionHeading } from "@/components/Section";
 import { Photo } from "@/components/Photo";
 import { PhotoRow } from "@/components/PhotoRow";
@@ -52,6 +53,7 @@ const wheelchairFaq = [
 ];
 
 export default function SillaDeRuedas() {
+  const hero = pageText("/esgrima-en-silla-de-ruedas");
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -69,9 +71,9 @@ export default function SillaDeRuedas() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageHero
-        eyebrow="Esgrima adaptada"
-        title="Esgrima en Silla de Ruedas"
-        lede="Somos la única sala de Andalucía con esgrima en silla de ruedas en sus entrenamientos habituales. Aquí tiras tú, con las mismas ganas que cualquiera."
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
         path="/esgrima-en-silla-de-ruedas"
       />
 

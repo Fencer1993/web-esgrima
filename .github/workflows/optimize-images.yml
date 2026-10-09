@@ -1,0 +1,40 @@
+name: Optimizar fotos subidas
+
+# Red de seguridad para el panel: si llega una foto pesada o en un formato
+# que no es WebP (por ejemplo, directa del móvil), se convierte a WebP,
+# se reduce a 1600 px como máximo, se quitan los datos EXIF y se actualizan
+# las referencias en src/content/data/*.json. El commit resultante empieza
+# por "Panel:" para que se publique igual que el cambio original.
+on:
+  push:
+    branches: [claude/esgrima-web-rebuild-1or7ev]
+    paths:
+      - "public/images/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: optimize-images
+  cancel-in-progress: false
+
+jobs:
+  optimize:
+    if: startsWith(github.event.head_commit.message, 'Panel:')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Optimizar
+        run: |
+          mkdir -p "$RUNNER_TEMP/opt" && (cd "$RUNNER_TEMP/opt" && npm init -y >/dev/null && npm i sharp@0.34 >/dev/null)
+          SHARP_DIR="$RUNNER_TEMP/opt" node .github/scripts/optimize-images.mjs
+      - name: Guardar
+        run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add -A public/images src/content/data
+          git diff --cached --quiet && echo "Nada que optimizar" && exit 0
+          git commit -m "Panel: optimiza fotos subidas"
+          git push

@@ -29,6 +29,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Por si el panel sube una foto sin optimizar: lo publicado sale siempre
+      # en WebP reducido (el repositorio lo corrige aparte, optimize-images.yml).
+      - name: Optimizar fotos
+        run: SHARP_DIR="$GITHUB_WORKSPACE" node .github/scripts/optimize-images.mjs
       - name: Build (raíz del dominio)
         run: npm run build
         env:
