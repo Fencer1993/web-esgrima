@@ -33,16 +33,22 @@ jobs:
         env:
           DIR: ${{ secrets.FTP_SERVER_DIR }}
         run: echo "remote=${DIR%/nuevo}" >> "$GITHUB_OUTPUT"
-      - name: Subir por SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          port: 22
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local_path: ./out/*
-          remote_path: ${{ steps.dest.outputs.remote }}
-          sftpArgs: "-o ConnectTimeout=5"
+      # lftp reintenta si OVH corta la conexión e incluye archivos ocultos
+      # (.htaccess). Primero todo menos la portada y el .htaccess; esos dos
+      # al final, para que el cambio desde WordPress sea instantáneo.
+      - name: Subir por SFTP (lftp)
+        env:
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          HOST: ${{ secrets.FTP_SERVER }}
+          USER: ${{ secrets.FTP_USERNAME }}
+          REMOTE: ${{ steps.dest.outputs.remote }}
+        run: |
+          sudo apt-get -qq update && sudo apt-get -qq install -y lftp
+          mkdir -p ~/.ssh && ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          SET="set net:max-retries 8; set net:reconnect-interval-base 5; set net:timeout 30; set sftp:auto-confirm yes; set mirror:parallel-transfer-count 2"
+          lftp -u "$USER" --env-password -e "$SET; mirror -R --verbose=1 --exclude-glob index.html --exclude-glob .htaccess out $REMOTE; bye" "sftp://$HOST"
+          lftp -u "$USER" --env-password -e "$SET; cd $REMOTE; put out/.htaccess -o .htaccess; put out/index.html -o index.html; bye" "sftp://$HOST"
+
       - name: Comprobar en vivo
         run: |
           sleep 5
