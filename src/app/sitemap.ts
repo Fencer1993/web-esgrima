@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
+import { allNews } from "@/content/news";
 import { galleryItems } from "@/content/gallery";
 import { coaches } from "@/content/programs";
 
@@ -22,7 +23,7 @@ const routes = [
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((route) => ({
+  return [...routes, ...allNews.map((n) => `noticias/${n.slug}`)].map((route) => ({
     url: `${site.url}/${route}`,
     lastModified: new Date(),
     changeFrequency: "monthly",

@@ -130,7 +130,9 @@ foreach ($rawLines as $l) {
     }
     $lines[] = [
         "product_id" => $pid,
-        "product" => (string) ($products[$pid]["name"] ?? $pid),
+        "product" => (string) ($products[$pid]["name"] ?? $pid)
+            . (!empty($products[$pid]["ref"]) ? " · Ref. " . $products[$pid]["ref"] : ""),
+        "url" => (string) ($products[$pid]["url"] ?? ""),
         "supplier" => (string) ($products[$pid]["supplier"] ?? ""),
         "size" => $size,
         "qty" => $qty,

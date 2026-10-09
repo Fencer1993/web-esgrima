@@ -317,9 +317,29 @@ collections:
               - { name: id, label: "Identificador (sin espacios, ej. careta-sable)", widget: string }
               - { name: name, label: Nombre, widget: string }
               - { name: supplier, label: "Proveedor (Yiang, Allstar, PBT…)", widget: string }
+              - { name: ref, label: "Referencia del proveedor", widget: string, required: false }
+              - { name: url, label: "Enlace a la ficha del proveedor", widget: string, required: false, hint: "https://… (fotos y tabla de tallas oficiales)" }
               - { name: category, label: Categoría, widget: select, options: ["Protección", "Armas", "Ropa", "Accesorios"] }
               - { name: description, label: Descripción, widget: text }
               - { name: price, label: "Precio del club (ej. 45€)", widget: string }
               - { name: sizes, label: Tallas, widget: list, required: false, field: { name: talla, label: Talla, widget: string } }
               - { name: photo, label: Foto, widget: image, required: false, media_folder: /public/images/tienda, public_folder: /images/tienda }
               - { name: active, label: Visible en la tienda, widget: boolean, default: true }
+
+      - name: noticias
+        label: Tablón de anuncios
+        file: src/content/data/noticias.json
+        fields:
+          - name: items
+            label: Publicaciones
+            widget: list
+            summary: "{{date}} · {{title}}"
+            fields:
+              - { name: slug, label: "Dirección (slug)", widget: string, hint: "sin espacios, ej. torneo-jaen-2026" }
+              - { name: date, label: Fecha, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+              - { name: type, label: Tipo, widget: select, options: [Noticia, Aviso, Convocatoria, Resultado], default: Noticia }
+              - { name: title, label: Título, widget: string }
+              - { name: summary, label: Resumen, widget: text }
+              - { name: body, label: Texto, widget: text, hint: "Separa los párrafos con una línea en blanco." }
+              - { name: image, label: Foto, widget: image, required: false, media_folder: /public/images/noticias, public_folder: /images/noticias }
+              - { name: pinned, label: "Destacada (fijada arriba)", widget: boolean, default: false }

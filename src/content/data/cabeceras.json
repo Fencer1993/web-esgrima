@@ -44,6 +44,21 @@
       "path": "/contacto",
       "photo": "medallistas-torneo-jaen-esgrima-torremolinos",
       "position": "object-[center_30%]"
+    },
+    {
+      "path": "/noticias",
+      "photo": "podio-veteranos-torneo-jaen-esgrima-torremolinos",
+      "position": "object-[center_30%]"
+    },
+    {
+      "path": "/calendario",
+      "photo": "podio-juvenil-torneo-jaen-esgrima-torremolinos",
+      "position": "object-[center_30%]"
+    },
+    {
+      "path": "/tienda",
+      "photo": "equipo-esgrimistas-club-torremolinos-competicion",
+      "position": "object-[center_40%]"
     }
   ]
 }

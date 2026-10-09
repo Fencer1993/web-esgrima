@@ -69,11 +69,22 @@ export default function Tienda() {
                     <div className="flex flex-1 flex-col p-5">
                       <p className="font-mono text-xs uppercase tracking-wide text-ink-faint">
                         {p.supplier}
+                        {p.ref ? ` · Ref. ${p.ref}` : ""}
                       </p>
                       <h3 className="mt-1 text-xl font-bold uppercase tracking-tight text-ink">
                         {p.name}
                       </h3>
                       <p className="mt-2 text-sm text-ink-soft">{p.description}</p>
+                      {p.url && (
+                        <a
+                          href={p.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="link-touche mt-2 self-start text-xs font-semibold text-accent-dark"
+                        >
+                          Ver ficha y tallas en {p.supplier} →
+                        </a>
+                      )}
                       <div className="mt-auto pt-4">
                         {p.sizes.length > 0 && (
                           <p className="text-xs text-ink-faint">

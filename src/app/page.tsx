@@ -7,6 +7,7 @@ import { programs, values, coaches } from "@/content/programs";
 import { CoachCard } from "@/components/CoachCard";
 import { Photo } from "@/components/Photo";
 import { Marquee } from "@/components/Marquee";
+import { LatestNews } from "@/components/LatestNews";
 import { StatsBand } from "@/components/StatsBand";
 import { CompetitionPromo } from "@/components/CompetitionPromo";
 import { galleryPhoto } from "@/content/gallery";
@@ -183,6 +184,8 @@ export default function Home() {
       <CompetitionPromo />
 
       <Marquee />
+
+      <LatestNews />
 
       <Section tone="raised" className="border-y border-line">
         <SectionHeading

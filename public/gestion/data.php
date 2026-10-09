@@ -65,6 +65,21 @@ function pedidos_path(): string
 }
 
 /** @return array<int,array<string,mixed>> */
+/**
+ * pedido.php guarda los datos del socio dentro de "customer"; aquí se
+ * exponen también arriba (name/email/phone) para las vistas y el CSV.
+ */
+function pedido_normalize(array $row): array
+{
+    $c = is_array($row['customer'] ?? null) ? $row['customer'] : [];
+    foreach (['name', 'email', 'phone'] as $k) {
+        if (!isset($row[$k]) && isset($c[$k])) {
+            $row[$k] = $c[$k];
+        }
+    }
+    return $row;
+}
+
 function pedidos_read(): array
 {
     $path = pedidos_path();
@@ -84,7 +99,7 @@ function pedidos_read(): array
         }
         $row = json_decode($line, true);
         if (is_array($row) && isset($row['id'])) {
-            $out[] = $row;
+            $out[] = pedido_normalize($row);
         }
     }
     flock($fh, LOCK_UN);

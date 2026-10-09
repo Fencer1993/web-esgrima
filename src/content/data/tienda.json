@@ -16,7 +16,9 @@
         "L"
       ],
       "photo": "",
-      "active": true
+      "active": true,
+      "ref": "",
+      "url": ""
     },
     {
       "id": "sable-completo",
@@ -27,7 +29,9 @@
       "price": "Consultar",
       "sizes": [],
       "photo": "",
-      "active": true
+      "active": true,
+      "ref": "",
+      "url": ""
     },
     {
       "id": "chaqueta-blanca",
@@ -46,7 +50,9 @@
         "XL"
       ],
       "photo": "",
-      "active": true
+      "active": true,
+      "ref": "",
+      "url": ""
     },
     {
       "id": "pantalon-blanco",
@@ -65,7 +71,9 @@
         "XL"
       ],
       "photo": "",
-      "active": true
+      "active": true,
+      "ref": "",
+      "url": ""
     },
     {
       "id": "guante-sable",
@@ -80,7 +88,9 @@
         "L"
       ],
       "photo": "",
-      "active": true
+      "active": true,
+      "ref": "",
+      "url": ""
     },
     {
       "id": "chaqueta-electrica-sable",
@@ -96,7 +106,9 @@
         "XL"
       ],
       "photo": "",
-      "active": true
+      "active": true,
+      "ref": "",
+      "url": ""
     }
   ]
 }

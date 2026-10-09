@@ -11,6 +11,9 @@ export type ShopProduct = {
   sizes: string[];
   photo: string;
   active: boolean;
+  // Referencia y ficha del proveedor (opcionales).
+  ref?: string;
+  url?: string;
 };
 
 export const shopIntro: string = data.intro;
