@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
+import { galleryItems } from "@/content/gallery";
+import { coaches } from "@/content/programs";
 
 const routes = [
   "",
@@ -22,5 +24,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: route === "" ? 1 : 0.7,
+    images:
+      route === "instalaciones"
+        ? galleryItems.map((g) => `${site.url}${g.src}`)
+        : route === "nuestro-equipo"
+          ? coaches.map((c) => `${site.url}${c.photo.src}`)
+          : undefined,
   }));
 }

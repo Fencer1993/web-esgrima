@@ -5,6 +5,8 @@ import { InstagramCta } from "@/components/InstagramCta";
 import { site, whatsappLink } from "@/content/site";
 import { programs, values, coaches } from "@/content/programs";
 import { CoachCard } from "@/components/CoachCard";
+import { Photo } from "@/components/Photo";
+import { galleryItems } from "@/content/gallery";
 
 export const metadata: Metadata = {
   title: "Clases de esgrima en Torremolinos, Málaga",
@@ -98,6 +100,32 @@ export default function Home() {
             </Link>
           ))}
         </div>
+      </Section>
+
+      <Section>
+        <SectionHeading
+          eyebrow="En la pista"
+          title="El Club en Imágenes"
+          lede="Entrenamientos, torneos y podios de nuestros esgrimistas en Andalucía y en el circuito nacional."
+        />
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[galleryItems[0], galleryItems[7], galleryItems[5]].map((g) => (
+            <figure key={g.src} className="reveal overflow-hidden rounded-sm border border-line">
+              <Photo
+                src={g.src}
+                alt={g.alt}
+                width={g.width}
+                height={g.height}
+                className="aspect-[4/3] w-full object-cover object-[center_30%]"
+              />
+            </figure>
+          ))}
+        </div>
+        <p className="mt-6 text-sm">
+          <Link href="/instalaciones" className="link-touche font-semibold text-accent-dark">
+            Ver toda la galería →
+          </Link>
+        </p>
       </Section>
 
       <Section tone="raised" className="border-y border-line">

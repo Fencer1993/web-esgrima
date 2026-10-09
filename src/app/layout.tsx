@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { RevealController } from "@/components/RevealController";
+import { galleryItems } from "@/content/gallery";
+import { coaches } from "@/content/programs";
 import { site } from "@/content/site";
 
 const archivo = Archivo({
@@ -77,6 +79,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       },
     ],
     sameAs: [site.social.instagram],
+    hasMap: site.address.mapsUrl,
+    areaServed: ["Torremolinos", "Málaga"],
+    image: [...galleryItems.slice(0, 3).map((g) => g.src), ...coaches.map((c) => c.photo.src)].map(
+      (src) => `${site.url}${src}`,
+    ),
+    employee: coaches.map((c) => ({
+      "@type": "Person",
+      name: c.name,
+      jobTitle: c.role,
+      image: `${site.url}${c.photo.src}`,
+      worksFor: { "@type": "Organization", name: site.name },
+    })),
   };
 
   return (

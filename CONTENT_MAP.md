@@ -6,7 +6,7 @@ relativas a `src/`.
 
 | Ruta pública | Página (JSX/prosa) | Datos (hechos/listas) |
 |---|---|---|
-| `/` | `app/page.tsx` | `content/site.ts`, `content/programs.ts` |
+| `/` | `app/page.tsx` | `content/site.ts`, `content/programs.ts`, `content/gallery.ts` (3 fotos) |
 | `/esgrima-ninos` | `app/esgrima-ninos/page.tsx` | `content/programs.ts` |
 | `/esgrima-para-adultos` | `app/esgrima-para-adultos/page.tsx` | `content/programs.ts` |
 | `/esgrima-en-silla-de-ruedas` | `app/esgrima-en-silla-de-ruedas/page.tsx` | FAQ inline en la propia página (`wheelchairFaq`) |
@@ -41,6 +41,9 @@ añadir una foto. Se pintan con `src/components/Photo.tsx` (antepone el
 `basePath` y fija width/height). El texto `alt` describe lo que se ve;
 el pie de foto va aparte en `gallery.ts`. `CoachCard.tsx` pinta las
 tarjetas de entrenadores (home y Nuestro Equipo).
+El JSON-LD del negocio (`layout.tsx`) y las imágenes del `sitemap.ts`
+salen de `gallery.ts` y `coaches`, así que al cambiar una foto ahí se
+actualizan solos.
 
 ## SEO por página
 
