@@ -6,9 +6,21 @@ name: Publicar en producción (esgrimatorremolinos.com)
 # sirva la web nueva.
 on:
   workflow_dispatch:
+  # Cambios guardados desde el panel (/admin): se publican solos. Solo los
+  # commits del panel (mensaje "Panel: …"); el resto sigue siendo manual.
+  push:
+    branches: [claude/esgrima-web-rebuild-1or7ev]
+    paths:
+      - "src/content/data/**"
+      - "public/images/**"
+
+concurrency:
+  group: production
+  cancel-in-progress: false
 
 jobs:
   deploy:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.head_commit.message, 'Panel:')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,6 +40,16 @@ jobs:
           define("INSTAGRAM_USER_ID", "${{ secrets.INSTAGRAM_USER_ID }}");
           define("INSTAGRAM_ACCESS_TOKEN", "${{ secrets.INSTAGRAM_ACCESS_TOKEN }}");
           PHP
+      # Credenciales del inicio de sesión del panel (/admin). Igual que con
+      # Instagram, solo existen en el runner y en el servidor, nunca en git.
+      - name: Configuración del panel
+        run: |
+          cat > out/admin-auth/config.php <<PHP
+          <?php
+          define("GITHUB_CLIENT_ID", "${{ secrets.GITHUB_OAUTH_CLIENT_ID }}");
+          define("GITHUB_CLIENT_SECRET", "${{ secrets.GITHUB_OAUTH_CLIENT_SECRET }}");
+          PHP
+
       - name: Carpeta raíz
         id: dest
         env:

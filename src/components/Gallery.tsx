@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Photo } from "@/components/Photo";
-import { galleryItems } from "@/content/gallery";
+import type { GalleryItem } from "@/content/gallery";
 
 const ALL = "Todo";
 
@@ -17,11 +17,11 @@ const css = `
 @keyframes gallery-fade { from { opacity: 0; } to { opacity: 1; } }
 `;
 
-export function Gallery() {
+export function Gallery({ items: galleryItems }: { items: GalleryItem[] }) {
   // Categorías derivadas de los datos, por orden de primera aparición.
   const categories = useMemo(
     () => [ALL, ...Array.from(new Set(galleryItems.map((i) => String(i.category))))],
-    [],
+    [galleryItems],
   );
   const [filterState, setFilter] = useState<string>(ALL);
   const filter = categories.includes(filterState) ? filterState : ALL;
@@ -31,7 +31,7 @@ export function Gallery() {
       filter === ALL
         ? galleryItems
         : galleryItems.filter((i) => String(i.category) === filter),
-    [filter],
+    [filter, galleryItems],
   );
 
   const [active, setActive] = useState<number | null>(null);

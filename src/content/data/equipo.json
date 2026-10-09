@@ -1,0 +1,99 @@
+{
+  "coaches": [
+    {
+      "name": "Carlos Soler",
+      "role": "Presidente y Entrenador de Esgrima Adaptada",
+      "bio": "Esgrimista paralímpico, con participación en Pekín y Barcelona. Seleccionador nacional de esgrima en silla de ruedas y encargado del grupo infantil.",
+      "phone": "+34 616 94 00 91",
+      "email": "csolerm@hotmail.com",
+      "photo": "/images/equipo/carlos-soler-entrenador-esgrima-torremolinos.webp",
+      "photoAlt": "Carlos Soler, presidente y entrenador de esgrima adaptada del Club de Esgrima Torremolinos"
+    },
+    {
+      "name": "Víctor Santiago",
+      "role": "Director Técnico de Esgrima y Secretario",
+      "bio": "18 años haciendo esgrima, con varias participaciones internacionales. Ha sido entrenador de sable en una concentración internacional en China. Competidor activo y entrenador del grupo de adolescentes y adultos.",
+      "phone": "+34 687 34 02 77",
+      "email": "vst@hotmail.es",
+      "photo": "/images/equipo/victor-santiago-entrenador-esgrima-torremolinos.webp",
+      "photoAlt": "Víctor Santiago, director técnico y entrenador de esgrima del Club de Esgrima Torremolinos, con careta y sable en la sala del club"
+    }
+  ],
+  "athletes": [
+    {
+      "name": "Keila",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Gonzalo",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Raúl",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Melania",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "María",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Martín",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Rocío",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Felipe",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Pedro",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Pablo",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Mili",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Daniel",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Miguel",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Carlos",
+      "achievement": "",
+      "photo": ""
+    },
+    {
+      "name": "Diego",
+      "achievement": "",
+      "photo": ""
+    }
+  ]
+}

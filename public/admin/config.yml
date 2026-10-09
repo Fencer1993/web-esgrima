@@ -1,0 +1,224 @@
+# Panel de edición del Club de Esgrima Torremolinos (Sveltia CMS).
+# Cada sección corresponde a un archivo de src/content/data/.
+backend:
+  name: github
+  repo: Fencer1993/web-esgrima
+  branch: claude/esgrima-web-rebuild-1or7ev
+  # Inicio de sesión con GitHub a través del propio hosting (PHP en OVH).
+  base_url: https://www.esgrimatorremolinos.com
+  auth_endpoint: admin-auth/auth.php
+  commit_messages:
+    update: "Panel: actualiza {{collection}} «{{slug}}»"
+
+locale: es
+site_url: https://www.esgrimatorremolinos.com
+display_url: https://www.esgrimatorremolinos.com
+
+media_folder: public/images/galeria
+public_folder: /images/galeria
+
+# Las fotos subidas se convierten a WebP y se reducen antes de guardarse.
+media_libraries:
+  default:
+    config:
+      max_file_size: 15000000
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 80
+          width: 1600
+          height: 1600
+
+collections:
+  - name: contenido
+    label: Contenido de la web
+    format: json
+    files:
+      - name: horarios
+        label: Horarios
+        file: src/content/data/horarios.json
+        fields:
+          - { name: technificationNote, label: "Nota de acceso a tecnificación (letra pequeña)", widget: string }
+          - name: competitionGroups
+            label: Grupos de tecnificación (lunes)
+            widget: list
+            summary: "{{name}} · {{hours}}"
+            fields:
+              - { name: name, label: Nombre del grupo, widget: string }
+              - { name: days, label: Días, widget: string }
+              - { name: hours, label: Horario, widget: string, hint: "Ejemplo: 18:00 – 20:00" }
+              - { name: text, label: Descripción, widget: text }
+          - name: groups
+            label: Grupos regulares
+            widget: list
+            summary: "{{group}} · {{hours}}"
+            fields:
+              - { name: group, label: Grupo, widget: string }
+              - { name: days, label: Días, widget: string, hint: "Ejemplo: Martes, miércoles y jueves" }
+              - { name: hours, label: Horario, widget: string }
+              - { name: note, label: "Nota en letra pequeña (opcional)", widget: string, required: false }
+          - name: physicalTraining
+            label: Entrenamiento físico
+            widget: object
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: price, label: Precio, widget: string }
+              - { name: days, label: Días, widget: string }
+              - { name: hours, label: Horario, widget: string }
+              - { name: text, label: Descripción, widget: text }
+
+      - name: precios
+        label: Precios
+        file: src/content/data/precios.json
+        fields:
+          - name: plans
+            label: Cuotas
+            widget: list
+            summary: "{{name}} · {{price}}"
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: price, label: Precio, widget: string, hint: "Ejemplo: 30€" }
+              - { name: period, label: Periodo, widget: string, hint: "al mes, por clase…" }
+              - { name: features, label: Incluye, widget: list, field: { name: item, label: Elemento, widget: string } }
+          - name: bonos
+            label: Bonos
+            widget: list
+            summary: "{{name}} · {{price}}"
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: price, label: Precio adultos, widget: string }
+              - { name: childPrice, label: Precio niños, widget: string }
+              - { name: note, label: Ahorro, widget: string }
+          - name: federationFees
+            label: Licencias federativas
+            widget: list
+            summary: "{{label}} · {{price}}"
+            fields:
+              - { name: label, label: Licencia, widget: string }
+              - { name: price, label: Precio, widget: string }
+
+      - name: equipo
+        label: Equipo y deportistas
+        file: src/content/data/equipo.json
+        fields:
+          - name: coaches
+            label: Entrenadores
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: role, label: Cargo, widget: string }
+              - { name: bio, label: Currículum, widget: text }
+              - { name: phone, label: Teléfono, widget: string }
+              - { name: email, label: Correo, widget: string }
+              - { name: photo, label: Foto, widget: image, media_folder: /public/images/equipo, public_folder: /images/equipo }
+              - { name: photoAlt, label: "Descripción de la foto (para buscadores y lectores de pantalla)", widget: string }
+          - name: athletes
+            label: Deportistas
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: achievement, label: "Palmarés o frase corta", widget: text, required: false }
+              - { name: photo, label: "Foto (opcional)", widget: image, required: false, media_folder: /public/images/deportistas, public_folder: /images/deportistas }
+
+      - name: galeria
+        label: Galería de fotos
+        file: src/content/data/galeria.json
+        fields:
+          - name: items
+            label: Fotos (las primeras salen en la cinta de la portada)
+            widget: list
+            summary: "{{category}} · {{caption}}"
+            fields:
+              - { name: src, label: Foto, widget: image }
+              - { name: category, label: Lugar, widget: select, options: ["En nuestra sala", "Competiciones"] }
+              - { name: caption, label: Pie de foto, widget: string }
+              - { name: alt, label: "Qué se ve en la foto (para buscadores)", widget: string, required: false }
+
+      - name: faq
+        label: Preguntas frecuentes
+        file: src/content/data/faq.json
+        fields:
+          - name: items
+            label: Preguntas
+            widget: list
+            summary: "{{question}}"
+            fields:
+              - { name: question, label: Pregunta, widget: string }
+              - { name: answer, label: Respuesta, widget: text }
+
+      - name: programas
+        label: Clases y valores
+        file: src/content/data/programas.json
+        fields:
+          - name: programs
+            label: Clases
+            widget: list
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            summary: "{{title}}"
+            fields:
+              - { name: slug, label: Página, widget: hidden }
+              - { name: title, label: Título, widget: string }
+              - { name: tagline, label: Frase corta, widget: text }
+              - { name: ageRange, label: Edades, widget: string }
+              - { name: schedule, label: Horario (texto), widget: string }
+              - { name: photo, label: "Foto (nombre del archivo en la galería, sin extensión)", widget: string }
+          - name: values
+            label: Valores
+            widget: list
+            allow_add: false
+            allow_remove: false
+            summary: "{{title}}"
+            fields:
+              - { name: icon, label: Icono, widget: hidden }
+              - { name: title, label: Título, widget: string }
+              - { name: body, label: Texto, widget: text }
+
+      - name: club
+        label: Datos del club y contacto
+        file: src/content/data/club.json
+        fields:
+          - { name: name, label: Nombre, widget: string }
+          - { name: shortName, label: Nombre corto, widget: string }
+          - { name: domain, label: Dominio, widget: hidden }
+          - { name: url, label: Web, widget: hidden }
+          - { name: description, label: "Descripción (Google y redes)", widget: text }
+          - name: address
+            label: Dirección
+            widget: object
+            fields:
+              - { name: line, label: Calle, widget: string }
+              - { name: postalCode, label: Código postal, widget: string }
+              - { name: city, label: Localidad, widget: string }
+              - { name: region, label: Provincia, widget: string }
+              - { name: country, label: País, widget: hidden }
+              - { name: venue, label: Instalación, widget: string }
+              - { name: mapsUrl, label: Enlace de Google Maps, widget: string }
+          - name: contact
+            label: Contacto
+            widget: object
+            fields:
+              - { name: phone, label: "Teléfono (como se muestra)", widget: string }
+              - { name: phoneDial, label: "Teléfono para llamar (+34…)", widget: string }
+              - { name: whatsapp, label: "WhatsApp (34 + número, sin espacios)", widget: string }
+              - { name: email, label: Correo, widget: string }
+          - name: social
+            label: Redes
+            widget: object
+            fields:
+              - { name: instagram, label: Instagram, widget: string }
+          - name: legal
+            label: Datos legales
+            widget: object
+            fields:
+              - { name: entityName, label: Denominación, widget: string }
+              - { name: cif, label: CIF, widget: string }
+              - { name: legalForm, label: Forma jurídica, widget: string }
+              - { name: representative, label: Representante, widget: string }
+              - { name: representativeDni, label: DNI del representante, widget: string }
+              - { name: representativeRole, label: Cargo, widget: string }
+              - { name: registry, label: "N.º Registro Andaluz de Entidades Deportivas", widget: string, required: false }

@@ -1,0 +1,70 @@
+{
+  "plans": [
+    {
+      "name": "Niños",
+      "price": "30€",
+      "period": "al mes",
+      "features": [
+        "3 clases semanales",
+        "Uso gratuito de material",
+        "Posibilidad de competir"
+      ]
+    },
+    {
+      "name": "Adultos",
+      "price": "40€",
+      "period": "al mes",
+      "features": [
+        "4 clases semanales",
+        "Uso gratuito de material",
+        "Esgrima Ocio",
+        "Posibilidad de competir",
+        "Clases individuales"
+      ]
+    },
+    {
+      "name": "Clases privadas",
+      "price": "Desde 20€",
+      "period": "por clase",
+      "features": [
+        "Clase suelta de 30 minutos: 20€",
+        "Clase de 1 hora completa: 30€",
+        "Día y hora a convenir con el profesor",
+        "Asesoramiento técnico-táctico",
+        "Posibilidad de grabar la clase"
+      ]
+    }
+  ],
+  "bonos": [
+    {
+      "name": "Bono 3 meses",
+      "price": "100€",
+      "childPrice": "75€ niños",
+      "note": "Te ahorras media mensualidad"
+    },
+    {
+      "name": "Bono 5 meses",
+      "price": "160€",
+      "childPrice": "120€ niños",
+      "note": "Te ahorras una mensualidad completa"
+    }
+  ],
+  "federationFees": [
+    {
+      "label": "Licencia D'Artagnan (5–8 años)",
+      "price": "15€"
+    },
+    {
+      "label": "Licencia menor 11–13 años",
+      "price": "25€"
+    },
+    {
+      "label": "Licencia menor de 14 y 15 años",
+      "price": "40€"
+    },
+    {
+      "label": "Licencia mayor de 15 años",
+      "price": "60€"
+    }
+  ]
+}

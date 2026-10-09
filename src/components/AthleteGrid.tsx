@@ -1,3 +1,4 @@
+import { Photo } from "@/components/Photo";
 import { athletes } from "@/content/athletes";
 
 export function AthleteGrid() {
@@ -16,7 +17,7 @@ export function AthleteGrid() {
   }
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
       {athletes.map((a) => (
         <div
           key={a.name}
@@ -24,14 +25,15 @@ export function AthleteGrid() {
         >
           <div className="flex aspect-square items-center justify-center bg-steel-soft">
             {a.photo ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={a.photo}
-                alt={a.name}
-                className="h-full w-full object-cover"
+              <Photo
+                src={a.photo.src}
+                alt={`${a.name}, deportista del Club de Esgrima Torremolinos`}
+                width={a.photo.width}
+                height={a.photo.height}
+                className="h-full w-full object-cover object-[center_30%]"
               />
             ) : (
-              <span className="font-display text-4xl font-bold text-steel">
+              <span className="font-display text-5xl font-bold text-steel">
                 {a.name
                   .split(" ")
                   .slice(0, 2)
@@ -40,12 +42,12 @@ export function AthleteGrid() {
               </span>
             )}
           </div>
-          <div className="p-5">
+          <div className="p-4">
             <h4 className="font-display text-lg font-semibold uppercase tracking-tight text-ink">
               {a.name}
             </h4>
             <p className="mt-1 text-sm leading-relaxed text-ink-soft">
-              {a.achievement}
+              {a.achievement || "Deportista del club"}
             </p>
           </div>
         </div>

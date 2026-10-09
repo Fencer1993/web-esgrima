@@ -1,0 +1,45 @@
+{
+  "programs": [
+    {
+      "slug": "esgrima-ninos",
+      "title": "Esgrima para Niños",
+      "tagline": "Para niños de 6 a 12 años que quieren jugar, moverse y sentirse esgrimistas de verdad.",
+      "ageRange": "6–12 años",
+      "schedule": "Martes, miércoles y jueves de 18:30 a 19:30 (viernes, solo con autorización y supervisión de un adulto)",
+      "photo": "equipo-infantil-juvenil-esgrima-torremolinos-almeria"
+    },
+    {
+      "slug": "esgrima-para-adultos",
+      "title": "Esgrima para Adultos",
+      "tagline": "Para adolescentes desde 13 años y adultos con ganas de probar algo distinto.",
+      "ageRange": "Desde 13 años",
+      "schedule": "Martes, miércoles, jueves y viernes de 19:30 a 21:00",
+      "photo": "grupo-esgrimistas-club-torremolinos-sala-ayuntamiento"
+    },
+    {
+      "slug": "esgrima-en-silla-de-ruedas",
+      "title": "Esgrima en Silla de Ruedas",
+      "tagline": "Clases para la diversidad funcional. Un deporte inclusivo con toda la emoción del asalto.",
+      "ageRange": "Todas las edades",
+      "schedule": "Lunes, martes, miércoles y jueves de 10:00 a 12:30",
+      "photo": "podio-esgrima-adaptada-torneo-jaen"
+    }
+  ],
+  "values": [
+    {
+      "icon": "companerismo",
+      "title": "Compañerismo",
+      "body": "La esgrima es un deporte individual, pero en la sala somos un equipo. Nadie gana ni pierde solo, y siempre hay alguien que te echa una mano."
+    },
+    {
+      "icon": "aprendizaje",
+      "title": "Aprendizaje guiado",
+      "body": "Tus profesores te acompañan desde la primera clase hasta la alta competición. Aquí no basta con coger el palito y decir \"touché\": se aprende, se suda la camiseta y se disfruta."
+    },
+    {
+      "icon": "inclusion",
+      "title": "Inclusión",
+      "body": "Practicamos esgrima desde los 6 años e incluimos esgrima en silla de ruedas. Aquí hay sitio para todos, sin importar la edad ni la condición física previa."
+    }
+  ]
+}

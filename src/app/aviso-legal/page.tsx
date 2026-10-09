@@ -29,6 +29,12 @@ export default function AvisoLegal() {
             <ul className="mt-2 list-disc pl-5">
               <li>Denominación: {site.legal.entityName}</li>
               <li>CIF: {site.legal.cif}</li>
+              {site.legal.registry && (
+                <li>
+                  Inscrito en el Registro Andaluz de Entidades Deportivas con el n.º{" "}
+                  {site.legal.registry}
+                </li>
+              )}
               <li>
                 Naturaleza jurídica: {site.legal.legalForm}, inscrito como entidad deportiva
                 al amparo de la Ley 5/2016, de 19 de julio, del Deporte de Andalucía, y

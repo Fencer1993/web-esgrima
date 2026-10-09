@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { Gallery } from "@/components/Gallery";
+import { galleryItems } from "@/content/gallery";
 import { whatsappLink } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -47,7 +48,7 @@ export default function Instalaciones() {
           title="Entrenamientos y competiciones"
           lede="Así se vive el club: nuestros deportistas en acción, y a veces en el podio."
         />
-        <Gallery />
+        <Gallery items={galleryItems} />
       </Section>
 
       <Section>

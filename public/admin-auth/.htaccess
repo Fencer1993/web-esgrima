@@ -1,0 +1,4 @@
+# Solo se sirven auth.php y callback.php; config.php no es accesible por web.
+<Files "config.php">
+  Require all denied
+</Files>

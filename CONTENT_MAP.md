@@ -1,5 +1,14 @@
 # Mapa de contenido
 
+> **Datos editables desde el panel** (`/admin`, Sveltia CMS): horarios,
+> precios, equipo y deportistas, galería, FAQ, clases/valores y datos del
+> club viven en `src/content/data/*.json`. Los `.ts` de `src/content/` solo
+> los leen y tipan. Configuración del panel: `public/admin/config.yml`.
+> Inicio de sesión con GitHub: `public/admin-auth/*.php` (secrets
+> `GITHUB_OAUTH_CLIENT_ID` / `GITHUB_OAUTH_CLIENT_SECRET`). Los commits del
+> panel ("Panel: …") se publican solos (`deploy-production.yml`). Las
+> medidas de las fotos se leen en el build (`src/lib/imageSize.ts`).
+
 Índice rápido de dónde vive cada texto del sitio, para no tener que
 grepear todo el repo cada vez que hay que cambiar una frase. Rutas
 relativas a `src/`.
