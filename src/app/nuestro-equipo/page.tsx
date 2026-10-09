@@ -29,7 +29,7 @@ export default function NuestroEquipo() {
           title="Quién te va a enseñar"
           lede="Cualificados para entrenar esgrima a las tres armas. Nos especializamos en sable en la esgrima a pie; en la esgrima adaptada incluimos las tres."
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
+        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
           {coaches.map((c) => (
             <CoachCard key={c.name} coach={c} />
           ))}

@@ -6,13 +6,13 @@ import { useEffect, useRef } from "react";
 // HTML ya trae el número final —buscadores y lectores sin JS lo ven—; la
 // animación solo se aplica si el bloque entra en pantalla después.
 const stats = [
-  { value: 3, label: "armas", detail: "sable, espada y florete" },
+  { value: 61, label: "socios", detail: "y la familia sigue creciendo" },
   { value: 5, label: "días a la semana", detail: "de lunes a viernes" },
   { value: 6, label: "años", detail: "edad para empezar" },
   {
-    value: 2,
-    label: "Juegos Paralímpicos",
-    detail: "en la trayectoria de nuestro presidente",
+    value: 36,
+    label: "pruebas internacionales",
+    detail: "en la trayectoria de nuestros técnicos y tiradores",
   },
 ];
 

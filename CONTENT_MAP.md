@@ -63,6 +63,12 @@ de las páginas según quién las lea.
   `gallery.ts`: el orden de la galería decide qué sale).
 - `StatsBand.tsx` — cifras bajo la portada (array `stats` en el propio
   archivo; solo datos verificables).
+- `Gallery.tsx` — galería en mampostería con visor (lightbox); los
+  filtros salen de las categorías de `gallery.ts` ("En nuestra sala" =
+  sala del club con tarima, armeros y espejos; "Competiciones" = resto).
+- `Footer.tsx` — banda final de llamada a la acción + columnas.
+- `PricingScheduleCard.tsx` — tarjeta de horario con chips de días
+  (Horarios y Precios).
 - `PhotoRow.tsx` — fila de fotos con pie en las páginas de programas;
   recibe fragmentos de nombre de archivo de `gallery.ts`.
 - `PageHero.tsx` + `content/pageHeroes.ts` — foto de cabecera de cada

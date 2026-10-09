@@ -18,8 +18,8 @@ export const pageHeroes: Record<string, { photo: string; position?: string }> = 
     position: "object-[center_35%]",
   },
   "/horarios-y-precios": {
-    photo: "asalto-entrenamiento-pista-esgrima-torremolinos",
-    position: "object-[center_30%]",
+    photo: "equipo-infantil-juvenil-esgrima-torremolinos-almeria",
+    position: "object-[center_55%]",
   },
   "/instalaciones": {
     photo: "clase-grupal-esgrima-sala-club-torremolinos",
@@ -30,8 +30,8 @@ export const pageHeroes: Record<string, { photo: string; position?: string }> = 
     position: "object-center",
   },
   "/preguntas-frecuentes": {
-    photo: "asalto-juvenil-competicion-esgrima-torremolinos",
-    position: "object-[center_30%]",
+    photo: "podio-masculino-torneo-jaen-esgrima-torremolinos",
+    position: "object-center",
   },
   "/contacto": {
     photo: "medallistas-torneo-jaen-esgrima-torremolinos",

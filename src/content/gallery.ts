@@ -1,4 +1,5 @@
-export type GalleryCategory = "Entrenamientos" | "Competiciones";
+// Por lugar: la sala del club (tarima, armeros, espejos) o competiciones fuera.
+export type GalleryCategory = "En nuestra sala" | "Competiciones";
 
 export type GalleryItem = {
   caption: string;
@@ -14,7 +15,7 @@ const dir = "/images/galeria/";
 
 export const galleryItems: GalleryItem[] = [
   {
-    caption: "Oro en el podio del torneo de Jaén.",
+    caption: "¡Oro! Lo más alto del podio en el torneo de Jaén, con la copa en la mano.",
     category: "Competiciones",
     src: dir + "podio-absoluto-torneo-jaen-oro-torremolinos.webp",
     width: 1200,
@@ -22,7 +23,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Esgrimista del club en lo más alto del podio con la copa en un torneo en Jaén",
   },
   {
-    caption: "Parte del equipo de adultos en un torneo.",
+    caption: "Parte del equipo de adultos, listos para competir.",
     category: "Competiciones",
     src: dir + "esgrimistas-adultos-club-torremolinos-torneo.webp",
     width: 900,
@@ -30,7 +31,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Seis esgrimistas adultos del club sonriendo juntos en un torneo",
   },
   {
-    caption: "Dos jóvenes medallistas en el podio de Jaén.",
+    caption: "Dos de nuestras peques, medalla al cuello en el podio de Jaén.",
     category: "Competiciones",
     src: dir + "podio-infantil-torneo-jaen-esgrima-torremolinos.webp",
     width: 900,
@@ -38,15 +39,15 @@ export const galleryItems: GalleryItem[] = [
     alt: "Dos niñas esgrimistas con su medalla sobre el podio de un torneo en Jaén",
   },
   {
-    caption: "Calentamiento en grupo en la sala del club.",
-    category: "Entrenamientos",
+    caption: "Calentamiento en grupo en nuestra sala: pequeños, mayores y entrenadores, todos a una.",
+    category: "En nuestra sala",
     src: dir + "clase-grupal-esgrima-sala-club-torremolinos.webp",
     width: 1200,
     height: 675,
     alt: "Clase grupal de esgrima en la sala del club, con deportistas de distintas edades",
   },
   {
-    caption: "Un consejo entre asaltos.",
+    caption: "Agua, un consejo rápido y de vuelta a la pista.",
     category: "Competiciones",
     src: dir + "esgrimistas-club-torremolinos-entre-asaltos.webp",
     width: 1200,
@@ -54,7 +55,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Un esgrimista adulto atiende a un joven esgrimista entre asaltos",
   },
   {
-    caption: "Esgrima en silla de ruedas: podio del club en Zamora.",
+    caption: "Esgrima en silla de ruedas: el club se sube al podio en Zamora.",
     category: "Competiciones",
     src: dir + "podio-esgrima-silla-de-ruedas-zamora-torremolinos.webp",
     width: 1200,
@@ -62,7 +63,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Esgrimistas en silla de ruedas con trofeos en un podio en Zamora",
   },
   {
-    caption: "Parte del equipo infantil antes de competir.",
+    caption: "El equipo infantil, uniformado y con ganas, antes de su competición.",
     category: "Competiciones",
     src: dir + "equipo-infantil-esgrima-torremolinos-competicion.webp",
     width: 1200,
@@ -70,7 +71,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Seis niños y niñas esgrimistas posando juntos en un pabellón antes de competir",
   },
   {
-    caption: "Descanso entre asaltos en una competición infantil.",
+    caption: "Descanso entre asaltos: sonrisas y caretas a mano para la siguiente ronda.",
     category: "Competiciones",
     src: dir + "esgrimistas-infantiles-descanso-competicion-torremolinos.webp",
     width: 1024,
@@ -78,23 +79,23 @@ export const galleryItems: GalleryItem[] = [
     alt: "Niños y niñas esgrimistas sentados en la pista con sus caretas durante una competición",
   },
   {
-    caption: "Asalto de entrenamiento con los compañeros mirando.",
-    category: "Entrenamientos",
+    caption: "Asalto con público: los compañeros no pierden detalle.",
+    category: "Competiciones",
     src: dir + "asalto-entrenamiento-pista-esgrima-torremolinos.webp",
     width: 900,
     height: 1200,
     alt: "Dos esgrimistas en un asalto de entrenamiento en una sala con espejos",
   },
   {
-    caption: "El grupo del club, de adolescentes a veteranos, en un saludo de sables.",
-    category: "Entrenamientos",
+    caption: "De adolescentes a veteranos: el grupo del club, sable en alto, en el saludo.",
+    category: "Competiciones",
     src: dir + "grupo-esgrimistas-club-torremolinos-sala-ayuntamiento.webp",
     width: 1200,
     height: 900,
     alt: "Grupo de esgrimistas de todas las edades haciendo el saludo con los sables en una sala de Torremolinos",
   },
   {
-    caption: "Nuestro equipo infantil y juvenil con sus entrenadores en Almería.",
+    caption: "Expedición a Almería: nuestro equipo infantil y juvenil con sus entrenadores.",
     category: "Competiciones",
     src: dir + "equipo-infantil-juvenil-esgrima-torremolinos-almeria.webp",
     width: 1024,
@@ -102,7 +103,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Grupo de jóvenes esgrimistas del club con sus entrenadores en una competición en Almería",
   },
   {
-    caption: "Podio de esgrima adaptada en el torneo de Jaén.",
+    caption: "Esgrima adaptada en Jaén: trofeos y medallas para nuestros tiradores en silla.",
     category: "Competiciones",
     src: dir + "podio-esgrima-adaptada-torneo-jaen-torremolinos.webp",
     width: 1200,
@@ -110,7 +111,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Esgrimistas en silla de ruedas con trofeos y medallas en el podio de un torneo en Jaén",
   },
   {
-    caption: "Dos medallistas del club celebran su podio en Jaén.",
+    caption: "Medalla al cuello y pulgar arriba: doble podio para el club en Jaén.",
     category: "Competiciones",
     src: dir + "medallistas-torneo-jaen-esgrima-torremolinos.webp",
     width: 900,
@@ -118,7 +119,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Dos esgrimistas del club con medalla y el pulgar en alto en un torneo en Jaén",
   },
   {
-    caption: "Los más pequeños compiten mientras las familias les animan desde la grada.",
+    caption: "Los más pequeños en pista y las familias animando desde la grada.",
     category: "Competiciones",
     src: dir + "competicion-infantil-esgrima-torremolinos-grada.webp",
     width: 1200,
@@ -126,15 +127,15 @@ export const galleryItems: GalleryItem[] = [
     alt: "Pabellón con varias pistas de esgrima, niños compitiendo y familias en la grada, una con la camiseta del club",
   },
   {
-    caption: "Asalto de entrenamiento en la sala del club.",
-    category: "Entrenamientos",
+    caption: "Asalto de sable a plena velocidad.",
+    category: "Competiciones",
     src: dir + "entrenamiento-asalto-sala-esgrima-torremolinos.webp",
     width: 900,
     height: 1200,
     alt: "Dos esgrimistas de sable en un asalto de entrenamiento en la sala del club",
   },
   {
-    caption: "Asalto juvenil en una competición, con el árbitro de la pista.",
+    caption: "Asalto juvenil bajo la mirada del árbitro.",
     category: "Competiciones",
     src: dir + "competicion-esgrima-juvenil-arbitro.webp",
     width: 554,
@@ -142,15 +143,23 @@ export const galleryItems: GalleryItem[] = [
     alt: "Dos jóvenes esgrimistas compitiendo en un pabellón con el árbitro junto a la pista",
   },
   {
-    caption: "Entrenamiento del grupo de esgrima en silla de ruedas y a pie, en la sala del club.",
-    category: "Entrenamientos",
+    caption: "Esgrima inclusiva en nuestra sala: tiradores a pie y en silla entrenan juntos.",
+    category: "En nuestra sala",
     src: dir + "entrenamiento-esgrima-silla-de-ruedas-torremolinos-grupo.webp",
     width: 1200,
     height: 540,
     alt: "Grupo de esgrimistas con careta y un deportista en silla de ruedas durante un entrenamiento en la sala del club",
   },
   {
-    caption: "Podio masculino en el torneo de Jaén, con esgrimistas del club.",
+    caption: "Concentración y sable en mano: esgrima en silla de ruedas en competición.",
+    category: "Competiciones",
+    src: dir + "esgrimista-silla-de-ruedas-competicion-torremolinos.webp",
+    width: 554,
+    height: 1200,
+    alt: "Esgrimista en silla de ruedas con careta y arma durante una competición de esgrima adaptada",
+  },
+  {
+    caption: "Podio en Jaén con la camiseta del club bien visible.",
     category: "Competiciones",
     src: dir + "podio-masculino-torneo-jaen-esgrima-torremolinos.webp",
     width: 1200,
@@ -158,7 +167,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Podio de cuatro esgrimistas con medallas en un torneo en Jaén, varios con la equipación del club",
   },
   {
-    caption: "Parte del equipo del club antes de competir.",
+    caption: "Buen ambiente antes de competir: así es el equipo.",
     category: "Competiciones",
     src: dir + "equipo-esgrimistas-club-torremolinos-competicion.webp",
     width: 1200,
@@ -174,7 +183,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Dos jóvenes esgrimistas en estocada durante una competición en un pabellón",
   },
   {
-    caption: "Podio femenino en el torneo de Jaén.",
+    caption: "Podio femenino en Jaén, con trofeo para el club.",
     category: "Competiciones",
     src: dir + "podio-femenino-torneo-jaen-esgrima-torremolinos.webp",
     width: 900,
@@ -182,15 +191,15 @@ export const galleryItems: GalleryItem[] = [
     alt: "Cuatro esgrimistas con medallas y trofeo en un podio de torneo en Jaén",
   },
   {
-    caption: "Entrenamiento infantil: aprender a tirar jugando.",
-    category: "Entrenamientos",
+    caption: "Primeros fondos en nuestra sala: aquí se aprende jugando.",
+    category: "En nuestra sala",
     src: dir + "entrenamiento-infantil-esgrima-torremolinos.webp",
     width: 900,
     height: 1200,
     alt: "Dos niños practicando esgrima con careta frente a los espejos de la sala del club",
   },
   {
-    caption: "Podio de veteranos en el torneo de Jaén: oro para el club.",
+    caption: "Veteranos en Jaén: el oro viaja a Torremolinos.",
     category: "Competiciones",
     src: dir + "podio-veteranos-torneo-jaen-esgrima-torremolinos.webp",
     width: 900,
@@ -198,7 +207,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Podio con cuatro esgrimistas veteranos, el ganador levantando un trofeo, en un torneo en Jaén",
   },
   {
-    caption: "Podio juvenil en el torneo de Jaén.",
+    caption: "Podio juvenil en Jaén: la cantera también suma medallas.",
     category: "Competiciones",
     src: dir + "podio-juvenil-torneo-jaen-esgrima-torremolinos.webp",
     width: 900,
@@ -206,7 +215,7 @@ export const galleryItems: GalleryItem[] = [
     alt: "Tres jóvenes esgrimistas con medallas en un podio de torneo en Jaén",
   },
   {
-    caption: "Asalto en la competición de Roquetas de Mar.",
+    caption: "Roquetas de Mar: ataque a fondo en pleno asalto.",
     category: "Competiciones",
     src: dir + "asalto-competicion-roquetas-de-mar-esgrima-torremolinos.webp",
     width: 900,
@@ -223,23 +232,23 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     caption: "Podio de la última competición antes del verano. Ganador Bruno.",
-    category: "Competiciones",
+    category: "En nuestra sala",
     src: dir + "podio-competicion-esgrima-torremolinos.webp",
     width: 554,
     height: 1200,
     alt: "Esgrimistas formados en pista al terminar una competición de esgrima en Torremolinos",
   },
   {
-    caption: "Un día más entrenando en el Club de Esgrima Torremolinos.",
-    category: "Entrenamientos",
+    caption: "Un día más de entrenamiento en nuestra sala.",
+    category: "En nuestra sala",
     src: dir + "entrenamiento-club-esgrima-torremolinos.webp",
     width: 554,
     height: 1200,
     alt: "Entrenamiento de esgrima en la sala del Club de Esgrima Torremolinos",
   },
   {
-    caption: "Asalto entre Rocío y Pablo.",
-    category: "Entrenamientos",
+    caption: "Asalto entre Rocío y Pablo en nuestra sala.",
+    category: "En nuestra sala",
     src: dir + "asalto-entrenamiento-esgrima-torremolinos.webp",
     width: 554,
     height: 1200,
@@ -262,8 +271,8 @@ export const galleryItems: GalleryItem[] = [
     alt: "Podio del torneo amistoso de esgrima de Semana Santa 2022 en Torremolinos",
   },
   {
-    caption: "En el fragor de la competición.",
-    category: "Competiciones",
+    caption: "En el fragor de un asalto, en nuestra sala.",
+    category: "En nuestra sala",
     src: dir + "competicion-esgrima-torremolinos.webp",
     width: 554,
     height: 1200,

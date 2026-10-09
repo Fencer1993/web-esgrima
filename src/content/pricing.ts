@@ -72,8 +72,8 @@ export const plans = [
 ];
 
 export const bonos = [
-  { name: "Bono 3 meses", price: "100€", childPrice: "75€ niños", note: "Ahorro de medio mes" },
-  { name: "Bono 5 meses", price: "160€", childPrice: "120€ niños", note: "¡Un mes gratis!" },
+  { name: "Bono 3 meses", price: "100€", childPrice: "75€ niños", note: "Te ahorras media mensualidad" },
+  { name: "Bono 5 meses", price: "160€", childPrice: "120€ niños", note: "Te ahorras una mensualidad completa" },
 ];
 
 export const federationFees = [

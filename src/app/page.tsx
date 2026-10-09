@@ -159,13 +159,34 @@ export default function Home() {
                   i === 0 || i === 3 ? "md:col-span-2" : ""
                 }`}
               >
-                <Photo
-                  src={g.src}
-                  alt={g.alt}
-                  width={g.width}
-                  height={g.height}
-                  className="absolute inset-0 h-full w-full object-cover object-[center_35%] transition-transform duration-700 group-hover:scale-105"
-                />
+                {/* Foto vertical en recuadro ancho: se ve entera a la derecha y
+                    el fondo se rellena con la misma foto desenfocada. */}
+                {(i === 0 || i === 3) && g.height > g.width ? (
+                  <>
+                    <Photo
+                      src={g.src}
+                      alt=""
+                      width={g.width}
+                      height={g.height}
+                      className="absolute inset-0 h-full w-full scale-110 object-cover opacity-60 blur-xl"
+                    />
+                    <Photo
+                      src={g.src}
+                      alt={g.alt}
+                      width={g.width}
+                      height={g.height}
+                      className="absolute inset-y-0 right-0 h-full w-auto max-w-[70%] object-contain transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </>
+                ) : (
+                  <Photo
+                    src={g.src}
+                    alt={g.alt}
+                    width={g.width}
+                    height={g.height}
+                    className="absolute inset-0 h-full w-full object-cover object-[center_35%] transition-transform duration-700 group-hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/5" />
                 <div className="relative flex h-full flex-col justify-end p-6 text-paper">
                   <h3 className="font-display text-2xl font-bold uppercase tracking-tight">
@@ -240,7 +261,7 @@ export default function Home() {
           title="Los Entrenadores"
           lede="Cualificados para entrenar esgrima a las tres armas. Nos especializamos en sable en la esgrima a pie; en la esgrima adaptada incluimos las tres."
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:max-w-3xl">
+        <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
           {coaches.map((c) => (
             <CoachCard key={c.name} coach={c} />
           ))}

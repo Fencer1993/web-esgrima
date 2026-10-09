@@ -31,7 +31,7 @@ export const programs: Program[] = [
     tagline: "Clases para la diversidad funcional. Deporte inclusivo.",
     ageRange: "Todas las edades",
     schedule: "Martes, miércoles, jueves y viernes de 10:00 a 12:30",
-    photo: "entrenamiento-esgrima-silla-de-ruedas-torremolinos-grupo",
+    photo: "podio-esgrima-adaptada-torneo-jaen",
   },
 ];
 
