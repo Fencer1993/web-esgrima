@@ -1,8 +1,6 @@
 name: Deploy to OVH
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -24,10 +22,15 @@ jobs:
       - name: Build static export
         run: npm run build
         env:
-          # Vacío = se sirve desde la raíz del dominio. Se pone a "/nuevo"
-          # (Settings → Secrets and variables → Actions → Variables,
-          # BASE_PATH) mientras probamos en la subcarpeta de staging.
-          BASE_PATH: ${{ vars.BASE_PATH }}
+          # Staging en la subcarpeta /nuevo. Antes se leía de una variable
+          # del repositorio que no llegaba al build, y por eso /nuevo pedía
+          # el CSS en /_next/ (404) y se veía sin estilos.
+          BASE_PATH: /nuevo
+
+      # El .htaccess de producción (HTTPS, www, redirecciones de WordPress)
+      # no debe aplicarse dentro de /nuevo.
+      - name: Quitar .htaccess en staging
+        run: rm -f out/.htaccess
 
       # El token de Instagram nunca se guarda en el repositorio: se
       # escribe aquí, en el runner, a partir de los secrets, y solo el
