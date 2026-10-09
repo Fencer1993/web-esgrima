@@ -45,6 +45,14 @@ El JSON-LD del negocio (`layout.tsx`) y las imágenes del `sitemap.ts`
 salen de `gallery.ts` y `coaches`, así que al cambiar una foto ahí se
 actualizan solos.
 
+## Para asistentes de IA
+
+`/llms.txt` y `/llms-full.txt` se generan en el build desde `site.ts`,
+`pricing.ts`, `programs.ts` y `faq.ts` (`src/lib/llms.ts`). No se editan
+a mano: cambiar el dato original basta. `robots.ts` permite
+explícitamente a los rastreadores de IA. No hay ninguna versión distinta
+de las páginas según quién las lea.
+
 ## SEO por página
 
 Cada `page.tsx` exporta su propio `metadata` (title/description/
