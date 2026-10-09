@@ -316,16 +316,27 @@ collections:
             fields:
               - { name: id, label: "Identificador (sin espacios, ej. careta-sable)", widget: string }
               - { name: name, label: Nombre, widget: string }
-              - { name: supplier, label: "Proveedor (Yiang, Allstar, PBT…)", widget: string }
+              - { name: supplier, label: "Proveedor (Grant Esgrima, Allstar, Yiang…)", widget: string }
               - { name: ref, label: "Referencia del proveedor", widget: string, required: false }
               - { name: url, label: "Enlace a la ficha del proveedor", widget: string, required: false, hint: "https://… (fotos y tabla de tallas oficiales)" }
-              - { name: category, label: Categoría, widget: select, options: ["Protección", "Armas", "Ropa", "Accesorios"] }
-              - { name: description, label: Descripción, widget: text }
-              - { name: price, label: "Precio del club (ej. 45€)", widget: string }
+              - { name: sizeGuide, label: "Enlace a la tabla de tallas", widget: string, required: false }
+              - { name: category, label: Categoría, widget: select, options: ["Sables y hojas", "Caretas", "Chaquetas eléctricas", "Guantes y manguitos", "Trajes", "Protección", "Calzado y medias", "Piezas y recambios", "Pasantes y conectores", "Iniciación (plástico y espuma)", "Material de maestro", "Silla de ruedas"] }
+              - { name: description, label: Descripción, widget: text, required: false, hint: "Tu explicación para los socios (si se deja vacía, no se muestra)." }
+              - { name: price, label: "Precio orientativo (ej. 45,00 €)", widget: string, required: false }
               - { name: sizes, label: Tallas, widget: list, required: false, field: { name: talla, label: Talla, widget: string } }
               - { name: hands, label: "Mano (Diestro/Zurdo) — vacío si no aplica", widget: list, required: false, field: { name: mano, label: Mano, widget: string } }
+              - name: options
+                label: "Otras opciones (color, cazoleta, puño…)"
+                widget: list
+                required: false
+                summary: "{{name}}"
+                fields:
+                  - { name: name, label: Opción, widget: string }
+                  - { name: values, label: Valores, widget: list, field: { name: valor, label: Valor, widget: string } }
               - { name: photo, label: Foto, widget: image, required: false, media_folder: /public/images/tienda, public_folder: /images/tienda }
               - { name: active, label: Visible en la tienda, widget: boolean, default: true }
+              - { name: imageSource, label: "Foto original del proveedor (se descarga sola)", widget: string, required: false }
+              - { name: imported, label: "Importado del catálogo del proveedor", widget: boolean, default: false, required: false }
 
       - name: noticias
         label: Tablón de anuncios

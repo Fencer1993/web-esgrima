@@ -15,6 +15,7 @@ import {
   removeLine,
   setQty,
   subscribe,
+  optionsLabel,
   toggleFav,
   type CartLine,
 } from "@/lib/shopStore";
@@ -160,6 +161,11 @@ function ProductDetail({
   const titleId = useId();
   const [size, setSize] = useState(product.sizes.length === 1 ? product.sizes[0] : "");
   const [hand, setHand] = useState(product.hands.length === 1 ? product.hands[0] : "");
+  const [opts, setOpts] = useState<Record<string, string>>(() =>
+    Object.fromEntries(
+      product.options.filter((o) => o.values.length === 1).map((o) => [o.name, o.values[0]]),
+    ),
+  );
   const [qty, setQ] = useState(1);
   const [error, setError] = useState("");
 
@@ -172,7 +178,12 @@ function ProductDetail({
       setError("Elige la mano (diestro o zurdo).");
       return;
     }
-    addToCart({ productId: product.id, size, hand, qty });
+    const missing = product.options.find((o) => !opts[o.name]);
+    if (missing) {
+      setError(`Elige ${missing.name.toLowerCase()}.`);
+      return;
+    }
+    addToCart({ productId: product.id, size, hand, options: opts, qty });
     onAdded();
   }
 
@@ -199,7 +210,7 @@ function ProductDetail({
               alt={product.name}
               width={900}
               height={900}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full bg-white object-contain p-4"
             />
           ) : (
             <div className="absolute inset-0">
@@ -253,15 +264,29 @@ function ProductDetail({
             </p>
           )}
 
-          {product.url && (
-            <a
-              href={product.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-touche self-start text-sm font-semibold text-accent-dark"
-            >
-              Ver ficha y tabla de medidas en {product.supplier} →
-            </a>
+          {(product.url || product.sizeGuide) && (
+            <div className="flex flex-col gap-1.5">
+              {product.sizeGuide && (
+                <a
+                  href={product.sizeGuide}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-touche self-start text-sm font-semibold text-accent-dark"
+                >
+                  Tabla de tallas →
+                </a>
+              )}
+              {product.url && (
+                <a
+                  href={product.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-touche self-start text-sm font-semibold text-accent-dark"
+                >
+                  Ver ficha{product.sizeGuide ? "" : " y tabla de tallas"} en {product.supplier} →
+                </a>
+              )}
+            </div>
           )}
 
           {product.sizes.length > 0 && (
@@ -286,6 +311,19 @@ function ProductDetail({
               }}
             />
           )}
+
+          {product.options.map((o) => (
+            <Chips
+              key={o.name}
+              legend={o.name}
+              options={o.values}
+              value={opts[o.name] ?? ""}
+              onChange={(v) => {
+                setOpts((prev) => ({ ...prev, [o.name]: v }));
+                setError("");
+              }}
+            />
+          ))}
 
           <div>
             <p className={labelCls}>Cantidad</p>
@@ -354,6 +392,7 @@ function CartPanel({
             product: l.productId,
             size: l.size,
             hand: l.hand,
+            options: l.options,
             qty: l.qty,
           })),
         }),
@@ -441,12 +480,14 @@ function CartPanel({
             {lines.map((l) => {
               const p = byId.get(l.productId);
               if (!p) return null;
-              const opts = [l.size && `Talla ${l.size}`, l.hand].filter(Boolean).join(" · ");
+              const opts = [l.size && `Talla ${l.size}`, l.hand, optionsLabel(l.options)]
+                .filter(Boolean)
+                .join(" · ");
               return (
                 <li key={l.key} className="flex gap-3 py-4">
                   <div className="h-20 w-20 shrink-0 overflow-hidden rounded-sm bg-accent-soft">
                     {p.photo ? (
-                      <Photo src={p.photo} alt="" width={160} height={160} className="h-full w-full object-cover" />
+                      <Photo src={p.photo} alt="" width={160} height={160} className="h-full w-full bg-white object-contain" />
                     ) : (
                       <Placeholder size={32} />
                     )}
@@ -666,7 +707,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
                         alt=""
                         width={600}
                         height={600}
-                        className="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.03]"
+                        className="h-full w-full bg-white object-contain p-2 motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.03]"
                       />
                     ) : (
                       <Placeholder />

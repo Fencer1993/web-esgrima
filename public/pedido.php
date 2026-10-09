@@ -137,6 +137,21 @@ foreach ($rawLines as $l) {
     } else {
         $hand = "";
     }
+    // Otras opciones del producto (color, cazoleta, puño…): todas obligatorias.
+    $prodOpts = isset($products[$pid]["options"]) && is_array($products[$pid]["options"]) ? $products[$pid]["options"] : [];
+    $sentOpts = is_array($l["options"] ?? null) ? $l["options"] : [];
+    $optParts = [];
+    foreach ($prodOpts as $o) {
+        if (!is_array($o) || !is_string($o["name"] ?? null) || !is_array($o["values"] ?? null) || count($o["values"]) === 0) {
+            continue;
+        }
+        $oname = $o["name"];
+        $oval = is_string($sentOpts[$oname] ?? null) ? clean($sentOpts[$oname], 80) : "";
+        if (!in_array($oval, array_map("strval", $o["values"]), true)) {
+            fail("Elige " . $oname . " para " . (string) $products[$pid]["name"] . ".");
+        }
+        $optParts[] = $oname . ": " . $oval;
+    }
     $lines[] = [
         "product_id" => $pid,
         "product" => (string) ($products[$pid]["name"] ?? $pid)
@@ -145,6 +160,7 @@ foreach ($rawLines as $l) {
         "supplier" => (string) ($products[$pid]["supplier"] ?? ""),
         "size" => $size,
         "hand" => $hand,
+        "options" => implode(" · ", $optParts),
         "qty" => $qty,
     ];
 }
@@ -225,7 +241,8 @@ $summary = "";
 foreach ($lines as $l) {
     $summary .= "- {$l['qty']} x {$l['product']} ({$l['supplier']})"
         . ($l["size"] !== "" ? ", talla {$l['size']}" : "")
-        . ($l["hand"] !== "" ? ", {$l['hand']}" : "") . "\n";
+        . ($l["hand"] !== "" ? ", {$l['hand']}" : "")
+        . ($l["options"] !== "" ? ", {$l['options']}" : "") . "\n";
 }
 $host = preg_replace('/[^A-Za-z0-9.\-]/', "", (string) ($_SERVER["HTTP_HOST"] ?? "")) ?: "esgrimatorremolinos.com";
 $from = "From: {$siteName} <no-reply@{$host}>\r\n";

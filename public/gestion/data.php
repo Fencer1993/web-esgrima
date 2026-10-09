@@ -183,6 +183,10 @@ function pedidos_summary(array $orders): array
             if ($hand !== '') {
                 $size .= ' · ' . $hand;
             }
+            $opts = trim((string)($l['options'] ?? ''));
+            if ($opts !== '') {
+                $size .= ' · ' . $opts;
+            }
             $qty = max(0, (int)($l['qty'] ?? 0));
             if ($qty === 0) {
                 continue;

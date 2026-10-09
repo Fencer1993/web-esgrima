@@ -7,6 +7,8 @@ export type CartLine = {
   productId: string;
   size: string;
   hand: string;
+  /** Otras opciones elegidas (color, cazoleta…): {nombre: valor}. */
+  options: Record<string, string>;
   qty: number;
 };
 
@@ -32,13 +34,17 @@ function parse(raw: string | null): ShopState {
             (l): l is CartLine =>
               !!l && typeof l.productId === "string" && Number.isInteger(l.qty),
           )
-          .map((l) => ({
-            key: lineKey(l.productId, String(l.size ?? ""), String(l.hand ?? "")),
-            productId: l.productId,
-            size: String(l.size ?? ""),
-            hand: String(l.hand ?? ""),
-            qty: Math.min(MAX_QTY, Math.max(1, l.qty)),
-          }))
+          .map((l) => {
+            const options = cleanOptions(l.options);
+            return {
+              key: lineKey(l.productId, String(l.size ?? ""), String(l.hand ?? ""), options),
+              productId: l.productId,
+              size: String(l.size ?? ""),
+              hand: String(l.hand ?? ""),
+              options,
+              qty: Math.min(MAX_QTY, Math.max(1, l.qty)),
+            };
+          })
       : [];
     const favs = Array.isArray(d.favs)
       ? d.favs.filter((f): f is string => typeof f === "string")
@@ -69,8 +75,29 @@ function set(next: ShopState) {
   listeners.forEach((l) => l());
 }
 
-export function lineKey(productId: string, size: string, hand: string) {
-  return `${productId}|${size}|${hand}`;
+function cleanOptions(v: unknown): Record<string, string> {
+  if (!v || typeof v !== "object" || Array.isArray(v)) return {};
+  return Object.fromEntries(
+    Object.entries(v as Record<string, unknown>).filter(
+      (e): e is [string, string] => typeof e[1] === "string" && e[1] !== "",
+    ),
+  );
+}
+
+/** Texto legible de las opciones: "Color: Azul · Puño: Retro". */
+export function optionsLabel(options: Record<string, string>) {
+  return Object.entries(options)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join(" · ");
+}
+
+export function lineKey(
+  productId: string,
+  size: string,
+  hand: string,
+  options: Record<string, string> = {},
+) {
+  return `${productId}|${size}|${hand}|${optionsLabel(options)}`;
 }
 
 export function subscribe(cb: () => void) {
@@ -94,8 +121,14 @@ export const getSnapshot = (): ShopState => {
 };
 export const getServerSnapshot = (): ShopState => EMPTY;
 
-export function addToCart(p: { productId: string; size: string; hand: string; qty: number }) {
-  const key = lineKey(p.productId, p.size, p.hand);
+export function addToCart(p: {
+  productId: string;
+  size: string;
+  hand: string;
+  options: Record<string, string>;
+  qty: number;
+}) {
+  const key = lineKey(p.productId, p.size, p.hand, p.options);
   const existing = state.cart.find((l) => l.key === key);
   const cart = existing
     ? state.cart.map((l) =>

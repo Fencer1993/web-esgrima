@@ -65,7 +65,7 @@ if (isset($_GET['csv'])) {
     header('Content-Disposition: attachment; filename="' . ($which === 'resumen' ? 'resumen-proveedor-' : 'pedidos-') . date('Y-m-d') . '.csv"');
     echo "\xEF\xBB\xBF";
     if ($which === 'resumen') {
-        echo csv_line(['Proveedor', 'Producto', 'Talla · Mano', 'Cantidad total', 'Socios']);
+        echo csv_line(['Proveedor', 'Producto', 'Talla · Mano · Opciones', 'Cantidad total', 'Socios']);
         foreach ($summary as $sup => $prods) {
             foreach ($prods as $prod => $sizes) {
                 foreach ($sizes as $size => $c) {
@@ -74,13 +74,13 @@ if (isset($_GET['csv'])) {
             }
         }
     } else {
-        echo csv_line(['ID', 'Fecha', 'Estado', 'Nombre', 'Email', 'Teléfono', 'Notas', 'Proveedor', 'Producto', 'Talla', 'Mano', 'Cantidad']);
+        echo csv_line(['ID', 'Fecha', 'Estado', 'Nombre', 'Email', 'Teléfono', 'Notas', 'Proveedor', 'Producto', 'Talla', 'Mano', 'Opciones', 'Cantidad']);
         foreach ($orders as $o) {
             $base = [$o['id'] ?? '', $o['created_at'] ?? '', $o['status'] ?? '', $o['name'] ?? '', $o['email'] ?? '', $o['phone'] ?? '', $o['notes'] ?? ''];
             $lines = $o['lines'] ?? [];
-            if (!$lines) { echo csv_line(array_merge($base, ['', '', '', '', ''])); }
+            if (!$lines) { echo csv_line(array_merge($base, ['', '', '', '', '', ''])); }
             foreach ($lines as $l) {
-                echo csv_line(array_merge($base, [$l['supplier'] ?? '', $l['product'] ?? '', $l['size'] ?? '', $l['hand'] ?? '', $l['qty'] ?? '']));
+                echo csv_line(array_merge($base, [$l['supplier'] ?? '', $l['product'] ?? '', $l['size'] ?? '', $l['hand'] ?? '', $l['options'] ?? '', $l['qty'] ?? '']));
             }
         }
     }
@@ -112,7 +112,7 @@ $nNuevos = count(array_filter($orders, fn($o) => ($o['status'] ?? '') === 'nuevo
   <?php foreach ($summary as $sup => $prods): $tot = 0; foreach ($prods as $s) foreach ($s as $c) $tot += $c['qty']; ?>
     <h3><?= h($sup) ?> · <?= $tot ?> uds.</h3>
     <div class="scroll"><table>
-      <tr><th>Producto</th><th>Talla · Mano</th><th>Total</th><th>Socios</th></tr>
+      <tr><th>Producto</th><th>Talla · Mano · Opciones</th><th>Total</th><th>Socios</th></tr>
       <?php foreach ($prods as $prod => $sizes): foreach ($sizes as $size => $c): ?>
         <tr><td><?= h($prod) ?></td><td><?= h($size) ?></td><td><strong><?= (int)$c['qty'] ?></strong></td><td><?= h(implode(', ', $c['names'])) ?></td></tr>
       <?php endforeach; endforeach; ?>
@@ -131,7 +131,7 @@ $nNuevos = count(array_filter($orders, fn($o) => ($o['status'] ?? '') === 'nuevo
         </td>
         <td>
           <?php foreach (($o['lines'] ?? []) as $l): ?>
-            <?= (int)($l['qty'] ?? 0) ?> × <?= h($l['product'] ?? '') ?> <span class="muted">(<?= h(($l['size'] ?? '') !== '' ? $l['size'] : '—') ?><?= !empty($l['hand']) ? ' · ' . h($l['hand']) : '' ?> · <?= h($l['supplier'] ?? '') ?>)</span><br>
+            <?= (int)($l['qty'] ?? 0) ?> × <?= h($l['product'] ?? '') ?> <span class="muted">(<?= h(($l['size'] ?? '') !== '' ? $l['size'] : '—') ?><?= !empty($l['hand']) ? ' · ' . h($l['hand']) : '' ?><?= !empty($l['options']) ? ' · ' . h($l['options']) : '' ?> · <?= h($l['supplier'] ?? '') ?>)</span><br>
           <?php endforeach; ?>
         </td>
         <td>

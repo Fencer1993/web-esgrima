@@ -14,9 +14,12 @@ export type ShopProduct = {
   hands: string[];
   photo: string;
   active: boolean;
-  /** Referencia y ficha del proveedor (opcionales). */
+  /** Otras opciones a elegir (color, cazoleta, puño…). */
+  options: { name: string; values: string[] }[];
+  /** Referencia, ficha y tabla de tallas del proveedor (opcionales). */
   ref: string;
   url: string;
+  sizeGuide: string;
 };
 
 type RawProduct = Partial<Record<keyof ShopProduct, unknown>>;
@@ -39,8 +42,17 @@ function normalize(raw: RawProduct): ShopProduct {
     hands: strList(raw.hands),
     photo: str(raw.photo),
     active: raw.active !== false,
+    options: Array.isArray(raw.options)
+      ? (raw.options as unknown[])
+          .map((o) => {
+            const r = (o ?? {}) as { name?: unknown; values?: unknown };
+            return { name: str(r.name), values: strList(r.values) };
+          })
+          .filter((o) => o.name && o.values.length > 0)
+      : [],
     ref: str(raw.ref),
     url: str(raw.url),
+    sizeGuide: str(raw.sizeGuide),
   };
 }
 
@@ -51,7 +63,20 @@ export const shopProducts: ShopProduct[] = (data.products as RawProduct[])
   .map(normalize)
   .filter((p) => p.active && p.id && p.name);
 
-export const shopCategories = ["Protección", "Armas", "Ropa", "Accesorios"];
+export const shopCategories = [
+  "Sables y hojas",
+  "Caretas",
+  "Chaquetas eléctricas",
+  "Guantes y manguitos",
+  "Trajes",
+  "Protección",
+  "Calzado y medias",
+  "Piezas y recambios",
+  "Pasantes y conectores",
+  "Iniciación (plástico y espuma)",
+  "Material de maestro",
+  "Silla de ruedas",
+];
 
 /** Categorías con productos: primero las conocidas (orden fijo), luego el resto. */
 export function activeCategories(): string[] {
