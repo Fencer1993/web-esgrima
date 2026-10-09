@@ -1,6 +1,10 @@
 # Club de Esgrima Torremolinos — reglas de Apache para el hosting OVH.
 # Generado junto al export estático de Next.js (ver next.config.ts).
 
+# Servir la web estática antes que el index.php del WordPress anterior,
+# cuyos archivos siguen en el servidor como respaldo.
+DirectoryIndex index.html
+
 RewriteEngine On
 
 # 1) Forzar HTTPS

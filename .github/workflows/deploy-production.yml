@@ -1,0 +1,55 @@
+name: Publicar en producción (esgrimatorremolinos.com)
+
+# Solo manual. Sube la web a la raíz del alojamiento OVH (carpeta padre de
+# la de staging). No borra nada del servidor: los archivos de WordPress se
+# quedan como respaldo; .htaccess (DirectoryIndex index.html) hace que se
+# sirva la web nueva.
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build (raíz del dominio)
+        run: npm run build
+        env:
+          BASE_PATH: ""
+      - name: Configuración de Instagram
+        run: |
+          cat > out/instagram-config.php <<PHP
+          <?php
+          define("INSTAGRAM_USER_ID", "${{ secrets.INSTAGRAM_USER_ID }}");
+          define("INSTAGRAM_ACCESS_TOKEN", "${{ secrets.INSTAGRAM_ACCESS_TOKEN }}");
+          PHP
+      - name: Carpeta raíz
+        id: dest
+        env:
+          DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: echo "remote=${DIR%/nuevo}" >> "$GITHUB_OUTPUT"
+      - name: Subir por SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          port: 22
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local_path: ./out/*
+          remote_path: ${{ steps.dest.outputs.remote }}
+          sftpArgs: "-o ConnectTimeout=5"
+      - name: Comprobar en vivo
+        run: |
+          sleep 5
+          for p in / /horarios-y-precios/ /index.php/esgrima-ninos/ /sitemap.xml; do
+            printf "%s -> " "$p"; curl -sS -o /dev/null -w "%{http_code} %{redirect_url}\n" -A "Mozilla/5.0" "https://www.esgrimatorremolinos.com$p"
+          done
+          curl -sSL -A "Mozilla/5.0" https://www.esgrimatorremolinos.com/ -o home.html
+          grep -q "En guardia" home.html && echo "HTML NUEVO OK" || echo "HTML NUEVO NO DETECTADO"
+          CSS=$(grep -o 'href="/_next/[^"]*\.css"' home.html | head -1 | sed 's/href="//;s/"$//')
+          printf "CSS %s -> " "$CSS"; curl -sS -o /dev/null -w "%{http_code}\n" "https://www.esgrimatorremolinos.com$CSS"
