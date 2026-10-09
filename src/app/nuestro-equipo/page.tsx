@@ -3,6 +3,7 @@ import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { AthleteGrid } from "@/components/AthleteGrid";
 import { coaches } from "@/content/programs";
+import { Photo } from "@/components/Photo";
 import { CoachCard } from "@/components/CoachCard";
 
 export const metadata: Metadata = {
@@ -40,6 +41,13 @@ export default function NuestroEquipo() {
           eyebrow="Deportistas"
           title="Nuestros Deportistas"
           lede="Los tiradores que representan al Club de Esgrima Torremolinos en competición."
+        />
+        <Photo
+          src="/images/galeria/grupo-esgrimistas-club-torremolinos-sala-ayuntamiento.webp"
+          alt="Grupo de esgrimistas de todas las edades haciendo el saludo con los sables en una sala de Torremolinos"
+          width={1200}
+          height={900}
+          className="mb-8 aspect-[16/9] w-full rounded-sm border border-line object-cover object-[center_45%]"
         />
         <AthleteGrid />
       </Section>
