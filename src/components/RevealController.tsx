@@ -43,7 +43,7 @@ export function RevealController() {
           }
         }
       },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
     );
 
     toObserve.forEach((el) => observer.observe(el));

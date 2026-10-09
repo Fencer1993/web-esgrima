@@ -6,8 +6,10 @@ import { site, whatsappLink } from "@/content/site";
 import { programs, values, coaches } from "@/content/programs";
 import { CoachCard } from "@/components/CoachCard";
 import { Photo } from "@/components/Photo";
+import { Marquee } from "@/components/Marquee";
+import { StatsBand } from "@/components/StatsBand";
 import { CompetitionPromo } from "@/components/CompetitionPromo";
-import { galleryItems } from "@/content/gallery";
+import { galleryPhoto } from "@/content/gallery";
 
 export const metadata: Metadata = {
   title: "Clases de esgrima en Torremolinos, Málaga",
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-line bg-ink text-paper">
+      <section className="blade-flash relative overflow-hidden border-b border-line bg-ink text-paper">
         <Photo
           src="/images/portada/esgrima-sable-torremolinos-portada.webp"
           alt="Dos esgrimistas de sable en pleno asalto durante una competición"
@@ -36,8 +38,11 @@ export default function Home() {
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
               Torremolinos · Málaga
             </p>
-            <h1 className="mt-4 text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-              Club de Esgrima Torremolinos
+            <h1 className="mt-4 text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl blur-in">
+              <span style={{ animationDelay: "0.00s" }}>Club</span>{" "}
+              <span style={{ animationDelay: "0.08s" }}>de</span>{" "}
+              <span style={{ animationDelay: "0.16s" }}>Esgrima</span>{" "}
+              <span style={{ animationDelay: "0.24s" }}>Torremolinos</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg text-paper/80">
               Clases de esgrima para niños desde 6 años, adolescentes, adultos y
@@ -91,71 +96,68 @@ export default function Home() {
         </div>
       </section>
 
+      <StatsBand />
+
       <Section>
         <SectionHeading
           eyebrow="Programas"
           title="Clases de Esgrima en Torremolinos"
         />
-        <div className="reveal grid gap-6 sm:grid-cols-3">
-          {programs.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/${p.slug}`}
-              className="group flex flex-col justify-between rounded-sm border border-line bg-paper-raised p-6 transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
-            >
-              <div>
-                <h3 className="text-xl font-semibold uppercase tracking-tight text-ink">
-                  {p.title}
-                </h3>
-                <p className="mt-2 text-sm text-ink-soft">{p.tagline}</p>
-              </div>
-              <span className="link-touche mt-6 self-start text-sm font-semibold uppercase tracking-wide text-accent">
-                Saber más →
-              </span>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <CompetitionPromo />
-
-      <Section>
-        <SectionHeading
-          eyebrow="En la pista"
-          title="El Club en Imágenes"
-          lede="Entrenamientos, torneos y podios de nuestros esgrimistas en Andalucía y en el circuito nacional."
-        />
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid auto-rows-[15rem] gap-4 md:grid-cols-3 md:auto-rows-[17rem]">
           {[
-            "podio-absoluto-torneo-jaen-oro",
-            "grupo-esgrimistas-club-torremolinos-sala",
-            "asalto-competicion-roquetas",
-          ]
-            .map((n) => galleryItems.find((g) => g.src.includes(n))!)
-            .map((g) => (
-              <figure
-                key={g.src}
-                className="reveal overflow-hidden rounded-sm border border-line"
+            ...programs.map((p) => ({
+              href: `/${p.slug}`,
+              title: p.title,
+              text: p.tagline,
+              photo: p.photo,
+            })),
+            {
+              href: "/horarios-y-precios#tecnificacion",
+              title: "Tecnificación y Competición",
+              text: "Los lunes, sesión específica para quien quiere competir.",
+              photo: "asalto-competicion-roquetas",
+            },
+          ].map((tile, i) => {
+            const g = galleryPhoto(tile.photo);
+            return (
+              <Link
+                key={tile.href}
+                href={tile.href}
+                className={`reveal group relative overflow-hidden rounded-sm bg-ink ${
+                  i === 0 || i === 3 ? "md:col-span-2" : ""
+                }`}
               >
                 <Photo
                   src={g.src}
                   alt={g.alt}
                   width={g.width}
                   height={g.height}
-                  className="aspect-[4/3] w-full object-cover object-[center_30%]"
+                  className="absolute inset-0 h-full w-full object-cover object-[center_35%] transition-transform duration-700 group-hover:scale-105"
                 />
-              </figure>
-            ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/5" />
+                <div className="relative flex h-full flex-col justify-end p-6 text-paper">
+                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight">
+                    {tile.title}
+                  </h3>
+                  <p className="mt-1 max-w-md text-sm text-paper/80">
+                    {tile.text}
+                  </p>
+                  <span className="mt-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-accent">
+                    Saber más
+                    <span className="transition-transform duration-300 group-hover:translate-x-1.5">
+                      →
+                    </span>
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
-        <p className="mt-6 text-sm">
-          <Link
-            href="/instalaciones"
-            className="link-touche font-semibold text-accent-dark"
-          >
-            Ver toda la galería →
-          </Link>
-        </p>
       </Section>
+
+      <CompetitionPromo />
+
+      <Marquee />
 
       <Section tone="raised" className="border-y border-line">
         <SectionHeading

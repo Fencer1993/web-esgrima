@@ -4,11 +4,18 @@ import { useState } from "react";
 import { Photo } from "@/components/Photo";
 import { galleryItems, type GalleryCategory } from "@/content/gallery";
 
-const filters: Array<GalleryCategory | "Todo"> = ["Todo", "Entrenamientos", "Competiciones"];
+const filters: Array<GalleryCategory | "Todo"> = [
+  "Todo",
+  "Entrenamientos",
+  "Competiciones",
+];
 
 export function Gallery() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("Todo");
-  const items = filter === "Todo" ? galleryItems : galleryItems.filter((i) => i.category === filter);
+  const items =
+    filter === "Todo"
+      ? galleryItems
+      : galleryItems.filter((i) => i.category === filter);
 
   return (
     <div>
@@ -46,7 +53,9 @@ export function Gallery() {
               <span className="font-mono text-[10px] uppercase tracking-wide text-steel">
                 {item.category}
               </span>
-              <p className="mt-1 text-sm leading-snug text-ink-soft">{item.caption}</p>
+              <p className="mt-1 text-sm leading-snug text-ink-soft">
+                {item.caption}
+              </p>
             </figcaption>
           </figure>
         ))}

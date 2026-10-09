@@ -9,7 +9,9 @@ export function Footer() {
           <p className="font-display text-lg font-bold uppercase tracking-tight">
             {site.name}
           </p>
-          <p className="mt-3 max-w-xs text-sm text-paper/70">{site.description}</p>
+          <p className="mt-3 max-w-xs text-sm text-paper/70">
+            {site.description}
+          </p>
           <a
             href={site.social.instagram}
             className="mt-4 inline-block text-sm font-medium text-paper/80 underline underline-offset-4 hover:text-white"
@@ -25,7 +27,10 @@ export function Footer() {
           <ul className="mt-3 space-y-2 text-sm">
             {navigation.slice(1).map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-paper/80 hover:text-white">
+                <Link
+                  href={item.href}
+                  className="text-paper/80 hover:text-white"
+                >
                   {item.label}
                 </Link>
               </li>
@@ -43,12 +48,18 @@ export function Footer() {
               {site.address.line}, {site.address.postalCode} {site.address.city}
             </p>
             <p className="pt-2">
-              <a href={`tel:${site.contact.phoneDial}`} className="hover:text-white">
+              <a
+                href={`tel:${site.contact.phoneDial}`}
+                className="hover:text-white"
+              >
                 {site.contact.phone}
               </a>
             </p>
             <p>
-              <a href={`mailto:${site.contact.email}`} className="hover:text-white">
+              <a
+                href={`mailto:${site.contact.email}`}
+                className="hover:text-white"
+              >
                 {site.contact.email}
               </a>
             </p>

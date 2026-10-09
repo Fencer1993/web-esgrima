@@ -4,6 +4,8 @@ export type Program = {
   tagline: string;
   ageRange: string;
   schedule: string;
+  // Fragmento del nombre de una foto de content/gallery.ts
+  photo: string;
 };
 
 export const programs: Program[] = [
@@ -13,6 +15,7 @@ export const programs: Program[] = [
     tagline: "Grupo para menores entre 6 y 12 años. Deporte lúdico.",
     ageRange: "6–12 años",
     schedule: "Martes, miércoles, jueves y viernes de 18:30 a 19:30",
+    photo: "equipo-infantil-juvenil-esgrima-torremolinos-almeria",
   },
   {
     slug: "esgrima-para-adultos",
@@ -20,6 +23,7 @@ export const programs: Program[] = [
     tagline: "Destinado a adolescentes desde 13 años y adultos.",
     ageRange: "Desde 13 años",
     schedule: "Martes, miércoles, jueves y viernes de 19:30 a 21:00",
+    photo: "grupo-esgrimistas-club-torremolinos-sala-ayuntamiento",
   },
   {
     slug: "esgrima-en-silla-de-ruedas",
@@ -27,6 +31,7 @@ export const programs: Program[] = [
     tagline: "Clases para la diversidad funcional. Deporte inclusivo.",
     ageRange: "Todas las edades",
     schedule: "Martes, miércoles, jueves y viernes de 10:00 a 12:30",
+    photo: "entrenamiento-esgrima-silla-de-ruedas-torremolinos-grupo",
   },
 ];
 
@@ -62,7 +67,7 @@ export const coaches = [
   {
     name: "Víctor Santiago",
     role: "Director Técnico de Esgrima y Secretario",
-    bio: "Esgrimista del club durante 15 años, con varias participaciones internacionales y 6 años de experiencia como entrenador. Competidor activo y entrenador del grupo de adolescentes y adultos.",
+    bio: "18 años haciendo esgrima, con varias participaciones internacionales. Ha sido entrenador de sable en una concentración internacional en China. Competidor activo y entrenador del grupo de adolescentes y adultos.",
     phone: "+34 687 34 02 77",
     email: "vst@hotmail.es",
     photo: {

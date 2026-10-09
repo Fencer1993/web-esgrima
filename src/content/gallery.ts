@@ -286,3 +286,10 @@ export const galleryItems: GalleryItem[] = [
     alt: "Dos esgrimistas jóvenes con su entrenador en su debut en la prueba Quijote",
   },
 ];
+
+// Busca una foto de la galería por un fragmento de su nombre de archivo.
+export function galleryPhoto(name: string): GalleryItem {
+  const item = galleryItems.find((g) => g.src.includes(name));
+  if (!item) throw new Error(`Foto no encontrada en gallery.ts: ${name}`);
+  return item;
+}

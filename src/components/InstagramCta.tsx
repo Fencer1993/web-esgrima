@@ -46,9 +46,29 @@ export function InstagramCta() {
             aria-hidden
             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-steel-soft text-steel"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" strokeWidth="1.8" />
-              <circle cx="12" cy="12" r="4.3" stroke="currentColor" strokeWidth="1.8" />
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="2.5"
+                y="2.5"
+                width="19"
+                height="19"
+                rx="5"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="4.3"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              />
               <circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" />
             </svg>
           </span>
@@ -57,7 +77,8 @@ export function InstagramCta() {
               Síguenos en Instagram
             </p>
             <p className="text-sm text-ink-soft">
-              Entrenamientos, competiciones y el día a día del club, en {handle}.
+              Entrenamientos, competiciones y el día a día del club, en {handle}
+              .
             </p>
           </div>
         </div>
@@ -86,12 +107,18 @@ export function InstagramCta() {
               />
               <div className="absolute inset-0 flex items-end bg-ink/0 p-2 transition-colors group-hover:bg-ink/40">
                 {post.mediaType === "VIDEO" && (
-                  <span aria-hidden className="text-white opacity-0 transition-opacity group-hover:opacity-100">
+                  <span
+                    aria-hidden
+                    className="text-white opacity-0 transition-opacity group-hover:opacity-100"
+                  >
                     ▶
                   </span>
                 )}
                 {post.mediaType === "CAROUSEL_ALBUM" && (
-                  <span aria-hidden className="text-white opacity-0 transition-opacity group-hover:opacity-100">
+                  <span
+                    aria-hidden
+                    className="text-white opacity-0 transition-opacity group-hover:opacity-100"
+                  >
                     ⧉
                   </span>
                 )}

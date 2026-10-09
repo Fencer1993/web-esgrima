@@ -137,3 +137,67 @@ a, button {
     scroll-behavior: auto;
   }
 }
+
+/* Cinta de fotos infinita (Marquee) */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 60s linear infinite;
+  }
+  .marquee-mask:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Entrada del titular palabra a palabra, con desenfoque (BlurText) */
+  .blur-in > span {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(0.25em);
+    animation: blur-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* Destello de hoja que cruza la portada una vez al cargar */
+  .blade-flash::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(105deg, transparent 45%, rgba(255, 255, 255, 0.18) 50%, transparent 55%);
+    transform: translateX(-100%);
+    animation: blade-flash 1.6s 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-mask {
+    overflow-x: auto;
+    mask-image: none;
+  }
+  .marquee-track > ul[aria-hidden] {
+    display: none;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blur-in {
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes blade-flash {
+  to {
+    transform: translateX(100%);
+  }
+}

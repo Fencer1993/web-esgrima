@@ -6,7 +6,10 @@ import { whatsappLink } from "@/content/site";
 // el horario aquí nunca difiere del de la tabla.
 export function CompetitionPromo() {
   return (
-    <section id="tecnificacion" className="relative scroll-mt-16 overflow-hidden bg-ink text-paper">
+    <section
+      id="tecnificacion"
+      className="relative scroll-mt-16 overflow-hidden bg-ink text-paper"
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute -right-24 top-0 h-full w-1/2 -skew-x-12 bg-steel/25"
@@ -19,9 +22,9 @@ export function CompetitionPromo() {
           Entrena para competir. Los lunes, a otro nivel.
         </h2>
         <p className="mt-3 max-w-2xl text-base text-paper/80">
-          Dos grupos de esgrima de competición, uno para adolescentes y otro para mayores de
-          18 años, con una sesión específica cada lunes y el director técnico del club,
-          Víctor Santiago, preparando tus torneos.
+          Dos grupos de esgrima de competición, uno para adolescentes y otro
+          para mayores de 18 años, con una sesión específica cada lunes y el
+          director técnico del club, Víctor Santiago, preparando tus torneos.
         </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -30,10 +33,18 @@ export function CompetitionPromo() {
               key={g.name}
               className="reveal rounded-sm border border-paper/15 bg-paper/5 p-6 backdrop-blur-sm transition-colors hover:border-accent"
             >
-              <p className="font-mono text-xs uppercase tracking-wide text-accent">{g.days}</p>
-              <p className="mt-1 font-display text-4xl font-bold tabular">{g.hours}</p>
-              <h3 className="mt-3 text-lg font-semibold uppercase tracking-tight">{g.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-paper/75">{g.text}</p>
+              <p className="font-mono text-xs uppercase tracking-wide text-accent">
+                {g.days}
+              </p>
+              <p className="mt-1 font-display text-4xl font-bold tabular">
+                {g.hours}
+              </p>
+              <h3 className="mt-3 text-lg font-semibold uppercase tracking-tight">
+                {g.name}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-paper/75">
+                {g.text}
+              </p>
             </div>
           ))}
         </div>
@@ -41,15 +52,20 @@ export function CompetitionPromo() {
         <div className="reveal mt-4 flex flex-col gap-4 rounded-sm border border-accent/50 bg-accent/10 p-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-wide text-accent">
-              {physicalTraining.price} · {physicalTraining.days}, {physicalTraining.hours}
+              {physicalTraining.price} · {physicalTraining.days},{" "}
+              {physicalTraining.hours}
             </p>
             <h3 className="mt-1 text-lg font-semibold uppercase tracking-tight">
               {physicalTraining.name}
             </h3>
-            <p className="mt-1 max-w-xl text-sm text-paper/75">{physicalTraining.text}</p>
+            <p className="mt-1 max-w-xl text-sm text-paper/75">
+              {physicalTraining.text}
+            </p>
           </div>
           <a
-            href={whatsappLink("Hola, quiero información sobre la tecnificación y la competición")}
+            href={whatsappLink(
+              "Hola, quiero información sobre la tecnificación y la competición",
+            )}
             className="btn-blade inline-flex shrink-0 items-center justify-center rounded-sm bg-accent px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white"
           >
             Quiero información

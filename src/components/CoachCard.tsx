@@ -14,12 +14,19 @@ export function CoachCard({ coach: c }: { coach: Coach }) {
         className="aspect-[4/5] w-full object-cover object-top"
       />
       <div className="p-6">
-        <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">{c.name}</h3>
-        <p className="mt-1 text-xs font-medium uppercase tracking-wide text-accent">{c.role}</p>
+        <h3 className="text-lg font-semibold uppercase tracking-tight text-ink">
+          {c.name}
+        </h3>
+        <p className="mt-1 text-xs font-medium uppercase tracking-wide text-accent">
+          {c.role}
+        </p>
         <p className="mt-3 text-sm leading-relaxed text-ink-soft">{c.bio}</p>
         <div className="mt-4 space-y-1 text-sm text-ink-soft">
           <p>
-            <a href={`tel:${c.phone.replace(/\s/g, "")}`} className="hover:text-ink">
+            <a
+              href={`tel:${c.phone.replace(/\s/g, "")}`}
+              className="hover:text-ink"
+            >
               {c.phone}
             </a>
           </p>

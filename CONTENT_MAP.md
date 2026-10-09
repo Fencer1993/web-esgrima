@@ -57,6 +57,17 @@ a mano: cambiar el dato original basta. `robots.ts` permite
 explícitamente a los rastreadores de IA. No hay ninguna versión distinta
 de las páginas según quién las lea.
 
+## Componentes visuales
+
+- `Marquee.tsx` — cinta infinita de fotos de la home (primeras 12 de
+  `gallery.ts`: el orden de la galería decide qué sale).
+- `StatsBand.tsx` — cifras bajo la portada (array `stats` en el propio
+  archivo; solo datos verificables).
+- `PhotoRow.tsx` — fila de fotos con pie en las páginas de programas;
+  recibe fragmentos de nombre de archivo de `gallery.ts`.
+- Programas en la home: cuadrícula bento con la foto `photo` de cada
+  programa en `programs.ts`.
+
 ## SEO por página
 
 Cada `page.tsx` exporta su propio `metadata` (title/description/

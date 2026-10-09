@@ -29,7 +29,9 @@ export function SectionHeading({
   return (
     <div className="mb-10 max-w-2xl">
       {eyebrow && (
-        <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">{eyebrow}</p>
+        <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
+          {eyebrow}
+        </p>
       )}
       <h2 className="mt-2 text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
         {title}

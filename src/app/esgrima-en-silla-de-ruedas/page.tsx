@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Section, SectionHeading } from "@/components/Section";
 import { Photo } from "@/components/Photo";
+import { PhotoRow } from "@/components/PhotoRow";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { whatsappLink } from "@/content/site";
 
@@ -140,6 +141,14 @@ export default function SillaDeRuedas() {
               </a>
             </div>
           </div>
+        </div>
+        <div className="mt-10">
+          <PhotoRow
+            names={[
+              "podio-esgrima-silla-de-ruedas-zamora",
+              "podio-esgrima-adaptada-torneo-jaen",
+            ]}
+          />
         </div>
       </Section>
 

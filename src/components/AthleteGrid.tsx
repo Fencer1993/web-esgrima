@@ -8,8 +8,8 @@ export function AthleteGrid() {
           Próximamente
         </p>
         <p className="mx-auto mt-2 max-w-md text-sm text-ink-soft">
-          Aquí presentaremos a los deportistas del club, con su foto y palmarés. Vuelve
-          pronto.
+          Aquí presentaremos a los deportistas del club, con su foto y palmarés.
+          Vuelve pronto.
         </p>
       </div>
     );
@@ -25,7 +25,11 @@ export function AthleteGrid() {
           <div className="flex aspect-square items-center justify-center bg-steel-soft">
             {a.photo ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={a.photo} alt={a.name} className="h-full w-full object-cover" />
+              <img
+                src={a.photo}
+                alt={a.name}
+                className="h-full w-full object-cover"
+              />
             ) : (
               <span className="font-display text-4xl font-bold text-steel">
                 {a.name
@@ -40,7 +44,9 @@ export function AthleteGrid() {
             <h4 className="font-display text-lg font-semibold uppercase tracking-tight text-ink">
               {a.name}
             </h4>
-            <p className="mt-1 text-sm leading-relaxed text-ink-soft">{a.achievement}</p>
+            <p className="mt-1 text-sm leading-relaxed text-ink-soft">
+              {a.achievement}
+            </p>
           </div>
         </div>
       ))}
