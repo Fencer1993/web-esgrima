@@ -9,7 +9,9 @@ import html, json, re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 RAW = ROOT / "data/catalog-raw"
 OUT = ROOT / "src/content/data/tienda.json"
-IVA_ES = 1.21  # Grant publica precios sin IVA
+IVA_ES = 1.21  # Grant y Allstar España publican precios sin IVA
+# Descuento para el socio sobre el precio sin IVA (después se suma el IVA).
+DISCOUNTS = {"Allstar": 0.05}
 
 SIZE_KEYS = {"talla", "tallas", "tallas us", "talla (eu)", "talla de la hoja", "größe auswählen",
              "klingengröße auswählen"}
@@ -185,7 +187,8 @@ def allstar_products():
         price = ""
         if p["price"]:
             pt = p.get("priceText", "").lower()
-            v = p["price"] * (IVA_ES if re.search(r"\+\s*iva|sin iva|iva no incl", pt) else 1)
+            net = p["price"] if re.search(r"\+\s*iva|sin iva|iva no incl", pt) else p["price"] / IVA_ES
+            v = net * (1 - DISCOUNTS.get("Allstar", 0)) * IVA_ES
             varies = bool(p.get("priceMax") and p["priceMax"] > p["price"])
             price = ("Desde " if varies else "") + euro(v)
         out.append({
