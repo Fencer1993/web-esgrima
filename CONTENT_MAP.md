@@ -11,7 +11,7 @@ relativas a `src/`.
 | `/esgrima-para-adultos` | `app/esgrima-para-adultos/page.tsx` | `content/programs.ts` |
 | `/esgrima-en-silla-de-ruedas` | `app/esgrima-en-silla-de-ruedas/page.tsx` | FAQ inline en la propia página (`wheelchairFaq`) |
 | `/nuestro-equipo` | `app/nuestro-equipo/page.tsx` | `content/programs.ts` (coaches + foto), `content/athletes.ts` |
-| `/horarios-y-precios` | `app/horarios-y-precios/page.tsx` | `content/pricing.ts` |
+| `/horarios-y-precios` | `app/horarios-y-precios/page.tsx` | `content/pricing.ts` (horarios, tecnificación, entrenamiento físico, precios, bonos, licencias) |
 | `/instalaciones` | `app/instalaciones/page.tsx` | `content/gallery.ts` (foto, alt y pie de cada imagen) |
 | `/clase-gratis` | `app/clase-gratis/page.tsx` | pasos inline (`steps`) |
 | `/preguntas-frecuentes` | `app/preguntas-frecuentes/page.tsx` | `content/faq.ts` |
@@ -24,9 +24,13 @@ relativas a `src/`.
 
 - `src/content/site.ts` — nombre, dirección, teléfono, email, redes,
   identidad legal, navegación (`navigation`, `footerLinks`).
-- `src/components/Header.tsx` / `Footer.tsx` — usan `navigation` /
-  `footerLinks` de `site.ts`; no hace falta tocarlos para añadir un
-  enlace, basta con editar el array.
+- `src/components/Header.tsx` — menú agrupado: `navMenu` (desplegables con
+  descripción) y `navLinks` de `site.ts`. `Footer.tsx` usa `navigation` /
+  `footerLinks`. Para añadir un enlace basta con editar esos arrays.
+- `src/components/CompetitionPromo.tsx` — bloque promocional de los grupos
+  de tecnificación (lunes) y entrenamiento físico gratuito; datos en
+  `pricing.ts` (`competitionGroups`, `physicalTraining`). Sale en la home y
+  en Horarios y Precios (ancla `#tecnificacion`).
 - `src/app/layout.tsx` — metadata global, JSON-LD del negocio
   (`SportsActivityLocation`/`ExerciseGym`), fuentes.
 - `src/components/PageHero.tsx` — cabecera de cada página interior
