@@ -128,6 +128,15 @@ foreach ($rawLines as $l) {
     } else {
         $size = "";
     }
+    $hands = isset($products[$pid]["hands"]) && is_array($products[$pid]["hands"]) ? $products[$pid]["hands"] : [];
+    $hand = clean(is_string($l["hand"] ?? null) ? $l["hand"] : "", 20);
+    if (count($hands) > 0) {
+        if (!in_array($hand, array_map("strval", $hands), true)) {
+            fail("Elige la mano (diestro/zurdo) para " . (string) $products[$pid]["name"] . ".");
+        }
+    } else {
+        $hand = "";
+    }
     $lines[] = [
         "product_id" => $pid,
         "product" => (string) ($products[$pid]["name"] ?? $pid)
@@ -135,6 +144,7 @@ foreach ($rawLines as $l) {
         "url" => (string) ($products[$pid]["url"] ?? ""),
         "supplier" => (string) ($products[$pid]["supplier"] ?? ""),
         "size" => $size,
+        "hand" => $hand,
         "qty" => $qty,
     ];
 }
@@ -214,7 +224,8 @@ if ($written === false) {
 $summary = "";
 foreach ($lines as $l) {
     $summary .= "- {$l['qty']} x {$l['product']} ({$l['supplier']})"
-        . ($l["size"] !== "" ? ", talla {$l['size']}" : "") . "\n";
+        . ($l["size"] !== "" ? ", talla {$l['size']}" : "")
+        . ($l["hand"] !== "" ? ", {$l['hand']}" : "") . "\n";
 }
 $host = preg_replace('/[^A-Za-z0-9.\-]/', "", (string) ($_SERVER["HTTP_HOST"] ?? "")) ?: "esgrimatorremolinos.com";
 $from = "From: {$siteName} <no-reply@{$host}>\r\n";

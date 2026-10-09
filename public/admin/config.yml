@@ -323,6 +323,7 @@ collections:
               - { name: description, label: Descripción, widget: text }
               - { name: price, label: "Precio del club (ej. 45€)", widget: string }
               - { name: sizes, label: Tallas, widget: list, required: false, field: { name: talla, label: Talla, widget: string } }
+              - { name: hands, label: "Mano (Diestro/Zurdo) — vacío si no aplica", widget: list, required: false, field: { name: mano, label: Mano, widget: string } }
               - { name: photo, label: Foto, widget: image, required: false, media_folder: /public/images/tienda, public_folder: /images/tienda }
               - { name: active, label: Visible en la tienda, widget: boolean, default: true }
 

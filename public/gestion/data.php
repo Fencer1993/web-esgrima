@@ -161,7 +161,7 @@ function pedidos_update(callable $mutate): bool
 }
 
 /**
- * Agrega pedidos abiertos: proveedor → producto → talla.
+ * Agrega pedidos abiertos: proveedor → producto → talla · mano.
  * @return array<string,array<string,array<string,array{qty:int,names:array<int,string>}>>>
  */
 function pedidos_summary(array $orders): array
@@ -179,6 +179,10 @@ function pedidos_summary(array $orders): array
             $sup = trim((string)($l['supplier'] ?? '')) ?: 'Sin proveedor';
             $prod = trim((string)($l['product'] ?? '')) ?: 'Sin nombre';
             $size = trim((string)($l['size'] ?? '')) ?: '—';
+            $hand = trim((string)($l['hand'] ?? ''));
+            if ($hand !== '') {
+                $size .= ' · ' . $hand;
+            }
             $qty = max(0, (int)($l['qty'] ?? 0));
             if ($qty === 0) {
                 continue;
