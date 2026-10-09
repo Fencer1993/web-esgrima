@@ -320,7 +320,7 @@ collections:
               - { name: ref, label: "Referencia del proveedor", widget: string, required: false }
               - { name: url, label: "Enlace a la ficha del proveedor", widget: string, required: false, hint: "https://… (fotos y tabla de tallas oficiales)" }
               - { name: sizeGuide, label: "Enlace a la tabla de tallas", widget: string, required: false }
-              - { name: category, label: Categoría, widget: select, options: ["Sables y hojas", "Caretas", "Chaquetas eléctricas", "Guantes y manguitos", "Trajes", "Protección", "Calzado y medias", "Piezas y recambios", "Pasantes y conectores", "Iniciación (plástico y espuma)", "Material de maestro", "Silla de ruedas"] }
+              - { name: category, label: Categoría, widget: select, options: ["Sables y hojas", "Caretas", "Chaquetas eléctricas", "Guantes y manguitos", "Trajes", "Protección", "Calzado y medias", "Piezas y recambios", "Pasantes y conectores", "Kits de iniciación", "Iniciación (plástico y espuma)", "Material de maestro", "Silla de ruedas"] }
               - { name: description, label: Descripción, widget: text, required: false, hint: "Tu explicación para los socios (si se deja vacía, no se muestra)." }
               - { name: price, label: "Precio orientativo (ej. 45,00 €)", widget: string, required: false }
               - { name: sizes, label: Tallas, widget: list, required: false, field: { name: talla, label: Talla, widget: string } }

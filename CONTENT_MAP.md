@@ -69,10 +69,10 @@ actualizan solos.
 
 `/tienda` (`app/tienda/page.tsx` + `components/ShopApp.tsx`, carrito y
 favoritos en `lib/shopStore.ts`) lee `content/data/tienda.json`. El
-catálogo de sable de Grant Esgrima y Allstar se importa con el workflow
+catálogo de sable de Grant Esgrima, Allstar España (allstarspain.com) y Villalbi (villalbiesgrima.es) se importa con el workflow
 manual `catalog-import.yml`: paso `fetch` (guarda `data/catalog-raw/`),
 luego `python3 .github/scripts/catalog-build.py` (filtra lo de sable,
-traduce nombres de Allstar, conserva descripciones/visibilidad editadas)
+conserva descripciones/visibilidad editadas)
 y paso `images` (descarga y optimiza las fotos a `public/images/tienda/`).
 Los pedidos van a `public/pedido.php` y se gestionan en `/gestion/`.
 

@@ -73,6 +73,7 @@ export const shopCategories = [
   "Calzado y medias",
   "Piezas y recambios",
   "Pasantes y conectores",
+  "Kits de iniciación",
   "Iniciación (plástico y espuma)",
   "Material de maestro",
   "Silla de ruedas",
