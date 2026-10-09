@@ -40,7 +40,7 @@ export default function NuestroEquipo() {
         <SectionHeading
           eyebrow="Deportistas"
           title="Nuestros Deportistas"
-          lede="Los tiradores que defienden los colores del Club de Esgrima Torremolinos en competición. Todos empezaron, como tú, con una primera clase."
+          lede="Los tiradores que defienden los colores del Club de Esgrima Torremolinos en competición."
         />
         <Photo
           src="/images/galeria/grupo-esgrimistas-club-torremolinos-sala-ayuntamiento.webp"

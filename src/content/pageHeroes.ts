@@ -3,7 +3,7 @@
 export const pageHeroes: Record<string, { photo: string; position?: string }> = {
   "/esgrima-ninos": {
     photo: "esgrimistas-infantiles-descanso-competicion-torremolinos",
-    position: "object-[center_42%]",
+    position: "object-[center_78%]",
   },
   "/esgrima-para-adultos": {
     photo: "equipo-esgrimistas-club-torremolinos-competicion",

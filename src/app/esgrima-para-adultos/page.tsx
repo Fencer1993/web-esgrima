@@ -18,7 +18,7 @@ export default function EsgrimaAdultos() {
       <PageHero
         eyebrow="Desde 13 años"
         title="Esgrima para Adultos"
-        lede="Desde los 13 años y hasta, por ejemplo, los 100, puedes ponerte la careta y practicar esgrima con nosotros."
+        lede="Desde los 13 años y sin límite de edad, puedes ponerte la careta y practicar esgrima con nosotros."
         path="/esgrima-para-adultos"
       />
 

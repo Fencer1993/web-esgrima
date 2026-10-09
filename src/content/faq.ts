@@ -4,12 +4,12 @@ export const faq: FaqItem[] = [
   {
     question: "¿Qué es la esgrima?",
     answer:
-      "La esgrima es un deporte de combate en el que se enfrentan dos contrincantes, que deben intentar tocarse con un arma blanca. En función del arma se diferencian tres modalidades: sable, espada y florete.",
+      "La esgrima es un deporte de combate en el que se enfrentan dos contrincantes, que deben intentar tocarse con un arma blanca. Es rápida, táctica y muy divertida. Según el arma hay tres modalidades: sable, espada y florete.",
   },
   {
     question: "¿Qué edad es buena para empezar a hacer esgrima?",
     answer:
-      "No hay una edad límite para empezar a practicarla, cuanto antes mejor. Las edades habituales para empezar, como muy temprano, son los 4 años, aunque nosotros empezamos a partir de los 6.",
+      "No hay una edad límite para empezar a practicarla, cuanto antes mejor. Lo habitual es empezar, como muy temprano, a los 4 años, aunque en el club empezamos a partir de los 6.",
   },
   {
     question: "¿Cuántas armas hay en esgrima?",
@@ -19,7 +19,7 @@ export const faq: FaqItem[] = [
   {
     question: "¿Cuál es la mejor arma?",
     answer:
-      "Cada arma tiene su dificultad y su atractivo. La espada es muy estratégica, busca tocar sin ser tocado. El florete es muy técnico, busca el tocado en una superficie reducida. El sable es más físico y dinámico. Por tradición, en el club nos gusta más el sable: lo vemos más divertido y es el que más se parece a lo que se ve en las películas.",
+      "Cada arma tiene su dificultad y su atractivo. La espada es muy estratégica, busca tocar sin ser tocado. El florete es muy técnico, busca el tocado en una superficie reducida. El sable es más físico y dinámico. Por tradición, en el club nos gusta más el sable: nos parece el más divertido y es el que más se parece a lo que se ve en las películas.",
   },
   {
     question: "¿Cómo funciona un asalto?",
@@ -29,12 +29,12 @@ export const faq: FaqItem[] = [
   {
     question: "¿Qué necesito para practicar esgrima?",
     answer:
-      "La equipación completa incluye careta, guante, sable, chaqueta blanca, peto interior, pantalón blanco, chaqueta eléctrica, cables de señalización (pasantes), calcetas y zapatillas deportivas. Para entrenar en el club, nosotros te prestamos el material.",
+      "La equipación completa incluye careta, guante, sable, chaqueta blanca, peto interior, pantalón blanco, chaqueta eléctrica, cables de señalización (pasantes), calcetas y zapatillas deportivas. Para entrenar en el club no tienes que comprar nada, porque nosotros te prestamos el material.",
   },
   {
     question: "Quiero comprarme mi propio material, ¿dónde?",
     answer:
-      "Realizamos pedidos periódicos a nuestros proveedores habituales: Yiang (iniciación) y Allstar y PBT (mayor calidad, competición avanzada). Si lo compras a través del club te asesoramos, obtienes un pequeño descuento y te ahorras el envío.",
+      "Realizamos pedidos periódicos a nuestros proveedores habituales: Yiang (iniciación) y Allstar y PBT (mayor calidad, competición avanzada). Si lo compras a través del club, te asesoramos, obtienes un pequeño descuento y te ahorras el envío.",
   },
   {
     question: "¿Qué tengo que llevarme a los entrenamientos?",
@@ -44,7 +44,7 @@ export const faq: FaqItem[] = [
   {
     question: "¿A quién puedo dirigirme si tengo dudas?",
     answer:
-      "Durante los entrenamientos, a cualquiera de los entrenadores, Carlos o Víctor. También puedes escribir a esgrimatorremolinos@gmail.com o llamar al 616 94 00 91.",
+      "Durante los entrenamientos, a cualquiera de los entrenadores, Carlos o Víctor, que te atenderán encantados. También puedes escribir a esgrimatorremolinos@gmail.com o llamar al 616 94 00 91.",
   },
   {
     question: "¿Qué debo hacer si quiero competir?",
@@ -54,12 +54,12 @@ export const faq: FaqItem[] = [
   {
     question: "¿Puedo entrenar si tengo alguna lesión?",
     answer:
-      "Depende del tipo de lesión, pero habitualmente nos adaptamos a cualquier limitación o dolencia. Solo necesitamos que nos informes previamente.",
+      "Depende del tipo de lesión, pero habitualmente nos adaptamos a cualquier limitación o dolencia. Solo necesitamos que nos informes antes, y buscamos juntos cómo hacerlo.",
   },
   {
     question: "¿Qué zapatillas debo usar?",
     answer:
-      "Cualquier zapatilla deportiva con suela antideslizante y buena talonera funciona; recomendamos zapatillas de esgrima, pádel o fútbol sala. Evita suelas muy gruesas, restan estabilidad en los desplazamientos rápidos.",
+      "Cualquier zapatilla deportiva con suela antideslizante y buena talonera funciona; recomendamos zapatillas de esgrima, pádel o fútbol sala. Evita las suelas muy gruesas, porque restan estabilidad en los desplazamientos rápidos.",
   },
   {
     question: "¿Debo federarme?",
@@ -84,7 +84,7 @@ export const faq: FaqItem[] = [
   {
     question: "¿Hay entrenamiento físico en el club?",
     answer:
-      "Sí. Ofrecemos entrenamiento físico deportivo gratuito los martes y jueves de 18:30 a 19:30. Consulta plazas y condiciones con la dirección técnica del club.",
+      "Sí. Ofrecemos entrenamiento físico deportivo gratuito los martes y jueves de 18:30 a 19:30, para que llegues con más fondo a la pista. Consulta plazas y condiciones con la dirección técnica del club.",
   },
   {
     question: "¿Cuánto cuestan las clases privadas?",
