@@ -200,7 +200,7 @@ export default function Home() {
           {values.map((v) => (
             <div
               key={v.title}
-              className="rounded-2xl border border-line bg-paper p-6 transition duration-300 hover:-translate-y-1 hover:border-accent"
+              className="rounded-sm border border-line bg-paper p-6 transition duration-300 hover:-translate-y-1 hover:border-accent"
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-accent-dark">
                 <svg

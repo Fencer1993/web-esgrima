@@ -143,12 +143,7 @@ export default function SillaDeRuedas() {
           </div>
         </div>
         <div className="mt-10">
-          <PhotoRow
-            names={[
-              "podio-esgrima-silla-de-ruedas-zamora",
-              "podio-esgrima-adaptada-torneo-jaen",
-            ]}
-          />
+          <PhotoRow feature names={["podio-esgrima-adaptada-torneo-jaen"]} />
         </div>
       </Section>
 

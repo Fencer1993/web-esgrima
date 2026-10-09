@@ -65,6 +65,13 @@ de las páginas según quién las lea.
   archivo; solo datos verificables).
 - `PhotoRow.tsx` — fila de fotos con pie en las páginas de programas;
   recibe fragmentos de nombre de archivo de `gallery.ts`.
+- `PageHero.tsx` + `content/pageHeroes.ts` — foto de cabecera de cada
+  página interior (por ruta). Evitar repetir una foto que ya salga en
+  el cuerpo de esa página.
+- `WhatsAppFloat.tsx` — botón flotante de WhatsApp (aparece al bajar).
+- Valores de la home: tarjetas con icono (`icon` en `values` de
+  `programs.ts`, SVG en `app/page.tsx`).
+- Clase gratis: línea de tiempo con foto por paso (`steps` inline).
 - Programas en la home: cuadrícula bento con la foto `photo` de cada
   programa en `programs.ts`.
 

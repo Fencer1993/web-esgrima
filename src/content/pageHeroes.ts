@@ -2,11 +2,11 @@
 // de archivo en gallery.ts). Las páginas sin entrada (legales) no llevan foto.
 export const pageHeroes: Record<string, { photo: string; position?: string }> = {
   "/esgrima-ninos": {
-    photo: "equipo-infantil-esgrima-torremolinos-competicion",
-    position: "object-[center_35%]",
+    photo: "esgrimistas-infantiles-descanso-competicion-torremolinos",
+    position: "object-[center_40%]",
   },
   "/esgrima-para-adultos": {
-    photo: "esgrimistas-adultos-club-torremolinos-torneo",
+    photo: "asalto-competicion-roquetas-de-mar-esgrima-torremolinos",
     position: "object-[center_30%]",
   },
   "/esgrima-en-silla-de-ruedas": {
@@ -26,8 +26,8 @@ export const pageHeroes: Record<string, { photo: string; position?: string }> = 
     position: "object-center",
   },
   "/clase-gratis": {
-    photo: "entrenamiento-infantil-esgrima-torremolinos",
-    position: "object-[center_30%]",
+    photo: "competicion-infantil-esgrima-torremolinos-grada",
+    position: "object-center",
   },
   "/preguntas-frecuentes": {
     photo: "asalto-juvenil-competicion-esgrima-torremolinos",
