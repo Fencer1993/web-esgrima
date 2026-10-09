@@ -3,15 +3,15 @@
 export const pageHeroes: Record<string, { photo: string; position?: string }> = {
   "/esgrima-ninos": {
     photo: "esgrimistas-infantiles-descanso-competicion-torremolinos",
-    position: "object-[center_40%]",
+    position: "object-[center_42%]",
   },
   "/esgrima-para-adultos": {
-    photo: "asalto-competicion-roquetas-de-mar-esgrima-torremolinos",
-    position: "object-[center_30%]",
+    photo: "equipo-esgrimistas-club-torremolinos-competicion",
+    position: "object-[center_32%]",
   },
   "/esgrima-en-silla-de-ruedas": {
     photo: "podio-esgrima-silla-de-ruedas-zamora",
-    position: "object-center",
+    position: "object-[center_38%]",
   },
   "/nuestro-equipo": {
     photo: "esgrimistas-club-torremolinos-entre-asaltos",

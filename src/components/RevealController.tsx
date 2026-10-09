@@ -1,39 +1,24 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useLayoutEffect } from "react";
 
 /**
- * Activates the .reveal scroll-in animation defined in globals.css.
- * Content is visible by default in plain CSS/HTML (no JS, no
- * prefers-reduced-motion) — this only adds the class that turns the
- * transition on, then reveals elements as they enter the viewport.
+ * Activa la animación de entrada .reveal de globals.css.
  *
- * Elements already within the viewport at mount are marked visible
- * synchronously, in the same pass that enables the animation class —
- * IntersectionObserver callbacks are asynchronous, so doing this
- * separately would let the browser paint a frame with that content
- * hidden before the observer catches up.
+ * El contenido es visible por defecto (sin JS o con movimiento reducido);
+ * esto solo añade la clase que activa la transición y descubre cada
+ * elemento al entrar en pantalla.
+ *
+ * Se vuelve a ejecutar en cada cambio de ruta (navegación con <Link>, que
+ * no recarga la página) y vigila los nodos que se añaden después (filtros
+ * de la galería, etc.). Sin esto, los bloques de la página nueva se
+ * quedaban ocultos hasta recargar.
  */
 export function RevealController() {
+  const pathname = usePathname();
+
   useLayoutEffect(() => {
-    const targets = document.querySelectorAll<HTMLElement>(".reveal");
-    if (targets.length === 0) return;
-
-    const viewportHeight = window.innerHeight;
-    const toObserve: HTMLElement[] = [];
-
-    targets.forEach((el) => {
-      if (el.getBoundingClientRect().top < viewportHeight * 0.95) {
-        el.classList.add("is-visible");
-      } else {
-        toObserve.push(el);
-      }
-    });
-
-    document.documentElement.classList.add("js-reveal-ready");
-
-    if (toObserve.length === 0) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -46,9 +31,27 @@ export function RevealController() {
       { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
     );
 
-    toObserve.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+    const scan = () => {
+      const vh = window.innerHeight;
+      document.querySelectorAll<HTMLElement>(".reveal:not(.is-visible)").forEach((el) => {
+        // Lo que ya está en pantalla se marca visible en el mismo paso, para
+        // que nunca se pinte un fotograma con ello oculto.
+        if (el.getBoundingClientRect().top < vh * 0.95) el.classList.add("is-visible");
+        else observer.observe(el);
+      });
+    };
+
+    scan();
+    document.documentElement.classList.add("js-reveal-ready");
+
+    const mutations = new MutationObserver(scan);
+    mutations.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutations.disconnect();
+    };
+  }, [pathname]);
 
   return null;
 }

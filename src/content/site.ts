@@ -51,7 +51,7 @@ export const navigation = [
 // plana que usan el pie de página y llms.txt.
 export const navMenu = [
   {
-    label: "Programas",
+    label: "Clases",
     items: [
       { label: "Niños", href: "/esgrima-ninos", description: "Desde 6 años, aprendiendo jugando" },
       { label: "Adultos", href: "/esgrima-para-adultos", description: "Ocio o competición, tú eliges" },

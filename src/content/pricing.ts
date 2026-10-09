@@ -2,6 +2,10 @@ const weekdays = "Martes, miércoles, jueves y viernes";
 
 // Grupos de tecnificación deportiva: preparan la competición y entrenan los
 // lunes con el equipo técnico del club.
+// Acceso a tecnificación: lo decide el director técnico.
+export const technificationNote =
+  "El acceso a este grupo requiere una evaluación previa del director técnico.";
+
 export const competitionGroups = [
   {
     name: "Tecnificación · 13 a 18 años",
@@ -27,7 +31,7 @@ export const physicalTraining = {
 };
 
 export const schedule: { group: string; days: string; hours: string; note?: string }[] = [
-  ...competitionGroups.map((g) => ({ group: g.name, days: g.days, hours: g.hours })),
+  ...competitionGroups.map((g) => ({ group: g.name, days: g.days, hours: g.hours, note: technificationNote })),
   {
     group: "Niños (6–12 años)",
     days: "Martes, miércoles y jueves",

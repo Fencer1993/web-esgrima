@@ -1,4 +1,4 @@
-import { competitionGroups, physicalTraining } from "@/content/pricing";
+import { competitionGroups, physicalTraining, technificationNote } from "@/content/pricing";
 import { whatsappLink } from "@/content/site";
 
 // Bloque promocional de los grupos de tecnificación (lunes) y del
@@ -48,6 +48,8 @@ export function CompetitionPromo() {
             </div>
           ))}
         </div>
+
+        <p className="mt-3 text-xs text-paper/60">* {technificationNote}</p>
 
         <div className="reveal mt-4 flex flex-col gap-4 rounded-sm border border-accent/50 bg-accent/10 p-6 sm:flex-row sm:items-center sm:justify-between">
           <div>

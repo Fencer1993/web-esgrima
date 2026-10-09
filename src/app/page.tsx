@@ -134,7 +134,7 @@ export default function Home() {
 
       <Section>
         <SectionHeading
-          eyebrow="Programas"
+          eyebrow="Clases"
           title="Clases de Esgrima en Torremolinos"
         />
         <div className="grid auto-rows-[15rem] gap-4 md:grid-cols-3 md:auto-rows-[17rem]">
