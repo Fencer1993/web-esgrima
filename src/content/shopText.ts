@@ -132,6 +132,8 @@ const es = {
   closeCart: "Cerrar carrito",
   refPrefix: "Ref.",
   sizeGuideLink: "Ver tabla de tallas y cómo medirte →",
+  calcLink: "Calcula tu talla →",
+  yourSize: "Tu talla según la calculadora",
   supplierSheet: (supplier: string, withSizes: boolean) =>
     `Ver ficha${withSizes ? " y tabla de tallas" : ""} en ${supplier} →`,
   size: "Talla",
@@ -198,6 +200,8 @@ const en: ShopUi = {
   closeCart: "Close basket",
   refPrefix: "Ref.",
   sizeGuideLink: "See the size chart and how to measure yourself →",
+  calcLink: "Work out your size →",
+  yourSize: "Your size from the calculator",
   supplierSheet: (supplier, withSizes) =>
     `See the product page${withSizes ? " and size chart" : ""} at ${supplier} →`,
   size: "Size",

@@ -424,6 +424,87 @@ collections:
                     widget: list
                     field: { name: fila, label: Fila, widget: list, field: { name: valor, label: Valor, widget: string } }
 
+      - name: entrenador
+        label: Entrenador de pies por voz
+        file: src/content/data/entrenador.json
+        fields:
+          - name: ajustes
+            label: Ajustes generales
+            widget: object
+            fields:
+              - { name: duraciones, label: "Duraciones de ronda que se pueden elegir (segundos)", widget: list, field: { name: segundos, label: Segundos, widget: number, value_type: int } }
+              - { name: duracionPorDefecto, label: "Duración de ronda por defecto (segundos)", widget: number, value_type: int }
+              - name: rondas
+                label: Rondas
+                widget: object
+                fields:
+                  - { name: min, label: Mínimo, widget: number, value_type: int }
+                  - { name: max, label: Máximo, widget: number, value_type: int }
+                  - { name: porDefecto, label: Por defecto, widget: number, value_type: int }
+              - { name: descansos, label: "Descansos que se pueden elegir (segundos)", widget: list, field: { name: segundos, label: Segundos, widget: number, value_type: int } }
+              - { name: descansoPorDefecto, label: "Descanso por defecto (segundos)", widget: number, value_type: int }
+              - { name: cuentaAtras, label: "Cuenta atrás antes de cada ronda (segundos)", widget: number, value_type: int }
+              - { name: limitePista, label: "Pasos hacia cada lado de la pista virtual", widget: number, value_type: int }
+              - { name: velocidadVoz, label: "Velocidad de la voz (1 = normal)", widget: number, value_type: float }
+              - { name: cambiosPorSegundoMax, label: "Máximo de cambios de pantalla por segundo en el modo reacción (no más de 2)", widget: number, value_type: int }
+          - name: niveles
+            label: Niveles
+            widget: list
+            summary: "{{nombre}}"
+            fields:
+              - { name: id, label: "Identificador (no cambiar; los movimientos lo usan)", widget: string }
+              - { name: nombre, label: Nombre, widget: string }
+              - { name: nombre_en, label: "Nombre en inglés", widget: string }
+              - { name: descripcion, label: Descripción, widget: text }
+              - { name: descripcion_en, label: "Descripción en inglés", widget: text }
+              - { name: min, label: "Segundos mínimos entre órdenes", widget: number, value_type: float }
+              - { name: max, label: "Segundos máximos entre órdenes", widget: number, value_type: float }
+          - name: movimientos
+            label: Movimientos (órdenes)
+            widget: list
+            summary: "{{es}}"
+            fields:
+              - { name: id, label: "Identificador (sin espacios; no cambiar)", widget: string }
+              - { name: es, label: Español, widget: string }
+              - { name: fr, label: Francés, widget: string }
+              - { name: en, label: Inglés, widget: string }
+              - { name: niveles, label: "En qué niveles sale", widget: select, multiple: true, options: [iniciacion, medio, competicion] }
+              - { name: paso, label: "Pasos que mueve en la pista (+1 avanza, -1 retrocede, 0 se queda)", widget: number, value_type: int }
+              - { name: peso, label: "Frecuencia relativa (0 = no sale al azar; 5 = muy frecuente)", widget: number, value_type: float }
+              - { name: color, label: "Color del modo reacción (#rrggbb; vacío = no sale en ese modo)", widget: string, required: false, hint: "Que tenga buen contraste con texto blanco" }
+          - { name: primera, label: "Identificador de la primera orden de cada ronda", widget: string }
+          - name: textos
+            label: "Frases fijas de la voz"
+            widget: object
+            fields:
+              - name: es
+                label: Español
+                widget: object
+                fields:
+                  - { name: preparados, label: "Antes de empezar", widget: string }
+                  - { name: ya, label: "Al empezar la ronda", widget: string }
+                  - { name: alto, label: "Al acabar la ronda", widget: string }
+                  - { name: descanso, label: "Durante el descanso", widget: string }
+                  - { name: fin, label: "Al terminar todo", widget: string }
+              - name: fr
+                label: Francés
+                widget: object
+                fields:
+                  - { name: preparados, label: "Antes de empezar", widget: string }
+                  - { name: ya, label: "Al empezar la ronda", widget: string }
+                  - { name: alto, label: "Al acabar la ronda", widget: string }
+                  - { name: descanso, label: "Durante el descanso", widget: string }
+                  - { name: fin, label: "Al terminar todo", widget: string }
+              - name: en
+                label: Inglés
+                widget: object
+                fields:
+                  - { name: preparados, label: "Antes de empezar", widget: string }
+                  - { name: ya, label: "Al empezar la ronda", widget: string }
+                  - { name: alto, label: "Al acabar la ronda", widget: string }
+                  - { name: descanso, label: "Durante el descanso", widget: string }
+                  - { name: fin, label: "Al terminar todo", widget: string }
+
       - name: resultados
         label: Resultados y palmarés
         file: src/content/data/resultados.json
@@ -678,6 +759,7 @@ collections:
         fields:
           - { name: intro, label: "Texto de introducción de la tienda", widget: text }
           - { name: seeCatalogue, label: "Botón «Ver el catálogo»", widget: string }
+          - { name: seeCalculator, label: "Botón «¿Qué talla pido?» (calculadora)", widget: string }
           - { name: seeSizeGuide, label: "Botón «¿No sabes tu talla?»", widget: string }
           - { name: catalogueTitle, label: "Título del catálogo", widget: string }
           - { name: emptyCatalogue, label: "Texto si no hay productos", widget: text }

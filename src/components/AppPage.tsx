@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { AppInstallGuide } from "@/components/AppInstallGuide";
@@ -15,6 +16,10 @@ const C = {
       ["Avisos del club", "Convocatorias, cambios de horario y noticias importantes en tu móvil, si los activas."],
       ["Ligera y sin tiendas", "No ocupa casi espacio, no pide datos y se actualiza sola. Se quita como cualquier app."],
     ],
+    trainerTitle: "Entrenador de pies por voz",
+    trainerText: "Entrena los desplazamientos en casa: el móvil canta avances, retrocesos y fondos al azar. Funciona sin conexión.",
+    trainerLink: "Abrir el entrenador →",
+    trainerHref: "/entrenador",
     howTitle: "Cómo instalarla",
     android: "Android (Chrome)",
     androidSteps: [
@@ -48,6 +53,10 @@ const C = {
       ["Club notifications", "Call-ups, timetable changes and important news on your phone, if you turn them on."],
       ["Light, no app store", "Takes almost no space, asks for no personal data and updates itself. Remove it like any app."],
     ],
+    trainerTitle: "Voice footwork trainer",
+    trainerText: "Train your footwork at home: your phone calls out advances, retreats and lunges at random. Works offline.",
+    trainerLink: "Open the trainer →",
+    trainerHref: "/en/footwork-trainer",
     howTitle: "How to install it",
     android: "Android (Chrome)",
     androidSteps: [
@@ -96,6 +105,14 @@ export function AppPage({ lang = "es" }: { lang?: "es" | "en" }) {
             </li>
           ))}
         </ul>
+
+        <div className="mt-6 max-w-3xl rounded-sm border border-line p-5">
+          <h3 className="font-display text-lg font-semibold uppercase tracking-tight text-ink">{t.trainerTitle}</h3>
+          <p className="mt-1 text-sm leading-relaxed text-ink-soft">{t.trainerText}</p>
+          <Link href={t.trainerHref} className="link-touche mt-3 inline-block text-sm font-semibold text-accent-dark">
+            {t.trainerLink}
+          </Link>
+        </div>
 
         <h2 className="mt-12 text-2xl font-bold uppercase tracking-tight text-ink sm:text-3xl">{t.howTitle}</h2>
         <div className="mt-5 grid gap-4 lg:grid-cols-3">

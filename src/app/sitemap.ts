@@ -24,6 +24,7 @@ const routes = [
   "resultados",
   "patrocinadores",
   "app",
+  "entrenador",
 ];
 
 export const dynamic = "force-static";

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { ShopApp } from "@/components/ShopApp";
+import { SizeCalculator } from "@/components/SizeCalculator";
 import { SizeGuide } from "@/components/SizeGuide";
 import { pageAlternates } from "@/content/i18n";
 import { enPageText } from "@/content/en";
@@ -37,12 +38,21 @@ export default function ShopEn() {
             {tiendaEn.seeCatalogue}
           </a>
           <a
+            href="#calculadora"
+            className="inline-flex items-center gap-2 rounded-sm border border-accent px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-accent-dark hover:bg-accent-soft"
+          >
+            {tiendaEn.seeCalculator}
+          </a>
+          <a
             href="#guia-de-tallas"
             className="inline-flex items-center gap-2 rounded-sm border border-accent px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-accent-dark hover:bg-accent-soft"
           >
             {tiendaEn.seeSizeGuide}
           </a>
         </p>
+        <div className="mb-10">
+          <SizeCalculator lang="en" />
+        </div>
         <div className="mb-14">
           <SizeGuide lang="en" />
         </div>

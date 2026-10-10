@@ -5,6 +5,7 @@ import { useId, useMemo, useState, useSyncExternalStore, type FormEvent, type Mo
 import type { ShopProduct } from "@/content/shop";
 import { Photo } from "@/components/Photo";
 import { ShopDialog } from "@/components/ShopDialog";
+import { getMySizes, savedSizeFor } from "@/lib/mySizes";
 import type { Lang } from "@/content/i18n";
 import {
   cartLineLabel,
@@ -195,7 +196,14 @@ function ProductDetail({
   const name = (lang === "en" && product.nameEn) || product.name;
   const description = (lang === "en" && product.descriptionEn) || product.description;
   const titleId = useId();
-  const [size, setSize] = useState(product.sizes.length === 1 ? product.sizes[0] : "");
+  // Talla guardada por la calculadora (solo existe en este navegador). La ficha
+  // se monta al abrirla, ya en el cliente, así que se puede leer aquí.
+  const [calcSize] = useState(() =>
+    product.sizes.length > 1 ? savedSizeFor(product, getMySizes()) : "",
+  );
+  const [size, setSize] = useState(
+    product.sizes.length === 1 ? product.sizes[0] : calcSize,
+  );
   const [hand, setHand] = useState(product.hands.length === 1 ? product.hands[0] : "");
   const [opts, setOpts] = useState<Record<string, string>>(() =>
     Object.fromEntries(
@@ -305,6 +313,15 @@ function ProductDetail({
 
           {(product.url || product.sizeGuide) && (
             <div className="flex flex-col gap-1.5">
+              {product.sizeGuide?.startsWith("#") && product.sizes.length > 0 && (
+                <a
+                  href="#calculadora"
+                  onClick={(e) => openSizeGuide(e, "#calculadora", onClose)}
+                  className="link-touche self-start text-sm font-semibold text-accent-dark"
+                >
+                  {t.calcLink}
+                </a>
+              )}
               {product.sizeGuide && (
                 <a
                   href={product.sizeGuide}
@@ -339,6 +356,9 @@ function ProductDetail({
                 setError("");
               }}
             />
+          )}
+          {calcSize && size === calcSize && (
+            <p className="text-xs font-semibold text-accent-dark">✓ {t.yourSize}</p>
           )}
           {product.hands.length > 0 && (
             <Chips

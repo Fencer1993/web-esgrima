@@ -2,7 +2,8 @@
 
 > **Datos editables desde el panel** (`/admin`, Sveltia CMS): horarios,
 > precios, equipo y deportistas, galería, FAQ (también `faq-silla.json`), pasos de la clase gratis
-> (`clase-gratis.json`), cifras de la portada (`cifras.json`), fotos de
+> (`clase-gratis.json`), cifras de la portada (`cifras.json`), entrenador de pies
+> (`entrenador.json`: movimientos, niveles, tiempos y frases), fotos de
 > cabecera (`cabeceras.json`), clases/valores y datos del
 > club viven en `src/content/data/*.json`. Los `.ts` de `src/content/` solo
 > los leen y tipan. Configuración del panel: `public/admin/config.yml`.
@@ -28,6 +29,7 @@ relativas a `src/`.
 | `/preguntas-frecuentes` | `app/preguntas-frecuentes/page.tsx` | `content/faq.ts` |
 | `/resultados`, `/resultados/[slug]`, `/deportistas/[slug]` | `app/resultados/`, `app/deportistas/` | `content/data/resultados.json` (torneos y puestos; medallas automáticas), `equipo.json` (slug/bio/arma/desde; página solo si hay resultados o bio) |
 | `/patrocinadores` | `app/patrocinadores/page.tsx` | `content/data/patrocinadores.json`, `cifras.json` |
+| `/entrenador`, `/en/footwork-trainer` | `app/(es)/entrenador/page.tsx`, `app/(en)/en/footwork-trainer/page.tsx` (+ `components/FootworkTrainer.tsx`) | `content/data/entrenador.json` (órdenes es/fr/en, niveles, pasos de pista, colores del modo reacción) |
 | `/contacto` | `app/contacto/page.tsx` | `content/site.ts` |
 | `/aviso-legal` | `app/aviso-legal/page.tsx` | `content/site.ts` (`site.legal`) |
 | `/politica-de-privacidad` | `app/politica-de-privacidad/page.tsx` | `content/site.ts` |
@@ -147,6 +149,17 @@ manual `catalog-import.yml`: paso `fetch` (guarda `data/catalog-raw/`),
 luego `python3 .github/scripts/catalog-build.py` (filtra lo de sable,
 conserva descripciones/visibilidad editadas)
 y paso `images` (descarga y optimiza las fotos a `public/images/tienda/`).
+La **calculadora de talla** («¿Qué talla pido?», ancla `#calculadora`,
+`components/SizeCalculator.tsx`, lógica en `lib/sizeCalc.ts`, tallas guardadas en
+`localStorage` por `lib/mySizes.ts`) lee solo `tallas.json`: no lleva tallas
+escritas en el código, así que al editar las tablas desde el panel cambia sola
+(reconoce las columnas por el texto de la cabecera: «Altura», «Pecho»,
+«Cintura», «Cadera», «Contorno de cabeza», «Contorno de mano»; y el tipo de
+prenda por el título de la tabla: «Trajes»/«Ropa», «Chaqueta eléctrica»,
+«Caretas», «Guantes», «Peto interior», «Zapatillas»). Una marca sin tablas
+propias (Grant/PBT) usa las de VE. La ficha de producto preselecciona la talla
+guardada si coincide con una de sus tallas. Prueba de la lógica:
+`node --experimental-strip-types .github/scripts/test-size-calc.mjs`.
 La guía de tallas (antes del catálogo) sale de `content/data/tallas.json`
 (`components/SizeGuide.tsx`); cada ficha enlaza a `#tallas-<marca>`.
 Los pedidos van a `public/pedido.php` y se gestionan en `/gestion/` (Excel mensual con
@@ -162,6 +175,19 @@ horas, plazas por sesión, semanas de antelación, horas mínimas, días sin cla
 para `public/reserva.php` (disponibilidad y reservas, guarda en
 `club-data/reservas.jsonl`) y `public/recordatorios.php` (aviso el día antes,
 lo lanza `.github/workflows/recordatorios.yml`). Listado en `/gestion/reservas.php`.
+
+## Entrenador de pies por voz
+
+`/entrenador` · `/en/footwork-trainer` (`components/FootworkTrainer.tsx`; la
+lógica de elegir órdenes, sin React, en `lib/footwork.ts`). Todo ocurre en el
+navegador: voz del propio móvil (`speechSynthesis`), pitidos con Web Audio y
+pantalla siempre encendida con Wake Lock si existe; no se guarda ni se envía
+nada. Movimientos, niveles, intervalos, límite de la pista virtual (±6 pasos),
+colores del modo reacción y frases fijas (es/fr/en) están en
+`content/data/entrenador.json`, editable en el panel («Entrenador de pies por
+voz»). Para añadir una orden basta una entrada nueva en `movimientos` (con sus
+niveles, `paso` y `peso`). Prueba de la lógica:
+`node --experimental-strip-types .github/scripts/test-footwork.mjs`.
 
 ## Para asistentes de IA
 

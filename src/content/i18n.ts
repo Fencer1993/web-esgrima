@@ -25,6 +25,7 @@ export const pathPairs = [
   { es: "/tienda", en: "/en/shop" },
   { es: "/noticias", en: "/en/news" },
   { es: "/app", en: "/en/app" },
+  { es: "/entrenador", en: "/en/footwork-trainer" },
 ] as const;
 
 /**
@@ -103,6 +104,7 @@ const enNavMenu = [
       { label: "Shop", href: "/en/shop", description: "Kit at a club discount" },
       { label: "Results (in Spanish)", href: "/resultados", description: "Tournaments and medals" },
       { label: "Sponsors (in Spanish)", href: "/patrocinadores", description: "Support the club" },
+      { label: "Voice footwork trainer", href: "/en/footwork-trainer", description: "Train your footwork at home" },
       { label: "Club app", href: "/en/app", description: "Install it on your phone" },
       { label: "FAQ", href: "/en/faq", description: "Equipment, ages, insurance and more" },
     ],
@@ -225,6 +227,7 @@ export const enFooterNav = [
   { label: "Shop", href: "/en/shop" },
   { label: "Results (in Spanish)", href: "/resultados" },
   { label: "Sponsors (in Spanish)", href: "/patrocinadores" },
+  { label: "Voice footwork trainer", href: "/en/footwork-trainer" },
   { label: "Club app", href: "/en/app" },
 ] as const;
 

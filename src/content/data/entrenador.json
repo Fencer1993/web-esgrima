@@ -1,0 +1,65 @@
+{
+  "ajustes": {
+    "duraciones": [30, 60, 120, 180],
+    "duracionPorDefecto": 60,
+    "rondas": { "min": 1, "max": 5, "porDefecto": 3 },
+    "descansos": [30, 60],
+    "descansoPorDefecto": 30,
+    "cuentaAtras": 3,
+    "limitePista": 6,
+    "velocidadVoz": 1.05,
+    "cambiosPorSegundoMax": 2
+  },
+  "niveles": [
+    {
+      "id": "iniciacion",
+      "nombre": "Iniciación",
+      "nombre_en": "Beginner",
+      "descripcion": "En guardia, avance, retroceso y fondo. Una orden cada 1,6 a 2,5 segundos.",
+      "descripcion_en": "On guard, advance, retreat and lunge. One command every 1.6 to 2.5 seconds.",
+      "min": 1.6,
+      "max": 2.5
+    },
+    {
+      "id": "medio",
+      "nombre": "Medio",
+      "nombre_en": "Intermediate",
+      "descripcion": "Añade doble avance, saltos y fondo con recuperación. Una orden cada 1,2 a 2 segundos.",
+      "descripcion_en": "Adds double advance, jumps and lunge with recovery. One command every 1.2 to 2 seconds.",
+      "min": 1.2,
+      "max": 2
+    },
+    {
+      "id": "competicion",
+      "nombre": "Competición (sable)",
+      "nombre_en": "Competition (sabre)",
+      "descripcion": "Añade balestra, flecha, avance y fondo, y paradas de tercera, cuarta y quinta. Una orden cada 0,8 a 1,6 segundos.",
+      "descripcion_en": "Adds balestra, flèche, advance-lunge and parries in third, fourth and fifth. One command every 0.8 to 1.6 seconds.",
+      "min": 0.8,
+      "max": 1.6
+    }
+  ],
+  "movimientos": [
+    { "id": "guardia", "es": "¡En guardia!", "fr": "En garde !", "en": "On guard!", "niveles": ["iniciacion", "medio", "competicion"], "paso": 0, "peso": 0 },
+    { "id": "avance", "es": "Avance", "fr": "Marchez", "en": "Advance", "niveles": ["iniciacion", "medio", "competicion"], "paso": 1, "peso": 5, "color": "#1d5fa8" },
+    { "id": "retroceso", "es": "Retroceso", "fr": "Rompez", "en": "Retreat", "niveles": ["iniciacion", "medio", "competicion"], "paso": -1, "peso": 5, "color": "#b45309" },
+    { "id": "fondo", "es": "¡Fondo!", "fr": "Fendez-vous !", "en": "Lunge!", "niveles": ["iniciacion", "medio", "competicion"], "paso": 0, "peso": 3, "color": "#15803d" },
+    { "id": "doble-avance", "es": "Doble avance", "fr": "Marchez, marchez", "en": "Double advance", "niveles": ["medio", "competicion"], "paso": 2, "peso": 2, "color": "#6d28d9" },
+    { "id": "doble-retroceso", "es": "Doble retroceso", "fr": "Rompez, rompez", "en": "Double retreat", "niveles": ["medio", "competicion"], "paso": -2, "peso": 2 },
+    { "id": "salto-adelante", "es": "Salto adelante", "fr": "Bond en avant", "en": "Jump forward", "niveles": ["medio", "competicion"], "paso": 1, "peso": 1.5, "color": "#0e7490" },
+    { "id": "salto-atras", "es": "Salto atrás", "fr": "Bond en arrière", "en": "Jump back", "niveles": ["medio", "competicion"], "paso": -1, "peso": 1.5, "color": "#be185d" },
+    { "id": "fondo-recuperacion", "es": "Fondo y recuperación", "fr": "Fendez-vous et revenez", "en": "Lunge and recover", "niveles": ["medio", "competicion"], "paso": 0, "peso": 2 },
+    { "id": "balestra", "es": "Balestra", "fr": "Balestra", "en": "Balestra", "niveles": ["competicion"], "paso": 1, "peso": 2, "color": "#9a3412" },
+    { "id": "flecha", "es": "Flecha", "fr": "Flèche", "en": "Flèche", "niveles": ["competicion"], "paso": 2, "peso": 1.5, "color": "#b91c1c" },
+    { "id": "avance-fondo", "es": "Avance y fondo", "fr": "Marchez, fendez-vous", "en": "Advance and lunge", "niveles": ["competicion"], "paso": 1, "peso": 2.5 },
+    { "id": "tercera", "es": "Tercera", "fr": "Tierce", "en": "Parry three", "niveles": ["competicion"], "paso": 0, "peso": 1.5 },
+    { "id": "cuarta", "es": "Cuarta", "fr": "Quarte", "en": "Parry four", "niveles": ["competicion"], "paso": 0, "peso": 1.5 },
+    { "id": "quinta", "es": "Quinta", "fr": "Quinte", "en": "Parry five", "niveles": ["competicion"], "paso": 0, "peso": 1.5 }
+  ],
+  "primera": "guardia",
+  "textos": {
+    "es": { "preparados": "Preparados", "ya": "¡Adelante!", "alto": "¡Alto!", "descanso": "Descanso", "fin": "Entrenamiento terminado. ¡Buen trabajo!" },
+    "fr": { "preparados": "Prêts", "ya": "Allez !", "alto": "Halte !", "descanso": "Repos", "fin": "Entraînement terminé. Bien joué !" },
+    "en": { "preparados": "Ready", "ya": "Go!", "alto": "Stop!", "descanso": "Rest", "fin": "Training finished. Well done!" }
+  }
+}
