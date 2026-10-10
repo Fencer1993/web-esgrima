@@ -59,6 +59,16 @@
       "path": "/tienda",
       "photo": "equipo-esgrimistas-club-torremolinos-competicion",
       "position": "object-[center_40%]"
+    },
+    {
+      "path": "/resultados",
+      "photo": "podio-absoluto-torneo-jaen-oro-torremolinos",
+      "position": "object-[center_30%]"
+    },
+    {
+      "path": "/patrocinadores",
+      "photo": "esgrimistas-adultos-club-torremolinos-torneo",
+      "position": "object-[center_35%]"
     }
   ]
 }

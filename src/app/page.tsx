@@ -8,6 +8,7 @@ import { CoachCard } from "@/components/CoachCard";
 import { Photo } from "@/components/Photo";
 import { Marquee } from "@/components/Marquee";
 import { LatestNews } from "@/components/LatestNews";
+import { LatestResults } from "@/components/LatestResults";
 import { StatsBand } from "@/components/StatsBand";
 import { CompetitionPromo } from "@/components/CompetitionPromo";
 import { galleryPhoto } from "@/content/gallery";
@@ -185,6 +186,7 @@ export default function Home() {
 
       <Marquee />
 
+      <LatestResults />
       <LatestNews />
 
       <Section tone="raised" className="border-y border-line">

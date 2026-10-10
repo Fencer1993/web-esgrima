@@ -122,6 +122,10 @@ collections:
               - { name: name, label: Nombre, widget: string }
               - { name: achievement, label: "Palmarés o frase corta", widget: text, required: false }
               - { name: photo, label: "Foto (opcional)", widget: image, required: false, media_folder: /public/images/deportistas, public_folder: /images/deportistas }
+              - { name: slug, label: "Dirección de su página (opcional)", widget: string, required: false, hint: "sin espacios ni tildes, ej. keila. Si lo dejas vacío se usa el nombre. Solo tienen página propia quienes tengan resultados o una biografía." }
+              - { name: bio, label: "Biografía (opcional)", widget: text, required: false, hint: "Solo nombre de pila y datos que la familia haya autorizado publicar (muchos son menores). Separa los párrafos con una línea en blanco." }
+              - { name: weapon, label: "Arma (opcional)", widget: string, required: false, hint: "ej. Sable" }
+              - { name: since, label: "En el club desde (año, opcional)", widget: number, required: false, value_type: int, min: 1990, max: 2100 }
 
       - name: galeria
         label: Galería de fotos
@@ -372,6 +376,66 @@ collections:
                     label: "Filas (una línea por fila; valores separados por comas)"
                     widget: list
                     field: { name: fila, label: Fila, widget: list, field: { name: valor, label: Valor, widget: string } }
+
+      - name: resultados
+        label: Resultados y palmarés
+        file: src/content/data/resultados.json
+        fields:
+          - name: tournaments
+            label: Torneos
+            widget: list
+            summary: "{{date}} · {{name}}"
+            fields:
+              - { name: slug, label: "Dirección (slug)", widget: string, hint: "sin espacios ni tildes, ej. torneo-jaen-2026" }
+              - { name: name, label: Nombre del torneo, widget: string }
+              - { name: date, label: Fecha, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+              - { name: city, label: Ciudad, widget: string, required: false }
+              - { name: level, label: Nivel, widget: select, options: [Local, Provincial, Autonómico, Nacional, Internacional], default: Local }
+              - { name: weapon, label: Arma, widget: string, default: Sable }
+              - { name: category, label: Categoría, widget: string, required: false, hint: "ej. Sub-15 masculino, Absoluto femenino, Veteranos, Silla de ruedas" }
+              - { name: link, label: "Enlace a los resultados oficiales (opcional)", widget: string, required: false }
+              - { name: photo, label: Foto (opcional), widget: image, required: false, media_folder: /public/images/resultados, public_folder: /images/resultados }
+              - { name: summary, label: "Resumen (opcional)", widget: text, required: false }
+              - name: results
+                label: Resultados del club
+                widget: list
+                required: false
+                summary: "{{position}}º {{athlete}}"
+                fields:
+                  - { name: athlete, label: "Tirador/a (solo nombre de pila, igual que en Equipo)", widget: string }
+                  - { name: position, label: Puesto, widget: number, value_type: int, min: 1 }
+                  - { name: medal, label: "Medalla (se pone sola con los puestos 1, 2 y 3)", widget: select, options: [{ label: "Automática", value: "" }, { label: Oro, value: oro }, { label: Plata, value: plata }, { label: Bronce, value: bronce }], default: "", required: false }
+
+      - name: patrocinadores
+        label: Patrocinadores
+        file: src/content/data/patrocinadores.json
+        fields:
+          - { name: intro, label: Texto de introducción, widget: text }
+          - { name: emptyTitle, label: "Título si aún no hay patrocinadores", widget: string }
+          - { name: emptyText, label: "Texto si aún no hay patrocinadores", widget: text }
+          - name: sponsors
+            label: Patrocinadores
+            widget: list
+            required: false
+            summary: "{{tier}} · {{name}}"
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: tier, label: Nivel, widget: select, options: [Principal, Colaborador, Institucional], default: Colaborador }
+              - { name: logo, label: Logotipo (opcional), widget: image, required: false, media_folder: /public/images/patrocinadores, public_folder: /images/patrocinadores }
+              - { name: url, label: "Web (opcional)", widget: string, required: false }
+          - { name: reasonsTitle, label: "Título: por qué patrocinar", widget: string }
+          - name: reasons
+            label: Motivos para patrocinar
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: title, label: Título, widget: string }
+              - { name: text, label: Texto, widget: text }
+          - { name: memoriaTitle, label: "Título: el club en cifras", widget: string }
+          - { name: memoriaLede, label: "Entradilla: el club en cifras (las cifras se editan en «Cifras de la portada»)", widget: text }
+          - { name: ctaTitle, label: "Llamada a la acción: título", widget: string }
+          - { name: ctaText, label: "Llamada a la acción: texto", widget: text }
+          - { name: ctaMessage, label: "Mensaje de WhatsApp ya escrito", widget: text }
 
       - name: noticias
         label: Tablón de anuncios

@@ -1,0 +1,30 @@
+{
+  "intro": "El Club de Esgrima Torremolinos es una asociación deportiva sin ánimo de lucro. Si tu empresa o institución quiere apoyar el deporte base, la esgrima adaptada y a los tiradores que compiten con nuestros colores, aquí tienes quiénes somos y cómo puedes colaborar.",
+  "emptyTitle": "Sé el primer patrocinador del club",
+  "emptyText": "Todavía no tenemos patrocinadores en esta página. Tu marca puede ser la primera en acompañar al club.",
+  "reasonsTitle": "Por qué patrocinar al club",
+  "reasons": [
+    {
+      "title": "Visibilidad local",
+      "text": "Tu marca puede aparecer en nuestra web, en nuestras redes sociales, en la equipación y en los eventos que organizamos o a los que acudimos."
+    },
+    {
+      "title": "Un deporte inclusivo",
+      "text": "Tenemos un grupo de esgrima en silla de ruedas dirigido por un esgrimista paralímpico. Apoyar al club es apoyar un deporte abierto a todas las personas."
+    },
+    {
+      "title": "Deporte base y jóvenes",
+      "text": "Enseñamos esgrima a niños desde los 6 años, a adolescentes y a adultos. Tu apoyo ayuda a que más jóvenes tengan un deporte en el que crecer."
+    },
+    {
+      "title": "Compromiso con tu entorno",
+      "text": "Colaborar con un club de barrio es una forma cercana de estar presente en Torremolinos y de contribuir al deporte de la zona."
+    }
+  ],
+  "memoriaTitle": "El club en cifras",
+  "memoriaLede": "Lo que somos hoy, con datos que puedes comprobar en esta misma web.",
+  "ctaTitle": "Hablemos",
+  "ctaText": "Cuéntanos qué te interesa y te explicaremos cómo podemos colaborar. Sin compromiso.",
+  "ctaMessage": "Hola, me gustaría información sobre cómo patrocinar al Club de Esgrima Torremolinos.",
+  "sponsors": []
+}

@@ -53,6 +53,18 @@
       "eyebrow": "Dónde estamos",
       "title": "Contacto",
       "lede": "Para probar la esgrima con nosotros solo tienes que venir con ropa deportiva, agua y toalla, 10 minutos antes para que podamos explicarte cómo funciona la clase. Te estamos esperando."
+    },
+    {
+      "path": "/resultados",
+      "eyebrow": "Nuestros tiradores en competición",
+      "title": "Resultados y palmarés",
+      "lede": "Torneos en los que ha competido el club y las medallas que han traído nuestros tiradores."
+    },
+    {
+      "path": "/patrocinadores",
+      "eyebrow": "Colabora con el club",
+      "title": "Patrocinadores",
+      "lede": "Quién apoya al club y cómo puedes sumarte tú. Deporte base, esgrima adaptada y mucha ilusión."
     }
   ],
   "inicio": {

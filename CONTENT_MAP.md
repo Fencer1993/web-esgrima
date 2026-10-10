@@ -26,6 +26,8 @@ relativas a `src/`.
 | `/instalaciones` | `app/instalaciones/page.tsx` | `content/gallery.ts` (foto, alt y pie de cada imagen) |
 | `/clase-gratis` | `app/clase-gratis/page.tsx` | `content/data/clase-gratis.json` (pasos; foto = fragmento de nombre de `gallery.ts`) |
 | `/preguntas-frecuentes` | `app/preguntas-frecuentes/page.tsx` | `content/faq.ts` |
+| `/resultados`, `/resultados/[slug]`, `/deportistas/[slug]` | `app/resultados/`, `app/deportistas/` | `content/data/resultados.json` (torneos y puestos; medallas automáticas), `equipo.json` (slug/bio/arma/desde; página solo si hay resultados o bio) |
+| `/patrocinadores` | `app/patrocinadores/page.tsx` | `content/data/patrocinadores.json`, `cifras.json` |
 | `/contacto` | `app/contacto/page.tsx` | `content/site.ts` |
 | `/aviso-legal` | `app/aviso-legal/page.tsx` | `content/site.ts` (`site.legal`) |
 | `/politica-de-privacidad` | `app/politica-de-privacidad/page.tsx` | `content/site.ts` |
