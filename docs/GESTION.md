@@ -24,6 +24,17 @@ ni frameworks. Todas las páginas exigen sesión y llevan `noindex`.
   día y grupo, con plazas ocupadas. Estados: confirmada, asistió, no vino,
   cancelada (una cancelada libera la plaza). Pestañas Próximas / Pasadas y CSV
   de todas las reservas (UTF-8 con BOM, separador `;`).
+- **Mercadillo** (`mercadillo.php`): anuncios de material de segunda mano. Los
+  nuevos llegan como *pendientes* (con aviso por correo al club) y **no se ven
+  en la web ni sus fotos hasta aprobarlos**. Por cada anuncio: fotos, datos
+  completos (incluido el correo, que nunca se publica) y botones *Aprobar*
+  (se publica 90 días y se avisa al anunciante), *Rechazar* (con motivo
+  opcional, que se envía por correo), *Marcar vendido* y *Borrar* (borra
+  también las fotos). Un anuncio aprobado pasa a *caducado* a los 90 días; el
+  anunciante puede renovarlo 30 días desde su enlace privado
+  (`/mercadillo/mi-anuncio/#…`, recibido por correo). Los datos se borran solos
+  90 días después de caducar, venderse o rechazarse. El Panel y el menú
+  muestran cuántos hay pendientes.
 - **Convocatorias** (`convocatoria.php`): formulario que genera, en el navegador,
   el texto para WhatsApp, el de SportMember y el objeto JSON de noticia web
   (`src/content/data/noticias.json`). No guarda nada en el servidor.
@@ -52,6 +63,9 @@ cada 15 minutos por IP.
   `_data/pedidos.jsonl` dentro del web root (protegido con `.htaccess`).
 - Reservas de clase gratis: `club-data/reservas.jsonl` (misma carpeta), con
   `reservas.jsonl.bak` antes de cada cambio. Hay que respaldarlo igual que los pedidos.
+- Mercadillo: `club-data/mercadillo.jsonl` (un anuncio por línea, con
+  `.bak`) y `club-data/mercadillo-fotos/` (fotos; solo se sirven por
+  `mercadillo.php?foto=` si el anuncio está aprobado). Respaldar ambos.
 - Los bloqueos de intentos de login (`login-*.lock`) van a la misma carpeta.
 - Antes de cada cambio de estado se copia el fichero a `pedidos.jsonl.bak`.
 

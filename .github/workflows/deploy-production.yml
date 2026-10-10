@@ -68,6 +68,7 @@ jobs:
         run: |
           cp src/content/data/tienda.json out/tienda-productos.json
           cp src/content/data/reservas.json out/reservas-config.json
+          cp src/content/data/mercadillo.json out/mercadillo-config.json
           node -e 'const d=require("./src/content/data/calendario.generated.json"); require("fs").writeFileSync("out/calendario.json", JSON.stringify(d.items||[]))'
 
       # Clave de los recordatorios de la clase gratis: sha256("recordatorios:" +

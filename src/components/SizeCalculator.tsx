@@ -4,7 +4,7 @@ import { useId, useState, useSyncExternalStore, type FormEvent } from "react";
 import { sizeBrands } from "@/content/sizes";
 import tiendaEn from "@/content/data/en/tienda.json";
 import type { Lang } from "@/content/i18n";
-import { clearMySizes, getMySizes, getMySizesServer, saveMySizes, subscribeMySizes } from "@/lib/mySizes";
+import { SHOW_MINE_EVENT, clearMySizes, getMySizes, getMySizesServer, saveMySizes, subscribeMySizes } from "@/lib/mySizes";
 import { recommend, toSaved, type Item, type Kind, type Measures, type Profile, type Result } from "@/lib/sizeCalc";
 
 const en = tiendaEn.sizeGuide;
@@ -58,6 +58,7 @@ const T = {
     save: "Usar mis tallas en la tienda",
     saved: "Guardadas en este navegador. Al abrir un producto verás tu talla ya elegida; no se añade nada al carrito.",
     saveFail: "Tu navegador no deja guardar datos; las tallas valen solo mientras no cierres esta página.",
+    showMine: "Ver productos en mi talla",
     erase: "Borrar mis medidas",
     erased: "Medidas borradas.",
     disclaimer: "Orientativo. Si dudas, pruébate el material del club en clase.",
@@ -109,6 +110,7 @@ const T = {
     save: "Use my sizes in the shop",
     saved: "Saved in this browser. When you open a product your size will be already selected; nothing is added to the basket.",
     saveFail: "Your browser does not allow saving data; the sizes last only while this page stays open.",
+    showMine: "Show products in my size",
     erase: "Delete my measurements",
     erased: "Measurements deleted.",
     disclaimer: "Indicative only. If in doubt, try the club's kit in class.",
@@ -383,6 +385,19 @@ export function SizeCalculator({ lang = "es" }: { lang?: Lang }) {
                 className="inline-flex min-h-11 items-center rounded-sm border border-accent px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-accent-dark hover:bg-accent-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 {t.save}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  // Guarda las tallas (el filtro de la tienda las lee de ahí), avisa a
+                  // la tienda y baja al catálogo, que está en esta misma página.
+                  if (!saveMySizes(toSaved(result))) setNotice(t.saveFail);
+                  window.dispatchEvent(new Event(SHOW_MINE_EVENT));
+                  document.getElementById("catalogo")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="inline-flex min-h-11 items-center rounded-sm bg-accent px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-white hover:bg-accent-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                {t.showMine}
               </button>
             </div>
           </div>

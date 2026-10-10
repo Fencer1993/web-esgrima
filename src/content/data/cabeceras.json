@@ -69,6 +69,11 @@
       "path": "/patrocinadores",
       "photo": "esgrimistas-adultos-club-torremolinos-torneo",
       "position": "object-[center_35%]"
+    },
+    {
+      "path": "/mercadillo",
+      "photo": "armero-sala-club-esgrima-torremolinos",
+      "position": "object-[center_40%]"
     }
   ]
 }

@@ -10,7 +10,9 @@ function h($v): string
 function gestion_header(string $title, string $active = ''): void
 {
     header('Content-Type: text/html; charset=utf-8');
-    $nav = ['index.php' => 'Panel', 'pedidos.php' => 'Pedidos', 'reservas.php' => 'Clases gratis', 'convocatoria.php' => 'Convocatorias', 'calendario.php' => 'Calendario', 'avisos.php' => 'Avisos'];
+    require_once dirname(__DIR__) . '/mercadillo-lib.php';
+    $pend = mer_pending_count();
+    $nav = ['index.php' => 'Panel', 'pedidos.php' => 'Pedidos', 'reservas.php' => 'Clases gratis', 'mercadillo.php' => 'Mercadillo' . ($pend > 0 ? " ($pend)" : ''), 'convocatoria.php' => 'Convocatorias', 'calendario.php' => 'Calendario', 'avisos.php' => 'Avisos'];
     $links = '';
     foreach ($nav as $f => $label) {
         $links .= '<a href="' . $f . '"' . ($f === $active ? ' class="on"' : '') . '>' . h($label) . '</a>';

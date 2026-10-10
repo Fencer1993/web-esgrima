@@ -13,7 +13,7 @@ jobs:
         run: |
           S=https://www.esgrimatorremolinos.com
           UA="Mozilla/5.0"
-          for p in / /favicon.ico /icons/icon-512.png /brand/escudo-club-esgrima-torremolinos.png /images/logo/logo-club-esgrima-torremolinos-256.webp /en/ /en/shop/ /en/news/ /app/ /en/app/ /entrenador/ /en/footwork-trainer/ /push-clave.php /aviso-actual.php /push-vapid.json /clase-gratis/ /resultados/ /patrocinadores/ /manifest.webmanifest /sw.js /offline/ "/reserva.php?disponibilidad=1" /reservas-config.json /recordatorios-config.php /tienda/ /noticias/ /calendario/ /nuestro-equipo/ /contacto/ /gestion/ /admin/ /tienda-productos.json /_data/ /_data/pedidos.jsonl /gestion/config.php /llms.txt; do
+          for p in / /favicon.ico /icons/icon-512.png /brand/escudo-club-esgrima-torremolinos.png /images/logo/logo-club-esgrima-torremolinos-256.webp /en/ /en/shop/ /en/news/ /app/ /en/app/ /entrenador/ /en/footwork-trainer/ /mercadillo/ /mercadillo/mi-anuncio/ "/mercadillo.php?lista" /mercadillo.php?foto=0000000000000000 /mercadillo-lib.php /mercadillo-config.json /gestion/mercadillo.php /_data/mercadillo.jsonl /push-clave.php /aviso-actual.php /push-vapid.json /clase-gratis/ /resultados/ /patrocinadores/ /manifest.webmanifest /sw.js /offline/ "/reserva.php?disponibilidad=1" /reservas-config.json /recordatorios-config.php /tienda/ /noticias/ /calendario/ /nuestro-equipo/ /contacto/ /gestion/ /admin/ /tienda-productos.json /_data/ /_data/pedidos.jsonl /gestion/config.php /llms.txt; do
             printf "%-26s -> " "$p"; curl -sS -o /dev/null -w "%{http_code}\n" -A "$UA" "$S$p"
           done
           echo "== gestión (sin login)"; curl -sS -A "$UA" "$S/gestion/" | sed 's/<[^>]*>/ /g' | tr -s ' \n' ' ' | head -c 400; echo
@@ -24,3 +24,6 @@ jobs:
             curl -sS -A "$UA" "$S$p" | grep -oE '(\+?34[ ]?)?[6-9][0-9]{2} ?[0-9]{2} ?[0-9]{2} ?[0-9]{2}' | sort -u | sed "s#^#$p: #"
           done
           echo "== tienda"; curl -sS -A "$UA" "$S/tienda/" | grep -o 'productos' | head -1; curl -sS -A "$UA" "$S/tienda-productos.json" | python3 -c "import json,sys;d=json.load(sys.stdin);print(len(d['products']),'productos')"
+
+          echo "== mercadillo (lista pública: solo anuncios aprobados, sin correos)"; curl -sS -A "$UA" "$S/mercadillo.php?lista" | head -c 300; echo
+          curl -sS -A "$UA" "$S/mercadillo.php?lista" | grep -q '@' && echo "ATENCIÓN: la lista del mercadillo contiene una @" || echo "lista sin correos OK"

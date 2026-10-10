@@ -5,6 +5,8 @@ import type { Kind, SavedSizes } from "./sizeCalc";
 // almacenamiento la calculadora funciona igual, solo que sin guardar.
 
 const KEY = "cet-mis-tallas";
+/** La calculadora lo emite en window para que la tienda (otro componente de la misma página) active «En mi talla». */
+export const SHOW_MINE_EVENT = "cet-ver-en-mi-talla";
 const listeners = new Set<() => void>();
 let cache: SavedSizes | null = null;
 let loaded = false;
@@ -97,4 +99,30 @@ export function savedSizeFor(
   const norm = (s: string) => s.trim().toLowerCase();
   const set = new Set(wanted.map(norm));
   return product.sizes.find((s) => set.has(norm(s))) ?? "";
+}
+
+/**
+ * Qué hace el botón «Añadir talla X» de una tarjeta de producto: `null` si el
+ * producto no tiene talla guardada; si no, la talla y si se puede añadir al
+ * carrito directamente (sin mano ni opciones por elegir) o hay que abrir la
+ * ficha. Las opciones con un solo valor se eligen solas, como en la ficha.
+ */
+export function quickAddPlan(
+  product: {
+    category: string;
+    name: string;
+    sizes: string[];
+    sizeGuide: string;
+    hands: string[];
+    options: { name: string; values: string[] }[];
+  },
+  saved: SavedSizes | null,
+): { size: string; hand: string; direct: boolean; options: Record<string, string> } | null {
+  const size = savedSizeFor(product, saved);
+  if (!size) return null;
+  const options = Object.fromEntries(
+    product.options.filter((o) => o.values.length === 1).map((o) => [o.name, o.values[0]]),
+  );
+  const direct = product.hands.length <= 1 && product.options.every((o) => o.values.length === 1);
+  return { size, hand: product.hands.length === 1 ? product.hands[0] : "", direct, options };
 }

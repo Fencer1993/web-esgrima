@@ -1,0 +1,28 @@
+{
+  "intro": "Compra, vende o busca material de esgrima de segunda mano entre socios y familias. Un buen guante o una careta que ya no usas puede ahorrarle dinero a otra persona.",
+  "aviso": "El club solo revisa que el anuncio sea de esgrima; la compraventa es entre particulares y el club no interviene ni se hace responsable. Antes de comprar, revisa que el material esté homologado (FIE, 350 N o 800 N según la prenda) y en buen estado.",
+  "tipos": [
+    { "id": "careta", "label": "Careta" },
+    { "id": "chaqueta", "label": "Chaquetilla" },
+    { "id": "pantalon", "label": "Pantalón" },
+    { "id": "chaqueta-electrica", "label": "Chaqueta eléctrica" },
+    { "id": "peto", "label": "Peto" },
+    { "id": "guante", "label": "Guante" },
+    { "id": "sable", "label": "Sable u hoja" },
+    { "id": "zapatillas", "label": "Zapatillas" },
+    { "id": "medias", "label": "Medias" },
+    { "id": "bolsa", "label": "Bolsa" },
+    { "id": "otro", "label": "Otro" }
+  ],
+  "estados": [
+    { "id": "nuevo", "label": "Nuevo" },
+    { "id": "como-nuevo", "label": "Como nuevo" },
+    { "id": "usado", "label": "Usado" },
+    { "id": "piezas", "label": "Para piezas" }
+  ],
+  "manos": [
+    { "id": "diestro", "label": "Diestro" },
+    { "id": "zurdo", "label": "Zurdo" },
+    { "id": "indiferente", "label": "Da igual" }
+  ]
+}

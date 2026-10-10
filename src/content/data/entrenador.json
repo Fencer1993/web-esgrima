@@ -56,6 +56,58 @@
     { "id": "cuarta", "es": "Cuarta", "fr": "Quarte", "en": "Parry four", "niveles": ["competicion"], "paso": 0, "peso": 1.5 },
     { "id": "quinta", "es": "Quinta", "fr": "Quinte", "en": "Parry five", "niveles": ["competicion"], "paso": 0, "peso": 1.5 }
   ],
+  "ritmos": [
+    { "id": "lento", "nombre": "Lento", "nombre_en": "Slow", "min": 2, "max": 3 },
+    { "id": "medio", "nombre": "Medio", "nombre_en": "Medium", "min": 1.2, "max": 2 },
+    { "id": "rapido", "nombre": "Rápido", "nombre_en": "Fast", "min": 0.8, "max": 1.4 }
+  ],
+  "porEdad": [
+    { "id": "m11", "nombre": "M11 y menores", "nombre_en": "U11 and younger", "nivel": "iniciacion", "duracion": 30, "rondas": 3, "descanso": 60 },
+    { "id": "m13-m15", "nombre": "M13–M15", "nombre_en": "U13–U15", "nivel": "medio", "duracion": 60, "rondas": 3, "descanso": 30 },
+    { "id": "m17-absoluto", "nombre": "M17–M20 y absoluto", "nombre_en": "U17–U20 and senior", "nivel": "competicion", "duracion": 120, "rondas": 4, "descanso": 30 },
+    { "id": "veteranos", "nombre": "Veteranos", "nombre_en": "Veterans", "nivel": "medio", "duracion": 60, "rondas": 3, "descanso": 60 }
+  ],
+  "sesiones": [
+    {
+      "nombre": "Calentamiento de pies",
+      "nombre_en": "Footwork warm-up",
+      "descripcion": "Avance, retroceso y fondo a ritmo suave. Ideal antes de la clase.",
+      "descripcion_en": "Advance, retreat and lunge at an easy pace. Ideal before class.",
+      "movimientos": [
+        { "id": "avance", "frecuencia": "normal" },
+        { "id": "retroceso", "frecuencia": "normal" },
+        { "id": "fondo", "frecuencia": "poca" }
+      ],
+      "ritmoMin": 2, "ritmoMax": 3, "duracion": 60, "rondas": 3, "descanso": 30, "idioma": "es", "modo": "voz"
+    },
+    {
+      "nombre": "Saltos y doble paso",
+      "nombre_en": "Jumps and double steps",
+      "descripcion": "Dobles, saltos y fondo con recuperación para ganar explosividad.",
+      "descripcion_en": "Double steps, jumps and lunge with recovery to build explosiveness.",
+      "movimientos": [
+        { "id": "doble-avance", "frecuencia": "mucha" },
+        { "id": "doble-retroceso", "frecuencia": "mucha" },
+        { "id": "salto-adelante", "frecuencia": "normal" },
+        { "id": "salto-atras", "frecuencia": "normal" },
+        { "id": "fondo-recuperacion", "frecuencia": "normal" }
+      ],
+      "ritmoMin": 1.2, "ritmoMax": 2, "duracion": 60, "rondas": 4, "descanso": 30, "idioma": "es", "modo": "voz"
+    },
+    {
+      "nombre": "Reacción por colores",
+      "nombre_en": "Colour reaction",
+      "descripcion": "Sin voz: la pantalla cambia de color y cada color es una orden.",
+      "descripcion_en": "No voice: the screen changes colour and each colour is a command.",
+      "movimientos": [
+        { "id": "avance", "frecuencia": "mucha" },
+        { "id": "retroceso", "frecuencia": "mucha" },
+        { "id": "fondo", "frecuencia": "normal" },
+        { "id": "doble-avance", "frecuencia": "normal" }
+      ],
+      "ritmoMin": 1.2, "ritmoMax": 2, "duracion": 60, "rondas": 3, "descanso": 30, "idioma": "es", "modo": "colores"
+    }
+  ],
   "primera": "guardia",
   "textos": {
     "es": { "preparados": "Preparados", "ya": "¡Adelante!", "alto": "¡Alto!", "descanso": "Descanso", "fin": "Entrenamiento terminado. ¡Buen trabajo!" },

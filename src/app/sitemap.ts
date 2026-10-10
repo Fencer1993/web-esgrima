@@ -21,6 +21,7 @@ const routes = [
   "noticias",
   "calendario",
   "tienda",
+  "mercadillo",
   "resultados",
   "patrocinadores",
   "app",

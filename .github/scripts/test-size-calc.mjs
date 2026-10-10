@@ -3,6 +3,7 @@
 //   node --experimental-strip-types .github/scripts/test-size-calc.mjs
 import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
+import { quickAddPlan } from "../../src/lib/mySizes.ts";
 import { parseCell, recommend, sizeAliases, toSaved } from "../../src/lib/sizeCalc.ts";
 
 const { brands } = JSON.parse(readFileSync(new URL("../../src/content/data/tallas.json", import.meta.url), "utf8"));
@@ -115,6 +116,20 @@ ok("tallas guardadas y alias", () => {
   const saved = toSaved(recommend(brands, { profile: "hombre", height: 178, chest: 98, waist: 86, hip: 102, head: 57 }));
   assert.ok(saved.brands.allstar.suit.includes("102"));
   assert.ok(saved.brands.allstar.mask.includes("S"));
+});
+
+ok("botón «Añadir talla»: directo solo sin mano ni opciones por elegir", () => {
+  const saved = toSaved(recommend(brands, { profile: "hombre", height: 178, chest: 98, waist: 86, hip: 102 }));
+  const base = { category: "Trajes", name: "Pantalón", sizes: ["46", "50", "54"], sizeGuide: "#tallas-ve", hands: [], options: [] };
+  assert.deepEqual(quickAddPlan(base, saved), { size: "50", hand: "", direct: true, options: {} });
+  assert.equal(quickAddPlan({ ...base, hands: ["Diestro", "Zurdo"] }, saved).direct, false);
+  assert.equal(quickAddPlan({ ...base, hands: ["Diestro"] }, saved).hand, "Diestro");
+  const one = quickAddPlan({ ...base, options: [{ name: "Color", values: ["Blanco"] }] }, saved);
+  assert.deepEqual([one.direct, one.options], [true, { Color: "Blanco" }]);
+  assert.equal(quickAddPlan({ ...base, options: [{ name: "Color", values: ["Blanco", "Azul"] }] }, saved).direct, false);
+  assert.equal(quickAddPlan({ ...base, sizes: ["44", "56"] }, saved), null);
+  assert.equal(quickAddPlan({ ...base, sizeGuide: "" }, saved), null);
+  assert.equal(quickAddPlan(base, null), null);
 });
 
 console.log(`\n${n} grupos de pruebas correctos`);

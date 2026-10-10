@@ -53,6 +53,27 @@ export default function PoliticaDePrivacidad() {
 
           <section>
             <h2 className="font-display text-lg font-bold uppercase tracking-tight text-ink">
+              Mercadillo de segunda mano
+            </h2>
+            <p className="mt-2">
+              Si publicas un anuncio en el mercadillo tratamos los datos del formulario: tu
+              nombre de pila y tu número de WhatsApp, que se muestran públicamente en el
+              anuncio junto con su texto y sus fotos; y tu correo electrónico, que no se
+              publica y solo sirve para enviarte el enlace privado con el que gestionas el
+              anuncio (marcarlo como vendido, renovarlo o borrarlo). La finalidad es publicar
+              y gestionar tu anuncio, y la base legal es tu consentimiento. Un anuncio se
+              publica durante 90 días tras su revisión. Conservamos los datos hasta que lo
+              borres o hasta 90 días después de que caduque, se venda o se rechace. Solo
+              pueden publicar personas mayores de edad, o menores con permiso de su padre,
+              madre o tutor. Evita subir fotos en las que salgan personas. El club solo
+              comprueba que el anuncio sea de material de esgrima; la compraventa es entre
+              particulares. Puedes borrar tu anuncio en cualquier momento desde tu enlace
+              privado o escribiendo a {site.contact.email}.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-display text-lg font-bold uppercase tracking-tight text-ink">
               Conservación
             </h2>
             <p className="mt-2">

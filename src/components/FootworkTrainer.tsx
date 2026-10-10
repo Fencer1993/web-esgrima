@@ -1,9 +1,25 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import data from "@/content/data/entrenador.json";
 import type { Lang } from "@/content/i18n";
-import { nextInterval, pickMove, simulate, type Level, type Movement } from "@/lib/footwork";
+import {
+  CUSTOM_LEVEL,
+  FREQUENCIES,
+  SESSION_LIMITS,
+  clubSession,
+  customMoves,
+  decodeSession,
+  encodeSession,
+  nextInterval,
+  pickMove,
+  simulate,
+  type Frequency,
+  type Level,
+  type Movement,
+  type SessionConfig,
+} from "@/lib/footwork";
+import { addRecent, getRecent, serverRecent, subscribeRecent } from "@/lib/footworkStore";
 
 // Entrenador de pies por voz. Todo ocurre en el navegador: la voz es la del
 // propio móvil (speechSynthesis) y no se envía ni se guarda nada. Los
@@ -15,6 +31,24 @@ type Phase = "idle" | "ready" | "work" | "rest" | "done";
 const moves = data.movimientos as Movement[];
 const cfg = data.ajustes;
 const levels = data.niveles;
+const paces = data.ritmos;
+const ages = data.porEdad;
+const byId = new Map(moves.map((m) => [m.id, m]));
+/** Sesiones del club ya validadas (las mal escritas en el panel se descartan). */
+const clubSessions = data.sesiones.flatMap((s) => {
+  const r = clubSession(s, moves);
+  return r.ok ? [{ s, config: r.config }] : [];
+});
+/** Movimientos que se pueden elegir a medida, agrupados por el primer nivel en que salen. */
+const customGroups = levels
+  .map((l) => ({ level: l, items: moves.filter((m) => m.peso > 0 && m.niveles.find((n) => levels.some((x) => x.id === n)) === l.id) }))
+  .filter((g) => g.items.length > 0);
+const FREQ_KEYS = Object.keys(FREQUENCIES) as Frequency[];
+/** Segundos entre órdenes que se pueden elegir (de 0,6 en 0,2). */
+const PACE_STEPS = Array.from({ length: 23 }, (_, i) => Math.round((0.6 + i * 0.2) * 10) / 10);
+const freqKey = (f: number): Frequency => FREQ_KEYS.reduce((a, b) => (Math.abs(FREQUENCIES[b] - f) < Math.abs(FREQUENCIES[a] - f) ? b : a));
+/** La lista de opciones, más el valor actual si viene de una sesión compartida y no está en ella. */
+const withValue = (list: readonly number[], v: number) => (list.includes(v) ? [...list] : [...list, v].sort((a, b) => a - b));
 const BCP47: Record<VoiceLang, string> = { es: "es-ES", fr: "fr-FR", en: "en-GB" };
 
 const T = {
@@ -47,6 +81,34 @@ const T = {
     paused: "En pausa",
     settings: "Ajustes",
     min: "min",
+    custom: "Personalizado",
+    customHint: "Eliges los movimientos, su frecuencia y el ritmo.",
+    byAge: "Por edad",
+    moveGroup: (n: string) => `Desde ${n}`,
+    frequency: "Frecuencia",
+    freqs: { poca: "Poca", normal: "Normal", mucha: "Mucha" } as Record<Frequency, string>,
+    pace: "Ritmo (segundos entre órdenes)",
+    paceFrom: "Mínimo",
+    paceTo: "Máximo",
+    needMoves: "Elige al menos un movimiento (en modo reacción, con color).",
+    clubTitle: "Sesiones del club",
+    recentTitle: "Tus sesiones recientes",
+    unnamed: "Sin nombre",
+    createTitle: "Crear sesión para compartir",
+    createHint: "Guarda estos ajustes en un enlace para mandarlo a tus alumnos o a ti mismo. No se guarda nada en ningún servidor.",
+    sessionName: "Nombre de la sesión",
+    create: "Crear sesión",
+    copy: "Copiar enlace",
+    copied: "Enlace copiado",
+    copyFail: "No se pudo copiar: selecciona el enlace y cópialo a mano.",
+    whatsapp: "Enviar por WhatsApp",
+    link: "Enlace de la sesión",
+    shareText: (n: string) => `Sesión de entrenamiento de pies${n ? ` «${n}»` : ""}:`,
+    sharedTitle: (n: string) => (n ? `Sesión de ${n}` : "Sesión compartida"),
+    sharedInfo: (c: SessionConfig) => `${c.moves.length} movimientos · ${c.rounds} × ${c.duration} s · descanso ${c.rest} s`,
+    dismiss: "Ignorar",
+    badLink: "El enlace de la sesión no es válido o está incompleto.",
+    errors: { vacio: "", largo: "La sesión es demasiado grande para un enlace.", formato: "", version: "", movimientos: "" },
   },
   en: {
     level: "Level",
@@ -77,6 +139,34 @@ const T = {
     paused: "Paused",
     settings: "Settings",
     min: "min",
+    custom: "Custom",
+    customHint: "You choose the movements, how often they come up and the pace.",
+    byAge: "By age",
+    moveGroup: (n: string) => `From ${n}`,
+    frequency: "Frequency",
+    freqs: { poca: "Rare", normal: "Normal", mucha: "Often" } as Record<Frequency, string>,
+    pace: "Pace (seconds between commands)",
+    paceFrom: "Minimum",
+    paceTo: "Maximum",
+    needMoves: "Pick at least one movement (in reaction mode, one with a colour).",
+    clubTitle: "Club sessions",
+    recentTitle: "Your recent sessions",
+    unnamed: "Unnamed",
+    createTitle: "Create a session to share",
+    createHint: "Saves these settings in a link you can send to your students or to yourself. Nothing is stored on any server.",
+    sessionName: "Session name",
+    create: "Create session",
+    copy: "Copy link",
+    copied: "Link copied",
+    copyFail: "Could not copy: select the link and copy it by hand.",
+    whatsapp: "Send on WhatsApp",
+    link: "Session link",
+    shareText: (n: string) => `Footwork training session${n ? ` “${n}”` : ""}:`,
+    sharedTitle: (n: string) => (n ? `${n}’s session` : "Shared session"),
+    sharedInfo: (c: SessionConfig) => `${c.moves.length} movements · ${c.rounds} × ${c.duration} s · rest ${c.rest} s`,
+    dismiss: "Ignore",
+    badLink: "The session link is not valid or is incomplete.",
+    errors: { vacio: "", largo: "The session is too big for a link.", formato: "", version: "", movimientos: "" },
   },
 } as const;
 
@@ -103,8 +193,32 @@ function pickVoice(lang: VoiceLang): SpeechSynthesisVoice | null {
   return list.find((v) => v.lang.toLowerCase() === BCP47[lang].toLowerCase()) ?? list[0] ?? null;
 }
 
+function subscribeHash(cb: () => void) {
+  window.addEventListener("hashchange", cb);
+  return () => window.removeEventListener("hashchange", cb);
+}
+const hashSnapshot = () => window.location.hash;
+
+/** Configuración → ajustes del motor (el nivel «custom» lleva sus movimientos y su ritmo). */
+function settingsOf(c: SessionConfig, sound: boolean): Settings {
+  return {
+    level: CUSTOM_LEVEL,
+    moves: customMoves(c, moves),
+    pace: { id: CUSTOM_LEVEL, min: c.min, max: c.max },
+    voiceLang: c.lang,
+    duration: c.duration,
+    rounds: c.rounds,
+    rest: c.rest,
+    sound,
+    reaction: c.mode === "colores",
+  };
+}
+
 type Settings = {
   level: string;
+  /** Movimientos entre los que se elige (con el peso ya multiplicado) y su ritmo. */
+  moves: Movement[];
+  pace: Level;
   voiceLang: VoiceLang;
   duration: number;
   rounds: number;
@@ -128,7 +242,7 @@ function makeEng() {
     audio: null as AudioContext | null,
     lock: null as WakeLockSentinel | null,
     // Ajustes con los que arrancó la sesión (cambiarlos a mitad no la altera).
-    s: { level: levels[0].id, voiceLang: "es", duration: 60, rounds: 3, rest: 30, sound: true, reaction: false } as Settings,
+    s: { level: CUSTOM_LEVEL, moves: [] as Movement[], pace: levels[0] as Level, voiceLang: "es", duration: 60, rounds: 3, rest: 30, sound: true, reaction: false } as Settings,
   };
 }
 type Eng = ReturnType<typeof makeEng>;
@@ -136,6 +250,8 @@ type Eng = ReturnType<typeof makeEng>;
 const field =
   "mt-1 block w-full rounded-sm border border-line bg-paper px-3 py-2.5 text-base text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 const labelCls = "block text-sm font-semibold text-ink";
+const btnSm =
+  "inline-flex min-h-11 items-center justify-center rounded-sm px-4 py-2 text-sm font-bold uppercase tracking-wide focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 const btn =
   "inline-flex min-h-14 min-w-32 items-center justify-center rounded-sm px-6 py-3 text-base font-bold uppercase tracking-wide focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
@@ -160,12 +276,47 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
   const [rest, setRest] = useState<number>(cfg.descansoPorDefecto);
   const [sound, setSound] = useState(true);
   const [reaction, setReaction] = useState(false);
+  const [sel, setSel] = useState<Record<string, number>>(() =>
+    Object.fromEntries(moves.filter((m) => m.peso > 0 && m.niveles.includes(levels[0].id)).map((m) => [m.id, 1])),
+  );
+  const [paceMin, setPaceMin] = useState<number>(paces[1].min);
+  const [paceMax, setPaceMax] = useState<number>(paces[1].max);
+  const [name, setName] = useState("");
+  const [shared, setShared] = useState<{ url: string; text: string } | null>(null);
+  const [copyMsg, setCopyMsg] = useState("");
+  const [createError, setCreateError] = useState("");
+  const [dismissed, setDismissed] = useState("");
   const [view, setView] = useState<View>(IDLE);
+  const hash = useSyncExternalStore(subscribeHash, hashSnapshot, () => "");
+  const recent = useSyncExternalStore(subscribeRecent, getRecent, serverRecent);
+  const incoming = useMemo(
+    () => (hash.startsWith("#s=") && hash !== dismissed ? decodeSession(hash.slice(3), moves) : null),
+    [hash, dismissed],
+  );
   const voices = useSyncExternalStore(subscribeVoices, voicesSnapshot, () => 0);
 
   // Estado del motor (relojes y posición): no hace falta repintar por cada cambio.
   const eng = useRef<Eng>(null as unknown as Eng);
   if (eng.current === null) eng.current = makeEng();
+
+  const customOn = level === CUSTOM_LEVEL;
+  const lv = levels.find((l) => l.id === level) ?? levels[0];
+  /** Lo que hay ahora en pantalla, como sesión (es lo que arranca y lo que se comparte). */
+  const config: SessionConfig = {
+    name: name.trim(),
+    lang: voiceLang,
+    mode: reaction ? "colores" : "voz",
+    duration,
+    rounds,
+    rest,
+    min: customOn ? paceMin : lv.min,
+    max: customOn ? Math.max(paceMin, paceMax) : lv.max,
+    moves: customOn
+      ? moves.filter((m) => sel[m.id]).map((m) => ({ id: m.id, f: sel[m.id] }))
+      : moves.filter((m) => m.peso > 0 && m.niveles.includes(lv.id)).map((m) => ({ id: m.id, f: 1 })),
+  };
+  const canStart = config.moves.length > 0 && (!reaction || config.moves.some((m) => byId.get(m.id)?.color));
+  const age = ages.find((a) => a.nivel === level && a.duracion === duration && a.rondas === rounds && a.descanso === rest);
 
   const voiceMissing = sound && !reaction && (voices === -1 || (voices > 0 && !pickVoice(voiceLang)));
 
@@ -247,7 +398,7 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
   }
 
   const texts = () => data.textos[eng.current.s.voiceLang];
-  const levelOf = (): Level => levels.find((l) => l.id === eng.current.s.level) ?? levels[0];
+  const levelOf = (): Level => eng.current.s.pace;
 
   function publish(patch: Partial<View> = {}) {
     const e = eng.current;
@@ -338,7 +489,7 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
         const first = e.prev === undefined;
         const m = first
           ? moves.find((x) => x.id === data.primera)
-          : pickMove(moves, e.s.level, e.pos, cfg.limitePista, Math.random, e.prev, e.s.reaction);
+          : pickMove(e.s.moves, e.s.level, e.pos, cfg.limitePista, Math.random, e.prev, e.s.reaction);
         if (m) issue(m);
         else e.next = 1000;
       }
@@ -349,9 +500,9 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
     }
   }
 
-  function start() {
+  function start(settings: Settings) {
     const e = eng.current;
-    e.s = { level, voiceLang, duration, rounds, rest, sound, reaction };
+    e.s = settings;
     e.paused = false;
     e.round = 0;
     e.pos = 0;
@@ -369,6 +520,56 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
     window.clearInterval(e.timer);
     e.timer = window.setInterval(tick, 100);
     beginCountdown();
+  }
+
+  /** Pone una sesión (enlace, reciente o del club) en los ajustes y la arranca. */
+  function launch(c: SessionConfig) {
+    setLevel(CUSTOM_LEVEL);
+    setSel(Object.fromEntries(c.moves.map((m) => [m.id, m.f])));
+    setPaceMin(c.min);
+    setPaceMax(c.max);
+    setVoiceLang(c.lang);
+    setDuration(c.duration);
+    setRounds(c.rounds);
+    setRest(c.rest);
+    setReaction(c.mode === "colores");
+    start(settingsOf(c, true));
+  }
+
+  function launchCode(code: string) {
+    const r = decodeSession(code, moves);
+    if (r.ok) launch(r.config);
+  }
+
+  function applyAge(a: (typeof ages)[number]) {
+    setLevel(a.nivel);
+    setDuration(a.duracion);
+    setRounds(a.rondas);
+    setRest(a.descanso);
+  }
+
+  function createSession() {
+    const r = encodeSession(config, moves);
+    if (!r.ok) {
+      setShared(null);
+      setCreateError(t.errors[r.error] || t.needMoves);
+      return;
+    }
+    setCreateError("");
+    setCopyMsg("");
+    const url = `${window.location.origin}${window.location.pathname}#s=${r.code}`;
+    setShared({ url, text: `${t.shareText(config.name)} ${url}` });
+    addRecent({ name: config.name, code: r.code });
+  }
+
+  async function copyLink() {
+    if (!shared) return;
+    try {
+      await navigator.clipboard.writeText(shared.url);
+      setCopyMsg(t.copied);
+    } catch {
+      setCopyMsg(t.copyFail);
+    }
   }
 
   function stop() {
@@ -390,7 +591,10 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
   }
 
   const running = view.phase !== "idle" && view.phase !== "done";
-  const legend = moves.filter((m) => m.color && m.niveles.includes(level));
+  const legend = config.moves.flatMap((m) => {
+    const mv = byId.get(m.id);
+    return mv?.color ? [mv] : [];
+  });
   const limit = cfg.limitePista;
   const shown = view.phase === "idle" ? t.idleCommand : view.paused ? t.paused : view.command;
   const mm = Math.floor(view.seconds / 60);
@@ -398,7 +602,32 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
-      <div className="order-1">
+      {incoming && !running && (
+        <div className="order-first min-w-0 rounded-sm border border-accent bg-accent-soft p-5 lg:col-span-2" role="status">
+          {incoming.ok ? (
+            <>
+              <h2 className="break-words text-xl font-bold uppercase tracking-tight text-ink">{t.sharedTitle(incoming.config.name)}</h2>
+              <p className="mt-1 text-sm text-ink-soft">{t.sharedInfo(incoming.config)}</p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <button type="button" onClick={() => launch(incoming.config)} className={`${btn} bg-accent text-white hover:bg-accent-dark`}>
+                  {t.start}
+                </button>
+                <button type="button" onClick={() => setDismissed(hash)} className={`${btnSm} border border-accent text-accent-dark hover:bg-paper`}>
+                  {t.dismiss}
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-sm font-semibold text-ink">{t.badLink}</p>
+              <button type="button" onClick={() => setDismissed(hash)} className={`${btnSm} mt-3 border border-accent text-accent-dark hover:bg-paper`}>
+                {t.dismiss}
+              </button>
+            </>
+          )}
+        </div>
+      )}
+      <div className="order-1 min-w-0">
         <div
           className="flex min-h-[18rem] flex-col items-center justify-center rounded-sm border border-line bg-ink px-4 py-8 text-center text-paper motion-safe:transition-colors motion-safe:duration-500 sm:min-h-[22rem]"
           style={view.color ? { backgroundColor: view.color } : undefined}
@@ -436,7 +665,12 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
 
         <div className="mt-4 flex flex-wrap gap-3">
           {!running && (
-            <button type="button" onClick={start} className={`${btn} bg-accent text-white hover:bg-accent-dark`}>
+            <button
+              type="button"
+              onClick={() => start(settingsOf(config, sound))}
+              disabled={!canStart}
+              className={`${btn} bg-accent text-white hover:bg-accent-dark disabled:opacity-50`}
+            >
               {view.phase === "done" ? t.again : t.start}
             </button>
           )}
@@ -466,7 +700,47 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
           </div>
         )}
         {voiceMissing && <p className="mt-4 text-sm text-ink-soft">{t.noVoice}</p>}
-        <p className="mt-4 text-sm font-semibold text-ink">{t.warning}</p>
+        {!canStart && <p className="mt-4 text-sm font-semibold text-ink">{t.needMoves}</p>}
+
+        {!running && clubSessions.length > 0 && (
+          <section className="mt-8" aria-label={t.clubTitle}>
+            <h3 className="text-sm font-bold uppercase tracking-wide text-ink">{t.clubTitle}</h3>
+            <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+              {clubSessions.map(({ s, config: c }) => (
+                <li key={s.nombre} className="flex min-w-0 flex-col justify-between gap-3 rounded-sm border border-line bg-paper-raised p-3">
+                  <div>
+                    <p className="break-words text-sm font-bold text-ink">{(lang === "en" && s.nombre_en) || s.nombre}</p>
+                    <p className="mt-0.5 text-xs text-ink-soft">{(lang === "en" && s.descripcion_en) || s.descripcion}</p>
+                    <p className="mt-1 text-xs text-ink-soft">{t.sharedInfo(c)}</p>
+                  </div>
+                  <button type="button" onClick={() => launch(c)} className={`${btnSm} self-start bg-accent text-white hover:bg-accent-dark`}>
+                    {t.start}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {!running && recent.length > 0 && (
+          <section className="mt-6" aria-label={t.recentTitle}>
+            <h3 className="text-sm font-bold uppercase tracking-wide text-ink">{t.recentTitle}</h3>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {recent.map((r) => (
+                <li key={r.code} className="min-w-0">
+                  <button
+                    type="button"
+                    onClick={() => launchCode(r.code)}
+                    className={`${btnSm} max-w-full break-words border border-line bg-paper-raised text-ink normal-case hover:border-accent`}
+                  >
+                    {r.name || t.unnamed}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        <p className="mt-6 text-sm font-semibold text-ink">{t.warning}</p>
       </div>
 
       <form
@@ -475,6 +749,25 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
         aria-label={t.settings}
       >
         <fieldset disabled={running} className="space-y-5 disabled:opacity-60">
+          <fieldset>
+            <legend className={labelCls}>{t.byAge}</legend>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {ages.map((a) => (
+                <button
+                  key={a.id}
+                  type="button"
+                  aria-pressed={age?.id === a.id}
+                  onClick={() => applyAge(a)}
+                  className={`${btnSm} border normal-case ${
+                    age?.id === a.id ? "border-accent bg-accent text-white" : "border-line bg-paper text-ink hover:border-accent"
+                  }`}
+                >
+                  {(lang === "en" && a.nombre_en) || a.nombre}
+                </button>
+              ))}
+            </div>
+          </fieldset>
+
           <fieldset>
             <legend className={labelCls}>{t.level}</legend>
             <div className="mt-2 grid gap-2" role="radiogroup" aria-label={t.level}>
@@ -495,8 +788,124 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
                   </span>
                 </button>
               ))}
+              <button
+                type="button"
+                role="radio"
+                aria-checked={customOn}
+                onClick={() => setLevel(CUSTOM_LEVEL)}
+                className={`rounded-sm border p-3 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                  customOn ? "border-accent bg-accent text-white" : "border-line bg-paper text-ink hover:border-accent"
+                }`}
+              >
+                <span className="block text-sm font-bold">{t.custom}</span>
+                <span className={`mt-0.5 block text-xs ${customOn ? "text-white/90" : "text-ink-soft"}`}>{t.customHint}</span>
+              </button>
             </div>
           </fieldset>
+
+          {customOn && (
+            <div className="space-y-4">
+              {customGroups.map((g) => (
+                <fieldset key={g.level.id}>
+                  <legend className="text-xs font-bold uppercase tracking-wide text-ink-soft">
+                    {t.moveGroup((lang === "en" && g.level.nombre_en) || g.level.nombre)}
+                  </legend>
+                  <ul className="mt-1 space-y-1">
+                    {g.items.map((m) => (
+                      <li key={m.id} className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                        <label className="flex min-w-0 items-center gap-3 text-sm text-ink">
+                          <input
+                            type="checkbox"
+                            checked={!!sel[m.id]}
+                            onChange={(e) =>
+                              setSel((prev) => {
+                                const next = { ...prev };
+                                if (e.target.checked) next[m.id] = 1;
+                                else delete next[m.id];
+                                return next;
+                              })
+                            }
+                            className="h-5 w-5 shrink-0 accent-[var(--color-accent)]"
+                          />
+                          <span className="break-words">{m[lang]}</span>
+                        </label>
+                        {sel[m.id] && (
+                          <select
+                            aria-label={`${t.frequency}: ${m[lang]}`}
+                            className="rounded-sm border border-line bg-paper px-2 py-1.5 text-sm text-ink"
+                            value={freqKey(sel[m.id])}
+                            onChange={(e) => setSel((prev) => ({ ...prev, [m.id]: FREQUENCIES[e.target.value as Frequency] }))}
+                          >
+                            {FREQ_KEYS.map((k) => (
+                              <option key={k} value={k}>{t.freqs[k]}</option>
+                            ))}
+                          </select>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </fieldset>
+              ))}
+
+              <fieldset>
+                <legend className={labelCls}>{t.pace}</legend>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {paces.map((p) => (
+                    <button
+                      key={p.id}
+                      type="button"
+                      aria-pressed={paceMin === p.min && paceMax === p.max}
+                      onClick={() => {
+                        setPaceMin(p.min);
+                        setPaceMax(p.max);
+                      }}
+                      className={`${btnSm} border normal-case ${
+                        paceMin === p.min && paceMax === p.max ? "border-accent bg-accent text-white" : "border-line bg-paper text-ink hover:border-accent"
+                      }`}
+                    >
+                      {(lang === "en" && p.nombre_en) || p.nombre}
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-3 grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="ft-pmin" className={labelCls}>{t.paceFrom}</label>
+                    <select
+                      id="ft-pmin"
+                      className={field}
+                      value={paceMin}
+                      onChange={(e) => {
+                        const v = Number(e.target.value);
+                        setPaceMin(v);
+                        if (paceMax < v) setPaceMax(v);
+                      }}
+                    >
+                      {withValue(PACE_STEPS, paceMin).map((n) => (
+                        <option key={n} value={n}>{n.toLocaleString(lang === "en" ? "en-GB" : "es-ES")} s</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="ft-pmax" className={labelCls}>{t.paceTo}</label>
+                    <select
+                      id="ft-pmax"
+                      className={field}
+                      value={paceMax}
+                      onChange={(e) => {
+                        const v = Number(e.target.value);
+                        setPaceMax(v);
+                        if (paceMin > v) setPaceMin(v);
+                      }}
+                    >
+                      {withValue(PACE_STEPS, paceMax).filter((n) => n >= paceMin || n === paceMax).map((n) => (
+                        <option key={n} value={n}>{n.toLocaleString(lang === "en" ? "en-GB" : "es-ES")} s</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          )}
 
           <div>
             <label htmlFor="ft-lang" className={labelCls}>{t.language}</label>
@@ -511,7 +920,7 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
             <div>
               <label htmlFor="ft-dur" className={labelCls}>{t.duration}</label>
               <select id="ft-dur" className={field} value={duration} onChange={(e) => setDuration(Number(e.target.value))}>
-                {cfg.duraciones.map((d) => (
+                {withValue(cfg.duraciones, duration).map((d) => (
                   <option key={d} value={d}>{t.seconds(d)}</option>
                 ))}
               </select>
@@ -519,7 +928,7 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
             <div>
               <label htmlFor="ft-rounds" className={labelCls}>{t.rounds}</label>
               <select id="ft-rounds" className={field} value={rounds} onChange={(e) => setRounds(Number(e.target.value))}>
-                {Array.from({ length: cfg.rondas.max - cfg.rondas.min + 1 }, (_, i) => cfg.rondas.min + i).map((n) => (
+                {withValue(Array.from({ length: cfg.rondas.max - cfg.rondas.min + 1 }, (_, i) => cfg.rondas.min + i), rounds).map((n) => (
                   <option key={n} value={n}>{n}</option>
                 ))}
               </select>
@@ -529,7 +938,7 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
           <div>
             <label htmlFor="ft-rest" className={labelCls}>{t.rest}</label>
             <select id="ft-rest" className={field} value={rest} onChange={(e) => setRest(Number(e.target.value))}>
-              {cfg.descansos.map((d) => (
+              {withValue(cfg.descansos, rest).map((d) => (
                 <option key={d} value={d}>{t.seconds(d)}</option>
               ))}
             </select>
@@ -551,6 +960,59 @@ export function FootworkTrainer({ lang = "es" }: { lang?: Lang }) {
             </span>
           </label>
         </fieldset>
+
+        {!running && (
+          <fieldset className="space-y-3 border-t border-line pt-5">
+            <legend className="sr-only">{t.createTitle}</legend>
+            <h3 className="text-sm font-bold uppercase tracking-wide text-ink">{t.createTitle}</h3>
+            <p className="text-xs text-ink-soft">{t.createHint}</p>
+            <div>
+              <label htmlFor="ft-name" className={labelCls}>{t.sessionName}</label>
+              <input
+                id="ft-name"
+                type="text"
+                maxLength={SESSION_LIMITS.maxName}
+                className={field}
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  setShared(null);
+                }}
+              />
+            </div>
+            <button
+              type="button"
+              onClick={createSession}
+              disabled={!canStart}
+              className={`${btnSm} border border-accent text-accent-dark hover:bg-accent-soft disabled:opacity-50`}
+            >
+              {t.create}
+            </button>
+            {createError && <p className="text-sm font-semibold text-ink">{createError}</p>}
+            {shared && (
+              <div className="space-y-3">
+                <div>
+                  <label htmlFor="ft-link" className={labelCls}>{t.link}</label>
+                  <input id="ft-link" type="text" readOnly value={shared.url} onFocus={(e) => e.currentTarget.select()} className={`${field} font-mono text-xs`} />
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button type="button" onClick={copyLink} className={`${btnSm} bg-accent text-white hover:bg-accent-dark`}>
+                    {t.copy}
+                  </button>
+                  <a
+                    href={`https://wa.me/?text=${encodeURIComponent(shared.text)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${btnSm} border border-accent text-accent-dark hover:bg-accent-soft`}
+                  >
+                    {t.whatsapp}
+                  </a>
+                </div>
+                <p role="status" className="text-xs text-ink-soft">{copyMsg}</p>
+              </div>
+            )}
+          </fieldset>
+        )}
       </form>
     </div>
   );

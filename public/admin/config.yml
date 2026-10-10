@@ -389,6 +389,34 @@ collections:
               - { name: imageSource, label: "Foto original del proveedor (se descarga sola)", widget: string, required: false }
               - { name: imported, label: "Importado del catálogo del proveedor", widget: boolean, default: false, required: false }
 
+      - name: mercadillo
+        label: Mercadillo de segunda mano (textos y listas)
+        file: src/content/data/mercadillo.json
+        fields:
+          - { name: intro, label: Texto de introducción, widget: text }
+          - { name: aviso, label: Aviso fijo (compra entre particulares, homologación), widget: text }
+          - name: tipos
+            label: Tipos de material
+            widget: list
+            summary: "{{label}}"
+            fields:
+              - { name: id, label: "Identificador (no cambiar; sin espacios ni tildes)", widget: string }
+              - { name: label, label: Nombre, widget: string }
+          - name: estados
+            label: Estados del material
+            widget: list
+            summary: "{{label}}"
+            fields:
+              - { name: id, label: "Identificador (no cambiar)", widget: string }
+              - { name: label, label: Nombre, widget: string }
+          - name: manos
+            label: Manos
+            widget: list
+            summary: "{{label}}"
+            fields:
+              - { name: id, label: "Identificador (no cambiar)", widget: string }
+              - { name: label, label: Nombre, widget: string }
+
       - name: tallas
         label: Guía de tallas (tienda)
         file: src/content/data/tallas.json
@@ -472,6 +500,51 @@ collections:
               - { name: paso, label: "Pasos que mueve en la pista (+1 avanza, -1 retrocede, 0 se queda)", widget: number, value_type: int }
               - { name: peso, label: "Frecuencia relativa (0 = no sale al azar; 5 = muy frecuente)", widget: number, value_type: float }
               - { name: color, label: "Color del modo reacción (#rrggbb; vacío = no sale en ese modo)", widget: string, required: false, hint: "Que tenga buen contraste con texto blanco" }
+          - name: ritmos
+            label: "Ritmos del modo Personalizado (lento / medio / rápido)"
+            widget: list
+            summary: "{{nombre}}"
+            fields:
+              - { name: id, label: "Identificador (no cambiar)", widget: string }
+              - { name: nombre, label: Nombre, widget: string }
+              - { name: nombre_en, label: "Nombre en inglés", widget: string }
+              - { name: min, label: "Segundos mínimos entre órdenes", widget: number, value_type: float }
+              - { name: max, label: "Segundos máximos entre órdenes", widget: number, value_type: float }
+          - name: porEdad
+            label: "Por edad (categorías con duración fija)"
+            widget: list
+            summary: "{{nombre}}"
+            fields:
+              - { name: id, label: "Identificador (sin espacios; no cambiar)", widget: string }
+              - { name: nombre, label: Nombre, widget: string }
+              - { name: nombre_en, label: "Nombre en inglés", widget: string }
+              - { name: nivel, label: Nivel, widget: select, options: [iniciacion, medio, competicion] }
+              - { name: duracion, label: "Duración de cada ronda (segundos)", widget: number, value_type: int }
+              - { name: rondas, label: Rondas, widget: number, value_type: int }
+              - { name: descanso, label: "Descanso entre rondas (segundos)", widget: number, value_type: int }
+          - name: sesiones
+            label: "Sesiones del club (se empiezan con un toque)"
+            widget: list
+            summary: "{{nombre}}"
+            fields:
+              - { name: nombre, label: Nombre, widget: string }
+              - { name: nombre_en, label: "Nombre en inglés", widget: string }
+              - { name: descripcion, label: Descripción, widget: text }
+              - { name: descripcion_en, label: "Descripción en inglés", widget: text }
+              - name: movimientos
+                label: Movimientos
+                widget: list
+                summary: "{{id}} ({{frecuencia}})"
+                fields:
+                  - { name: id, label: Movimiento, widget: select, options: [guardia, avance, retroceso, fondo, doble-avance, doble-retroceso, salto-adelante, salto-atras, fondo-recuperacion, balestra, flecha, avance-fondo, tercera, cuarta, quinta] }
+                  - { name: frecuencia, label: Frecuencia, widget: select, options: [poca, normal, mucha], default: normal }
+              - { name: ritmoMin, label: "Segundos mínimos entre órdenes", widget: number, value_type: float }
+              - { name: ritmoMax, label: "Segundos máximos entre órdenes", widget: number, value_type: float }
+              - { name: duracion, label: "Duración de cada ronda (segundos)", widget: number, value_type: int }
+              - { name: rondas, label: Rondas, widget: number, value_type: int }
+              - { name: descanso, label: "Descanso entre rondas (segundos)", widget: number, value_type: int }
+              - { name: idioma, label: "Idioma de las órdenes", widget: select, options: [es, fr, en] }
+              - { name: modo, label: Modo, widget: select, options: [voz, colores] }
           - { name: primera, label: "Identificador de la primera orden de cada ronda", widget: string }
           - name: textos
             label: "Frases fijas de la voz"

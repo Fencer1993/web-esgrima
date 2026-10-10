@@ -28,6 +28,7 @@ relativas a `src/`.
 | `/clase-gratis` | `app/clase-gratis/page.tsx` | `content/data/clase-gratis.json` (pasos; foto = fragmento de nombre de `gallery.ts`) |
 | `/preguntas-frecuentes` | `app/preguntas-frecuentes/page.tsx` | `content/faq.ts` |
 | `/resultados`, `/resultados/[slug]`, `/deportistas/[slug]` | `app/resultados/`, `app/deportistas/` | `content/data/resultados.json` (torneos y puestos; medallas automáticas), `equipo.json` (slug/bio/arma/desde; página solo si hay resultados o bio) |
+| `/mercadillo`, `/mercadillo/mi-anuncio` | `app/(es)/mercadillo/page.tsx` (+ `components/Mercadillo.tsx`, `MiAnuncio.tsx`) | `content/data/mercadillo.json` (intro, aviso, tipos, estados, manos) |
 | `/patrocinadores` | `app/patrocinadores/page.tsx` | `content/data/patrocinadores.json`, `cifras.json` |
 | `/entrenador`, `/en/footwork-trainer` | `app/(es)/entrenador/page.tsx`, `app/(en)/en/footwork-trainer/page.tsx` (+ `components/FootworkTrainer.tsx`) | `content/data/entrenador.json` (órdenes es/fr/en, niveles, pasos de pista, colores del modo reacción) |
 | `/contacto` | `app/contacto/page.tsx` | `content/site.ts` |
@@ -160,10 +161,28 @@ prenda por el título de la tabla: «Trajes»/«Ropa», «Chaqueta eléctrica»,
 propias (Grant/PBT) usa las de VE. La ficha de producto preselecciona la talla
 guardada si coincide con una de sus tallas. Prueba de la lógica:
 `node --experimental-strip-types .github/scripts/test-size-calc.mjs`.
+Con tallas guardadas, cada tarjeta muestra «Añadir talla 50» (lo añade al carrito de un toque si no pide mano ni opciones; si no, abre la ficha con el foco en lo que falta) y hay un filtro quitable «En mi talla» (también desde «Ver productos en mi talla» en el resultado de la calculadora; lógica en `quickAddPlan`, `lib/mySizes.ts`).
 La guía de tallas (antes del catálogo) sale de `content/data/tallas.json`
 (`components/SizeGuide.tsx`); cada ficha enlaza a `#tallas-<marca>`.
 Los pedidos van a `public/pedido.php` y se gestionan en `/gestion/` (Excel mensual con
 el formato de la plantilla del club: `public/gestion/xlsx.php`).
+
+## Mercadillo de segunda mano
+
+`/mercadillo` (solo en español; el menú inglés lo enlaza como «(in Spanish)»):
+anuncios «Se vende» / «Se busca» de material de esgrima, públicos, con
+revisión previa del club. Textos y listas (tipos, estados, manos) en
+`content/data/mercadillo.json` (panel: «Mercadillo de segunda mano»); el
+despliegue lo copia a `mercadillo-config.json` para `public/mercadillo.php`.
+`mercadillo.php` (lista pública `?lista`, foto `?foto=<id>` solo si el
+anuncio está aprobado, publicar por POST y enlace privado del anunciante) y
+`mercadillo-lib.php` guardan anuncios en `club-data/mercadillo.jsonl` y fotos en
+`club-data/mercadillo-fotos/` (carpeta privada, nunca en git). Moderación en
+`/gestion/mercadillo.php`. El anunciante gestiona su anuncio en
+`/mercadillo/mi-anuncio/#<token>` (el token solo se guarda con hash). Los
+anuncios aprobados duran 90 días; los datos se borran 90 días después de
+caducar. Prueba de extremo a extremo (necesita `php`):
+`node --experimental-strip-types .github/scripts/test-mercadillo.mjs`.
 
 ## Reserva de clase gratis
 
@@ -185,9 +204,16 @@ pantalla siempre encendida con Wake Lock si existe; no se guarda ni se envía
 nada. Movimientos, niveles, intervalos, límite de la pista virtual (±6 pasos),
 colores del modo reacción y frases fijas (es/fr/en) están en
 `content/data/entrenador.json`, editable en el panel («Entrenador de pies por
-voz»). Para añadir una orden basta una entrada nueva en `movimientos` (con sus
+voz»).
+Modo «Personalizado» (casillas por movimiento, frecuencia poca/normal/mucha y
+ritmo con `ritmos`), «Por edad» (`porEdad`: nivel + duración, rondas y descanso)
+y «Sesiones del club» (`sesiones`: movimientos con frecuencia, ritmo, tiempos,
+idioma y modo `voz`/`colores`; todo editable en el panel). «Crear sesión»
+guarda la configuración en el enlace (`#s=<base64url JSON v1>`, validada y
+con límites en `lib/footwork.ts`; recientes en `localStorage` vía
+`lib/footworkStore.ts`); se comparte con «Copiar enlace» o WhatsApp. Para añadir una orden basta una entrada nueva en `movimientos` (con sus
 niveles, `paso` y `peso`). Prueba de la lógica:
-`node --experimental-strip-types .github/scripts/test-footwork.mjs`.
+`node --experimental-strip-types .github/scripts/test-footwork.mjs` (incluye sesiones).
 
 ## Para asistentes de IA
 

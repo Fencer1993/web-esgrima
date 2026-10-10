@@ -1,11 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useMemo, useState, useSyncExternalStore, type FormEvent, type MouseEvent } from "react";
+import { useEffect, useId, useMemo, useRef, useState, useSyncExternalStore, type FormEvent, type MouseEvent } from "react";
 import type { ShopProduct } from "@/content/shop";
 import { Photo } from "@/components/Photo";
 import { ShopDialog } from "@/components/ShopDialog";
-import { getMySizes, savedSizeFor } from "@/lib/mySizes";
+import {
+  SHOW_MINE_EVENT,
+  getMySizes,
+  getMySizesServer,
+  quickAddPlan,
+  savedSizeFor,
+  subscribeMySizes,
+} from "@/lib/mySizes";
 import type { Lang } from "@/content/i18n";
 import {
   cartLineLabel,
@@ -132,6 +139,7 @@ function Chips({
   value,
   onChange,
   display = (o) => o,
+  autoFocusFirst = false,
 }: {
   legend: string;
   options: string[];
@@ -139,16 +147,19 @@ function Chips({
   onChange: (v: string) => void;
   /** Texto mostrado de cada valor (el valor enviado no cambia). */
   display?: (o: string) => string;
+  /** El diálogo da el foco inicial a la primera opción (lo que falta por elegir). */
+  autoFocusFirst?: boolean;
 }) {
   return (
     <fieldset>
       <legend className={labelCls}>{legend}</legend>
       <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label={legend}>
-        {options.map((o) => (
+        {options.map((o, i) => (
           <button
             key={o}
             type="button"
             role="radio"
+            {...(autoFocusFirst && i === 0 ? { "data-autofocus": "" } : {})}
             aria-checked={value === o}
             onClick={() => onChange(o)}
             className={`min-w-11 rounded-sm border px-3 py-2 text-sm font-semibold transition-colors ${focusRing} ${
@@ -184,12 +195,15 @@ function ProductDetail({
   isFav,
   onClose,
   onAdded,
+  focusMissing,
   lang,
 }: {
   product: ShopProduct;
   isFav: boolean;
   onClose: () => void;
   onAdded: () => void;
+  /** Abierta desde «Añadir talla X»: el foco va a lo primero que falte por elegir. */
+  focusMissing: boolean;
   lang: Lang;
 }) {
   const t = shopUi[lang];
@@ -212,6 +226,13 @@ function ProductDetail({
   );
   const [qty, setQ] = useState(1);
   const [error, setError] = useState("");
+  const firstMissing = !focusMissing
+    ? ""
+    : product.sizes.length > 0 && !size
+      ? "size"
+      : product.hands.length > 0 && !hand
+        ? "hand"
+        : (product.options.find((o) => !opts[o.name])?.name ?? "");
 
   function add() {
     if (product.sizes.length > 0 && !size) {
@@ -350,6 +371,7 @@ function ProductDetail({
             <Chips
               legend={t.size}
               options={product.sizes}
+              autoFocusFirst={firstMissing === "size"}
               value={size}
               onChange={(v) => {
                 setSize(v);
@@ -365,6 +387,7 @@ function ProductDetail({
               legend={t.hand}
               options={product.hands}
               display={(h) => handLabel(h, lang)}
+              autoFocusFirst={firstMissing === "hand"}
               value={hand}
               onChange={(v) => {
                 setHand(v);
@@ -379,6 +402,7 @@ function ProductDetail({
               legend={optionNameLabel(o.name, lang)}
               options={o.values}
               display={(v) => optionValueLabel(v, lang)}
+              autoFocusFirst={firstMissing === o.name}
               value={opts[o.name] ?? ""}
               onChange={(v) => {
                 setOpts((prev) => ({ ...prev, [o.name]: v }));
@@ -685,17 +709,58 @@ export function ShopApp({
   const [query, setQuery] = useState("");
   const [limit, setLimit] = useState(PAGE);
   const [openId, setOpenId] = useState<string | null>(null);
+  const [quickOpen, setQuickOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [mine, setMine] = useState(false);
+  const [toast, setToast] = useState("");
+  const toastTimer = useRef<number | undefined>(undefined);
   const searchId = useId();
+  const saved = useSyncExternalStore(subscribeMySizes, getMySizes, getMySizesServer);
+
+  // La calculadora (otro componente de la misma página) pide ver solo lo que
+  // hay en las tallas recomendadas.
+  useEffect(() => {
+    const show = () => {
+      setMine(true);
+      setCategory("Todo");
+      setQuery("");
+      setLimit(PAGE);
+    };
+    window.addEventListener(SHOW_MINE_EVENT, show);
+    return () => window.removeEventListener(SHOW_MINE_EVENT, show);
+  }, []);
+  useEffect(() => () => window.clearTimeout(toastTimer.current), []);
+
+  function notify(msg: string) {
+    setToast(msg);
+    window.clearTimeout(toastTimer.current);
+    toastTimer.current = window.setTimeout(() => setToast(""), 5000);
+  }
+
+  function quickAdd(p: ShopProduct) {
+    const plan = quickAddPlan(p, saved);
+    if (!plan) return;
+    if (!plan.direct) {
+      setQuickOpen(true);
+      setOpenId(p.id);
+      return;
+    }
+    addToCart({ productId: p.id, size: plan.size, hand: plan.hand, options: plan.options, qty: 1 });
+    notify(t.addedToast((lang === "en" && p.nameEn) || p.name, plan.size));
+  }
 
   const byId = useMemo(() => new Map(products.map((p) => [p.id, p])), [products]);
   const validLines = store.cart.filter((l) => byId.has(l.productId));
   const units = validLines.reduce((n, l) => n + l.qty, 0);
   const favCount = store.favs.filter((f) => byId.has(f)).length;
 
+  // Sin tallas guardadas el filtro no puede aplicarse (p. ej. tras borrar las medidas).
+  const mineOn = mine && !!saved;
+
   const visible = useMemo(() => {
     const q = norm(query.trim());
     return products.filter((p) => {
+      if (mineOn && !savedSizeFor(p, saved)) return false;
       if (category === "Favoritos" ? !store.favs.includes(p.id) : category !== "Todo" && p.category !== category)
         return false;
       if (!q) return true;
@@ -703,7 +768,7 @@ export function ShopApp({
         `${p.name} ${lang === "en" ? `${p.nameEn} ${categoryLabel(p.category, lang)} ` : ""}${p.supplier} ${p.category} ${p.ref}`,
       ).includes(q);
     });
-  }, [products, category, query, store.favs, lang]);
+  }, [products, category, query, store.favs, lang, mineOn, saved]);
 
   const opened = openId ? byId.get(openId) : undefined;
   // Los valores internos de los chips siguen siendo los españoles; solo cambia la etiqueta.
@@ -737,6 +802,25 @@ export function ShopApp({
               )}
             </button>
           ))}
+          {(saved || mineOn) && (
+            <button
+              type="button"
+              aria-pressed={mineOn}
+              aria-label={mineOn ? t.removeMineFilter : undefined}
+              onClick={() => {
+                setMine(!mineOn);
+                setLimit(PAGE);
+              }}
+              className={`flex shrink-0 items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${focusRing} ${
+                mineOn
+                  ? "border-accent bg-accent text-white"
+                  : "border-line bg-paper text-ink hover:border-accent"
+              }`}
+            >
+              {t.mineChip}
+              {mineOn && <span aria-hidden>×</span>}
+            </button>
+          )}
         </div>
         <div className="relative w-full lg:max-w-xs">
           <label htmlFor={searchId} className="sr-only">{t.searchLabel}</label>
@@ -764,13 +848,14 @@ export function ShopApp({
 
       {visible.length === 0 ? (
         <p className="mt-6 rounded-sm border border-dashed border-line p-8 text-center text-sm text-ink-soft">
-          {category === "Favoritos" && !query ? t.noFavs : t.noMatches}
+          {mineOn && !query ? t.noMine : category === "Favoritos" && !query ? t.noFavs : t.noMatches}
         </p>
       ) : (
         <ul className="mt-3 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
           {visible.slice(0, limit).map((p) => {
             const fav = store.favs.includes(p.id);
             const pName = (lang === "en" && p.nameEn) || p.name;
+            const plan = quickAddPlan(p, saved);
             return (
               <li
                 key={p.id}
@@ -778,7 +863,10 @@ export function ShopApp({
               >
                 <button
                   type="button"
-                  onClick={() => setOpenId(p.id)}
+                  onClick={() => {
+                    setQuickOpen(false);
+                    setOpenId(p.id);
+                  }}
                   aria-label={t.viewProduct(pName, p.supplier)}
                   className={`flex flex-1 flex-col text-left ${focusRing}`}
                 >
@@ -809,6 +897,18 @@ export function ShopApp({
                     )}
                   </div>
                 </button>
+                {plan && (
+                  <div className="px-3 pb-3 sm:px-4 sm:pb-4">
+                    <button
+                      type="button"
+                      onClick={() => quickAdd(p)}
+                      aria-label={t.addSizeFor(plan.size, pName)}
+                      className={`min-h-11 w-full rounded-sm border border-accent px-2 py-2 text-xs font-semibold uppercase tracking-wide text-accent-dark transition-colors hover:bg-accent-soft sm:text-sm ${focusRing}`}
+                    >
+                      {t.addSize(plan.size)}
+                    </button>
+                  </div>
+                )}
                 <button
                   type="button"
                   onClick={() => toggleFav(p.id)}
@@ -866,6 +966,7 @@ export function ShopApp({
           product={opened}
           isFav={store.favs.includes(opened.id)}
           lang={lang}
+          focusMissing={quickOpen}
           onClose={() => setOpenId(null)}
           onAdded={() => {
             setOpenId(null);
@@ -873,6 +974,27 @@ export function ShopApp({
           }}
         />
       )}
+      <div
+        role="status"
+        className="pointer-events-none fixed inset-x-4 z-40 flex justify-start lg:left-6"
+        style={{ bottom: "calc(5.5rem + env(safe-area-inset-bottom))" }}
+      >
+        {toast && (
+          <p className="pointer-events-auto flex max-w-sm items-center gap-3 rounded-sm bg-ink px-4 py-3 text-sm text-white shadow-lg shadow-black/25">
+            <span>{toast}</span>
+            <button
+              type="button"
+              onClick={() => {
+                setToast("");
+                setCartOpen(true);
+              }}
+              className={`-my-2 shrink-0 px-1 py-2 font-semibold uppercase tracking-wide underline underline-offset-2 ${focusRing}`}
+            >
+              {t.viewCart}
+            </button>
+          </p>
+        )}
+      </div>
       {cartOpen && <CartPanel lines={validLines} byId={byId} onClose={() => setCartOpen(false)} lang={lang} />}
     </>
   );

@@ -3,6 +3,7 @@ declare(strict_types=1);
 require __DIR__ . '/auth.php';
 require __DIR__ . '/layout.php';
 require_once dirname(__DIR__) . '/push-lib.php';
+require_once dirname(__DIR__) . '/mercadillo-lib.php';
 
 $orders = pedidos_read();
 $nuevos = count(array_filter($orders, fn($o) => ($o['status'] ?? '') === 'nuevo'));
@@ -23,6 +24,10 @@ gestion_header('Panel', 'index.php');
   <a class="card" href="reservas.php">
     <div class="n"><?= $prox ?></div><strong>Clases gratis reservadas</strong>
     <p>Próximas reservas confirmadas.</p>
+  </a>
+  <a class="card" href="mercadillo.php">
+    <div class="n"><?= mer_pending_count() ?></div><strong>Mercadillo: anuncios por revisar</strong>
+    <p>Material de segunda mano. Aprueba o rechaza los anuncios nuevos.</p>
   </a>
   <a class="card" href="convocatoria.php">
     <div class="n">✎</div><strong>Convocatorias</strong>
