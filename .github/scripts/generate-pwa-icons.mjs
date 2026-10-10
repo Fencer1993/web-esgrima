@@ -1,10 +1,10 @@
 // Genera los iconos de la app (PWA) y el favicon a partir del escudo oficial
-// del club (public/images/logo/logo-club-esgrima-torremolinos.png, fondo
+// del club (public/brand/escudo-club-esgrima-torremolinos.png, fondo
 // transparente). Uso: node .github/scripts/generate-pwa-icons.mjs
 import sharp from "sharp";
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const SRC = "public/images/logo/logo-club-esgrima-torremolinos.png";
+const SRC = "public/brand/escudo-club-esgrima-torremolinos.png";
 mkdirSync("public/icons", { recursive: true });
 
 // Escudo centrado sobre blanco: `inner` = tamaño del escudo dentro del lienzo.

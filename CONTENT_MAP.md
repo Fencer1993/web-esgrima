@@ -119,7 +119,7 @@ instalaciones, resultados, patrocinadores y páginas legales siguen en español
 
 ## Imágenes
 
-Escudo oficial: `public/images/logo/logo-club-esgrima-torremolinos.png` (fondo
+Escudo oficial: `public/brand/escudo-club-esgrima-torremolinos.png` (fondo
 transparente; versión ligera `-256.webp`). Sale en la cabecera, el pie, la portada
 (es/en), las imágenes para compartir (`opengraph-image.tsx`), el JSON-LD (`logo`),
 la gestión y los iconos de la app/favicon (regenerar con

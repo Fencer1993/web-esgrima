@@ -49,7 +49,7 @@ export function businessJsonLd(lang: Lang) {
         closes: "21:00",
       },
     ],
-    logo: `${site.url}/images/logo/logo-club-esgrima-torremolinos.png`,
+    logo: `${site.url}/brand/escudo-club-esgrima-torremolinos.png`,
     sameAs: [site.social.instagram],
     hasMap: site.address.mapsUrl,
     areaServed: ["Torremolinos", "Málaga"],

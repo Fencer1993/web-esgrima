@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 // Escudo oficial del club (se incrusta en la imagen al generarla en el build).
 const logo = `data:image/png;base64,${readFileSync(
-  join(process.cwd(), "public/images/logo/logo-club-esgrima-torremolinos.png"),
+  join(process.cwd(), "public/brand/escudo-club-esgrima-torremolinos.png"),
 ).toString("base64")}`;
 
 export const dynamic = "force-static";
