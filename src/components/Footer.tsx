@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { InstallAppLink } from "@/components/InstallAppLink";
 import { footerLinks, navigation, site, whatsappLink } from "@/content/site";
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -107,6 +108,7 @@ export function Footer() {
             <InstagramIcon className="h-5 w-5 text-accent transition-transform group-hover:-rotate-6 group-hover:scale-110" />
             Síguenos en Instagram
           </a>
+          <InstallAppLink />
         </div>
 
         <div>

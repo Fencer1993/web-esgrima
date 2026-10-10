@@ -116,3 +116,12 @@ Cada `page.tsx` exporta su propio `metadata` (title/description/
 canonical) al principio del archivo — es lo primero que hay que tocar
 si se pide cambiar un meta description. `src/app/sitemap.ts` lista las
 rutas indexables; añadir ahí cualquier página nueva.
+
+## App instalable (PWA)
+
+`src/app/manifest.ts` (manifest, respeta `BASE_PATH`), `public/sw.js`
+(caché sin conexión; sube `VERSION` para invalidar; hueco para `push`),
+`src/app/offline/page.tsx` (noindex, fuera del sitemap),
+`src/components/PwaRegister.tsx` (registro + aviso único) e
+`InstallAppLink.tsx` (botón del pie). Iconos en `public/icons/`
+(regenerar con `node .github/scripts/generate-pwa-icons.mjs`).

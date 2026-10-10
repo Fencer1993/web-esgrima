@@ -20,8 +20,8 @@ const aiCrawlers = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/admin/", "/admin-auth/", "/gestion/"] },
-      { userAgent: aiCrawlers, allow: "/", disallow: ["/admin/", "/admin-auth/", "/gestion/"] },
+      { userAgent: "*", allow: "/", disallow: ["/admin/", "/admin-auth/", "/gestion/", "/offline/"] },
+      { userAgent: aiCrawlers, allow: "/", disallow: ["/admin/", "/admin-auth/", "/gestion/", "/offline/"] },
     ],
     sitemap: `${site.url}/sitemap.xml`,
   };

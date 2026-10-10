@@ -42,3 +42,14 @@ RewriteRule ^index\.php/2022/06/22/bonjour-tout-le-monde/?$ https://www.esgrimat
 RewriteRule ^index\.php/ / [L,R=301]
 
 ErrorDocument 404 /404.html
+
+# PWA: tipo MIME del manifest y service worker siempre revalidado, para que
+# las actualizaciones de sw.js lleguen sin esperar a que caduque la caché.
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+</IfModule>
+<IfModule mod_headers.c>
+  <Files "sw.js">
+    Header set Cache-Control "no-cache, max-age=0, must-revalidate"
+  </Files>
+</IfModule>

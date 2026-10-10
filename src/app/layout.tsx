@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, Rajdhani, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { RevealController } from "@/components/RevealController";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { PwaRegister } from "@/components/PwaRegister";
 import { galleryItems } from "@/content/gallery";
 import { coaches } from "@/content/programs";
 import { site } from "@/content/site";
@@ -43,6 +44,24 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  // PWA: el manifest sale de src/app/manifest.ts; iOS no lo lee todo, de ahí
+  // appleWebApp y el apple-touch-icon (generado con .github/scripts/generate-pwa-icons.mjs).
+  appleWebApp: { capable: true, title: "Esgrima Torremolinos", statusBarStyle: "default" },
+  // Next 16 solo emite mobile-web-app-capable; iOS antiguo busca el prefijo apple-.
+  other: { "apple-mobile-web-app-capable": "yes" },
+  icons: {
+    apple: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/icons/apple-touch-icon.png`,
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#17232b",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -123,6 +142,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Footer />
         <WhatsAppFloat />
+        <PwaRegister />
       </body>
     </html>
   );
