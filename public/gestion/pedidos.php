@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require __DIR__ . '/auth.php';
 require __DIR__ . '/layout.php';
+require __DIR__ . '/xlsx.php';
 
 $msg = '';
 $err = '';
@@ -29,6 +30,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
             if ($ok && $found) { $msg = 'Estado actualizado.'; } else { $err = 'No se pudo actualizar el pedido.'; }
         }
+    } elseif ($do === 'club') {
+        // Material del club: va en su propio bloque del Excel y sin comisión.
+        $id = (string)($_POST['id'] ?? '');
+        $on = ($_POST['club'] ?? '') === '1';
+        $ok = pedidos_update(function (array $rows) use ($id, $on) {
+            foreach ($rows as &$r) {
+                if ((string)$r['id'] === $id) {
+                    $r['club'] = $on;
+                    $r['updated_at'] = date('c');
+                }
+            }
+            return $rows;
+        });
+        if ($ok) { $msg = $on ? 'Marcado como material del club.' : 'Ya no es material del club.'; } else { $err = 'No se pudo actualizar el pedido.'; }
     } elseif ($do === 'group_all') {
         $n = 0;
         $ok = pedidos_update(function (array $rows) use (&$n) {
@@ -57,6 +72,33 @@ if (!empty($_SESSION['flash'])) {
 $orders = pedidos_read();
 $view = (string)($_GET['view'] ?? 'lista');
 $summary = pedidos_summary($orders);
+
+// --- Excel con el formato de la plantilla del club --------------------------
+$months = array_values(array_unique(array_filter(array_map('xlsx_order_month', $orders))));
+rsort($months);
+if (isset($_GET['xlsx'])) {
+    $want = (string)$_GET['xlsx'];
+    if (preg_match('/^curso-(\d{4})$/', $want, $m)) {
+        // Curso deportivo: de septiembre a agosto, solo los meses con pedidos.
+        $sel = array_values(array_filter($months, fn($ym) => $ym >= $m[1] . '-09' && $ym <= ((int)$m[1] + 1) . '-08'));
+        sort($sel);
+        $fname = 'pedidos-material-' . $m[1] . '-' . substr((string)((int)$m[1] + 1), 2);
+    } elseif (in_array($want, $months, true)) {
+        $sel = [$want];
+        $fname = 'pedido-material-' . $want;
+    } else {
+        $sel = [];
+    }
+    if ($sel) {
+        $bin = xlsx_build($orders, $sel);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . $fname . '.xlsx"');
+        header('Content-Length: ' . strlen($bin));
+        echo $bin;
+        exit;
+    }
+}
+$courses = array_values(array_unique(array_map(fn($ym) => (int)substr($ym, 5, 2) >= 9 ? (int)substr($ym, 0, 4) : (int)substr($ym, 0, 4) - 1, $months)));
 
 // --- Exportaciones CSV -----------------------------------------------------
 if (isset($_GET['csv'])) {
@@ -99,6 +141,13 @@ $nNuevos = count(array_filter($orders, fn($o) => ($o['status'] ?? '') === 'nuevo
   <a class="btn <?= $view !== 'resumen' ? 'ghost' : '' ?>" href="pedidos.php?view=resumen">Resumen para el proveedor</a>
   <a class="btn sky" href="pedidos.php?csv=pedidos">CSV pedidos</a>
   <a class="btn sky" href="pedidos.php?csv=resumen">CSV resumen</a>
+  <form method="get" action="pedidos.php" class="row">
+    <select name="xlsx" aria-label="Mes o curso del Excel" <?= $months ? '' : 'disabled' ?>>
+      <?php foreach ($months as $ym): ?><option value="<?= h($ym) ?>"><?= h(ucfirst(xlsx_month_title($ym))) ?></option><?php endforeach; ?>
+      <?php foreach ($courses as $c): ?><option value="curso-<?= $c ?>">Curso <?= $c ?>-<?= substr((string)($c + 1), 2) ?> (una hoja por mes)</option><?php endforeach; ?>
+    </select>
+    <button type="submit" class="btn sky" <?= $months ? '' : 'disabled' ?>>Excel del pedido</button>
+  </form>
   <form method="post" action="pedidos.php" onsubmit="return confirm('¿Marcar todos los pedidos nuevos como agrupados?')">
     <?= gestion_csrf_field() ?><input type="hidden" name="do" value="group_all"><input type="hidden" name="view" value="<?= h($view) ?>">
     <button type="submit" <?= $nNuevos ? '' : 'disabled' ?>>Marcar todos como agrupados (<?= $nNuevos ?>)</button>
@@ -125,7 +174,7 @@ $nNuevos = count(array_filter($orders, fn($o) => ($o['status'] ?? '') === 'nuevo
     <?php foreach (array_reverse($orders) as $o): $st = (string)($o['status'] ?? 'nuevo'); ?>
       <tr>
         <td>
-          <strong><?= h($o['name'] ?? '') ?></strong> <span class="pill <?= h($st) ?>"><?= h(PEDIDO_ESTADOS[$st] ?? $st) ?></span><br>
+          <strong><?= h($o['name'] ?? '') ?></strong> <span class="pill <?= h($st) ?>"><?= h(PEDIDO_ESTADOS[$st] ?? $st) ?></span><?php if (!empty($o['club'])): ?> <span class="pill agrupado">Material del club</span><?php endif; ?><br>
           <span class="muted"><?= h($o['created_at'] ?? '') ?> · <?= h($o['email'] ?? '') ?> · <?= h($o['phone'] ?? '') ?></span>
           <?php if (!empty($o['notes'])): ?><br><em><?= h($o['notes']) ?></em><?php endif; ?>
         </td>
@@ -144,6 +193,11 @@ $nNuevos = count(array_filter($orders, fn($o) => ($o['status'] ?? '') === 'nuevo
               <?php endforeach; ?>
             </select>
             <button type="submit">Guardar</button>
+          </form>
+          <form method="post" action="pedidos.php" class="row">
+            <?= gestion_csrf_field() ?><input type="hidden" name="do" value="club"><input type="hidden" name="view" value="lista">
+            <input type="hidden" name="id" value="<?= h($o['id'] ?? '') ?>"><input type="hidden" name="club" value="<?= empty($o['club']) ? '1' : '0' ?>">
+            <button type="submit" class="ghost"><?= empty($o['club']) ? 'Es material del club' : 'Quitar «material del club»' ?></button>
           </form>
         </td>
       </tr>

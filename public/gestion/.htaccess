@@ -2,7 +2,7 @@ Options -Indexes
 DirectoryIndex index.php
 
 # Nada de lo interno se sirve directamente.
-<FilesMatch "^(config(\.example)?|auth|data|layout)\.php$">
+<FilesMatch "^(config(\.example)?|auth|data|layout|xlsx)\.php$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>

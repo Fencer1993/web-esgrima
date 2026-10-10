@@ -149,7 +149,8 @@ conserva descripciones/visibilidad editadas)
 y paso `images` (descarga y optimiza las fotos a `public/images/tienda/`).
 La guía de tallas (antes del catálogo) sale de `content/data/tallas.json`
 (`components/SizeGuide.tsx`); cada ficha enlaza a `#tallas-<marca>`.
-Los pedidos van a `public/pedido.php` y se gestionan en `/gestion/`.
+Los pedidos van a `public/pedido.php` y se gestionan en `/gestion/` (Excel mensual con
+el formato de la plantilla del club: `public/gestion/xlsx.php`).
 
 ## Reserva de clase gratis
 

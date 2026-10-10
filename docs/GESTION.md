@@ -11,6 +11,12 @@ ni frameworks. Todas las páginas exigen sesión y llevan `noindex`.
     recibido → entregado / cancelado). Se cambia con el desplegable y "Guardar".
   - *Resumen para el proveedor*: pedidos abiertos (nuevo + agrupado) sumados por
     proveedor → producto → talla, con los nombres de los socios de cada línea.
+  - *Excel del pedido* (`xlsx.php`): formato de la plantilla del club
+    ("Pedido material – <mes> <año>"), un mes o un curso entero (una hoja por mes).
+    Primero "Material del Club" (descuento 15 %, sin comisión), luego un bloque por
+    socio con su fila TOTAL. Precio sin IVA = precio de socio / (0,95 × 1,21);
+    los "Desde" se marcan para revisar. Los cancelados no salen. Cada pedido tiene
+    el botón "Es material del club".
   - *CSV*: exportación del resumen y de los pedidos (UTF-8 con BOM, separador `;`,
     se abre bien en Excel en español).
   - *Marcar todos como agrupados*: pasa todos los "nuevo" a "agrupado".

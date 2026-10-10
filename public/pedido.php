@@ -189,6 +189,9 @@ foreach ($rawLines as $l) {
         "product_id" => $pid,
         "product" => (string) ($products[$pid]["name"] ?? $pid)
             . (!empty($products[$pid]["ref"]) ? " · Ref. " . $products[$pid]["ref"] : ""),
+        "name" => (string) ($products[$pid]["name"] ?? $pid),
+        "ref" => (string) ($products[$pid]["ref"] ?? ""),
+        "price" => (string) ($products[$pid]["price"] ?? ""),
         "url" => (string) ($products[$pid]["url"] ?? ""),
         "supplier" => (string) ($products[$pid]["supplier"] ?? ""),
         "size" => $size,
