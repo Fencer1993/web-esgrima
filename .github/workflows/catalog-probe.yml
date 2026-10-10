@@ -1,0 +1,36 @@
+name: Explorar catálogos de proveedores
+
+# Temporal: busca las guías de tallas de cada proveedor.
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Buscar guías de tallas
+        run: |
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
+          for SM in https://grantesgrima.com/wp-sitemap.xml https://allstarspain.com/sitemap.xml https://allstar.de/sitemap.xml https://villalbiesgrima.es/sitemap.xml; do
+            echo "######## $SM"
+            curl -sSL -m 30 -A "$UA" "$SM" | grep -oE '<loc>[^<]+' | sed 's/<loc>//' > subs.txt
+            wc -l < subs.txt
+            for s in $(grep -iE 'page|pagina|sitemap' subs.txt | head -15); do
+              curl -sSL -m 30 -A "$UA" "$s" | grep -oE '<loc>[^<]+' | sed 's/<loc>//' | grep -iE 'talla|size|medida|gr(oe|ö)(ss|ß)e|ma(ss|ß)|guia|guide' || true
+            done
+            grep -iE 'talla|size|medida|groesse|guia' subs.txt || true
+          done
+          for U in https://allstarspain.com https://grantesgrima.com https://villalbiesgrima.es/pages/guia-de-tallas https://villalbiesgrima.es/pages/guia-de-tallas-ve https://villalbiesgrima.es/pages/guia-de-tallas-npt-1; do
+            echo "######## $U"
+            curl -sSL -m 30 -A "$UA" "$U" -o p.html
+            grep -oE 'href="[^"]*(talla|size|medida|guia|Gr[oö]|tabla)[^"]*"' p.html | sort -u | head -20
+            python3 - <<'PY'
+          import re,html
+          h=open('p.html',encoding='utf-8',errors='ignore').read()
+          m=re.search(r'<main.*?</main>',h,re.S)
+          t=re.sub(r'<script.*?</script>|<style.*?</style>','',m.group(0) if m else '',flags=re.S)
+          t=re.sub(r'<img[^>]*src="([^"]+)"[^>]*>',r' [IMG \1] ',t)
+          t=html.unescape(re.sub(r'<[^>]+>',' ',t))
+          print(re.sub(r'\s+',' ',t)[:3500])
+          PY
+          done
