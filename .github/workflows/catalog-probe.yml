@@ -1,36 +1,49 @@
 name: Explorar catálogos de proveedores
 
-# Temporal: busca las guías de tallas de cada proveedor.
+# Temporal: guarda las guías de tallas de cada proveedor en data/catalog-raw/tallas/.
 on:
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Buscar guías de tallas
+      - uses: actions/checkout@v4
+      - name: Descargar guías
         run: |
+          set +e
           UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36"
-          for SM in https://grantesgrima.com/wp-sitemap.xml https://allstarspain.com/sitemap.xml https://allstar.de/sitemap.xml https://villalbiesgrima.es/sitemap.xml; do
-            echo "######## $SM"
-            curl -sSL -m 30 -A "$UA" "$SM" | grep -oE '<loc>[^<]+' | sed 's/<loc>//' > subs.txt
-            wc -l < subs.txt
-            for s in $(grep -iE 'page|pagina|sitemap' subs.txt | head -15); do
-              curl -sSL -m 30 -A "$UA" "$s" | grep -oE '<loc>[^<]+' | sed 's/<loc>//' | grep -iE 'talla|size|medida|gr(oe|ö)(ss|ß)e|ma(ss|ß)|guia|guide' || true
-            done
-            grep -iE 'talla|size|medida|groesse|guia' subs.txt || true
-          done
-          for U in https://allstarspain.com https://grantesgrima.com https://villalbiesgrima.es/pages/guia-de-tallas https://villalbiesgrima.es/pages/guia-de-tallas-ve https://villalbiesgrima.es/pages/guia-de-tallas-npt-1; do
-            echo "######## $U"
-            curl -sSL -m 30 -A "$UA" "$U" -o p.html
-            grep -oE 'href="[^"]*(talla|size|medida|guia|Gr[oö]|tabla)[^"]*"' p.html | sort -u | head -20
-            python3 - <<'PY'
-          import re,html
-          h=open('p.html',encoding='utf-8',errors='ignore').read()
+          D=data/catalog-raw/tallas; mkdir -p $D
+          sudo apt-get -qq install -y poppler-utils >/dev/null
+          curl -sSL -A "$UA" https://grantesgrima.com/wp-content/uploads/2021/10/size-chart.pdf -o g.pdf && pdftotext -layout g.pdf $D/grant-size-chart.txt && pdfinfo g.pdf | head -5
+          for pg in guia-de-tallas guia-de-tallas-ve guia-de-tallas-npt-1 guia-de-tallas-jiangsu tallas-fwf tallas-jiangsu tallas-ve; do
+            curl -sSL -A "$UA" "https://villalbiesgrima.es/pages/$pg" -o v.html
+            python3 - "$pg" <<'PY'
+          import re,html,sys
+          h=open('v.html',encoding='utf-8',errors='ignore').read()
           m=re.search(r'<main.*?</main>',h,re.S)
-          t=re.sub(r'<script.*?</script>|<style.*?</style>','',m.group(0) if m else '',flags=re.S)
-          t=re.sub(r'<img[^>]*src="([^"]+)"[^>]*>',r' [IMG \1] ',t)
-          t=html.unescape(re.sub(r'<[^>]+>',' ',t))
-          print(re.sub(r'\s+',' ',t)[:3500])
+          t=m.group(0) if m else ''
+          t=re.sub(r'<script.*?</script>|<style.*?</style>','',t,flags=re.S)
+          t=re.sub(r'</(tr|h\d|p|li|table|div)>','\n',t); t=re.sub(r'</t[dh]>',' | ',t)
+          t=html.unescape(re.sub(r'<[^>]+>','',t))
+          t='\n'.join(l.strip() for l in t.splitlines() if l.strip())
+          open(f'data/catalog-raw/tallas/villalbi-{sys.argv[1]}.txt','w').write(t)
           PY
           done
+          curl -sSL -A "$UA" "https://allstarspain.com/wp-json/wp/v2/media?search=tallas&per_page=50" | python3 -c "import json,sys; [print(m['source_url']) for m in json.load(sys.stdin)]" > $D/allstar-media.txt
+          curl -sSL -A "$UA" "https://allstarspain.com/wp-json/wp/v2/media?search=talla&per_page=50" | python3 -c "import json,sys; [print(m['source_url']) for m in json.load(sys.stdin)]" >> $D/allstar-media.txt
+          sort -u -o $D/allstar-media.txt $D/allstar-media.txt; cat $D/allstar-media.txt
+          mkdir -p $D/img
+          while read u; do curl -sSL -A "$UA" "$u" -o "$D/img/$(basename "$u")"; done < $D/allstar-media.txt
+          ls -la $D $D/img
+      - name: Guardar
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/catalog-raw/tallas
+          git diff --cached --quiet && exit 0
+          git commit -m "Catálogo: guías de tallas de proveedores"
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done
