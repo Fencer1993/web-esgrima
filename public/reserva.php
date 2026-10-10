@@ -211,7 +211,8 @@ flock($rh, LOCK_UN);
 fclose($rh);
 
 // Aforo y duplicados bajo bloqueo exclusivo; la reserva se añade en el mismo bloqueo.
-$capacity = max(1, (int) ($group["capacity"] ?? 3));
+// 0 = sin límite de plazas.
+$capacity = max(0, (int) ($group["capacity"] ?? 0));
 $id = strtoupper(bin2hex(random_bytes(4)));
 $booking = [
     "id" => $id,
@@ -261,7 +262,7 @@ foreach ($rows as $r) {
         res_fail("Ya tienes una clase gratis reservada el " . date("d/m/Y", strtotime((string) $r["date"])) . ". Si quieres cambiarla, escríbenos.", 409);
     }
 }
-if ($taken >= $capacity) {
+if ($capacity > 0 && $taken >= $capacity) {
     flock($fh, LOCK_UN);
     fclose($fh);
     res_fail("Esa clase se acaba de llenar. Elige otra fecha o escríbenos por WhatsApp.", 409);
@@ -287,7 +288,7 @@ res_mail(
     "Nueva reserva de clase gratis {$id}\n\nGrupo: {$group['name']}\nCuándo: {$when}\n\n"
     . "Participante: {$name}\n{$ageLine}{$guardLine}Email: {$email}\nTeléfono: {$phone}\n"
     . "Comentarios: " . ($notes !== "" ? $notes : "-") . "\n\n"
-    . "Plazas ocupadas en esta sesión: " . ($taken + 1) . " de {$capacity}.\n",
+    . "Clases gratis reservadas en esta sesión: " . ($taken + 1) . ($capacity > 0 ? " de {$capacity}" : "") . ".\n",
     $email
 );
 

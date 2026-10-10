@@ -346,7 +346,7 @@ collections:
                   - { label: Domingo, value: 7 }
               - { name: start, label: "Hora de inicio (HH:MM)", widget: string }
               - { name: end, label: "Hora de fin (HH:MM)", widget: string }
-              - { name: capacity, label: Plazas de clase gratis por sesión, widget: number, value_type: int, min: 1, max: 20, default: 3 }
+              - { name: capacity, label: "Plazas de clase gratis por sesión (0 = sin límite)", widget: number, value_type: int, min: 0, max: 50, default: 0 }
               - { name: minAge, label: Edad (texto que se muestra), widget: string }
               - { name: minAgeYears, label: Edad mínima en años (0 = sin límite), widget: number, value_type: int, min: 0, max: 99, default: 0 }
               - { name: maxAgeYears, label: Edad máxima en años, widget: number, value_type: int, min: 1, max: 99, required: false }

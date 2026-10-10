@@ -17,7 +17,7 @@ function reservas_capacidades(): array
             $out = [];
             foreach (($cfg['groups'] ?? []) as $g) {
                 if (is_array($g) && isset($g['id'])) {
-                    $out[(string)$g['id']] = max(1, (int)($g['capacity'] ?? 3));
+                    $out[(string)$g['id']] = max(0, (int)($g['capacity'] ?? 0)); // 0 = sin límite
                 }
             }
             return $out;
@@ -118,7 +118,7 @@ gestion_header('Clases gratis', 'reservas.php');
     $activas = count(array_filter($list, fn($r) => ($r['status'] ?? '') !== 'cancelada'));
     $cap = $caps[$first['group'] ?? ''] ?? null; ?>
   <h2><?= h($fechaLarga((string)$first['date'])) ?> · <?= h($first['start'] ?? '') ?>–<?= h($first['end'] ?? '') ?></h2>
-  <h3><?= h($first['group_name'] ?? '') ?> · <?= $activas ?><?= $cap ? ' de ' . $cap : '' ?> plazas</h3>
+  <h3><?= h($first['group_name'] ?? '') ?> · <?= $activas ?><?= $cap ? ' de ' . $cap . ' plazas' : ' reservas' ?></h3>
   <div class="scroll"><table>
     <?php foreach ($list as $r): $st = (string)($r['status'] ?? 'confirmada'); ?>
       <tr>

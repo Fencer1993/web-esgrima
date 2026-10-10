@@ -314,8 +314,8 @@ export function ReservaClaseGratis({
             2. Elige el día
           </legend>
           <p className="mt-1 text-sm text-ink-soft">
-            Próximas {config.weeksAhead} semanas. Hay {group.capacity} plazas de clase gratis por
-            sesión.
+            Próximas {config.weeksAhead} semanas.
+            {group.capacity > 0 ? ` Hay ${group.capacity} plazas de clase gratis por sesión.` : ""}
           </p>
           {!now ? null : sessions.length === 0 ? (
             <p className="mt-3 text-sm text-ink-soft">
@@ -336,7 +336,9 @@ export function ReservaClaseGratis({
                     ? `Sin clase${s.reason ? `: ${s.reason}` : ""}`
                     : s.state === "full"
                       ? "Completa"
-                      : s.left === null
+                      : group.capacity <= 0
+                        ? "Plazas libres"
+                        : s.left === null
                         ? "Plazas por confirmar"
                         : s.left === 1
                           ? "Queda 1 plaza"

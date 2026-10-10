@@ -115,7 +115,8 @@ export function buildSessions(
     }
     const key = `${date}|${group.id}`;
     const taken = booked ? (booked[key] ?? 0) : null;
-    const left = taken === null ? null : Math.max(0, group.capacity - taken);
+    // capacity 0 = sin límite de plazas.
+    const left = taken === null || group.capacity <= 0 ? null : Math.max(0, group.capacity - taken);
     const reason = blocked.get(date);
     let state: SessionState = "open";
     if (reason !== undefined) state = "blocked";
