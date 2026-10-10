@@ -64,8 +64,8 @@ export default function NuestroEquipo() {
       <Section tone="raised" className="border-t-4 border-t-accent">
         <SectionHeading
           eyebrow="Deportistas"
-          title="Nuestros Deportistas"
-          lede="Los tiradores que defienden los colores del Club de Esgrima Torremolinos en competición."
+          title="En competición"
+          lede="Algunos de los tiradores que más han competido con el club y que han sumado medallas y méritos en los torneos. No están todos los que forman el equipo: cada socio que entrena con nosotros suma, compita o no, y la lista se renueva cada temporada."
         />
         <Photo
           src="/images/galeria/grupo-esgrimistas-club-torremolinos-sala-ayuntamiento.webp"
