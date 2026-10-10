@@ -4,53 +4,58 @@ import { Section } from "@/components/Section";
 import { ShopApp } from "@/components/ShopApp";
 import { SizeGuide } from "@/components/SizeGuide";
 import { pageAlternates } from "@/content/i18n";
-import { activeCategories, shopIntro, shopProducts } from "@/content/shop";
+import { enPageText } from "@/content/en";
+import tiendaEn from "@/content/data/en/tienda.json";
+import { activeCategories, shopProducts } from "@/content/shop";
 
 export const metadata: Metadata = {
-  title: "Tienda del club",
+  title: "Club Shop",
   description:
-    "Material de esgrima para socios del Club de Esgrima Torremolinos: pide a través del club con asesoramiento, pequeño descuento y sin gastos de envío.",
-  alternates: pageAlternates("/tienda"),
+    "Fencing equipment for members of Club de Esgrima Torremolinos: order through the club with expert advice, a small discount and no delivery charges.",
+  alternates: pageAlternates("/en/shop"),
 };
 
-export default function Tienda() {
+export default function ShopEn() {
+  const hero = enPageText("/en/shop");
   return (
     <>
       <PageHero
-        path="/tienda"
-        eyebrow="Material"
-        title="Tienda del club"
-        lede="Pedidos agrupados de material de esgrima para socios, con asesoramiento y sin gastos de envío."
+        path="/en/shop"
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        lede={hero.lede}
+        lang="en"
       />
 
       <Section>
-        <p className="max-w-2xl text-base text-ink-soft">{shopIntro}</p>
+        <p className="max-w-2xl text-base text-ink-soft">{tiendaEn.intro}</p>
         <p className="mb-10 mt-4 flex flex-wrap gap-3">
           <a
             href="#catalogo"
             className="inline-flex items-center gap-2 rounded-sm bg-accent px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-white hover:bg-accent-dark"
           >
-            Ver el catálogo ↓
+            {tiendaEn.seeCatalogue}
           </a>
           <a
             href="#guia-de-tallas"
             className="inline-flex items-center gap-2 rounded-sm border border-accent px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-accent-dark hover:bg-accent-soft"
           >
-            ¿No sabes tu talla? Cómo medirte ↓
+            {tiendaEn.seeSizeGuide}
           </a>
         </p>
         <div className="mb-14">
-          <SizeGuide />
+          <SizeGuide lang="en" />
         </div>
-        <h2 id="catalogo" className="mb-6 scroll-mt-24 text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl">
-          Catálogo
+        <h2
+          id="catalogo"
+          className="mb-6 scroll-mt-24 text-3xl font-bold uppercase tracking-tight text-ink sm:text-4xl"
+        >
+          {tiendaEn.catalogueTitle}
         </h2>
         {shopProducts.length === 0 ? (
-          <p className="text-sm text-ink-soft">
-            Ahora mismo no hay productos disponibles. Escríbenos y te ayudamos con tu pedido.
-          </p>
+          <p className="text-sm text-ink-soft">{tiendaEn.emptyCatalogue}</p>
         ) : (
-          <ShopApp products={shopProducts} categories={activeCategories()} />
+          <ShopApp products={shopProducts} categories={activeCategories()} lang="en" />
         )}
       </Section>
     </>

@@ -365,12 +365,14 @@ collections:
             fields:
               - { name: id, label: "Identificador (sin espacios, ej. careta-sable)", widget: string }
               - { name: name, label: Nombre, widget: string }
+              - { name: name_en, label: "Nombre en inglés (opcional; si se deja vacío se usa el nombre)", widget: string, required: false }
               - { name: supplier, label: "Proveedor (Grant Esgrima, Allstar, Yiang…)", widget: string }
               - { name: ref, label: "Referencia del proveedor", widget: string, required: false }
               - { name: url, label: "Enlace a la ficha del proveedor", widget: string, required: false, hint: "https://… (fotos y tabla de tallas oficiales)" }
               - { name: sizeGuide, label: "Enlace a la tabla de tallas", widget: string, required: false }
               - { name: category, label: Categoría, widget: select, options: ["Sables y hojas", "Caretas", "Chaquetas eléctricas", "Guantes y manguitos", "Trajes", "Protección", "Calzado y medias", "Piezas y recambios", "Pasantes y conectores", "Kits de iniciación", "Iniciación (plástico y espuma)", "Material de maestro", "Silla de ruedas"] }
               - { name: description, label: Descripción, widget: text, required: false, hint: "Tu explicación para los socios (si se deja vacía, no se muestra)." }
+              - { name: description_en, label: "Descripción en inglés (opcional; si se deja vacía se muestra la española)", widget: text, required: false }
               - { name: price, label: "Precio orientativo (ej. 45,00 €)", widget: string, required: false }
               - { name: sizes, label: Tallas, widget: list, required: false, field: { name: talla, label: Talla, widget: string } }
               - { name: hands, label: "Mano (Diestro/Zurdo) — vacío si no aplica", widget: list, required: false, field: { name: mano, label: Mano, widget: string } }
@@ -497,6 +499,9 @@ collections:
               - { name: title, label: Título, widget: string }
               - { name: summary, label: Resumen, widget: text }
               - { name: body, label: Texto, widget: text, hint: "Separa los párrafos con una línea en blanco." }
+              - { name: title_en, label: "Título en inglés (opcional)", widget: string, required: false, hint: "Para que salga en /en/news hacen falta título, resumen y texto en inglés; si falta alguno se muestra el español." }
+              - { name: summary_en, label: "Resumen en inglés (opcional)", widget: text, required: false }
+              - { name: body_en, label: "Texto en inglés (opcional)", widget: text, required: false, hint: "Separa los párrafos con una línea en blanco." }
               - { name: image, label: Foto, widget: image, required: false, media_folder: /public/images/noticias, public_folder: /images/noticias }
               - { name: pinned, label: "Destacada (fijada arriba)", widget: boolean, default: false }
 
@@ -666,6 +671,65 @@ collections:
             fields:
               - { name: label, label: Etiqueta, widget: string }
               - { name: detail, label: Detalle, widget: string }
+
+      - name: en-tienda
+        label: "Versión en inglés · Tienda y guía de tallas"
+        file: src/content/data/en/tienda.json
+        fields:
+          - { name: intro, label: "Texto de introducción de la tienda", widget: text }
+          - { name: seeCatalogue, label: "Botón «Ver el catálogo»", widget: string }
+          - { name: seeSizeGuide, label: "Botón «¿No sabes tu talla?»", widget: string }
+          - { name: catalogueTitle, label: "Título del catálogo", widget: string }
+          - { name: emptyCatalogue, label: "Texto si no hay productos", widget: text }
+          - name: sizeGuide
+            label: "Guía de tallas"
+            widget: object
+            fields:
+              - { name: eyebrow, label: Etiqueta, widget: string }
+              - { name: title, label: Título, widget: string }
+              - { name: intro, label: Introducción, widget: text }
+              - { name: measureTitle, label: "Título «Cómo tomarte las medidas»", widget: string }
+              - name: howToMeasure
+                label: "Cómo medirse (mismo orden que en español)"
+                widget: list
+                summary: "{{part}}"
+                fields:
+                  - { name: part, label: Parte del cuerpo, widget: string }
+                  - { name: how, label: Cómo, widget: text }
+              - { name: tablesTitle, label: "Título «Tablas por marca»", widget: string }
+              - { name: productsFrom, label: "«Productos de»", widget: string }
+              - { name: sourceLink, label: "Enlace a la tabla del proveedor", widget: string }
+              - { name: sourceLinkPdf, label: "Enlace a la tabla en PDF", widget: string }
+              - { name: newTab, label: "Aviso «se abre en otra pestaña» (solo lectores de pantalla)", widget: string }
+              - name: brands
+                label: "Marcas: nombre y nota en inglés (id = el de la guía en español)"
+                widget: list
+                summary: "{{id}}"
+                fields:
+                  - { name: id, label: "Identificador (no cambiar)", widget: string }
+                  - { name: name, label: "Nombre en inglés (vacío = el español)", widget: string, required: false }
+                  - { name: note, label: Nota, widget: text }
+              - name: tableTitles
+                label: "Títulos de las tablas (texto español exacto → inglés)"
+                widget: list
+                summary: "{{es}} → {{en}}"
+                fields:
+                  - { name: es, label: Español, widget: string }
+                  - { name: en, label: Inglés, widget: string }
+              - name: headers
+                label: "Cabeceras de columna (español exacto → inglés)"
+                widget: list
+                summary: "{{es}} → {{en}}"
+                fields:
+                  - { name: es, label: Español, widget: string }
+                  - { name: en, label: Inglés, widget: string }
+              - name: cells
+                label: "Celdas con texto (español exacto → inglés)"
+                widget: list
+                summary: "{{es}} → {{en}}"
+                fields:
+                  - { name: es, label: Español, widget: string }
+                  - { name: en, label: Inglés, widget: string }
 
       - name: en-galeria
         label: "Versión en inglés · Galería (pies y textos alternativos)"

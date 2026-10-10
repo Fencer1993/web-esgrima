@@ -22,7 +22,16 @@ export const pathPairs = [
   { es: "/nuestro-equipo", en: "/en/our-team" },
   { es: "/preguntas-frecuentes", en: "/en/faq" },
   { es: "/contacto", en: "/en/contact" },
+  { es: "/tienda", en: "/en/shop" },
+  { es: "/noticias", en: "/en/news" },
 ] as const;
+
+/**
+ * Páginas dinámicas con el mismo slug en los dos idiomas (no están en
+ * `pathPairs` porque no se conocen aquí): /noticias/<slug> ↔ /en/news/<slug>.
+ * Un slug sin traducción también tiene página inglesa (con el texto español).
+ */
+const slugPrefixes = [{ es: "/noticias/", en: "/en/news/" }] as const;
 
 /** Quita la barra final y deja "/" para la raíz ("/en" y "/en/" son la home inglesa). */
 function normalize(path: string): string {
@@ -40,7 +49,13 @@ export function equivalentPath(path: string, target: Lang): string | null {
   const p = normalize(path === "/en" ? "/en/" : path);
   const key = langOfPath(p) === "en" ? "en" : "es";
   const pair = pathPairs.find((x) => normalize(x[key]) === p);
-  return pair ? pair[target] : null;
+  if (pair) return pair[target];
+  for (const pre of slugPrefixes) {
+    if (p.startsWith(pre[key]) && p.length > pre[key].length) {
+      return pre[target] + p.slice(pre[key].length);
+    }
+  }
+  return null;
 }
 
 /** Ruta española de una ruta inglesa (para fotos de cabecera, etc.). */
@@ -82,9 +97,9 @@ const enNavMenu = [
     items: [
       { label: "Our team", href: "/en/our-team", description: "Coaches and athletes" },
       { label: "Facilities and gallery (in Spanish)", href: "/instalaciones", description: "Where we train" },
-      { label: "News (in Spanish)", href: "/noticias", description: "The club's notice board" },
+      { label: "News", href: "/en/news", description: "The club's notice board" },
       { label: "Calendar (in Spanish)", href: "/calendario", description: "Competitions and events" },
-      { label: "Shop (in Spanish)", href: "/tienda", description: "Kit at a club discount" },
+      { label: "Shop", href: "/en/shop", description: "Kit at a club discount" },
       { label: "Results (in Spanish)", href: "/resultados", description: "Tournaments and medals" },
       { label: "Sponsors (in Spanish)", href: "/patrocinadores", description: "Support the club" },
       { label: "FAQ", href: "/en/faq", description: "Equipment, ages, insurance and more" },
@@ -203,9 +218,9 @@ export const enFooterNav = [
   { label: "FAQ", href: "/en/faq" },
   { label: "Contact", href: "/en/contact" },
   { label: "Facilities and gallery (in Spanish)", href: "/instalaciones" },
-  { label: "News (in Spanish)", href: "/noticias" },
+  { label: "News", href: "/en/news" },
   { label: "Calendar (in Spanish)", href: "/calendario" },
-  { label: "Shop (in Spanish)", href: "/tienda" },
+  { label: "Shop", href: "/en/shop" },
   { label: "Results (in Spanish)", href: "/resultados" },
   { label: "Sponsors (in Spanish)", href: "/patrocinadores" },
 ] as const;

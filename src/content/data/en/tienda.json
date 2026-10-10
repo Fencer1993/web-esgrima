@@ -1,0 +1,280 @@
+{
+  "intro": "All the sabre equipment from our usual suppliers: Grant Esgrima, Allstar España and Villalbi Esgrima (Fuengirola). Weapons and parts, masks, electrical kit, jackets and breeches, protection, shoes and socks. Order through the club: we help you choose the right size and model, we group the orders and you save on delivery. Prices already include a 5% member discount on the supplier's price, plus VAT; we confirm the final total before placing the order. Product names and any descriptions come from the suppliers and may be in Spanish.",
+  "seeCatalogue": "See the catalogue ↓",
+  "seeSizeGuide": "Not sure of your size? How to measure yourself ↓",
+  "catalogueTitle": "Catalogue",
+  "emptyCatalogue": "There are no products available at the moment. Message us and we will help you with your order.",
+  "sizeGuide": {
+    "eyebrow": "Before you order",
+    "title": "Size guide",
+    "intro": "Before ordering, measure yourself with a tailor's tape measure (ideally with someone helping) and compare with the chart for the brand you are buying. If you are between two sizes, choose the larger one. If in doubt, ask us at class or on WhatsApp: we can have you try the club's own kit to get it right.",
+    "measureTitle": "How to take your measurements",
+    "howToMeasure": [
+      {
+        "part": "Height",
+        "how": "Barefoot, back against the wall and standing straight."
+      },
+      {
+        "part": "Chest",
+        "how": "Around the widest part of the chest, under the armpits, breathing normally."
+      },
+      {
+        "part": "Waist",
+        "how": "Around the narrowest part of the torso, without pulling the tape tight."
+      },
+      {
+        "part": "Hips",
+        "how": "Around the widest part of the hips and buttocks."
+      },
+      {
+        "part": "Head (mask)",
+        "how": "Around the head, above the eyebrows and ears."
+      },
+      {
+        "part": "Hand (glove)",
+        "how": "Around the weapon hand at the knuckles, not including the thumb and without pulling tight."
+      },
+      {
+        "part": "Foot (shoes)",
+        "how": "Order by European (EU) size. If you are between two sizes, take the larger one so you can wear fencing socks."
+      }
+    ],
+    "tablesTitle": "Charts by brand",
+    "productsFrom": "Products from",
+    "sourceLink": "Supplier's original chart",
+    "sourceLinkPdf": "Open the size chart (PDF)",
+    "newTab": " (opens in a new tab)",
+    "tableTitles": [
+      {
+        "es": "Trajes · Hombre (estatura normal)",
+        "en": "Jackets and breeches · Men (normal height)"
+      },
+      {
+        "es": "Trajes · Hombre (alta estatura)",
+        "en": "Jackets and breeches · Men (tall)"
+      },
+      {
+        "es": "Trajes · Hombre (baja estatura)",
+        "en": "Jackets and breeches · Men (short)"
+      },
+      {
+        "es": "Trajes · Mujer (estatura normal)",
+        "en": "Jackets and breeches · Women (normal height)"
+      },
+      {
+        "es": "Trajes · Mujer (alta estatura)",
+        "en": "Jackets and breeches · Women (tall)"
+      },
+      {
+        "es": "Trajes · Mujer (baja estatura)",
+        "en": "Jackets and breeches · Women (short)"
+      },
+      {
+        "es": "Trajes · Niños y niñas",
+        "en": "Jackets and breeches · Children"
+      },
+      {
+        "es": "Caretas",
+        "en": "Masks"
+      },
+      {
+        "es": "Peto interior · Hombre",
+        "en": "Underarm protector · Men"
+      },
+      {
+        "es": "Peto interior · Niños y niñas",
+        "en": "Underarm protector · Children"
+      },
+      {
+        "es": "Guantes",
+        "en": "Gloves"
+      },
+      {
+        "es": "Ropa · Mujer",
+        "en": "Clothing · Women"
+      },
+      {
+        "es": "Ropa · Mujer (tallas largas)",
+        "en": "Clothing · Women (long sizes)"
+      },
+      {
+        "es": "Ropa · Hombre",
+        "en": "Clothing · Men"
+      },
+      {
+        "es": "Ropa · Hombre (tallas largas)",
+        "en": "Clothing · Men (long sizes)"
+      },
+      {
+        "es": "Ropa · Infantil",
+        "en": "Clothing · Children"
+      },
+      {
+        "es": "Peto interior",
+        "en": "Underarm protector"
+      },
+      {
+        "es": "Chaqueta eléctrica · Hombre",
+        "en": "Electric jacket · Men"
+      },
+      {
+        "es": "Chaqueta eléctrica · Mujer",
+        "en": "Electric jacket · Women"
+      },
+      {
+        "es": "Zapatillas (EU 34-42)",
+        "en": "Shoes (EU 34-42)"
+      },
+      {
+        "es": "Zapatillas (EU 42⅔-48)",
+        "en": "Shoes (EU 42⅔-48)"
+      },
+      {
+        "es": "Protectores de pecho",
+        "en": "Chest protectors"
+      },
+      {
+        "es": "Calcetines",
+        "en": "Socks"
+      },
+      {
+        "es": "Peto interior NPT 800N",
+        "en": "NPT 800N underarm protector"
+      }
+    ],
+    "headers": [
+      {
+        "es": "Talla",
+        "en": "Size"
+      },
+      {
+        "es": "Altura (cm)",
+        "en": "Height (cm)"
+      },
+      {
+        "es": "Pecho (cm)",
+        "en": "Chest (cm)"
+      },
+      {
+        "es": "Cintura (cm)",
+        "en": "Waist (cm)"
+      },
+      {
+        "es": "Cadera (cm)",
+        "en": "Hips (cm)"
+      },
+      {
+        "es": "Contorno de cabeza (cm)",
+        "en": "Head circumference (cm)"
+      },
+      {
+        "es": "Talla de traje",
+        "en": "Jacket size"
+      },
+      {
+        "es": "Talla de peto",
+        "en": "Protector size"
+      },
+      {
+        "es": "Contorno de mano (pulgadas)",
+        "en": "Hand circumference (inches)"
+      },
+      {
+        "es": "Contorno de mano (cm)",
+        "en": "Hand circumference (cm)"
+      },
+      {
+        "es": "Talla (EU)",
+        "en": "Size (EU)"
+      },
+      {
+        "es": "Edad (años)",
+        "en": "Age (years)"
+      },
+      {
+        "es": "Niños (talla de traje)",
+        "en": "Children (jacket size)"
+      },
+      {
+        "es": "Mujer (EU)",
+        "en": "Women (EU)"
+      },
+      {
+        "es": "Hombre (EU)",
+        "en": "Men (EU)"
+      },
+      {
+        "es": "Medida",
+        "en": "Measurement"
+      },
+      {
+        "es": "Talla NPT",
+        "en": "NPT size"
+      },
+      {
+        "es": "Mujer (talla EU)",
+        "en": "Women (EU size)"
+      },
+      {
+        "es": "Hombre (talla EU)",
+        "en": "Men (EU size)"
+      }
+    ],
+    "cells": [
+      {
+        "es": "Hombre (altura, cm)",
+        "en": "Men (height, cm)"
+      },
+      {
+        "es": "Niños (altura, cm)",
+        "en": "Boys (height, cm)"
+      },
+      {
+        "es": "Mujer (pecho, cm)",
+        "en": "Women (chest, cm)"
+      },
+      {
+        "es": "Niñas (pecho, cm)",
+        "en": "Girls (chest, cm)"
+      },
+      {
+        "es": "72 o más",
+        "en": "72 or more"
+      },
+      {
+        "es": "menos de 60",
+        "en": "under 60"
+      },
+      {
+        "es": "hasta 58",
+        "en": "up to 58"
+      },
+      {
+        "es": "más de 72",
+        "en": "over 72"
+      }
+    ],
+    "brands": [
+      {
+        "id": "allstar",
+        "name": "",
+        "note": "Body measurements in centimetres. For jackets and breeches, first pick the chart for your height (normal, tall or short). For gloves, the size is the circumference of your hand in inches (size 8 = 20.3 cm), as in the VE glove chart."
+      },
+      {
+        "id": "ve",
+        "name": "",
+        "note": "Measurements in centimetres, except gloves, which the maker gives in inches (with the centimetre equivalent)."
+      },
+      {
+        "id": "npt",
+        "name": "",
+        "note": "NPT 800N underarm protector, suitable for right- and left-handed fencers. Choose according to your jacket size."
+      },
+      {
+        "id": "pbt",
+        "name": "PBT, GJ and other Grant Esgrima brands",
+        "note": "Grant Esgrima publishes its size chart as a PDF. For jackets, breeches and electric jackets, the European sizes (44, 46, 48…) match the charts above; for gloves, the size is the circumference of your hand in inches (size 8 = 20.3 cm)."
+      }
+    ]
+  }
+}

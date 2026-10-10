@@ -17,6 +17,16 @@ header("Cache-Control: no-store");
 $siteName = "Club de Esgrima Torremolinos";
 $fallbackEmail = "esgrimatorremolinos@gmail.com";
 
+// El carrito de /en/shop/ envía lang=en para ver las respuestas (errores y
+// copia por correo al cliente) en inglés. Sin lang, todo sigue en español.
+$lang = "es";
+
+function t(string $es, string $en): string
+{
+    global $lang;
+    return $lang === "en" ? $en : $es;
+}
+
 function respond(array $data, int $status = 200): void
 {
     http_response_code($status);
@@ -43,6 +53,26 @@ function clean_text(string $value, int $max): string
     return mb_substr(trim($value), 0, $max);
 }
 
+// Nombre del producto para mostrar en los mensajes (name_en si hay inglés).
+function display_name(array $product): string
+{
+    global $lang;
+    if ($lang === "en" && !empty($product["name_en"]) && is_string($product["name_en"])) {
+        return $product["name_en"];
+    }
+    return (string) ($product["name"] ?? "");
+}
+
+// Nombres de las opciones en inglés (solo para los textos mostrados al cliente).
+function option_name_en(string $name): string
+{
+    $map = [
+        "Color" => "Colour", "Cazoleta" => "Guard", "Puño" => "Grip", "Material" => "Material",
+        "Sexo" => "Cut", "Dureza" => "Stiffness", "Hoja" => "Blade", "Tamaño" => "Size",
+    ];
+    return $map[$name] ?? $name;
+}
+
 if (($_SERVER["REQUEST_METHOD"] ?? "") !== "POST") {
     header("Allow: POST");
     fail("Método no permitido.", 405);
@@ -52,6 +82,9 @@ $raw = file_get_contents("php://input", false, null, 0, 65536);
 $in = is_string($raw) ? json_decode($raw, true) : null;
 if (!is_array($in)) {
     fail("Solicitud no válida.");
+}
+if (($in["lang"] ?? "") === "en") {
+    $lang = "en";
 }
 
 // Honeypot: respuesta de éxito falsa para no dar pistas a los bots.
@@ -69,7 +102,7 @@ foreach ([__DIR__ . "/tienda-productos.json", __DIR__ . "/../src/content/data/ti
 }
 $catalog = $catalogFile ? json_decode((string) file_get_contents($catalogFile), true) : null;
 if (!is_array($catalog) || !isset($catalog["products"]) || !is_array($catalog["products"])) {
-    fail("La tienda no está disponible ahora mismo. Escríbenos por WhatsApp.", 503);
+    fail(t("La tienda no está disponible ahora mismo. Escríbenos por WhatsApp.", "The shop is not available right now. Please message us on WhatsApp."), 503);
 }
 $products = [];
 foreach ($catalog["products"] as $p) {
@@ -88,42 +121,42 @@ $phone = clean(is_string($in["phone"] ?? null) ? $in["phone"] : "", 30);
 $notes = clean_text(is_string($in["notes"] ?? null) ? $in["notes"] : "", 1000);
 
 if ($name === "" || $phone === "") {
-    fail("Revisa tu nombre y teléfono e inténtalo de nuevo.");
+    fail(t("Revisa tu nombre y teléfono e inténtalo de nuevo.", "Please check your name and phone number and try again."));
 }
 if ($email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    fail("Revisa tu correo electrónico e inténtalo de nuevo.");
+    fail(t("Revisa tu correo electrónico e inténtalo de nuevo.", "Please check your email address and try again."));
 }
 
 $rawLines = $in["lines"] ?? null;
 if (!is_array($rawLines) || count($rawLines) < 1) {
-    fail("Añade al menos un producto al pedido.");
+    fail(t("Añade al menos un producto al pedido.", "Please add at least one product to the order."));
 }
 if (count($rawLines) > 20) {
-    fail("Un pedido admite como máximo 20 líneas.");
+    fail(t("Un pedido admite como máximo 20 líneas.", "An order can have at most 20 lines."));
 }
 
 $lines = [];
 foreach ($rawLines as $l) {
     if (!is_array($l)) {
-        fail("Línea de pedido no válida.");
+        fail(t("Línea de pedido no válida.", "Invalid order line."));
     }
     $pid = is_string($l["product"] ?? null) ? $l["product"] : "";
     if (!isset($products[$pid])) {
-        fail("Hay un producto que ya no está disponible. Recarga la página.");
+        fail(t("Hay un producto que ya no está disponible. Recarga la página.", "One of the products is no longer available. Please reload the page."));
     }
     $qty = $l["qty"] ?? null;
     if (!is_int($qty) && !(is_string($qty) && ctype_digit($qty))) {
-        fail("Cantidad no válida.");
+        fail(t("Cantidad no válida.", "Invalid quantity."));
     }
     $qty = (int) $qty;
     if ($qty < 1 || $qty > 5) {
-        fail("La cantidad debe estar entre 1 y 5 por producto.");
+        fail(t("La cantidad debe estar entre 1 y 5 por producto.", "The quantity must be between 1 and 5 for each product."));
     }
     $sizes = isset($products[$pid]["sizes"]) && is_array($products[$pid]["sizes"]) ? $products[$pid]["sizes"] : [];
     $size = clean(is_string($l["size"] ?? null) ? $l["size"] : "", 20);
     if (count($sizes) > 0) {
         if (!in_array($size, array_map("strval", $sizes), true)) {
-            fail("Elige una talla válida para " . (string) $products[$pid]["name"] . ".");
+            fail(t("Elige una talla válida para ", "Please choose a valid size for ") . display_name($products[$pid]) . ".");
         }
     } else {
         $size = "";
@@ -132,7 +165,7 @@ foreach ($rawLines as $l) {
     $hand = clean(is_string($l["hand"] ?? null) ? $l["hand"] : "", 20);
     if (count($hands) > 0) {
         if (!in_array($hand, array_map("strval", $hands), true)) {
-            fail("Elige la mano (diestro/zurdo) para " . (string) $products[$pid]["name"] . ".");
+            fail(t("Elige la mano (diestro/zurdo) para ", "Please choose a hand (right-handed/left-handed) for ") . display_name($products[$pid]) . ".");
         }
     } else {
         $hand = "";
@@ -148,7 +181,7 @@ foreach ($rawLines as $l) {
         $oname = $o["name"];
         $oval = is_string($sentOpts[$oname] ?? null) ? clean($sentOpts[$oname], 80) : "";
         if (!in_array($oval, array_map("strval", $o["values"]), true)) {
-            fail("Elige " . $oname . " para " . (string) $products[$pid]["name"] . ".");
+            fail(t("Elige " . $oname . " para ", "Please choose an option (" . option_name_en($oname) . ") for ") . display_name($products[$pid]) . ".");
         }
         $optParts[] = $oname . ": " . $oval;
     }
@@ -181,7 +214,7 @@ if (is_dir($outside) || (is_writable(dirname(__DIR__)) && @mkdir($outside, 0750)
     }
 }
 if (!is_dir($dataDir) || !is_writable($dataDir)) {
-    fail("No se pudo guardar el pedido. Escríbenos por WhatsApp.", 500);
+    fail(t("No se pudo guardar el pedido. Escríbenos por WhatsApp.", "We could not save your order. Please message us on WhatsApp."), 500);
 }
 
 // Límite de frecuencia: 5 pedidos por hora y por IP.
@@ -190,7 +223,7 @@ $ipKey = hash("sha256", $ip);
 $rateFile = $dataDir . "/pedidos-rate.json";
 $rh = @fopen($rateFile, "c+");
 if ($rh === false) {
-    fail("No se pudo guardar el pedido. Escríbenos por WhatsApp.", 500);
+    fail(t("No se pudo guardar el pedido. Escríbenos por WhatsApp.", "We could not save your order. Please message us on WhatsApp."), 500);
 }
 flock($rh, LOCK_EX);
 $rate = json_decode((string) stream_get_contents($rh), true);
@@ -207,7 +240,7 @@ foreach ($rate as $k => $times) {
 if (count($rate[$ipKey] ?? []) >= 5) {
     flock($rh, LOCK_UN);
     fclose($rh);
-    fail("Has enviado demasiados pedidos. Inténtalo de nuevo dentro de una hora.", 429);
+    fail(t("Has enviado demasiados pedidos. Inténtalo de nuevo dentro de una hora.", "You have sent too many orders. Please try again in an hour."), 429);
 }
 $rate[$ipKey][] = $now;
 ftruncate($rh, 0);
@@ -227,13 +260,16 @@ $order = [
     "lines" => $lines,
     "notes" => $notes,
 ];
+if ($lang === "en") {
+    $order["lang"] = "en";
+}
 $written = @file_put_contents(
     $dataDir . "/pedidos.jsonl",
     json_encode($order, JSON_UNESCAPED_UNICODE) . "\n",
     FILE_APPEND | LOCK_EX
 );
 if ($written === false) {
-    fail("No se pudo guardar el pedido. Escríbenos por WhatsApp.", 500);
+    fail(t("No se pudo guardar el pedido. Escríbenos por WhatsApp.", "We could not save your order. Please message us on WhatsApp."), 500);
 }
 
 // Correos (un fallo de mail() no invalida el pedido ya guardado).
@@ -248,7 +284,8 @@ $host = preg_replace('/[^A-Za-z0-9.\-]/', "", (string) ($_SERVER["HTTP_HOST"] ??
 $from = "From: {$siteName} <no-reply@{$host}>\r\n";
 
 $body = "Nuevo pedido {$id}\n\nSocio: {$name}\nEmail: {$email}\nTeléfono: {$phone}\n\n"
-    . "Productos:\n{$summary}\nNotas: " . ($notes !== "" ? $notes : "-") . "\n";
+    . "Productos:\n{$summary}\nNotas: " . ($notes !== "" ? $notes : "-") . "\n"
+    . ($lang === "en" ? "\n(Pedido hecho desde la tienda en inglés: el socio ha recibido la copia en inglés.)\n" : "");
 @mail(
     $orderEmail,
     "=?UTF-8?B?" . base64_encode("[Tienda] Nuevo pedido {$id} - {$name}") . "?=",
@@ -256,12 +293,35 @@ $body = "Nuevo pedido {$id}\n\nSocio: {$name}\nEmail: {$email}\nTeléfono: {$pho
     $from . "Reply-To: {$email}\r\nContent-Type: text/plain; charset=utf-8"
 );
 
-$copy = "Hola {$name},\n\nHemos recibido tu solicitud de pedido {$id}:\n\n{$summary}\n"
-    . "Esto es una solicitud: el club agrupa los pedidos y te avisará del importe antes de pedirlo al proveedor.\n\n"
-    . "{$siteName}\n";
+if ($lang === "en") {
+    $handEn = ["Diestro" => "right-handed", "Zurdo" => "left-handed"];
+    $summaryEn = "";
+    foreach ($lines as $l) {
+        $optsEn = [];
+        foreach (array_filter(explode(" · ", $l["options"])) as $part) {
+            $kv = explode(": ", $part, 2);
+            $optsEn[] = count($kv) === 2 ? option_name_en($kv[0]) . ": " . $kv[1] : $part;
+        }
+        $pEn = $products[$l["product_id"]];
+        $nameEn = display_name($pEn) . (!empty($pEn["ref"]) ? " · Ref. " . $pEn["ref"] : "");
+        $summaryEn .= "- {$l['qty']} x {$nameEn} ({$l['supplier']})"
+            . ($l["size"] !== "" ? ", size {$l['size']}" : "")
+            . ($l["hand"] !== "" ? ", " . ($handEn[$l["hand"]] ?? $l["hand"]) : "")
+            . ($optsEn ? ", " . implode(" · ", $optsEn) : "") . "\n";
+    }
+    $copy = "Hello {$name},\n\nWe have received your order request {$id}:\n\n{$summaryEn}\n"
+        . "This is a request: the club groups members' orders and will tell you the total before ordering from the supplier.\n\n"
+        . "{$siteName}\n";
+    $copySubject = "Order request {$id} - {$siteName}";
+} else {
+    $copy = "Hola {$name},\n\nHemos recibido tu solicitud de pedido {$id}:\n\n{$summary}\n"
+        . "Esto es una solicitud: el club agrupa los pedidos y te avisará del importe antes de pedirlo al proveedor.\n\n"
+        . "{$siteName}\n";
+    $copySubject = "Solicitud de pedido {$id} - {$siteName}";
+}
 @mail(
     $email,
-    "=?UTF-8?B?" . base64_encode("Solicitud de pedido {$id} - {$siteName}") . "?=",
+    "=?UTF-8?B?" . base64_encode($copySubject) . "?=",
     $copy,
     $from . "Reply-To: {$orderEmail}\r\nContent-Type: text/plain; charset=utf-8"
 );

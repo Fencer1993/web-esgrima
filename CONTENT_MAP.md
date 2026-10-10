@@ -42,11 +42,28 @@ relativas a `src/`.
 
 ## Versión en inglés (`/en/…`)
 
-Nueve páginas: `/en/`, `/en/fencing-for-kids`, `/en/fencing-for-adults`,
-`/en/wheelchair-fencing`, `/en/schedule-and-prices`, `/en/free-trial-class`,
-`/en/our-team`, `/en/faq`, `/en/contact`. Tienda, noticias, calendario,
-instalaciones y páginas legales siguen en español (se enlazan como
-"(in Spanish)").
+Once páginas más el detalle de noticias: `/en/`, `/en/fencing-for-kids`,
+`/en/fencing-for-adults`, `/en/wheelchair-fencing`, `/en/schedule-and-prices`,
+`/en/free-trial-class`, `/en/our-team`, `/en/faq`, `/en/contact`, `/en/shop`,
+`/en/news` y `/en/news/<slug>` (mismos slugs que en español). Calendario,
+instalaciones, resultados, patrocinadores y páginas legales siguen en español
+(se enlazan como "(in Spanish)").
+
+- **Tienda (`/en/shop`)**: reutiliza `ShopApp`, `ShopDialog` y `SizeGuide` con
+  `lang="en"`. Textos de interfaz, categorías, nombres de opciones y formato de
+  precios (`Desde 87,36 €` → `From €87.36`): `src/content/shopText.ts` (solo
+  traducción de pantalla; el carrito y el pedido siguen enviando los valores
+  españoles, p. ej. `Diestro`). Intro y guía de tallas en
+  `src/content/data/en/tienda.json` (editable en el panel; títulos de tabla,
+  cabeceras y celdas van como parejas español exacto → inglés; lo que falte se
+  muestra en español; `howToMeasure` alineado por posición). Nombre y
+  descripción de producto en inglés: campos opcionales `name_en` /
+  `description_en` en `tienda.json`. `public/pedido.php` responde y envía la
+  copia al cliente en inglés si recibe `lang=en`.
+- **Noticias (`/en/news`)**: campos opcionales `title_en`, `summary_en` y
+  `body_en` en `noticias.json` (hacen falta los tres; si falta alguno se
+  muestra el español con la etiqueta "(in Spanish)" y `lang="es"`). Tipos
+  traducidos en `newsTypeEn` (`src/content/news.ts`).
 
 - **Mapa de rutas es↔en, `hreflang`, selector ES|EN y menú inglés:** todo en
   `src/content/i18n.ts`. Para añadir una página inglesa: crear
