@@ -28,7 +28,27 @@ function canRegister(): boolean {
  * pie de página (InstallAppLink). Si el aviso estorba en una pantalla
  * (la tienda tiene el carrito abajo a la izquierda) se oculta.
  */
-export function PwaRegister() {
+const T = {
+  es: {
+    label: "Instalar la app",
+    title: "Instala la app del club",
+    ios: "Pulsa Compartir y después «Añadir a pantalla de inicio».",
+    text: "Horarios, precios y contacto a un toque, también sin conexión.",
+    install: "Instalar",
+    close: "Cerrar aviso de instalación",
+  },
+  en: {
+    label: "Install the app",
+    title: "Install the club app",
+    ios: "Tap Share, then “Add to Home Screen”.",
+    text: "Timetable, prices and contact in one tap, even offline.",
+    install: "Install",
+    close: "Close install notice",
+  },
+};
+
+export function PwaRegister({ lang = "es" }: { lang?: "es" | "en" }) {
+  const t = T[lang];
   const mode = useSyncExternalStore(subscribeInstall, getInstallMode, getServerInstallMode);
   const pathname = usePathname();
   const [ready, setReady] = useState(false);
@@ -68,15 +88,15 @@ export function PwaRegister() {
   return (
     <div
       role="region"
-      aria-label="Instalar la app"
+      aria-label={t.label}
       className="fixed left-4 right-[5.5rem] z-30 max-w-sm rounded-sm border border-white/15 bg-ink p-4 text-paper shadow-lg shadow-black/30 sm:right-auto lg:left-6"
       style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
     >
-      <p className="pr-6 text-sm font-semibold">Instala la app del club</p>
+      <p className="pr-6 text-sm font-semibold">{t.title}</p>
       <p className="mt-1 text-xs leading-relaxed text-paper/75">
         {mode === "ios"
-          ? "Pulsa Compartir y después «Añadir a pantalla de inicio»."
-          : "Horarios, precios y contacto a un toque, también sin conexión."}
+          ? t.ios
+          : t.text}
       </p>
       {mode === "prompt" && (
         <button
@@ -87,13 +107,13 @@ export function PwaRegister() {
           }}
           className="mt-3 inline-flex rounded-sm bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
-          Instalar
+          {t.install}
         </button>
       )}
       <button
         type="button"
         onClick={close}
-        aria-label="Cerrar aviso de instalación"
+        aria-label={t.close}
         className="absolute right-1 top-1 flex h-9 w-9 items-center justify-center text-paper/70 hover:text-white focus-visible:outline-2 focus-visible:outline-white"
       >
         <span aria-hidden="true" className="text-lg leading-none">

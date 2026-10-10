@@ -12,14 +12,20 @@ declare(strict_types=1);
 $destination = "esgrimatorremolinos@gmail.com";
 $siteName = "Club de Esgrima Torremolinos";
 
+// El formulario de /en/contact/ envía lang=en para ver las respuestas en inglés.
+$lang = (($_POST["lang"] ?? "") === "en") ? "en" : "es";
+
 function render_page(string $title, string $message, bool $isError = false): void
 {
+    global $lang;
+    $backHref = $lang === "en" ? "/en/contact/" : "/contacto/";
+    $backText = $lang === "en" ? "Back to Contact" : "Volver a Contacto";
     $color = $isError ? "#a53324" : "#2a6b4f";
     http_response_code($isError ? 400 : 200);
     header("Content-Type: text/html; charset=utf-8");
     echo <<<HTML
 <!doctype html>
-<html lang="es">
+<html lang="{$lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +44,7 @@ function render_page(string $title, string $message, bool $isError = false): voi
   <div class="card">
     <h1>{$title}</h1>
     <p>{$message}</p>
-    <a href="/contacto/">&larr; Volver a Contacto</a>
+    <a href="{$backHref}">&larr; {$backText}</a>
   </div>
 </body>
 </html>
@@ -53,6 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 // Honeypot anti-spam: campo oculto que solo rellenan los bots.
 if (!empty($_POST["website"] ?? "")) {
+    if ($lang === "en") {
+        render_page("Thank you!", "We have received your message. We will reply as soon as we can.");
+    }
     render_page("¡Gracias!", "Hemos recibido tu mensaje. Te responderemos lo antes posible.");
 }
 
@@ -69,6 +78,13 @@ $subject = clean_field($_POST["subject"] ?? "");
 $message = trim($_POST["message"] ?? "");
 
 if ($name === "" || $email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if ($lang === "en") {
+        render_page(
+            "Missing details",
+            "Please check your name and email address and try again.",
+            true
+        );
+    }
     render_page(
         "Faltan datos",
         "Revisa tu nombre y correo electrónico e inténtalo de nuevo.",
@@ -90,9 +106,23 @@ $sent = @mail($destination, $mailSubject, $body, $headers);
 
 if ($sent) {
     $safeName = htmlspecialchars($name, ENT_QUOTES, "UTF-8");
+    if ($lang === "en") {
+        render_page(
+            "Message sent!",
+            "Thank you, {$safeName}. We have received your message and will reply as soon as we can."
+        );
+    }
     render_page(
         "¡Mensaje enviado!",
         "Gracias, {$safeName}. Hemos recibido tu mensaje y te responderemos lo antes posible."
+    );
+}
+
+if ($lang === "en") {
+    render_page(
+        "Could not send",
+        "Something went wrong while sending your message. Please write to us directly at {$destination} or on WhatsApp.",
+        true
     );
 }
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { site } from "@/content/site";
+import { ui, type Lang } from "@/content/i18n";
 
 type Post = {
   id: string;
@@ -16,12 +17,14 @@ const handle = site.social.instagram
   .replace(/^https?:\/\/(www\.)?instagram\.com\//, "@")
   .replace(/\/$/, "");
 
-export function InstagramCta() {
+export function InstagramCta({ lang = "es" }: { lang?: Lang }) {
+  const t = ui[lang].instagram;
   const [posts, setPosts] = useState<Post[] | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    fetch("instagram-feed.php")
+    // Desde /en/ la ruta relativa necesita subir un nivel hasta la raíz.
+    fetch(lang === "en" ? "../instagram-feed.php" : "instagram-feed.php")
       .then((res) => (res.ok ? res.json() : Promise.reject()))
       .then((data) => {
         if (!cancelled && Array.isArray(data?.posts) && data.posts.length > 0) {
@@ -36,7 +39,7 @@ export function InstagramCta() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [lang]);
 
   return (
     <div className="rounded-sm border border-line bg-paper-raised px-6 py-8">
@@ -74,10 +77,10 @@ export function InstagramCta() {
           </span>
           <div>
             <p className="font-display text-lg font-semibold uppercase tracking-tight text-ink">
-              Síguenos en Instagram
+              {t.title}
             </p>
             <p className="text-sm text-ink-soft">
-              Entrenamientos, competiciones y el día a día del club, en {handle}
+              {t.textBefore}{handle}
               .
             </p>
           </div>
@@ -86,7 +89,7 @@ export function InstagramCta() {
           href={site.social.instagram}
           className="btn-blade inline-flex shrink-0 items-center rounded-sm bg-accent px-5 py-2.5 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark"
         >
-          Ver el perfil
+          {t.cta}
         </a>
       </div>
 
@@ -101,7 +104,7 @@ export function InstagramCta() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={post.thumbnailUrl || post.mediaUrl}
-                alt={post.caption || "Publicación de Instagram del club"}
+                alt={post.caption || t.postAlt}
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { InstallAppLink } from "@/components/InstallAppLink";
 import { footerLinks, navigation, site, whatsappLink } from "@/content/site";
+import { enFooterLegal, enFooterNav, footerText, ui, type Lang } from "@/content/i18n";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -42,7 +43,11 @@ function PinIcon({ className }: { className?: string }) {
 const headingClass =
   "font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent";
 
-export function Footer() {
+export function Footer({ lang = "es" }: { lang?: Lang }) {
+  const t = footerText[lang];
+  const description = ui[lang].siteDescription ?? site.description;
+  const clubLinks = lang === "en" ? enFooterNav : navigation.slice(1);
+  const legalLinks = lang === "en" ? enFooterLegal : footerLinks;
   return (
     <footer className="relative overflow-hidden border-t border-line bg-ink text-paper">
       {/* Decoración: hoja diagonal y texto de contorno (no indexable) */}
@@ -61,29 +66,28 @@ export function Footer() {
       <div className="relative border-b border-white/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-14 sm:py-20 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <p className={headingClass}>Primera clase gratis</p>
+            <p className={headingClass}>{t.ctaEyebrow}</p>
             <h2 className="mt-3 font-display text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-6xl">
-              En guardia:
+              {t.ctaTitleBefore}
               <br />
-              tu primera clase es <span className="text-accent">gratis</span>
+              {t.ctaTitleMid}<span className="text-accent">{t.ctaTitleEm}</span>
             </h2>
             <p className="mt-5 max-w-md text-base text-paper/75">
-              Ven a probar sin compromiso. Te prestamos el material, te
-              explicamos todo y en tu primera clase ya te pones en guardia.
+              {t.ctaText}
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-4 sm:flex-row sm:items-center">
             <a
-              href={whatsappLink("Hola, quiero probar una clase gratis")}
+              href={whatsappLink(ui[lang].whatsappTrial)}
               className="btn-blade inline-flex items-center justify-center whitespace-nowrap rounded-sm bg-accent px-7 py-4 text-sm font-semibold uppercase tracking-wide text-white"
             >
-              Reservar por WhatsApp
+              {t.ctaButton}
             </a>
             <Link
-              href="/clase-gratis"
+              href={t.ctaLinkHref}
               className="link-touche inline-flex items-center gap-2 self-start whitespace-nowrap py-2 text-sm font-semibold uppercase tracking-wide text-paper sm:self-auto"
             >
-              Cómo funciona la clase gratis
+              {t.ctaLink}
               <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -97,7 +101,7 @@ export function Footer() {
             {site.name}
           </p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-paper/70">
-            {site.description}
+            {description}
           </p>
           <a
             href={site.social.instagram}
@@ -106,18 +110,19 @@ export function Footer() {
             className="group mt-5 inline-flex items-center gap-3 rounded-sm border border-white/15 px-4 py-2.5 text-sm font-medium text-paper transition-colors hover:border-accent hover:text-white"
           >
             <InstagramIcon className="h-5 w-5 text-accent transition-transform group-hover:-rotate-6 group-hover:scale-110" />
-            Síguenos en Instagram
+            {t.followInstagram}
           </a>
-          <InstallAppLink />
+          <InstallAppLink lang={lang} />
         </div>
 
         <div>
-          <p className={headingClass}>Club</p>
+          <p className={headingClass}>{t.club}</p>
           <ul className="mt-4 space-y-2.5 text-sm">
-            {navigation.slice(1).map((item) => (
+            {clubLinks.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  hrefLang={lang === "en" && !item.href.startsWith("/en") ? "es" : undefined}
                   className="link-touche text-paper/80 transition-colors hover:text-white"
                 >
                   {item.label}
@@ -128,7 +133,7 @@ export function Footer() {
         </div>
 
         <div className="sm:col-span-2 lg:col-span-1">
-          <p className={headingClass}>Dónde estamos</p>
+          <p className={headingClass}>{t.where}</p>
           <address className="mt-4 space-y-1 text-sm not-italic text-paper/80">
             <p className="font-medium text-paper">{site.address.venue}</p>
             <p>
@@ -160,7 +165,7 @@ export function Footer() {
             className="link-touche mt-4 inline-flex items-center gap-2 text-sm font-semibold text-paper transition-colors hover:text-white"
           >
             <PinIcon className="h-4 w-4 text-accent" />
-            Ver en Google Maps
+            {t.map}
           </a>
         </div>
       </div>
@@ -172,10 +177,11 @@ export function Footer() {
             © {new Date().getFullYear()} {site.name}
           </p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            {footerLinks.map((item) => (
+            {legalLinks.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  hrefLang={lang === "en" && !item.href.startsWith("/en") ? "es" : undefined}
                   className="link-touche transition-colors hover:text-paper"
                 >
                   {item.label}

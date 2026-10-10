@@ -33,6 +33,53 @@ relativas a `src/`.
 | `/politica-de-privacidad` | `app/politica-de-privacidad/page.tsx` | `content/site.ts` |
 | `/politica-de-cookies-ue` | `app/politica-de-cookies-ue/page.tsx` | — |
 
+> **Estructura de `src/app/`:** las páginas en español viven en el grupo de
+> rutas `src/app/(es)/…` (layout raíz con `lang="es"`; las URLs no cambian) y
+> las inglesas en `src/app/(en)/en/…` (layout raíz con `lang="en"`). Donde esta
+> tabla dice `app/<ruta>/page.tsx`, léase `app/(es)/<ruta>/page.tsx`.
+> `sitemap.ts`, `robots.ts`, `icon.tsx`, `llms*.txt` y `global-not-found.tsx` (el 404)
+> están en la raíz de `app/`.
+
+## Versión en inglés (`/en/…`)
+
+Nueve páginas: `/en/`, `/en/fencing-for-kids`, `/en/fencing-for-adults`,
+`/en/wheelchair-fencing`, `/en/schedule-and-prices`, `/en/free-trial-class`,
+`/en/our-team`, `/en/faq`, `/en/contact`. Tienda, noticias, calendario,
+instalaciones y páginas legales siguen en español (se enlazan como
+"(in Spanish)").
+
+- **Mapa de rutas es↔en, `hreflang`, selector ES|EN y menú inglés:** todo en
+  `src/content/i18n.ts`. Para añadir una página inglesa: crear
+  `src/app/(en)/en/<slug>/page.tsx`, añadir la pareja en `pathPairs` y usar
+  `pageAlternates(...)` en el `metadata` de las dos versiones.
+- **Los hechos se leen del español** (`src/content/data/*.json`): horas, días
+  (se traducen solos: "Martes a viernes" → "Tuesday to Friday"), precios
+  (`30€` → `€30`), números, nombres, teléfonos, fotos. El cargador es
+  `src/content/en.ts`.
+- **La prosa traducida** está en `src/content/data/en/*.json` (editable en el
+  panel: "Versión en inglés · …"): `textos`, `programas`, `horarios`, `precios`,
+  `equipo`, `faq`, `faq-silla`, `clase-gratis`, `cifras`, `galeria` (pies y alt).
+  Las listas van **alineadas por posición** con la lista española equivalente
+  (los programas, por `slug`; la galería, por `src`). Dentro de un texto inglés,
+  `{1}`, `{2}`… se sustituyen por el 1.º, 2.º… número (precio, hora, edad) del
+  texto español.
+- **Si cambias en español** el significado de un texto (no solo una cifra):
+  añadir/quitar/reordenar un grupo, plan, bono, licencia, pregunta, paso,
+  entrenador, cifra o foto; o cambiar los días de la semana citados en una
+  respuesta de la FAQ → hay que actualizar también el JSON inglés. Si falta
+  una entrada, la web muestra el texto español en esa posición y el build
+  avisa con `[en] …`. Cambiar solo una hora, un precio o una edad no requiere
+  tocar el inglés.
+- Prosa de las páginas inglesas (párrafos largos): en su `page.tsx`, como en
+  las españolas. Importes fijos de la página de silla de ruedas (30 €/mes,
+  70 €/año): están escritos a mano en las dos versiones; cambiar ambas.
+- Los componentes (`Header`, `Footer`, `PageHero`, `CompetitionPromo`…) aceptan
+  `lang="en"`; sus textos de interfaz están en `i18n.ts` o en el propio
+  componente. El layout inglés (`(en)/layout.tsx`) duplica fuentes y scripts
+  globales del español: cambios globales, en los dos.
+- El formulario de `/en/contact/` envía `lang=en` a `public/contact.php`, que
+  responde en inglés.
+
 ## Compartido entre páginas
 
 - `src/content/data/textos.json` — cabecera (etiqueta/título/entradilla) de cada
@@ -48,7 +95,7 @@ relativas a `src/`.
   de tecnificación (lunes) y entrenamiento físico gratuito; datos en
   `pricing.ts` (`competitionGroups`, `physicalTraining`). Sale en la home y
   en Horarios y Precios (ancla `#tecnificacion`).
-- `src/app/layout.tsx` — metadata global, JSON-LD del negocio
+- `src/app/(es)/layout.tsx` (y `(en)/layout.tsx`) — metadata global, JSON-LD del negocio
   (`SportsActivityLocation`/`ExerciseGym`), fuentes.
 - `src/components/PageHero.tsx` — cabecera de cada página interior
   (eyebrow/título/lede) + JSON-LD `BreadcrumbList` automático.
@@ -118,7 +165,7 @@ de las páginas según quién las lea.
   el cuerpo de esa página.
 - `WhatsAppFloat.tsx` — botón flotante de WhatsApp (aparece al bajar).
 - Valores de la home: tarjetas con icono (`icon` en `values` de
-  `programs.ts`, SVG en `app/page.tsx`).
+  `programs.ts`, SVG en `components/valueIcons.tsx`).
 - Clase gratis: línea de tiempo con foto por paso (`clase-gratis.json`).
 - Programas en la home: cuadrícula bento con la foto `photo` de cada
   programa en `programs.ts`.

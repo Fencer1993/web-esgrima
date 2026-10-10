@@ -1,0 +1,61 @@
+{
+  "paginas": [
+    {
+      "path": "/en/fencing-for-kids",
+      "eyebrow": "Ages 6–12",
+      "title": "Fencing for Kids",
+      "lede": "A mask, a foam sword and a group of friends: that is how kids' fencing begins in Torremolinos."
+    },
+    {
+      "path": "/en/fencing-for-adults",
+      "eyebrow": "From age 13",
+      "title": "Fencing for Adults",
+      "lede": "From 13 upwards, with no upper age limit, you can put on a mask and fence with us."
+    },
+    {
+      "path": "/en/wheelchair-fencing",
+      "eyebrow": "Adapted fencing",
+      "title": "Wheelchair Fencing",
+      "lede": "We are the only club in Andalusia with wheelchair fencing in its regular training sessions. Here you do the fencing, with just as much enthusiasm as anyone else."
+    },
+    {
+      "path": "/en/our-team",
+      "eyebrow": "Who we are",
+      "title": "Our Team",
+      "lede": "The coaches who will welcome you to your first class, and the athletes who take the club's name into competition."
+    },
+    {
+      "path": "/en/schedule-and-prices",
+      "eyebrow": "Join the club",
+      "title": "Schedule and Prices",
+      "lede": "There are groups from Monday to Friday, in the morning and the evening, plus performance training for competitors on Mondays. Pick the one that suits you and come along to try it."
+    },
+    {
+      "path": "/en/free-trial-class",
+      "eyebrow": "The magic word: free",
+      "title": "Free Trial Class",
+      "lede": "Curious about fencing but not quite sure? Come to your first class for free and find out with a sabre in your hand."
+    },
+    {
+      "path": "/en/faq",
+      "eyebrow": "Your questions answered",
+      "title": "Frequently Asked Questions",
+      "lede": "If fencing has caught your eye, you are bound to have questions. Here are clear answers to the ones we hear most. If we have missed yours, just write to us."
+    },
+    {
+      "path": "/en/contact",
+      "eyebrow": "Where to find us",
+      "title": "Contact",
+      "lede": "To try fencing with us, just turn up in sports clothes with water and a towel, 10 minutes early so we can explain how the class works. We look forward to seeing you."
+    }
+  ],
+  "inicio": {
+    "heroEyebrow": "Torremolinos · Málaga",
+    "heroLede": "Fencing classes in Torremolinos for children from age 6, teenagers, adults and wheelchair fencers. Put on the mask, salute your opponent and feel your first hit. Your first class is free.",
+    "heroCta": "Come and try it free",
+    "heroSecondaryCta": "See schedule and prices",
+    "finalTitle": "Don't think twice",
+    "finalText": "Come and try fencing with us. Your first class is free, and you will be welcomed with the friendly atmosphere of Club de Esgrima Torremolinos. The hardest part is taking that first step onto the piste.",
+    "finalCta": "I'd like to try it"
+  }
+}

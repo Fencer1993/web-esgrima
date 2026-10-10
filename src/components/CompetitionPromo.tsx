@@ -1,10 +1,38 @@
 import { competitionGroups, physicalTraining, technificationNote } from "@/content/pricing";
 import { whatsappLink } from "@/content/site";
+import {
+  enCompetitionGroups,
+  enPhysicalTraining,
+  enTechnificationNote,
+} from "@/content/en";
+
+const labels = {
+  es: {
+    eyebrow: "Tecnificación deportiva",
+    title: "¿Quieres competir? Los lunes entrenamos para eso.",
+    intro:
+      "Dos grupos de esgrima de competición, uno para adolescentes y otro para mayores de 18 años, con una sesión específica cada lunes. Víctor Santiago, director técnico del club, te prepara para tus torneos.",
+    cta: "Quiero información",
+    message: "Hola, quiero información sobre la tecnificación y la competición",
+  },
+  en: {
+    eyebrow: "Performance training",
+    title: "Want to compete? Mondays are for that.",
+    intro:
+      "Two competition fencing groups, one for teenagers and one for over-18s, each with a dedicated session every Monday. Víctor Santiago, the club's technical director, prepares you for your tournaments.",
+    cta: "I'd like more information",
+    message: "Hello, I'd like some information about performance training and competing",
+  },
+};
 
 // Bloque promocional de los grupos de tecnificación (lunes) y del
 // entrenamiento físico gratuito. Los datos vienen de pricing.ts, así que
 // el horario aquí nunca difiere del de la tabla.
-export function CompetitionPromo() {
+export function CompetitionPromo({ lang = "es" }: { lang?: "es" | "en" }) {
+  const t = labels[lang];
+  const groups = lang === "en" ? enCompetitionGroups() : competitionGroups;
+  const physical = lang === "en" ? enPhysicalTraining() : physicalTraining;
+  const note = lang === "en" ? enTechnificationNote : technificationNote;
   return (
     <section
       id="tecnificacion"
@@ -16,19 +44,17 @@ export function CompetitionPromo() {
       />
       <div className="relative mx-auto max-w-6xl px-5 py-14 sm:py-20">
         <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
-          Tecnificación deportiva
+          {t.eyebrow}
         </p>
         <h2 className="mt-2 max-w-2xl font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl">
-          ¿Quieres competir? Los lunes entrenamos para eso.
+          {t.title}
         </h2>
         <p className="mt-3 max-w-2xl text-base text-paper/80">
-          Dos grupos de esgrima de competición, uno para adolescentes y otro
-          para mayores de 18 años, con una sesión específica cada lunes. Víctor
-          Santiago, director técnico del club, te prepara para tus torneos.
+          {t.intro}
         </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {competitionGroups.map((g) => (
+          {groups.map((g) => (
             <div
               key={g.name}
               className="reveal rounded-sm border border-paper/15 bg-paper/5 p-6 backdrop-blur-sm transition-colors hover:border-accent"
@@ -49,28 +75,26 @@ export function CompetitionPromo() {
           ))}
         </div>
 
-        <p className="mt-3 text-xs text-paper/60">* {technificationNote}</p>
+        <p className="mt-3 text-xs text-paper/60">* {note}</p>
 
         <div className="reveal mt-4 flex flex-col gap-4 rounded-sm border border-accent/50 bg-accent/10 p-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-wide text-accent">
-              {physicalTraining.price} · {physicalTraining.days},{" "}
-              {physicalTraining.hours}
+              {physical.price} · {physical.days},{" "}
+              {physical.hours}
             </p>
             <h3 className="mt-1 text-lg font-semibold uppercase tracking-tight">
-              {physicalTraining.name}
+              {physical.name}
             </h3>
             <p className="mt-1 max-w-xl text-sm text-paper/75">
-              {physicalTraining.text}
+              {physical.text}
             </p>
           </div>
           <a
-            href={whatsappLink(
-              "Hola, quiero información sobre la tecnificación y la competición",
-            )}
+            href={whatsappLink(t.message)}
             className="btn-blade inline-flex shrink-0 items-center justify-center rounded-sm bg-accent px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white"
           >
-            Quiero información
+            {t.cta}
           </a>
         </div>
       </div>

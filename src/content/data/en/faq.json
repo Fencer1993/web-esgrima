@@ -1,0 +1,76 @@
+{
+  "items": [
+    {
+      "question": "What is fencing?",
+      "answer": "Fencing is a combat sport in which two opponents try to hit each other with a bladed weapon. It is fast, tactical and great fun. There are three weapons: sabre, épée and foil."
+    },
+    {
+      "question": "What is a good age to start fencing?",
+      "answer": "There is no upper age limit, and the earlier the better. Children can start as young as {1}, although at the club we take beginners from {2}."
+    },
+    {
+      "question": "How many weapons are there in fencing?",
+      "answer": "There are three: sabre, épée and foil. We mainly practise sabre in standing fencing; in adapted (wheelchair) fencing we work with all three. Sabre: hits count from the waist up, with the edge, the back edge and the point. Foil: hits count on the torso and part of the neck, with the point only. Épée: a hit anywhere on the body counts, with the point only, and there are no right-of-way rules."
+    },
+    {
+      "question": "Which is the best weapon?",
+      "answer": "Each weapon has its own challenge and its own appeal. Épée is very strategic: the aim is to hit without being hit. Foil is very technical, with a small target area. Sabre is more physical and dynamic. By tradition, we prefer sabre at the club: we think it is the most fun, and it is the one closest to what you see in films."
+    },
+    {
+      "question": "How does a bout work?",
+      "answer": "The fencing area is called the piste, and a fight is called a bout. The referee starts it with \"En garde, ready? Fence!\". When a hit lands, a light comes on at the scoring box. The referee stops the bout with \"Halt\" and awards the point."
+    },
+    {
+      "question": "What do I need to start fencing?",
+      "answer": "The full kit includes a mask, glove, sabre, white jacket, underarm protector, white breeches, electric jacket (lamé), body wire, long socks and sports shoes. To train at the club you don't need to buy anything, because we lend you the equipment."
+    },
+    {
+      "question": "I'd like to buy my own equipment. Where from?",
+      "answer": "We place regular orders with our usual suppliers: Yiang (for beginners) and Allstar and PBT (higher quality, for advanced competition). If you buy through the club, we advise you, you get a small discount and you save on delivery."
+    },
+    {
+      "question": "What should I bring to training?",
+      "answer": "Comfortable, slightly stretchy sports clothes, sports shoes (ideally padel or indoor shoes), a towel and a large bottle of water. If you have your own equipment, bring that too."
+    },
+    {
+      "question": "Who can I ask if I have any questions?",
+      "answer": "During training, you can ask either of the coaches, Carlos or Víctor, who will be happy to help. You can also write to esgrimatorremolinos@gmail.com or call 616 94 00 91."
+    },
+    {
+      "question": "What do I need to do if I want to compete?",
+      "answer": "You need to hold a federation licence: sports insurance is compulsory, and the federation fee gives you medical cover in training and in regional competition (the cups of each autonomous community and the Andalusian Championship). To compete at national level you pay the corresponding federation fee."
+    },
+    {
+      "question": "Can I train if I have an injury?",
+      "answer": "It depends on the type of injury, but we can usually adapt to any limitation or condition. We just need you to tell us beforehand, and we will work out together how to do it."
+    },
+    {
+      "question": "What shoes should I wear?",
+      "answer": "Any sports shoe with a non-slip sole and good heel support will do; we recommend fencing, padel or indoor football shoes. Avoid very thick soles, as they reduce stability when you move quickly."
+    },
+    {
+      "question": "Do I have to hold a federation licence?",
+      "answer": "Yes, it is compulsory as soon as you join the club. It gives you the sports insurance required to compete, and lets you attend medical centres affiliated with the Andalusian Fencing Federation if you are injured."
+    },
+    {
+      "question": "How many fencing groups does the club have?",
+      "answer": "Wheelchair fencing in the morning; standing fencing in the evening, with a children's group and a teenagers-and-adults group; and on Mondays, two performance groups for competitors (ages {1} to {2}, and over {3})."
+    },
+    {
+      "question": "How many days a week can I train?",
+      "answer": "Teenagers and adults, Tuesday to Friday. Children, Tuesday to Thursday (on Fridays, only with authorisation and the supervision of an adult). Wheelchair fencing, Monday to Thursday mornings. If you compete, you can add the Monday performance session."
+    },
+    {
+      "question": "What is the performance training group?",
+      "answer": "It is the Monday session for people who want to compete: {1}–{2} for ages {3} to {4}, and {5}–{6} for over-{7}s. You work on technique, tactics and tournament preparation with the club's coaching team."
+    },
+    {
+      "question": "Is there physical training at the club?",
+      "answer": "Yes. We offer free physical training for fencers on Tuesdays and Thursdays from {1} to {2}, so you arrive on the piste with more stamina. Ask the club's technical director about places and conditions."
+    },
+    {
+      "question": "How much do private lessons cost?",
+      "answer": "From {1}: a single {2}-minute lesson costs {3} and a full one-hour lesson costs {4}. The day and time are agreed with the coach."
+    }
+  ]
+}

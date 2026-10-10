@@ -14,6 +14,8 @@ export const navigation = [
   { label: "Noticias", href: "/noticias" },
   { label: "Calendario", href: "/calendario" },
   { label: "Tienda", href: "/tienda" },
+  { label: "Resultados", href: "/resultados" },
+  { label: "Patrocinadores", href: "/patrocinadores" },
   { label: "Preguntas Frecuentes", href: "/preguntas-frecuentes" },
   { label: "Contacto", href: "/contacto" },
 ] as const;
@@ -38,6 +40,8 @@ export const navMenu = [
       { label: "Noticias y avisos", href: "/noticias", description: "Tablón de anuncios del club" },
       { label: "Calendario", href: "/calendario", description: "Competiciones y eventos" },
       { label: "Tienda", href: "/tienda", description: "Material con descuento de club" },
+      { label: "Resultados y palmarés", href: "/resultados", description: "Torneos, medallas y palmarés" },
+      { label: "Patrocinadores", href: "/patrocinadores", description: "Colabora con el club" },
       { label: "Preguntas frecuentes", href: "/preguntas-frecuentes", description: "Material, edades, seguro y más" },
     ],
   },

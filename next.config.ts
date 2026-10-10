@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
   // resuelven en public/.htaccess y public/contact.php (ver ese archivo).
   output: "export",
   trailingSlash: true,
+  // Hay dos layouts raíz ((es) y (en)), así que el 404 sale de
+  // src/app/global-not-found.tsx en vez de componerse con un layout.
+  experimental: { globalNotFound: true },
   images: { unoptimized: true },
   basePath: basePath || undefined,
   env: { NEXT_PUBLIC_BASE_PATH: basePath },

@@ -13,7 +13,8 @@ import {
  * navegador puede instalarla: Chrome/Edge/Android con el diálogo nativo, o
  * Safari de iOS con una indicación. Si ya está instalada, no se pinta.
  */
-export function InstallAppLink() {
+export function InstallAppLink({ lang = "es" }: { lang?: "es" | "en" }) {
+  const en = lang === "en";
   const mode = useSyncExternalStore(subscribeInstall, getInstallMode, getServerInstallMode);
   const [hint, setHint] = useState(false);
   if (mode === "none") return null;
@@ -40,11 +41,11 @@ export function InstallAppLink() {
           <path d="m7 10 5 5 5-5" />
           <path d="M5 20h14" />
         </svg>
-        Instala la app del club
+        {en ? "Install the club app" : "Instala la app del club"}
       </button>
       {mode === "ios" && hint && (
         <p role="status" className="mt-2 max-w-xs text-xs leading-relaxed text-paper/75">
-          Pulsa Compartir y después «Añadir a pantalla de inicio».
+          {en ? "Tap Share, then “Add to Home Screen”." : "Pulsa Compartir y después «Añadir a pantalla de inicio»."}
         </p>
       )}
     </div>
