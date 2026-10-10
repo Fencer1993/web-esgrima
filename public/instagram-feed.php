@@ -1,9 +1,16 @@
 <?php
 /**
  * Devuelve en JSON las últimas publicaciones de Instagram (fotos,
- * álbumes y reels) usando la Instagram Graph API. Cachea la respuesta
- * en disco para no golpear la API en cada visita ni agotar el límite
- * de peticiones de Meta.
+ * álbumes y reels). Cachea la respuesta en disco para no golpear la API en
+ * cada visita ni agotar el límite de peticiones de Meta.
+ *
+ * Dos tipos de clave (INSTAGRAM_ACCESS_TOKEN):
+ *  - "Instagram API con inicio de sesión de Instagram" (empieza por "IG"):
+ *    usa graph.instagram.com, no necesita página de Facebook ni
+ *    INSTAGRAM_USER_ID, y se renueva sola cada semana (las claves duran 60
+ *    días); la clave renovada se guarda en la carpeta privada club-data/.
+ *  - Clave de la Graph API de Facebook (cuenta vinculada a una página):
+ *    usa graph.facebook.com con INSTAGRAM_USER_ID.
  */
 
 declare(strict_types=1);
@@ -19,7 +26,8 @@ if (!file_exists($configFile)) {
 }
 require $configFile;
 
-if (INSTAGRAM_USER_ID === "" || INSTAGRAM_ACCESS_TOKEN === "") {
+$isIgToken = strncmp(INSTAGRAM_ACCESS_TOKEN, "IG", 2) === 0;
+if (INSTAGRAM_ACCESS_TOKEN === "" || (!$isIgToken && INSTAGRAM_USER_ID === "")) {
     http_response_code(503);
     echo json_encode(["error" => "Credenciales de Instagram vacías"]);
     exit;
@@ -34,11 +42,61 @@ if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < CACHE_TTL_SECO
     exit;
 }
 
+/** Carpeta privada (fuera del web root si se puede), como pedido.php. */
+function ig_data_dir(): string
+{
+    $outside = dirname(__DIR__) . "/club-data";
+    if ((is_dir($outside) || @mkdir($outside, 0750, true)) && is_writable($outside)) {
+        return $outside;
+    }
+    $inside = __DIR__ . "/_data";
+    if (!is_dir($inside)) {
+        @mkdir($inside, 0750, true);
+    }
+    return $inside;
+}
+
+/**
+ * Clave vigente. Con claves de Instagram Login: si la guardada procede de la
+ * misma clave de configuración, se usa la guardada (renovada) y se renueva de
+ * nuevo si tiene más de 7 días. Si cambias el secreto en GitHub, manda el nuevo.
+ */
+function ig_token(bool $isIgToken): string
+{
+    $config = INSTAGRAM_ACCESS_TOKEN;
+    if (!$isIgToken) {
+        return $config;
+    }
+    $file = ig_data_dir() . "/instagram-token.json";
+    $origin = hash("sha256", $config);
+    $saved = is_file($file) ? json_decode((string) @file_get_contents($file), true) : null;
+    $token = $config;
+    $refreshedAt = 0;
+    if (is_array($saved) && ($saved["origin"] ?? "") === $origin && !empty($saved["token"])) {
+        $token = (string) $saved["token"];
+        $refreshedAt = (int) ($saved["refreshed_at"] ?? 0);
+    }
+    if (time() - $refreshedAt > 7 * 86400) {
+        $r = @file_get_contents("https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=" . urlencode($token));
+        $j = $r !== false ? json_decode($r, true) : null;
+        if (is_array($j) && !empty($j["access_token"])) {
+            $token = (string) $j["access_token"];
+        }
+        // También si falla: se reintenta en una semana y se sigue usando la vigente.
+        @file_put_contents($file, json_encode(["origin" => $origin, "token" => $token, "refreshed_at" => time()]), LOCK_EX);
+        @chmod($file, 0600);
+    }
+    return $token;
+}
+
 $fields = "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp";
-$url = "https://graph.facebook.com/v21.0/" . urlencode(INSTAGRAM_USER_ID) . "/media"
+$base = $isIgToken
+    ? "https://graph.instagram.com/v21.0/me/media"
+    : "https://graph.facebook.com/v21.0/" . urlencode(INSTAGRAM_USER_ID) . "/media";
+$url = $base
     . "?fields=" . urlencode($fields)
     . "&limit=" . LIMIT
-    . "&access_token=" . urlencode(INSTAGRAM_ACCESS_TOKEN);
+    . "&access_token=" . urlencode(ig_token($isIgToken));
 
 $response = @file_get_contents($url);
 

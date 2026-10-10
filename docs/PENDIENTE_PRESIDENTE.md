@@ -21,7 +21,12 @@ Los "secretos" se guardan en GitHub → repositorio **web-esgrima** → **Settin
 3. Opcional: pregunta a SportMember si dan acceso para **crear actividades o avisos** por API (hoy solo está documentado leer y apuntarse).
 
 ## 4. Instagram (últimas publicaciones en la portada)
-Secretos `INSTAGRAM_USER_ID` e `INSTAGRAM_ACCESS_TOKEN` (cuenta Business/Creator vinculada a una página de Facebook).
+Con el **inicio de sesión de Instagram** (no hace falta página de Facebook):
+1. La cuenta del club debe ser **profesional** (Instagram → Configuración → Tipo de cuenta y herramientas → Cambiar a cuenta profesional).
+2. Entra en https://developers.facebook.com → **Mis apps → Crear app** → caso de uso de **Instagram** («Gestionar mensajes y contenido en Instagram»).
+3. En la app: **Instagram → Configuración de la API con inicio de sesión de Instagram → Generar identificadores de acceso → Añadir cuenta** (entra con la cuenta del club) → **Generar identificador** y cópialo (empieza por `IG…`).
+4. En GitHub crea el secreto `INSTAGRAM_ACCESS_TOKEN` con ese identificador. `INSTAGRAM_USER_ID` no hace falta.
+5. Avisa a Claude para publicar. La web renueva sola la clave cada semana (caduca a los 60 días si no).
 
 ## 5. Datos y comprobaciones
 - **Registro Andaluz de Entidades Deportivas:** escribe el número en el panel → *Datos del club y contacto → Datos legales*.

@@ -44,7 +44,7 @@ RewriteRule ^index\.php/ / [L,R=301]
 # 6) Ficheros de configuración y datos que el navegador nunca debe pedir
 #    directamente (los PHP los leen desde el disco): claves, listas de
 #    reservas y funciones comunes.
-<FilesMatch "(-config\.php|-lib\.php|\.jsonl|\.jsonl\.bak|push-(vapid|rate)\.json(\.lock)?)$">
+<FilesMatch "(-config\.php|-lib\.php|\.jsonl|\.jsonl\.bak|push-(vapid|rate)\.json(\.lock)?|instagram-token\.json)$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>
