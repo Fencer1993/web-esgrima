@@ -64,3 +64,23 @@ llama a `recordatorios.php` con una clave derivada del secreto `FTP_PASSWORD`
 (`sha256("recordatorios:" + FTP_PASSWORD)`); envía un correo a quien tiene clase
 mañana y lo marca como recordado. Si cambias `FTP_PASSWORD`, vuelve a desplegar
 para regenerar `recordatorios-config.php`. Se puede lanzar a mano desde Actions.
+
+## Avisos al móvil
+
+`/gestion/avisos.php` (menú "Avisos"): escribe título (máx. 60), texto (máx. 160)
+y, si quieres, un enlace interno (`/calendario/`, `/noticias/`…). "Enviar aviso"
+muestra una confirmación con el número de suscriptores; el envío no se puede
+deshacer. El historial muestra, por aviso, entregados / errores / bajas
+(dispositivos que ya no existen y se borran solos).
+
+- Las personas lo activan con el botón "Recibir avisos del club en este
+  dispositivo" del pie de la web y de `/calendario`. En iPhone/iPad hay que
+  instalar antes la app (Compartir, "Añadir a pantalla de inicio"; iOS 16.4+).
+- Datos: `club-data/push-vapid.json` (claves, se crean solas la primera vez; si
+  se borran, todos los suscriptores tendrán que volver a activar los avisos),
+  `push-suscripciones.jsonl`, `avisos.jsonl`, `push-rate.json`. Respáldalos como
+  el resto; no se suben a git.
+- Los pushes van vacíos; el móvil descarga el último aviso de
+  `/aviso-actual.php`. Si fallara, muestra "tienes un aviso nuevo".
+- Límites: sin cola ni programación; el envío es inmediato. El aviso caduca a
+  las 24 h si el móvil está apagado.

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require __DIR__ . '/auth.php';
 require __DIR__ . '/layout.php';
+require_once dirname(__DIR__) . '/push-lib.php';
 
 $orders = pedidos_read();
 $nuevos = count(array_filter($orders, fn($o) => ($o['status'] ?? '') === 'nuevo'));
@@ -30,6 +31,10 @@ gestion_header('Panel', 'index.php');
   <a class="card" href="calendario.php">
     <div class="n">▦</div><strong>Calendario</strong>
     <p>Próximos eventos del club.</p>
+  </a>
+  <a class="card" href="avisos.php">
+    <div class="n"><?= count(push_subs()) ?></div><strong>Avisos al móvil</strong>
+    <p>Suscriptores. Envía una notificación a sus móviles.</p>
   </a>
 </div>
 <?php gestion_footer();

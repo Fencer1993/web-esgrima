@@ -11,12 +11,12 @@
  * que se registró el worker, así que el mismo archivo vale en la raíz y en
  * subcarpetas. Para invalidar todo lo guardado, sube VERSION.
  *
- * TODO (notificaciones push, más adelante): añadir aquí
- *   self.addEventListener("push", ...) y
- *   self.addEventListener("notificationclick", ...)
- * sin tocar el resto. El registro (src/components/PwaRegister.tsx) no cambia.
+ * Avisos push (al final del archivo): el servidor envía pushes SIN carga
+ * (solo autenticación VAPID); al recibir uno, el worker pide
+ * /aviso-actual.php (nunca en caché) y muestra la notificación. Al pulsarla,
+ * enfoca una pestaña del sitio o abre el enlace del aviso.
  */
-const VERSION = "v1";
+const VERSION = "v2";
 const PAGES = `esgrima-pages-${VERSION}`;
 const STATIC = `esgrima-static-${VERSION}`;
 const IMAGES = `esgrima-images-${VERSION}`;
@@ -173,4 +173,64 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(staleWhileRevalidate(request, IMAGES, MAX_IMAGES));
   }
   // Todo lo demás (JSON de datos, RSC, etc.) pasa directo a la red.
+});
+
+// --- Avisos push -------------------------------------------------------------
+
+const FALLBACK_NOTICE = {
+  title: "Club de Esgrima Torremolinos",
+  body: "Tienes un aviso nuevo.",
+  url: "/",
+  id: "aviso",
+};
+
+async function currentNotice() {
+  try {
+    const res = await withTimeout(fetch(`${BASE}/aviso-actual.php`, { cache: "no-store" }), 8000);
+    const data = await res.json();
+    if (data && data.ok && data.title) return data;
+  } catch {
+    // Sin red o respuesta rara: se usa el aviso genérico.
+  }
+  return FALLBACK_NOTICE;
+}
+
+self.addEventListener("push", (event) => {
+  event.waitUntil(
+    (async () => {
+      const n = await currentNotice();
+      const url = typeof n.url === "string" && n.url.startsWith("/") ? n.url : "/";
+      await self.registration.showNotification(n.title, {
+        body: n.body || "",
+        icon: `${BASE}/icons/icon-192.png`,
+        badge: `${BASE}/icons/icon-192.png`,
+        tag: String(n.id || "aviso"),
+        data: { url: `${BASE}${url}` },
+      });
+    })(),
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const target = new URL((event.notification.data && event.notification.data.url) || `${BASE}/`, self.location.origin).href;
+  event.waitUntil(
+    (async () => {
+      const list = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+      for (const c of list) {
+        if (new URL(c.url).origin === self.location.origin && "focus" in c) {
+          await c.focus();
+          if ("navigate" in c && c.url !== target) {
+            try {
+              await c.navigate(target);
+            } catch {
+              // navegación no permitida: se queda donde estaba
+            }
+          }
+          return;
+        }
+      }
+      await self.clients.openWindow(target);
+    })(),
+  );
 });

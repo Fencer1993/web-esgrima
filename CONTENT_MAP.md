@@ -177,6 +177,20 @@ canonical) al principio del archivo — es lo primero que hay que tocar
 si se pide cambiar un meta description. `src/app/sitemap.ts` lista las
 rutas indexables; añadir ahí cualquier página nueva.
 
+## Avisos al móvil (Web Push)
+
+El gestor envía avisos desde `/gestion/avisos.php`. Los pushes van **sin
+cuerpo** (solo autenticación VAPID, sin cifrado): el móvil despierta a
+`public/sw.js`, que pide `/aviso-actual.php` (título, texto, enlace; sin datos
+personales) y muestra la notificación. `AvisosToggle.tsx` (pie de página y
+`/calendario`) pide el permiso al pulsar y registra el dispositivo en
+`push-suscribir.php` (alta/baja; solo endpoint, idioma y fecha). Claves VAPID
+(`push-vapid.json`), suscripciones (`push-suscripciones.jsonl`) e historial
+(`avisos.jsonl`) viven en `club-data/` (o `_data/`), nunca en git; la clave
+pública sale de `push-clave.php`. Lógica común: `public/push-lib.php`.
+En iPhone solo funciona con la app instalada (iOS/Safari 16.4+). Detalle en
+`docs/GESTION.md`.
+
 ## App instalable (PWA)
 
 `src/app/manifest.ts` (manifest, respeta `BASE_PATH`), `public/sw.js`

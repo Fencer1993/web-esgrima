@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AvisosToggle } from "@/components/AvisosToggle";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { site } from "@/content/site";
@@ -80,6 +81,9 @@ export default function Calendario() {
         />
       )}
       <Section>
+        <div className="mb-8">
+          <AvisosToggle variant="light" />
+        </div>
         {groups.length === 0 ? (
           <div className="mx-auto max-w-xl rounded-sm border border-line bg-paper-raised p-8 text-center">
             <p className="font-display text-2xl font-bold uppercase tracking-tight">

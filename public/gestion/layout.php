@@ -10,7 +10,7 @@ function h($v): string
 function gestion_header(string $title, string $active = ''): void
 {
     header('Content-Type: text/html; charset=utf-8');
-    $nav = ['index.php' => 'Panel', 'pedidos.php' => 'Pedidos', 'reservas.php' => 'Clases gratis', 'convocatoria.php' => 'Convocatorias', 'calendario.php' => 'Calendario'];
+    $nav = ['index.php' => 'Panel', 'pedidos.php' => 'Pedidos', 'reservas.php' => 'Clases gratis', 'convocatoria.php' => 'Convocatorias', 'calendario.php' => 'Calendario', 'avisos.php' => 'Avisos'];
     $links = '';
     foreach ($nav as $f => $label) {
         $links .= '<a href="' . $f . '"' . ($f === $active ? ' class="on"' : '') . '>' . h($label) . '</a>';

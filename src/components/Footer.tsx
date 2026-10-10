@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AvisosToggle } from "@/components/AvisosToggle";
 import { InstallAppLink } from "@/components/InstallAppLink";
 import { footerLinks, navigation, site, whatsappLink } from "@/content/site";
 import { enFooterLegal, enFooterNav, footerText, ui, type Lang } from "@/content/i18n";
@@ -113,6 +114,7 @@ export function Footer({ lang = "es" }: { lang?: Lang }) {
             {t.followInstagram}
           </a>
           <InstallAppLink lang={lang} />
+          <AvisosToggle lang={lang} />
         </div>
 
         <div>
