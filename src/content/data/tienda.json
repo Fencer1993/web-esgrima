@@ -31,7 +31,7 @@
       "active": true,
       "ref": "",
       "url": "https://grantesgrima.com/producto/guante-lavable-sable-electrico-eco-fie-800n-ce/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -67,7 +67,7 @@
       "active": true,
       "ref": "NIKEVOB",
       "url": "https://grantesgrima.com/producto/nike-air-zoom-violet-orange-blue/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -92,7 +92,7 @@
       "active": true,
       "ref": "18-4MWX",
       "url": "https://grantesgrima.com/producto/chaqueta-de-sable-electrico-inox-blanco-talla-extra/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -120,7 +120,7 @@
       "active": true,
       "ref": "25005",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-fie-800n-ce-nino-pbt-primera/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -148,7 +148,7 @@
       "active": true,
       "ref": "25004",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-nino-pbt-primera/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -183,7 +183,7 @@
       "active": true,
       "ref": "25003",
       "url": "https://grantesgrima.com/producto/pantalon-de-esgrima-fie-800n-ce-hombre-primera/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -218,7 +218,7 @@
       "active": true,
       "ref": "25-002",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-hombre-pbt-primera/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -253,7 +253,7 @@
       "active": true,
       "ref": "25001",
       "url": "https://grantesgrima.com/producto/pantalon-de-esgrima-fie-800n-mujer-primera/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -288,7 +288,7 @@
       "active": true,
       "ref": "25000",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-mujer-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -403,7 +403,7 @@
       "active": true,
       "ref": "NIKEWG",
       "url": "https://grantesgrima.com/producto/fencing-shoes-nike-air-zoom-fencer-white-gold/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -438,7 +438,7 @@
       "active": true,
       "ref": "NIKEWNR",
       "url": "https://grantesgrima.com/producto/fencing-shoes-nike-air-zoom-fencer-white-navy-red/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -461,7 +461,7 @@
       "active": true,
       "ref": "BP-012",
       "url": "https://grantesgrima.com/producto/medias-esgrima-pro/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -485,7 +485,7 @@
       "active": true,
       "ref": "30-45P",
       "url": "https://grantesgrima.com/producto/medias-de-esgrima-premium-extra/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -535,7 +535,7 @@
       "active": true,
       "ref": "182",
       "url": "https://grantesgrima.com/producto/calzado-de-esgrima-pbt-fencera/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -620,7 +620,7 @@
       "active": true,
       "ref": "18-40MR",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-sable-nino-inox-rojo/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -655,7 +655,7 @@
       "active": true,
       "ref": "18-4MR",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable-hombre-inox-rojo/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -688,7 +688,7 @@
       "active": true,
       "ref": "18-41MR",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable-mujer-inox-rojo-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -718,7 +718,7 @@
       "active": true,
       "ref": "18-7BR",
       "url": "https://grantesgrima.com/producto/manguito-de-sable-inox-rojo-azul-rosa-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -739,7 +739,7 @@
       "active": true,
       "ref": "18-7W",
       "url": "https://grantesgrima.com/producto/manguito-de-sable-inox-blanco-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -771,7 +771,7 @@
       "active": true,
       "ref": "ROH",
       "url": "https://grantesgrima.com/producto/calzado-de-esgrima-rohoo/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -799,7 +799,7 @@
       "active": true,
       "ref": "18-40MW",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable-ninos-inox-blanco-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -827,7 +827,7 @@
       "active": true,
       "ref": "18-40M",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable-ninos-inox-nikel-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -899,7 +899,7 @@
       "active": true,
       "ref": "NIKE2403",
       "url": "https://grantesgrima.com/producto/fencing-shoes-nike-ballestra-2-blue-green/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -934,7 +934,7 @@
       "active": true,
       "ref": "NIKE2010",
       "url": "https://grantesgrima.com/producto/fencing-shoes-nike-ballestra-2-white-navy-red/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -969,7 +969,7 @@
       "active": true,
       "ref": "NIKE2107",
       "url": "https://grantesgrima.com/producto/fencing-shoes-nike-ballestra-2-white-gold/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1004,7 +1004,7 @@
       "active": true,
       "ref": "NIKE2100",
       "url": "https://grantesgrima.com/producto/fencing-shoes-nike-ballestra-2-white-silver/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1053,7 +1053,7 @@
       "active": true,
       "ref": "FC5402",
       "url": "https://grantesgrima.com/producto/calzado-de-esgrima-blue-fencer/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1135,7 +1135,7 @@
       "active": true,
       "ref": "FCJ",
       "url": "https://grantesgrima.com/producto/calzado-jiang-fencer/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1331,7 +1331,7 @@
       "active": true,
       "ref": "41-79SL",
       "url": "https://grantesgrima.com/producto/foilguard-para-protector-de-pecho-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1364,7 +1364,7 @@
       "active": true,
       "ref": "23-005",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-mujer-pbt-23-005/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1390,7 +1390,7 @@
       "active": true,
       "ref": "30_45/AB",
       "url": "https://grantesgrima.com/producto/medias-de-esgrima-pbt-30-45-ab/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1418,7 +1418,7 @@
       "active": true,
       "ref": "18-41MW",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable-mujer-inox-blanco-pbt-18-41-mw/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1438,7 +1438,7 @@
       "active": true,
       "ref": "41-81",
       "url": "https://grantesgrima.com/producto/protector-de-pecho-total-nino-talla-0-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1462,7 +1462,7 @@
       "active": true,
       "ref": "GJ-04A",
       "url": "https://grantesgrima.com/producto/protector-total-hombre-talla-xs-s-m-l-xl-gj/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1490,7 +1490,7 @@
       "active": true,
       "ref": "30-16",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-350n-ce-ninos-talla-152-170-pbt-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1518,7 +1518,7 @@
       "active": true,
       "ref": "18-41M",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable-mujer-talla-38-44-pbt-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1553,7 +1553,7 @@
       "active": true,
       "ref": "18-4M",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable-hombre-talla-48-58-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1588,7 +1588,7 @@
       "active": true,
       "ref": "18-4MW",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1626,7 +1626,7 @@
       "active": true,
       "ref": "GJ-103A",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-sable-inox-tallas-38-58/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1648,7 +1648,7 @@
       "active": true,
       "ref": "18-40",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable-ninos-talla-140-164-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1701,7 +1701,7 @@
       "active": true,
       "ref": "GJ-106",
       "url": "https://grantesgrima.com/producto/traje-completo-de-esgrima-350n-ce-tallas-128-64/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1754,7 +1754,7 @@
       "active": true,
       "ref": "GJ-171",
       "url": "https://grantesgrima.com/producto/pantalon-350n-ce-tallas-128-64/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1779,7 +1779,7 @@
       "active": true,
       "ref": "22-9X",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-350n-ce-talla-extra-15-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1813,7 +1813,7 @@
       "active": true,
       "ref": "22-9",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-350n-ce-hombre-talla-46-58-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1846,7 +1846,7 @@
       "active": true,
       "ref": "22-13",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-350n-ce-mujer-talla-38-46-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1899,7 +1899,7 @@
       "active": true,
       "ref": "GJ-170",
       "url": "https://grantesgrima.com/producto/chaqueta-350n-ce-tallas-128-64-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1927,7 +1927,7 @@
       "active": true,
       "ref": "230-17",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-350n-ce-ninos-talla-152-170-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1952,7 +1952,7 @@
       "active": true,
       "ref": "22-8X",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-350n-ce-talla-extra-15-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -1987,7 +1987,7 @@
       "active": true,
       "ref": "22-8",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-350n-ce-hombre-talla-46-58-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2021,7 +2021,7 @@
       "active": true,
       "ref": "22-14",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-350n-ce-mujer-talla-38-46-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2072,7 +2072,7 @@
       "active": true,
       "ref": "GJ-192",
       "url": "https://grantesgrima.com/producto/pantalon-800n-ce-fie-tallas-46-58/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2117,7 +2117,7 @@
       "active": true,
       "ref": "GJ-191",
       "url": "https://grantesgrima.com/producto/chaqueta-800n-ce-fie-tallas-46-58/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2151,7 +2151,7 @@
       "active": true,
       "ref": "23-003",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-fie-800n-ce-hombre-talla-46-58-pbt-3/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2184,7 +2184,7 @@
       "active": true,
       "ref": "23-002",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-fie-800n-ce-mujer-talla-38-44-pbt-3/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2219,7 +2219,7 @@
       "active": true,
       "ref": "23-001",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-hombre-talla-46-58-pbt-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2252,7 +2252,7 @@
       "active": true,
       "ref": "23-000",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-mujer-talla-38-44-pbt-3/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2280,7 +2280,7 @@
       "active": true,
       "ref": "24-203",
       "url": "https://grantesgrima.com/producto/pantalon-de-esgrima-nino-fie-stretchfit-800n-ce/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2315,7 +2315,7 @@
       "active": true,
       "ref": "24-202",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-fie-800n-ce-hombre-talla-46-58-pbt-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2348,7 +2348,7 @@
       "active": true,
       "ref": "24-201",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-fie-800n-ce-mujer-talla-38-44-pbt-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2376,7 +2376,7 @@
       "active": true,
       "ref": "24-103",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-nino-fie-stretchfit-800n-ce/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2410,7 +2410,7 @@
       "active": true,
       "ref": "24-102",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-hombre-talla-46-58-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2443,7 +2443,7 @@
       "active": true,
       "ref": "24-101",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-mujer-talla-38-44-pbt-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2468,7 +2468,7 @@
       "active": true,
       "ref": "23-010",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-fie-800n-ce-nino-talla-140-170-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2500,7 +2500,7 @@
       "active": true,
       "ref": "23-009/A",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-fie-800n-ce-talla-extra-15-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2534,7 +2534,7 @@
       "active": true,
       "ref": "23-009",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-fie-800n-ce-hombre-talla-46-58-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2568,7 +2568,7 @@
       "active": true,
       "ref": "23-008",
       "url": "https://grantesgrima.com/producto/pantalones-de-esgrima-fie-800n-ce-mujer-talla-38-44-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2591,7 +2591,7 @@
       "active": true,
       "ref": "23-007",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-nino-talla-140-170-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2621,7 +2621,7 @@
       "active": true,
       "ref": "18-4",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-de-sable-hombre-talla-46-58-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2672,7 +2672,7 @@
       "active": true,
       "ref": "GJ-103",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-sable-tallas-38-58/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2706,7 +2706,7 @@
       "active": true,
       "ref": "23-006",
       "url": "https://grantesgrima.com/producto/chaqueta-de-esgrima-fie-800n-ce-hombre-pbt-23-006/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2829,7 +2829,7 @@
       "active": true,
       "ref": "35-55",
       "url": "https://grantesgrima.com/producto/sable-electrico-completo-y-stm-35-55/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2853,7 +2853,7 @@
       "active": true,
       "ref": "GJ-089",
       "url": "https://grantesgrima.com/producto/sable-electrico-completo-gj-089/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -2975,7 +2975,7 @@
       "active": true,
       "ref": "35-52",
       "url": "https://grantesgrima.com/producto/sable-completo-y-stm-35-52/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3043,7 +3043,7 @@
       "active": true,
       "ref": "G-064",
       "url": "https://grantesgrima.com/producto/hoja-de-sable-y-stm-o-dynamo-g-064/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3065,7 +3065,7 @@
       "active": true,
       "ref": "GJ-090",
       "url": "https://grantesgrima.com/producto/hoja-de-sable-y-s2000-tallas-2-y-5/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3086,7 +3086,7 @@
       "active": true,
       "ref": "IM60009",
       "url": "https://grantesgrima.com/producto/talonera-ironman-performance-gel-heel-cups-talla-sl/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3110,7 +3110,7 @@
       "active": true,
       "ref": "IM60003",
       "url": "https://grantesgrima.com/producto/plantilla-ironman-performance-gel-talla-12345/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3153,7 +3153,7 @@
       "active": true,
       "ref": "30-45/CP",
       "url": "https://grantesgrima.com/producto/medias-de-esgrima-premium-con-bandera-hungara-pbt-tallas-35-47/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3179,7 +3179,7 @@
       "active": true,
       "ref": "30-45/A",
       "url": "https://grantesgrima.com/producto/medias-de-esgrima-pbt-tallas-35-47/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3219,7 +3219,7 @@
       "active": true,
       "ref": "GJ-012",
       "url": "https://grantesgrima.com/producto/medias-de-esgrima-talla-sml/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3242,7 +3242,7 @@
       "active": true,
       "ref": "AG200",
       "url": "https://grantesgrima.com/producto/medias-de-compresion-silver-tallas-smlxl/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3266,7 +3266,7 @@
       "active": true,
       "ref": "Master",
       "url": "https://grantesgrima.com/producto/protector-de-pecho-masterguard-para-hombre-talla-xssmlxl/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3290,7 +3290,7 @@
       "active": true,
       "ref": "FGM",
       "url": "https://grantesgrima.com/producto/foilguard-para-protector-masterguard-fie/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3923,7 +3923,7 @@
       "active": true,
       "ref": "GJ-110",
       "url": "https://grantesgrima.com/producto/manga-maestro/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3953,7 +3953,7 @@
       "active": true,
       "ref": "GJ-007",
       "url": "https://grantesgrima.com/producto/careta-350n-ce-maestro-negra-tallas-sml/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -3983,7 +3983,7 @@
       "active": true,
       "ref": "GJ-108M",
       "url": "https://grantesgrima.com/producto/chaqueta-maestro-cuero-tallas-48-56-color-marron-oferta/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4018,7 +4018,7 @@
       "active": true,
       "ref": "GJ-108",
       "url": "https://grantesgrima.com/producto/chaqueta-maestro-cuero-tallas-48-56-color-negro/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4060,7 +4060,7 @@
       "active": true,
       "ref": "31-115",
       "url": "https://grantesgrima.com/producto/proteccion-extra-para-hombro-y-espalda-talla-smlxlxxl-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4090,7 +4090,7 @@
       "active": true,
       "ref": "31-30E",
       "url": "https://grantesgrima.com/producto/guante-de-mastro-lavable-clases-sable-talla-75-105-350n-ce-negro-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4148,7 +4148,7 @@
       "active": true,
       "ref": "13-125",
       "url": "https://grantesgrima.com/producto/manga-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4188,7 +4188,7 @@
       "active": true,
       "ref": "13-128",
       "url": "https://grantesgrima.com/producto/protector-de-pierna-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4214,7 +4214,7 @@
       "active": true,
       "ref": "13-122",
       "url": "https://grantesgrima.com/producto/chaqueta-de-maestro-total-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4240,7 +4240,7 @@
       "active": true,
       "ref": "13-121",
       "url": "https://grantesgrima.com/producto/chaqueta-de-maestro-de-cuero-sin-mangas-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4269,7 +4269,7 @@
       "active": true,
       "ref": "13-111",
       "url": "https://grantesgrima.com/producto/chaqueta-de-maestro-de-textil-pbtprotector-copia/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4316,7 +4316,7 @@
       "active": true,
       "ref": "31-114A",
       "url": "https://grantesgrima.com/producto/protector-de-pierna-profi-pbt-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4337,7 +4337,7 @@
       "active": true,
       "ref": "18-7/B",
       "url": "https://grantesgrima.com/producto/puno-de-sable-inox-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4366,7 +4366,7 @@
       "active": true,
       "ref": "GJ-S18B",
       "url": "https://grantesgrima.com/producto/manguito-de-sable-inox-tallas-sml/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4399,7 +4399,7 @@
       "active": true,
       "ref": "31-37",
       "url": "https://grantesgrima.com/producto/guante-lavable-sable-electrico-fie-800n-ce-talla-7-11-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4494,7 +4494,7 @@
       "active": true,
       "ref": "33-42",
       "url": "https://grantesgrima.com/producto/mascara-electrica-de-sable-fie-1600n-ce-talla-0112-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4517,7 +4517,7 @@
       "active": true,
       "ref": "33-42/AE",
       "url": "https://grantesgrima.com/producto/mascara-electrica-de-sable-con-lame-inox-350n-ce-talla-0112-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4541,7 +4541,7 @@
       "active": true,
       "ref": "GJ-102",
       "url": "https://grantesgrima.com/producto/careta-sable-electrico-tallas-xssmlxl/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4564,7 +4564,7 @@
       "active": true,
       "ref": "33-43N",
       "url": "https://grantesgrima.com/producto/mascara-pbt-350n-ce/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4920,7 +4920,7 @@
       "active": true,
       "ref": "31-113/A",
       "url": "https://grantesgrima.com/producto/manga-de-maestro-profi-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4949,7 +4949,7 @@
       "active": true,
       "ref": "13-112/B",
       "url": "https://grantesgrima.com/producto/chaqueta-de-maestro-total-profi-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -4975,7 +4975,7 @@
       "active": true,
       "ref": "13-112/A",
       "url": "https://grantesgrima.com/producto/chaqueta-de-maestro-de-cuero-sin-mangas-profi-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5005,7 +5005,7 @@
       "active": true,
       "ref": "Maxi/C",
       "url": "https://grantesgrima.com/producto/top-para-maxiguard-blanco-o-negro/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5035,7 +5035,7 @@
       "active": true,
       "ref": "Ma-xi",
       "url": "https://grantesgrima.com/producto/protector-de-pecho-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5059,7 +5059,7 @@
       "active": true,
       "ref": "FGW",
       "url": "https://grantesgrima.com/producto/foilguard-protector-econoguard/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5091,7 +5091,7 @@
       "active": true,
       "ref": "E10/14",
       "url": "https://grantesgrima.com/producto/protector-de-pecho/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5112,7 +5112,7 @@
       "active": true,
       "ref": "41/84",
       "url": "https://grantesgrima.com/producto/top-protector-de-pecho/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5134,7 +5134,7 @@
       "active": true,
       "ref": "41/79",
       "url": "https://grantesgrima.com/producto/protector-de-pecho-total-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5163,7 +5163,7 @@
       "active": true,
       "ref": "GJ-193",
       "url": "https://grantesgrima.com/producto/peto-interior-800n-ce-fie/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5191,7 +5191,7 @@
       "active": true,
       "ref": "23-44/A",
       "url": "https://grantesgrima.com/producto/peto-interior-350n-ce-pbt/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5220,7 +5220,7 @@
       "active": true,
       "ref": "GJ-172",
       "url": "https://grantesgrima.com/producto/peto-interior-350n-ce/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5244,7 +5244,7 @@
       "active": true,
       "ref": "GJ-04B",
       "url": "https://grantesgrima.com/producto/protector-total/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5279,7 +5279,7 @@
       "active": true,
       "ref": "23-004",
       "url": "https://grantesgrima.com/producto/peto-interior-fie-800n-blanco/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5332,7 +5332,7 @@
       "active": true,
       "ref": "GSM-28",
       "url": "https://grantesgrima.com/producto/hoja-sable-y-stm-gsm-28/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5353,7 +5353,7 @@
       "active": true,
       "ref": "41-80",
       "url": "https://grantesgrima.com/producto/chaqueta-electrica-sable-copy/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-pbt",
       "imported": true
     },
     {
@@ -5392,7 +5392,7 @@
       "active": true,
       "ref": "525KPA",
       "url": "https://allstarspain.com/producto/kempa-pro-agility/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5533,7 +5533,7 @@
       "active": true,
       "ref": "524KAS",
       "url": "https://allstarspain.com/producto/kempa-allstar-attack-2024/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5595,7 +5595,7 @@
       "active": true,
       "ref": "FSTR-B-R",
       "url": "https://allstarspain.com/producto/medias-allstar-basic-rainbow/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5624,7 +5624,7 @@
       "active": true,
       "ref": "522AZE",
       "url": "https://allstarspain.com/producto/azza-fencing-15-14-electric-zapatillas-de-esgrima/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5645,7 +5645,7 @@
       "active": true,
       "ref": "521OG",
       "url": "https://allstarspain.com/producto/nike-ballestra-2-olympic-edition/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5745,7 +5745,7 @@
       "active": true,
       "ref": "521NS",
       "url": "https://allstarspain.com/producto/nike-ballestra-2/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5793,7 +5793,7 @@
       "active": true,
       "ref": "2001D",
       "url": "https://allstarspain.com/producto/pantalon-allstar-alpha-350n-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5826,7 +5826,7 @@
       "active": true,
       "ref": "2500J",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-alpha-350n-nino/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5859,7 +5859,7 @@
       "active": true,
       "ref": "2301K",
       "url": "https://allstarspain.com/producto/pantalon-allstar-alpha-350n-infantil/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5892,7 +5892,7 @@
       "active": true,
       "ref": "2000M",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-alpha-350n-nina/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5939,7 +5939,7 @@
       "active": true,
       "ref": "2501H",
       "url": "https://allstarspain.com/producto/pantalon-allstar-alpha-350n-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -5986,7 +5986,7 @@
       "active": true,
       "ref": "2500H",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-alpha-350n-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -6034,7 +6034,7 @@
       "active": true,
       "ref": "2000D",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-alpha-350n-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7061,7 +7061,7 @@
       "active": true,
       "ref": "ASH800-E",
       "url": "https://allstarspain.com/producto/guante-sable-electrico-fie800n-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7144,7 +7144,7 @@
       "active": true,
       "ref": "4501H-RS",
       "url": "https://allstarspain.com/producto/pantalon-fie-1600n-largo-silla-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7192,7 +7192,7 @@
       "active": true,
       "ref": "4001D-RS",
       "url": "https://allstarspain.com/producto/pantalon-fie-1600n-largo-silla-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7251,7 +7251,7 @@
       "active": true,
       "ref": "AMIC-MSP",
       "url": "https://allstarspain.com/producto/careta-maestro-msp-allstar-1600n-comfort/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7274,7 +7274,7 @@
       "active": true,
       "ref": "AMI-MSP",
       "url": "https://allstarspain.com/producto/careta-maestro-msp-allstar-1600n/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7297,7 +7297,7 @@
       "active": true,
       "ref": "AUM-MSP",
       "url": "https://allstarspain.com/producto/careta-maestro-msp-allstar-350n/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7320,7 +7320,7 @@
       "active": true,
       "ref": "AMIC-FM",
       "url": "https://allstarspain.com/producto/careta-maestro-allstar-1600n-comfort/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7379,7 +7379,7 @@
       "active": true,
       "ref": "MBL 3",
       "url": "https://allstarspain.com/producto/pierna-maestro-allstar-solo-muslo/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7420,7 +7420,7 @@
       "active": true,
       "ref": "MBL 2",
       "url": "https://allstarspain.com/producto/pierna-maestro-allstar-sin-pie/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7443,7 +7443,7 @@
       "active": true,
       "ref": "MBL 1",
       "url": "https://allstarspain.com/producto/pierna-maestro-allstar-con-pie/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7511,7 +7511,7 @@
       "active": true,
       "ref": "MJV 2",
       "url": "https://allstarspain.com/producto/relleno-chaquetas-maestro-lw/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7556,7 +7556,7 @@
       "active": true,
       "ref": "LW 2K-D",
       "url": "https://allstarspain.com/producto/chaleco-maestra-lw-2k-mangas-cortas/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7603,7 +7603,7 @@
       "active": true,
       "ref": "LW 2K",
       "url": "https://allstarspain.com/producto/chaleco-maestro-lw-2k-mangas-cortas/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7648,7 +7648,7 @@
       "active": true,
       "ref": "LW 2-D",
       "url": "https://allstarspain.com/producto/chaleco-maestra-lw-2-2-mangas/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7671,7 +7671,7 @@
       "active": true,
       "ref": "AMI-FM",
       "url": "https://allstarspain.com/producto/careta-maestro-allstar-1600n/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7719,7 +7719,7 @@
       "active": true,
       "ref": "MJBL-D",
       "url": "https://allstarspain.com/producto/chaqueta-maestra-basic-plus-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7769,7 +7769,7 @@
       "active": true,
       "ref": "MJBL",
       "url": "https://allstarspain.com/producto/chaqueta-maestro-basic-plus-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7814,7 +7814,7 @@
       "active": true,
       "ref": "LW-D",
       "url": "https://allstarspain.com/producto/chaleco-maestra-lw-sin-mangas/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7862,7 +7862,7 @@
       "active": true,
       "ref": "MJB-D",
       "url": "https://allstarspain.com/producto/chaqueta-maestra-basic-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7909,7 +7909,7 @@
       "active": true,
       "ref": "LW",
       "url": "https://allstarspain.com/producto/chaleco-maestro-lw-sin-mangas/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7935,7 +7935,7 @@
       "active": true,
       "ref": "MAL",
       "url": "https://allstarspain.com/producto/manga-maestro-alcantex-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7958,7 +7958,7 @@
       "active": true,
       "ref": "AUM-FM",
       "url": "https://allstarspain.com/producto/careta-maestro-allstar-350n/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -7995,7 +7995,7 @@
       "active": true,
       "ref": "SM",
       "url": "https://allstarspain.com/producto/manguito-sable-elec-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8109,7 +8109,7 @@
       "active": true,
       "ref": "AMIC-S",
       "url": "https://allstarspain.com/producto/careta-fie1600n-allstar-sable-comfort/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8133,7 +8133,7 @@
       "active": true,
       "ref": "AMI-S",
       "url": "https://allstarspain.com/producto/careta-fie1600n-allstar-sable/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8175,7 +8175,7 @@
       "active": true,
       "ref": "FMES",
       "url": "https://allstarspain.com/producto/careta-allstar-ecoline-350n-sable-electrico/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8217,7 +8217,7 @@
       "active": true,
       "ref": "519KAJ",
       "url": "https://allstarspain.com/producto/kempa-allstar-attack-junior/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8240,7 +8240,7 @@
       "active": true,
       "ref": "FSTR-UT",
       "url": "https://allstarspain.com/producto/medias-allstar-ultra-tec/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8288,7 +8288,7 @@
       "active": true,
       "ref": "1250M",
       "url": "https://allstarspain.com/producto/chaquetilla-electrica-inox-allstar-sable-nina-cremallera-en-la-espalda-ambidiestro/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8318,7 +8318,7 @@
       "active": true,
       "ref": "1255J",
       "url": "https://allstarspain.com/producto/chaquetilla-electrica-inox-allstar-sable-nino-cremallera-en-la-espalda-ambidiestro/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8365,7 +8365,7 @@
       "active": true,
       "ref": "1255H",
       "url": "https://allstarspain.com/producto/chaquetilla-electrica-inox-allstar-sable-hombre-cremallera-en-la-espalda-ambidiestro/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8410,7 +8410,7 @@
       "active": true,
       "ref": "1250D",
       "url": "https://allstarspain.com/producto/chaquetilla-electrica-inox-allstar-sable-dama-cremallera-en-la-espalda-ambidiestro/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8461,7 +8461,7 @@
       "active": true,
       "ref": "1155J",
       "url": "https://allstarspain.com/producto/chaquetilla-electrica-inox-allstar-sable-nino/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8494,7 +8494,7 @@
       "active": true,
       "ref": "1150M",
       "url": "https://allstarspain.com/producto/chaquetilla-electrica-inox-allstar-sable-nina/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8559,7 +8559,7 @@
       "active": true,
       "ref": "LW 2",
       "url": "https://allstarspain.com/producto/chaleco-maestro-lw-2-2-mangas/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8609,7 +8609,7 @@
       "active": true,
       "ref": "MJB",
       "url": "https://allstarspain.com/producto/chaqueta-maestro-basic-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8646,7 +8646,7 @@
       "active": true,
       "ref": "AKH-F",
       "url": "https://allstarspain.com/producto/guante-maestro-negro-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8689,7 +8689,7 @@
       "active": true,
       "ref": "SBS-LH",
       "url": "https://allstarspain.com/producto/top-de-algodon-lycra-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8714,7 +8714,7 @@
       "active": true,
       "ref": "SBS-L",
       "url": "https://allstarspain.com/producto/protector-integral-dama-allstar-top/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8736,7 +8736,7 @@
       "active": true,
       "ref": "SUSP-K",
       "url": "https://allstarspain.com/producto/coquillera-allstar-nino/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8759,7 +8759,7 @@
       "active": true,
       "ref": "SUSP",
       "url": "https://allstarspain.com/producto/coquillera-allstar-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8824,7 +8824,7 @@
       "active": true,
       "ref": "1155H",
       "url": "https://allstarspain.com/producto/chaquetilla-electrica-inox-allstar-sable-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8872,7 +8872,7 @@
       "active": true,
       "ref": "1150D",
       "url": "https://allstarspain.com/producto/chaquetilla-electrica-inox-allstar-sable-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8894,7 +8894,7 @@
       "active": true,
       "ref": "1000K",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-lyon-350n-club-nino/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8918,7 +8918,7 @@
       "active": true,
       "ref": "SBS-H",
       "url": "https://allstarspain.com/producto/protector-integral-pecho-hombre-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8941,7 +8941,7 @@
       "active": true,
       "ref": "1000E",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-lyon-350n-club-adulto/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8974,7 +8974,7 @@
       "active": true,
       "ref": "9500J",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-startex-fie800n-nino/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -8995,7 +8995,7 @@
       "active": true,
       "ref": "SBS-M",
       "url": "https://allstarspain.com/producto/protector-integral-pecho-nina-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9028,7 +9028,7 @@
       "active": true,
       "ref": "9301K",
       "url": "https://allstarspain.com/producto/pantalon-allstar-startex-fie800n-infantil/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9061,7 +9061,7 @@
       "active": true,
       "ref": "9000M",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-startex-fie800n-nina/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9111,7 +9111,7 @@
       "active": true,
       "ref": "9501H",
       "url": "https://allstarspain.com/producto/pantalon-allstar-startex-fie800n-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9161,7 +9161,7 @@
       "active": true,
       "ref": "9500H",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-startex-fie800n-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9208,7 +9208,7 @@
       "active": true,
       "ref": "9001D",
       "url": "https://allstarspain.com/producto/pantalon-allstar-startex-fie800n-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9255,7 +9255,7 @@
       "active": true,
       "ref": "9000D",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-startex-fie800n-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9281,7 +9281,7 @@
       "active": true,
       "ref": "FSTR-B",
       "url": "https://allstarspain.com/producto/medias-allstar-basic/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9332,7 +9332,7 @@
       "active": true,
       "ref": "4301K",
       "url": "https://allstarspain.com/producto/pantalon-allstar-ecostar-fie800n-infantil/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9365,7 +9365,7 @@
       "active": true,
       "ref": "4500J",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-ecostar-fie800n-nino/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9389,7 +9389,7 @@
       "active": true,
       "ref": "SPGK-E",
       "url": "https://allstarspain.com/producto/peto-interior-allstar-fie800n-ecostar-ninos/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9413,7 +9413,7 @@
       "active": true,
       "ref": "SPG-K",
       "url": "https://allstarspain.com/producto/peto-interior-allstar-fie800n-extra-light-ninos/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9446,7 +9446,7 @@
       "active": true,
       "ref": "4000M",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-ecostar-fie800n-nina/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9473,7 +9473,7 @@
       "active": true,
       "ref": "SPGH-E",
       "url": "https://allstarspain.com/producto/peto-interior-allstar-fie800n-ecostar-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9500,7 +9500,7 @@
       "active": true,
       "ref": "SPG-H",
       "url": "https://allstarspain.com/producto/peto-interior-allstar-fie800n-extra-light-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9547,7 +9547,7 @@
       "active": true,
       "ref": "4501H",
       "url": "https://allstarspain.com/producto/pantalon-allstar-ecostar-fie800n-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9594,7 +9594,7 @@
       "active": true,
       "ref": "4500H",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-ecostar-fie800n-hombre/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9620,7 +9620,7 @@
       "active": true,
       "ref": "SPGD-E",
       "url": "https://allstarspain.com/producto/peto-interior-allstar-fie800n-ecostar-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9646,7 +9646,7 @@
       "active": true,
       "ref": "SPG-D",
       "url": "https://allstarspain.com/producto/peto-interior-allstar-fie800n-extra-light-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9670,7 +9670,7 @@
       "active": true,
       "ref": "SBS-D",
       "url": "https://allstarspain.com/producto/protector-integral-pecho-dama-allstar/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9718,7 +9718,7 @@
       "active": true,
       "ref": "4001D",
       "url": "https://allstarspain.com/producto/pantalon-allstar-ecostar-fie800n-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9766,7 +9766,7 @@
       "active": true,
       "ref": "4000D",
       "url": "https://allstarspain.com/producto/chaqueta-allstar-ecostar-fie800n-dama/",
-      "sizeGuide": "",
+      "sizeGuide": "#tallas-allstar",
       "imported": true
     },
     {
@@ -9806,7 +9806,7 @@
       "active": true,
       "ref": "NPT-KXSA",
       "url": "https://villalbiesgrima.es/products/peto-interior-npt-de-ninos-800n-fie",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-npt-1",
+      "sizeGuide": "#tallas-npt",
       "imported": true
     },
     {
@@ -9830,7 +9830,7 @@
       "active": true,
       "ref": "NPT-S00A",
       "url": "https://villalbiesgrima.es/products/peto-interior-npt-800n-fie-unisex",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-npt-1",
+      "sizeGuide": "#tallas-npt",
       "imported": true
     },
     {
@@ -9860,7 +9860,7 @@
       "active": true,
       "ref": "ZAP-036A",
       "url": "https://villalbiesgrima.es/products/zapatillas-de-esgrima-dowin",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -9882,7 +9882,7 @@
       "active": true,
       "ref": "9020CM-3134",
       "url": "https://villalbiesgrima.es/products/medias-de-esgrima-fwf-alemanas",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -9903,7 +9903,7 @@
       "active": true,
       "ref": "8BSIQ-H-XS",
       "url": "https://villalbiesgrima.es/products/protector-integral-pecho-dama-fwf-copia",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -9933,7 +9933,7 @@
       "active": true,
       "ref": "LSM-036A-D",
       "url": "https://villalbiesgrima.es/products/chaquetilla-electrica-ve-para-sable-de-mujer",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-ve",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -9967,7 +9967,7 @@
       "active": true,
       "ref": "LSH-038A-D",
       "url": "https://villalbiesgrima.es/products/chaquetilla-electrica-ve-para-sable-de-hombre",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-ve",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -9990,7 +9990,7 @@
       "active": true,
       "ref": "8BSIQ-D-XS",
       "url": "https://villalbiesgrima.es/products/protector-integral-pecho-dama-fwf",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -10014,7 +10014,7 @@
       "active": true,
       "ref": "COV-XS0A",
       "url": "https://villalbiesgrima.es/products/cobertor-para-careta-de-maestro",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -10058,7 +10058,7 @@
       "active": true,
       "ref": "GMA-D16A",
       "url": "https://villalbiesgrima.es/products/guante-maestro-ve-entrenadores",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-ve",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -10080,7 +10080,7 @@
       "active": true,
       "ref": "CMA-S00A",
       "url": "https://villalbiesgrima.es/products/careta-de-maestro",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-ve",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -10104,7 +10104,7 @@
       "active": true,
       "ref": "ARC-S2DA",
       "url": "https://villalbiesgrima.es/products/sable-electrico-completo-s2000-con-tratamiento-anticorrosion-ve",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-ve",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -10125,7 +10125,7 @@
       "active": true,
       "ref": "HOJ-S2SA",
       "url": "https://villalbiesgrima.es/products/hoja-de-sable-electrico-s2000-con-tratamiento-anticorrosion-ve",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-ve",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -10147,7 +10147,7 @@
       "active": true,
       "ref": "CSB-S00A",
       "url": "https://villalbiesgrima.es/products/careta-para-sable",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-ve",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {
@@ -10177,7 +10177,7 @@
       "active": true,
       "ref": "LSK-128A-D",
       "url": "https://villalbiesgrima.es/products/chaquetilla-electrica-para-sable-normal",
-      "sizeGuide": "https://villalbiesgrima.es/pages/guia-de-tallas-ve",
+      "sizeGuide": "#tallas-ve",
       "imported": true
     },
     {

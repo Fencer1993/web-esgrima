@@ -338,6 +338,41 @@ collections:
               - { name: imageSource, label: "Foto original del proveedor (se descarga sola)", widget: string, required: false }
               - { name: imported, label: "Importado del catálogo del proveedor", widget: boolean, default: false, required: false }
 
+      - name: tallas
+        label: Guía de tallas (tienda)
+        file: src/content/data/tallas.json
+        fields:
+          - { name: intro, label: Texto de introducción, widget: text }
+          - name: howToMeasure
+            label: Cómo tomarse las medidas
+            widget: list
+            summary: "{{part}}"
+            fields:
+              - { name: part, label: Medida, widget: string }
+              - { name: how, label: Cómo medir, widget: text }
+          - name: brands
+            label: Marcas
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { name: id, label: "Identificador (sin espacios; las fichas enlazan a #tallas-<id>)", widget: string }
+              - { name: name, label: Marca, widget: string }
+              - { name: suppliers, label: Proveedor, widget: string }
+              - { name: note, label: Nota, widget: text }
+              - { name: source, label: Enlace a la tabla original, widget: string }
+              - name: tables
+                label: Tablas
+                widget: list
+                required: false
+                summary: "{{title}}"
+                fields:
+                  - { name: title, label: Título, widget: string }
+                  - { name: headers, label: Columnas, widget: list, field: { name: col, label: Columna, widget: string } }
+                  - name: rows
+                    label: "Filas (una línea por fila; valores separados por comas)"
+                    widget: list
+                    field: { name: fila, label: Fila, widget: list, field: { name: valor, label: Valor, widget: string } }
+
       - name: noticias
         label: Tablón de anuncios
         file: src/content/data/noticias.json

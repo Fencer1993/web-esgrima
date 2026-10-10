@@ -74,6 +74,8 @@ manual `catalog-import.yml`: paso `fetch` (guarda `data/catalog-raw/`),
 luego `python3 .github/scripts/catalog-build.py` (filtra lo de sable,
 conserva descripciones/visibilidad editadas)
 y paso `images` (descarga y optimiza las fotos a `public/images/tienda/`).
+La guía de tallas (antes del catálogo) sale de `content/data/tallas.json`
+(`components/SizeGuide.tsx`); cada ficha enlaza a `#tallas-<marca>`.
 Los pedidos van a `public/pedido.php` y se gestionan en `/gestion/`.
 
 ## Para asistentes de IA

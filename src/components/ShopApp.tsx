@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useMemo, useState, useSyncExternalStore, type FormEvent } from "react";
+import { useId, useMemo, useState, useSyncExternalStore, type FormEvent, type MouseEvent } from "react";
 import type { ShopProduct } from "@/content/shop";
 import { Photo } from "@/components/Photo";
 import { ShopDialog } from "@/components/ShopDialog";
@@ -149,6 +149,20 @@ function Chips({
   );
 }
 
+/** Cierra la ficha y abre la tabla de tallas de la marca en esta misma página. */
+function openSizeGuide(e: MouseEvent<HTMLAnchorElement>, hash: string, close: () => void) {
+  e.preventDefault();
+  close();
+  window.setTimeout(() => {
+    const el = document.getElementById(hash.slice(1));
+    if (!el) return;
+    if (el instanceof HTMLDetailsElement) el.open = true;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    el.querySelector("summary")?.focus({ preventScroll: true });
+    history.replaceState(null, "", hash);
+  }, 60);
+}
+
 function ProductDetail({
   product,
   isFav,
@@ -271,11 +285,12 @@ function ProductDetail({
               {product.sizeGuide && (
                 <a
                   href={product.sizeGuide}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(product.sizeGuide.startsWith("#")
+                    ? { onClick: (e) => openSizeGuide(e, product.sizeGuide, onClose) }
+                    : { target: "_blank", rel: "noopener noreferrer" })}
                   className="link-touche self-start text-sm font-semibold text-accent-dark"
                 >
-                  Tabla de tallas →
+                  Ver tabla de tallas y cómo medirte →
                 </a>
               )}
               {product.url && (

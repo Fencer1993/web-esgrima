@@ -254,6 +254,13 @@ new = [p for p in new if not (p["category"] == "Guantes y manguitos" and "guante
                               and p["id"] not in GLOVES_KEEP)]
 for p in new:
     p["name"] = html.unescape(p["name"]).replace("‘", "'").strip()
+    # Tabla de tallas de la propia tienda (/tienda#tallas-<marca>).
+    if p["sizes"]:
+        n = p["name"].lower()
+        p["sizeGuide"] = {"Allstar": "#tallas-allstar", "Grant Esgrima": "#tallas-pbt"}.get(
+            p["supplier"], "#tallas-npt" if "npt" in n else "#tallas-ve")
+    else:
+        p["sizeGuide"] = ""
 ids = set()
 for p in new:
     base, i = p["id"], 2
