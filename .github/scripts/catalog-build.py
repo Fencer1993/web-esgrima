@@ -272,6 +272,10 @@ for p in new:
         for k in ("description", "active", "photo", "category"):
             if prev.get(k) not in (None, ""):
                 p[k] = prev[k]
+# El material de maestro no se ofrece a los socios (queda oculto, no borrado).
+for p in new:
+    if p["category"] == "Material de maestro":
+        p["active"] = False
 manual = [p for p in data["products"] if not p.get("imported") and "Ejemplo —" not in p.get("description", "")]
 data["products"] = manual + new
 OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
