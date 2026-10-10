@@ -13,7 +13,7 @@ jobs:
         run: |
           S=https://www.esgrimatorremolinos.com
           UA="Mozilla/5.0"
-          for p in / /en/ /clase-gratis/ /resultados/ /patrocinadores/ /manifest.webmanifest /sw.js /offline/ "/reserva.php?disponibilidad=1" /reservas-config.json /recordatorios-config.php /tienda/ /noticias/ /calendario/ /nuestro-equipo/ /contacto/ /gestion/ /admin/ /tienda-productos.json /_data/ /_data/pedidos.jsonl /gestion/config.php /llms.txt; do
+          for p in / /en/ /en/shop/ /en/news/ /push-clave.php /aviso-actual.php /push-vapid.json /clase-gratis/ /resultados/ /patrocinadores/ /manifest.webmanifest /sw.js /offline/ "/reserva.php?disponibilidad=1" /reservas-config.json /recordatorios-config.php /tienda/ /noticias/ /calendario/ /nuestro-equipo/ /contacto/ /gestion/ /admin/ /tienda-productos.json /_data/ /_data/pedidos.jsonl /gestion/config.php /llms.txt; do
             printf "%-26s -> " "$p"; curl -sS -o /dev/null -w "%{http_code}\n" -A "$UA" "$S$p"
           done
           echo "== gestión (sin login)"; curl -sS -A "$UA" "$S/gestion/" | sed 's/<[^>]*>/ /g' | tr -s ' \n' ' ' | head -c 400; echo
