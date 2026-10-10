@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { AppInstallButton } from "@/components/AppInstallButton";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { whatsappLink } from "@/content/site";
@@ -231,7 +232,8 @@ export function Header({ lang = "es" }: { lang?: Lang }) {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+          <AppInstallButton lang={lang} />
           <LanguageSwitcher lang={lang} path={pathname} />
           <a
             href={whatsappLink(t.whatsappTrial)}

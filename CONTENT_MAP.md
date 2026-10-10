@@ -214,5 +214,7 @@ En iPhone solo funciona con la app instalada (iOS/Safari 16.4+). Detalle en
 (caché sin conexión; sube `VERSION` para invalidar; hueco para `push`),
 `src/app/offline/page.tsx` (noindex, fuera del sitemap),
 `src/components/PwaRegister.tsx` (registro + aviso único) e
-`InstallAppLink.tsx` (botón del pie). Iconos en `public/icons/`
+`InstallAppLink.tsx` (botón del pie), `AppInstallButton.tsx` (botón «App» con punto
+indicador en la cabecera: instala con un toque o lleva a `/app`) y la página
+`/app` · `/en/app` (`components/AppPage.tsx`, instrucciones por sistema). Iconos en `public/icons/`
 (regenerar con `node .github/scripts/generate-pwa-icons.mjs`).

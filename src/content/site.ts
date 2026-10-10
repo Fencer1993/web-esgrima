@@ -16,6 +16,7 @@ export const navigation = [
   { label: "Tienda", href: "/tienda" },
   { label: "Resultados", href: "/resultados" },
   { label: "Patrocinadores", href: "/patrocinadores" },
+  { label: "App del club", href: "/app" },
   { label: "Preguntas Frecuentes", href: "/preguntas-frecuentes" },
   { label: "Contacto", href: "/contacto" },
 ] as const;
@@ -42,6 +43,7 @@ export const navMenu = [
       { label: "Tienda", href: "/tienda", description: "Material con descuento de club" },
       { label: "Resultados y palmarés", href: "/resultados", description: "Torneos, medallas y palmarés" },
       { label: "Patrocinadores", href: "/patrocinadores", description: "Colabora con el club" },
+      { label: "App del club", href: "/app", description: "Instálala en tu móvil" },
       { label: "Preguntas frecuentes", href: "/preguntas-frecuentes", description: "Material, edades, seguro y más" },
     ],
   },

@@ -23,6 +23,7 @@ const routes = [
   "tienda",
   "resultados",
   "patrocinadores",
+  "app",
 ];
 
 export const dynamic = "force-static";
