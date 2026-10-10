@@ -41,4 +41,17 @@ RewriteRule ^index\.php/2022/06/22/bonjour-tout-le-monde/?$ https://www.esgrimat
 # 5) Cualquier otra URL /index.php/... que quedara suelta, a la home.
 RewriteRule ^index\.php/ / [L,R=301]
 
+# 6) Ficheros de configuración y datos que el navegador nunca debe pedir
+#    directamente (los PHP los leen desde el disco): claves, listas de
+#    reservas y funciones comunes.
+<FilesMatch "(-config\.php|-lib\.php|\.jsonl|\.jsonl\.bak)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
 ErrorDocument 404 /404.html

@@ -67,7 +67,23 @@ jobs:
       - name: Datos para tienda y gestión
         run: |
           cp src/content/data/tienda.json out/tienda-productos.json
+          cp src/content/data/reservas.json out/reservas-config.json
           node -e 'const d=require("./src/content/data/calendario.generated.json"); require("fs").writeFileSync("out/calendario.json", JSON.stringify(d.items||[]))'
+
+      # Clave de los recordatorios de la clase gratis: sha256("recordatorios:" +
+      # FTP_PASSWORD). La calcula igual recordatorios.yml; solo vive en el runner
+      # y en el servidor, nunca se imprime ni va a git.
+      - name: Configuración de recordatorios
+        env:
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          if [ -z "$FTP_PASSWORD" ]; then
+            echo "Recordatorios sin configurar (falta FTP_PASSWORD)"; rm -f out/recordatorios-config.php; exit 0
+          fi
+          KEY=$(printf '%s' "recordatorios:$FTP_PASSWORD" | sha256sum | cut -d' ' -f1)
+          echo "::add-mask::$KEY"
+          printf '<?php\ndefine("RECORDATORIOS_KEY", "%s");\n' "$KEY" > out/recordatorios-config.php
+          php -l out/recordatorios-config.php >/dev/null && echo "recordatorios-config.php generado"
 
       # Área de gestión (/gestion/): usuario y contraseña desde secrets; la
       # contraseña se guarda solo como hash. Sin secrets, queda "no configurada".

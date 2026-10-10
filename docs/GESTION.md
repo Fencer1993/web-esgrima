@@ -14,6 +14,10 @@ ni frameworks. Todas las páginas exigen sesión y llevan `noindex`.
   - *CSV*: exportación del resumen y de los pedidos (UTF-8 con BOM, separador `;`,
     se abre bien en Excel en español).
   - *Marcar todos como agrupados*: pasa todos los "nuevo" a "agrupado".
+- **Clases gratis** (`reservas.php`): reservas de la clase gratis agrupadas por
+  día y grupo, con plazas ocupadas. Estados: confirmada, asistió, no vino,
+  cancelada (una cancelada libera la plaza). Pestañas Próximas / Pasadas y CSV
+  de todas las reservas (UTF-8 con BOM, separador `;`).
 - **Convocatorias** (`convocatoria.php`): formulario que genera, en el navegador,
   el texto para WhatsApp, el de SportMember y el objeto JSON de noticia web
   (`src/content/data/noticias.json`). No guarda nada en el servidor.
@@ -40,6 +44,8 @@ cada 15 minutos por IP.
 - Pedidos: `club-data/pedidos.jsonl`, una línea JSON por pedido, en la carpeta
   *hermana* del web root (fuera de la web). Si no es escribible, se usa
   `_data/pedidos.jsonl` dentro del web root (protegido con `.htaccess`).
+- Reservas de clase gratis: `club-data/reservas.jsonl` (misma carpeta), con
+  `reservas.jsonl.bak` antes de cada cambio. Hay que respaldarlo igual que los pedidos.
 - Los bloqueos de intentos de login (`login-*.lock`) van a la misma carpeta.
 - Antes de cada cambio de estado se copia el fichero a `pedidos.jsonl.bak`.
 
@@ -48,3 +54,13 @@ cada 15 minutos por IP.
 El despliegue por FTP **no debe borrar** `club-data/` ni `_data/`. Descarga
 `pedidos.jsonl` de vez en cuando (o usa el CSV de pedidos) y guárdalo fuera del
 servidor; el `.bak` solo protege del último cambio.
+
+## Reservas de clase gratis y recordatorios
+
+Ajustes en el panel (`/admin`, "Reserva de clase gratis"). Para cerrar un día
+(festivo, vacaciones) añádelo en "Días sin clase". El despliegue copia el JSON a
+`reservas-config.json`. Cada día a las 17:07 UTC el workflow `recordatorios.yml`
+llama a `recordatorios.php` con una clave derivada del secreto `FTP_PASSWORD`
+(`sha256("recordatorios:" + FTP_PASSWORD)`); envía un correo a quien tiene clase
+mañana y lo marca como recordado. Si cambias `FTP_PASSWORD`, vuelve a desplegar
+para regenerar `recordatorios-config.php`. Se puede lanzar a mano desde Actions.

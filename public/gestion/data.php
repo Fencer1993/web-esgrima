@@ -59,6 +59,89 @@ function gestion_find_file(string $name): ?string
     return null;
 }
 
+const RESERVA_ESTADOS = [
+    'confirmada' => 'Confirmada',
+    'asistio' => 'Asistió',
+    'no vino' => 'No vino',
+    'cancelada' => 'Cancelada',
+];
+
+function reservas_path(): string
+{
+    return gestion_find_file('reservas.jsonl') ?? (gestion_data_dir() . '/reservas.jsonl');
+}
+
+/** @return array<int,array<string,mixed>> */
+function reservas_read(): array
+{
+    $path = reservas_path();
+    if (!is_file($path)) {
+        return [];
+    }
+    $out = [];
+    $fh = @fopen($path, 'rb');
+    if (!$fh) {
+        return [];
+    }
+    flock($fh, LOCK_SH);
+    while (($line = fgets($fh)) !== false) {
+        $row = json_decode(trim($line), true);
+        if (is_array($row) && isset($row['id'], $row['date'])) {
+            $out[] = $row;
+        }
+    }
+    flock($fh, LOCK_UN);
+    fclose($fh);
+    return $out;
+}
+
+/** Modifica las reservas bajo bloqueo exclusivo (mismo esquema que pedidos_update). */
+function reservas_update(callable $mutate): bool
+{
+    $path = reservas_path();
+    if (!is_file($path)) {
+        return false;
+    }
+    $fh = @fopen($path, 'c+b');
+    if (!$fh) {
+        return false;
+    }
+    if (!flock($fh, LOCK_EX)) {
+        fclose($fh);
+        return false;
+    }
+    $rows = [];
+    $raw = [];
+    while (($line = fgets($fh)) !== false) {
+        $t = trim($line);
+        if ($t === '') {
+            continue;
+        }
+        $row = json_decode($t, true);
+        if (is_array($row) && isset($row['id'])) {
+            $rows[] = $row;
+        } else {
+            $raw[] = $t;
+        }
+    }
+    @copy($path, $path . '.bak');
+    $new = $mutate($rows);
+    $buf = '';
+    foreach ($new as $r) {
+        $buf .= json_encode($r, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
+    }
+    foreach ($raw as $r) {
+        $buf .= $r . "\n";
+    }
+    rewind($fh);
+    ftruncate($fh, 0);
+    $ok = fwrite($fh, $buf) === strlen($buf);
+    fflush($fh);
+    flock($fh, LOCK_UN);
+    fclose($fh);
+    return $ok;
+}
+
 function pedidos_path(): string
 {
     return gestion_find_file('pedidos.jsonl') ?? (gestion_data_dir() . '/pedidos.jsonl');
