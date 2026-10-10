@@ -10,6 +10,9 @@ const DAYS = [
   { key: "domingo", short: "D" },
 ] as const;
 
+// Iniciales de los chips en inglés (los días se leen siempre del texto español).
+const SHORT_EN = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+
 function normalize(s: string) {
   return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 }
@@ -37,13 +40,18 @@ export function PricingScheduleCard({
   days,
   hours,
   note,
+  lang = "es",
+  daysSource,
 }: {
   group: string;
   days: string;
   hours: string;
   note?: string;
+  lang?: "es" | "en";
+  /** Texto español de los días, del que se leen los chips (si `days` está traducido). */
+  daysSource?: string;
 }) {
-  const active = parseDays(days);
+  const active = parseDays(daysSource ?? days);
   const visible = DAYS.map((d, i) => ({ ...d, i })).filter(
     (d) => d.i < 5 || active.has(d.i),
   );
@@ -67,7 +75,7 @@ export function PricingScheduleCard({
                     : "border border-line text-ink-faint"
                 }`}
               >
-                {d.short}
+                {lang === "en" ? SHORT_EN[d.i] : d.short}
               </li>
             ))}
           </ul>

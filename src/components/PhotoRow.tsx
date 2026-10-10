@@ -1,19 +1,22 @@
 import { Photo } from "@/components/Photo";
-import { galleryPhoto } from "@/content/gallery";
+import { localizedGalleryPhoto } from "@/content/gallery";
+import type { Lang } from "@/content/i18n";
 
 // Fila de fotos de la galería con su pie. Con `feature`, la primera ocupa
 // todo el ancho (útil para enseñar volumen de grupo).
 export function PhotoRow({
   names,
   feature = false,
+  lang = "es",
 }: {
   names: string[];
   feature?: boolean;
+  lang?: Lang;
 }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {names.map((n, i) => {
-        const g = galleryPhoto(n);
+        const g = localizedGalleryPhoto(n, lang);
         const big = feature && i === 0;
         return (
           <figure

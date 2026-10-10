@@ -390,3 +390,183 @@ collections:
               - { name: body, label: Texto, widget: text, hint: "Separa los párrafos con una línea en blanco." }
               - { name: image, label: Foto, widget: image, required: false, media_folder: /public/images/noticias, public_folder: /images/noticias }
               - { name: pinned, label: "Destacada (fijada arriba)", widget: boolean, default: false }
+
+  # Versión en inglés (/en/). Solo prosa traducida: horas, precios, nombres y
+  # fotos se leen de los datos en español. Cada lista va alineada, por
+  # posición, con la lista española equivalente; {1}, {2}… se sustituyen por
+  # el 1.º, 2.º… número (precio, hora, edad) del texto español.
+  - name: ingles
+    label: "Versión en inglés"
+    format: json
+    files:
+      - name: en-textos
+        label: "Versión en inglés · Cabeceras y portada"
+        file: src/content/data/en/textos.json
+        fields:
+          - name: paginas
+            label: Páginas interiores
+            widget: list
+            summary: "{{path}} · {{title}}"
+            fields:
+              - { name: path, label: "Ruta (no cambiar)", widget: string }
+              - { name: eyebrow, label: Etiqueta, widget: string }
+              - { name: title, label: Título, widget: string }
+              - { name: lede, label: Entradilla, widget: text }
+          - name: inicio
+            label: Portada
+            widget: object
+            fields:
+              - { name: heroEyebrow, label: Etiqueta, widget: string }
+              - { name: heroLede, label: Entradilla, widget: text }
+              - { name: heroCta, label: Botón principal, widget: string }
+              - { name: heroSecondaryCta, label: Botón secundario, widget: string }
+              - { name: finalTitle, label: Título final, widget: string }
+              - { name: finalText, label: Texto final, widget: text }
+              - { name: finalCta, label: Botón final, widget: string }
+
+      - name: en-programas
+        label: "Versión en inglés · Programas y valores"
+        file: src/content/data/en/programas.json
+        fields:
+          - name: programs
+            label: "Programas (mismo slug que en español)"
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: slug, label: "Slug (no cambiar)", widget: string }
+              - { name: title, label: Título, widget: string }
+              - { name: tagline, label: Frase, widget: text }
+          - name: values
+            label: "Valores (mismo orden que en español)"
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: title, label: Título, widget: string }
+              - { name: body, label: Texto, widget: text }
+
+      - name: en-horarios
+        label: "Versión en inglés · Horarios"
+        file: src/content/data/en/horarios.json
+        fields:
+          - { name: technificationNote, label: "Nota de acceso a tecnificación", widget: string }
+          - name: competitionGroups
+            label: "Grupos de tecnificación (mismo orden que en español)"
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: text, label: Descripción, widget: text }
+          - name: groups
+            label: "Grupos regulares (mismo orden que en español)"
+            widget: list
+            summary: "{{group}}"
+            fields:
+              - { name: group, label: Grupo, widget: string }
+              - { name: note, label: "Nota (opcional)", widget: string, required: false }
+          - name: physicalTraining
+            label: Entrenamiento físico
+            widget: object
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: text, label: Descripción, widget: text }
+
+      - name: en-precios
+        label: "Versión en inglés · Precios"
+        file: src/content/data/en/precios.json
+        fields:
+          - name: plans
+            label: "Cuotas (mismo orden que en español)"
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: period, label: Periodo, widget: string }
+              - { name: features, label: "Incluye (mismo orden; {1}, {2}… = números del texto español)", widget: list, field: { name: item, label: Elemento, widget: string } }
+          - name: bonos
+            label: "Bonos (mismo orden que en español)"
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { name: name, label: Nombre, widget: string }
+              - { name: childLabel, label: "Texto tras el precio infantil", widget: string }
+              - { name: note, label: Ahorro, widget: string }
+          - name: federationFees
+            label: "Licencias (mismo orden que en español)"
+            widget: list
+            summary: "{{label}}"
+            fields:
+              - { name: label, label: Licencia, widget: string }
+
+      - name: en-equipo
+        label: "Versión en inglés · Entrenadores"
+        file: src/content/data/en/equipo.json
+        fields:
+          - name: coaches
+            label: "Entrenadores (mismo orden que en español)"
+            widget: list
+            summary: "{{role}}"
+            fields:
+              - { name: role, label: Cargo, widget: string }
+              - { name: bio, label: Currículum, widget: text }
+              - { name: photoAlt, label: "Descripción de la foto", widget: string }
+
+      - name: en-faq
+        label: "Versión en inglés · Preguntas frecuentes"
+        file: src/content/data/en/faq.json
+        fields:
+          - name: items
+            label: "Preguntas (mismo orden que en español)"
+            widget: list
+            summary: "{{question}}"
+            fields:
+              - { name: question, label: Pregunta, widget: string }
+              - { name: answer, label: Respuesta, widget: text }
+
+      - name: en-faq-silla
+        label: "Versión en inglés · Preguntas de silla de ruedas"
+        file: src/content/data/en/faq-silla.json
+        fields:
+          - name: items
+            label: "Preguntas (mismo orden que en español)"
+            widget: list
+            summary: "{{question}}"
+            fields:
+              - { name: question, label: Pregunta, widget: string }
+              - { name: answer, label: Respuesta, widget: text }
+
+      - name: en-clase-gratis
+        label: "Versión en inglés · Clase gratis"
+        file: src/content/data/en/clase-gratis.json
+        fields:
+          - name: steps
+            label: "Pasos (mismo orden que en español)"
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { name: title, label: Título, widget: string }
+              - { name: text, label: Texto, widget: text }
+
+      - name: en-cifras
+        label: "Versión en inglés · Cifras de la portada"
+        file: src/content/data/en/cifras.json
+        fields:
+          - name: stats
+            label: "Cifras (mismo orden que en español; el número se toma del español)"
+            widget: list
+            summary: "{{label}}"
+            fields:
+              - { name: label, label: Etiqueta, widget: string }
+              - { name: detail, label: Detalle, widget: string }
+
+      - name: en-galeria
+        label: "Versión en inglés · Galería (pies y textos alternativos)"
+        file: src/content/data/en/galeria.json
+        fields:
+          - name: items
+            label: "Fotos (emparejadas por la ruta de la foto)"
+            widget: list
+            summary: "{{caption}}"
+            fields:
+              - { name: src, label: "Foto (misma ruta que en español)", widget: string }
+              - { name: caption, label: Pie de foto, widget: string }
+              - { name: alt, label: "Texto alternativo", widget: text }

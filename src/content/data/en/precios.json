@@ -1,0 +1,61 @@
+{
+  "plans": [
+    {
+      "name": "Kids",
+      "period": "per month",
+      "features": [
+        "{1} classes a week",
+        "Free use of equipment",
+        "Option to compete"
+      ]
+    },
+    {
+      "name": "Adults",
+      "period": "per month",
+      "features": [
+        "{1} classes a week",
+        "Free use of equipment",
+        "Recreational fencing",
+        "Option to compete",
+        "Individual lessons"
+      ]
+    },
+    {
+      "name": "Private lessons",
+      "period": "per lesson",
+      "features": [
+        "Single {1}-minute lesson: {2}",
+        "Full {1}-hour lesson: {2}",
+        "Day and time to be agreed with the coach",
+        "Technical and tactical advice",
+        "Option to record the lesson"
+      ]
+    }
+  ],
+  "bonos": [
+    {
+      "name": "{1}-month pass",
+      "childLabel": "for children",
+      "note": "Saves you half a month's fee"
+    },
+    {
+      "name": "{1}-month pass",
+      "childLabel": "for children",
+      "note": "Saves you a full month's fee"
+    }
+  ],
+  "federationFees": [
+    {
+      "label": "D'Artagnan licence (ages {1}–{2})"
+    },
+    {
+      "label": "Youth licence, ages {1}–{2}"
+    },
+    {
+      "label": "Youth licence, ages {1} and {2}"
+    },
+    {
+      "label": "Licence for over-{1}s"
+    }
+  ]
+}

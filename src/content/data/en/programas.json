@@ -1,0 +1,33 @@
+{
+  "programs": [
+    {
+      "slug": "esgrima-ninos",
+      "title": "Fencing for Kids",
+      "tagline": "For children aged 6 to 12 who want to play, move and feel like real fencers."
+    },
+    {
+      "slug": "esgrima-para-adultos",
+      "title": "Fencing for Adults",
+      "tagline": "For teenagers from 13 and adults who fancy trying something different."
+    },
+    {
+      "slug": "esgrima-en-silla-de-ruedas",
+      "title": "Wheelchair Fencing",
+      "tagline": "Classes for people with a physical disability: an inclusive sport with all the excitement of a bout."
+    }
+  ],
+  "values": [
+    {
+      "title": "Team spirit",
+      "body": "Fencing is an individual sport, but in the club we are a team. Nobody wins or loses alone, and there is always someone to lend you a hand."
+    },
+    {
+      "title": "Guided learning",
+      "body": "Your coaches are with you from your very first class right up to top-level competition. It takes more than picking up a sword and saying \"touché\": you learn, you work up a sweat and you enjoy it."
+    },
+    {
+      "title": "Inclusion",
+      "body": "We teach fencing from the age of 6 and we include wheelchair fencing. There is a place for everyone here, whatever your age or previous fitness."
+    }
+  ]
+}

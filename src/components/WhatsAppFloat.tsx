@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { whatsappLink } from "@/content/site";
+import { ui, type Lang } from "@/content/i18n";
 
 // Botón flotante de WhatsApp. Oculto en los primeros píxeles de scroll para no
 // tapar el hero; aparece con fundido (y deslizamiento, salvo movimiento reducido).
@@ -13,7 +14,8 @@ const subscribeScroll = (cb: () => void) => {
 };
 const isPastThreshold = () => window.scrollY > SHOW_AFTER;
 
-export function WhatsAppFloat() {
+export function WhatsAppFloat({ lang = "es" }: { lang?: Lang }) {
+  const t = ui[lang];
   const visible = useSyncExternalStore(
     subscribeScroll,
     isPastThreshold,
@@ -22,10 +24,10 @@ export function WhatsAppFloat() {
 
   return (
     <a
-      href={whatsappLink("Hola, quiero información sobre las clases de esgrima")}
+      href={whatsappLink(t.whatsappGeneral)}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Escríbenos por WhatsApp"
+      aria-label={t.whatsappAria}
       tabIndex={visible ? undefined : -1}
       className={`fixed right-4 z-30 flex h-14 w-14 items-center justify-center gap-2 rounded-full bg-[#25D366] text-white shadow-lg shadow-black/25 transition-[opacity,transform,background-color] duration-300 hover:bg-[#1ebe5a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:right-6 lg:h-11 lg:w-auto lg:px-4 ${
         visible

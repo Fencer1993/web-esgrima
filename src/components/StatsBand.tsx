@@ -6,9 +6,12 @@ import cifras from "@/content/data/cifras.json";
 // Cifras que "cuentan" al aparecer (patrón NumberTicker de Magic UI). El
 // HTML ya trae el número final —buscadores y lectores sin JS lo ven—; la
 // animación solo se aplica si el bloque entra en pantalla después.
-const stats = cifras.stats;
+const defaultStats = cifras.stats;
 
-export function StatsBand() {
+type Stat = { value: number; label: string; detail: string };
+
+// `stats` permite pasar las cifras con las etiquetas traducidas (versión inglesa).
+export function StatsBand({ stats = defaultStats }: { stats?: Stat[] }) {
   const ref = useRef<HTMLDListElement>(null);
 
   useEffect(() => {

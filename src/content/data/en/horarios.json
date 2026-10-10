@@ -1,0 +1,29 @@
+{
+  "technificationNote": "Joining this group requires a prior assessment by the technical director.",
+  "competitionGroups": [
+    {
+      "name": "Performance training · ages 13 to 18",
+      "text": "For teenagers who want to compete: technique, tactics and tournament preparation in a dedicated session."
+    },
+    {
+      "name": "Performance training · over 18s",
+      "text": "For adults who compete, or want to start: bouts at your level, tactical work and a competition plan."
+    }
+  ],
+  "physicalTraining": {
+    "name": "Physical training for fencers",
+    "text": "A free extra for club athletes. Ask the technical director about places and conditions."
+  },
+  "groups": [
+    {
+      "group": "Kids (ages 6–12)",
+      "note": "On Fridays, only with authorisation and the supervision of an adult."
+    },
+    {
+      "group": "Teenagers and adults"
+    },
+    {
+      "group": "Wheelchair fencing"
+    }
+  ]
+}

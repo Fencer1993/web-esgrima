@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/content/site";
-import { galleryPhoto } from "@/content/gallery";
+import { localizedGalleryPhoto } from "@/content/gallery";
+import { ui, toSpanishPath, type Lang } from "@/content/i18n";
 import { pageHeroes } from "@/content/pageHeroes";
 import { Photo } from "./Photo";
 
@@ -9,20 +10,24 @@ export function PageHero({
   title,
   lede,
   path,
+  lang = "es",
 }: {
   eyebrow?: string;
   title: string;
   lede?: string;
   path: string;
+  lang?: Lang;
 }) {
-  const hero = pageHeroes[path];
-  const photo = hero ? galleryPhoto(hero.photo) : null;
+  const t = ui[lang];
+  // Las fotos de cabecera se configuran por ruta española (cabeceras.json).
+  const hero = pageHeroes[lang === "es" ? path : toSpanishPath(path)];
+  const photo = hero ? localizedGalleryPhoto(hero.photo, lang) : null;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Inicio", item: site.url },
+      { "@type": "ListItem", position: 1, name: t.home, item: lang === "en" ? `${site.url}/en/` : site.url },
       {
         "@type": "ListItem",
         position: 2,
@@ -61,11 +66,11 @@ export function PageHero({
       )}
       <div className="relative mx-auto max-w-6xl px-5 py-16 sm:py-20">
         <nav
-          aria-label="Ruta de navegación"
+          aria-label={t.breadcrumb}
           className="mb-4 text-xs text-paper/50"
         >
-          <Link href="/" className="hover:text-paper/80">
-            Inicio
+          <Link href={t.homeHref} className="hover:text-paper/80">
+            {t.home}
           </Link>
           <span className="mx-2">/</span>
           <span className="text-paper/70">{title}</span>

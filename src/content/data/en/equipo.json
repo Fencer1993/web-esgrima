@@ -1,0 +1,14 @@
+{
+  "coaches": [
+    {
+      "role": "President and Adapted Fencing Coach",
+      "bio": "Paralympic fencer who competed in Beijing and Barcelona. National coach for wheelchair fencing and in charge of the children's group.",
+      "photoAlt": "Carlos Soler, president and adapted fencing coach of Club de Esgrima Torremolinos"
+    },
+    {
+      "role": "Fencing Technical Director and Secretary",
+      "bio": "Has been fencing for {1} years, with several international appearances. Has coached sabre at an international training camp in China. An active competitor and coach of the teenagers-and-adults group.",
+      "photoAlt": "Víctor Santiago, technical director and fencing coach of Club de Esgrima Torremolinos, wearing a mask and holding a sabre in the club room"
+    }
+  ]
+}
