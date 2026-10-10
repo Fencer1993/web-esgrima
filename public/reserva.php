@@ -249,6 +249,18 @@ if ($dup) {
     fclose($fh);
     res_fail("Ya hay una reserva a ese nombre para esa clase. Si necesitas cambiarla, escríbenos.", 409);
 }
+// Una sola clase gratis pendiente por participante (mismo nombre y correo;
+// los hermanos pueden reservar con el mismo correo).
+$today = date("Y-m-d");
+foreach ($rows as $r) {
+    if (($r["status"] ?? "") === "confirmada" && (string) ($r["date"] ?? "") >= $today
+        && strtolower((string) ($r["email"] ?? "")) === strtolower($email)
+        && mb_strtolower((string) ($r["name"] ?? "")) === mb_strtolower($name)) {
+        flock($fh, LOCK_UN);
+        fclose($fh);
+        res_fail("Ya tienes una clase gratis reservada el " . date("d/m/Y", strtotime((string) $r["date"])) . ". Si quieres cambiarla, escríbenos.", 409);
+    }
+}
 if ($taken >= $capacity) {
     flock($fh, LOCK_UN);
     fclose($fh);
