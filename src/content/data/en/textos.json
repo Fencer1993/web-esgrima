@@ -47,6 +47,18 @@
       "eyebrow": "Where to find us",
       "title": "Contact",
       "lede": "To try fencing with us, just turn up in sports clothes with water and a towel, 10 minutes early so we can explain how the class works. We look forward to seeing you."
+    },
+    {
+      "path": "/en/shop",
+      "eyebrow": "Equipment",
+      "title": "Club Shop",
+      "lede": "Group orders of fencing equipment for members, with advice on hand and no delivery charges."
+    },
+    {
+      "path": "/en/news",
+      "eyebrow": "Notice board",
+      "title": "News and Notices",
+      "lede": "The latest from the club: news, notices and call-ups."
     }
   ],
   "inicio": {

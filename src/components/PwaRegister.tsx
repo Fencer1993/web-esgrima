@@ -77,7 +77,7 @@ export function PwaRegister({ lang = "es" }: { lang?: "es" | "en" }) {
     return () => window.clearTimeout(t);
   }, []);
 
-  const hideOnRoute = pathname.startsWith("/tienda") || pathname.startsWith("/offline");
+  const hideOnRoute = pathname.startsWith("/tienda") || pathname.startsWith("/en/shop") || pathname.startsWith("/offline");
   if (!ready || dismissed || mode === "none" || hideOnRoute) return null;
 
   const close = () => {

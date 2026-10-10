@@ -1,8 +1,14 @@
 import Link from "next/link";
-import { formatNewsDate, type NewsItem } from "@/content/news";
+import { formatNewsDate, formatNewsDateEn, newsTypeEn, type NewsItem } from "@/content/news";
+import type { Lang } from "@/content/i18n";
 import { Photo } from "./Photo";
 
-export function NewsCard({ item }: { item: NewsItem }) {
+export function NewsCard({ item, lang = "es" }: { item: NewsItem; lang?: Lang }) {
+  const isEn = lang === "en";
+  // En inglés, sin traducción se muestra el texto español marcado como tal.
+  const spanishOnly = isEn && !item.en;
+  const title = isEn && item.en ? item.en.title : item.title;
+  const summary = isEn && item.en ? item.en.summary : item.summary;
   return (
     <article className="reveal group relative flex h-full flex-col overflow-hidden rounded-sm border border-line bg-paper transition-[transform,box-shadow] duration-300 motion-safe:hover:-translate-y-1 hover:shadow-lg">
       {item.image && (
@@ -19,26 +25,37 @@ export function NewsCard({ item }: { item: NewsItem }) {
       <div className="flex flex-1 flex-col p-5">
         <div className="flex flex-wrap items-center gap-3 text-xs">
           <span className="rounded-sm bg-accent-soft px-2 py-1 font-mono uppercase tracking-[0.12em] text-accent-dark">
-            {item.type}
+            {isEn ? newsTypeEn[item.type] : item.type}
           </span>
           <time dateTime={item.date} className="text-ink-faint">
-            {formatNewsDate(item.date)}
+            {isEn ? formatNewsDateEn(item.date) : formatNewsDate(item.date)}
           </time>
           {item.pinned && (
-            <span className="font-mono uppercase tracking-[0.12em] text-steel">Destacada</span>
+            <span className="font-mono uppercase tracking-[0.12em] text-steel">
+              {isEn ? "Featured" : "Destacada"}
+            </span>
           )}
+          {spanishOnly && <span className="text-ink-faint">(in Spanish)</span>}
         </div>
-        <h3 className="mt-3 text-xl font-bold uppercase tracking-tight text-ink">
+        <h3
+          {...(spanishOnly ? { lang: "es" } : {})}
+          className="mt-3 text-xl font-bold uppercase tracking-tight text-ink"
+        >
           <Link
-            href={`/noticias/${item.slug}`}
+            href={isEn ? `/en/news/${item.slug}` : `/noticias/${item.slug}`}
             className="after:absolute after:inset-0 hover:text-accent-dark"
           >
-            {item.title}
+            {title}
           </Link>
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.summary}</p>
+        <p
+          {...(spanishOnly ? { lang: "es" } : {})}
+          className="mt-2 text-sm leading-relaxed text-ink-soft"
+        >
+          {summary}
+        </p>
         <span className="mt-4 text-sm font-semibold uppercase tracking-wide text-accent-dark">
-          Leer más
+          {isEn ? "Read more" : "Leer más"}
         </span>
       </div>
     </article>

@@ -5,6 +5,16 @@ import { useId, useMemo, useState, useSyncExternalStore, type FormEvent, type Mo
 import type { ShopProduct } from "@/content/shop";
 import { Photo } from "@/components/Photo";
 import { ShopDialog } from "@/components/ShopDialog";
+import type { Lang } from "@/content/i18n";
+import {
+  cartLineLabel,
+  categoryLabel,
+  handLabel,
+  optionNameLabel,
+  optionValueLabel,
+  priceLabel,
+  shopUi,
+} from "@/content/shopText";
 import {
   MAX_LINES,
   MAX_QTY,
@@ -15,7 +25,6 @@ import {
   removeLine,
   setQty,
   subscribe,
-  optionsLabel,
   toggleFav,
   type CartLine,
 } from "@/lib/shopStore";
@@ -76,11 +85,14 @@ function Stepper({
   value,
   onChange,
   label,
+  lang,
 }: {
   value: number;
   onChange: (n: number) => void;
   label: string;
+  lang: Lang;
 }) {
+  const t = shopUi[lang];
   const btn = `flex h-10 w-10 items-center justify-center text-lg font-bold text-ink transition-colors hover:bg-accent-soft disabled:opacity-35 disabled:hover:bg-transparent ${focusRing}`;
   return (
     <div
@@ -93,7 +105,7 @@ function Stepper({
         className={btn}
         onClick={() => onChange(value - 1)}
         disabled={value <= 1}
-        aria-label="Una unidad menos"
+        aria-label={t.oneLess}
       >
         −
       </button>
@@ -105,7 +117,7 @@ function Stepper({
         className={btn}
         onClick={() => onChange(value + 1)}
         disabled={value >= MAX_QTY}
-        aria-label="Una unidad más"
+        aria-label={t.oneMore}
       >
         +
       </button>
@@ -118,11 +130,14 @@ function Chips({
   options,
   value,
   onChange,
+  display = (o) => o,
 }: {
   legend: string;
   options: string[];
   value: string;
   onChange: (v: string) => void;
+  /** Texto mostrado de cada valor (el valor enviado no cambia). */
+  display?: (o: string) => string;
 }) {
   return (
     <fieldset>
@@ -141,7 +156,7 @@ function Chips({
                 : "border-line bg-paper text-ink hover:border-accent"
             }`}
           >
-            {o}
+            {display(o)}
           </button>
         ))}
       </div>
@@ -168,12 +183,17 @@ function ProductDetail({
   isFav,
   onClose,
   onAdded,
+  lang,
 }: {
   product: ShopProduct;
   isFav: boolean;
   onClose: () => void;
   onAdded: () => void;
+  lang: Lang;
 }) {
+  const t = shopUi[lang];
+  const name = (lang === "en" && product.nameEn) || product.name;
+  const description = (lang === "en" && product.descriptionEn) || product.description;
   const titleId = useId();
   const [size, setSize] = useState(product.sizes.length === 1 ? product.sizes[0] : "");
   const [hand, setHand] = useState(product.hands.length === 1 ? product.hands[0] : "");
@@ -187,16 +207,16 @@ function ProductDetail({
 
   function add() {
     if (product.sizes.length > 0 && !size) {
-      setError("Elige una talla.");
+      setError(t.errSize);
       return;
     }
     if (product.hands.length > 0 && !hand) {
-      setError("Elige la mano (diestro o zurdo).");
+      setError(t.errHand);
       return;
     }
     const missing = product.options.find((o) => !opts[o.name]);
     if (missing) {
-      setError(`Elige ${missing.name.toLowerCase()}.`);
+      setError(t.errOption(optionNameLabel(missing.name, lang)));
       return;
     }
     addToCart({ productId: product.id, size, hand, options: opts, qty });
@@ -212,7 +232,7 @@ function ProductDetail({
         <button
           type="button"
           onClick={onClose}
-          aria-label="Cerrar"
+          aria-label={t.close}
           className={`-mr-2 flex h-10 w-10 items-center justify-center text-2xl text-ink ${focusRing}`}
         >
           ×
@@ -223,7 +243,7 @@ function ProductDetail({
           {product.photo ? (
             <Photo
               src={product.photo}
-              alt={product.name}
+              alt={name}
               width={900}
               height={900}
               className="absolute inset-0 h-full w-full bg-white object-contain p-4"
@@ -239,12 +259,12 @@ function ProductDetail({
             <div className="hidden items-start justify-between gap-3 sm:flex">
               <p className="font-mono text-xs uppercase tracking-wide text-ink-faint">
                 {product.supplier}
-                {product.ref ? ` · Ref. ${product.ref}` : ""}
+                {product.ref ? ` · ${t.refPrefix} ${product.ref}` : ""}
               </p>
               <button
                 type="button"
                 onClick={onClose}
-                aria-label="Cerrar"
+                aria-label={t.close}
                 className={`-mr-2 -mt-2 flex h-10 w-10 items-center justify-center text-2xl text-ink ${focusRing}`}
               >
                 ×
@@ -255,13 +275,13 @@ function ProductDetail({
                 id={titleId}
                 className="mt-1 text-2xl font-bold uppercase leading-tight tracking-tight text-ink sm:text-3xl"
               >
-                {product.name}
+                {name}
               </h2>
               <button
                 type="button"
                 onClick={() => toggleFav(product.id)}
                 aria-pressed={isFav}
-                aria-label={isFav ? "Quitar de favoritos" : "Añadir a favoritos"}
+                aria-label={isFav ? t.removeFav() : t.addFav()}
                 className={`mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line ${
                   isFav ? "text-[#d6336c]" : "text-ink-soft"
                 } hover:border-accent ${focusRing}`}
@@ -270,13 +290,16 @@ function ProductDetail({
               </button>
             </div>
             {product.price && (
-              <p className="mt-2 text-2xl font-bold text-accent-dark">{product.price}</p>
+              <p className="mt-2 text-2xl font-bold text-accent-dark">{priceLabel(product.price, lang)}</p>
             )}
           </div>
 
-          {product.description && (
-            <p className="whitespace-pre-line text-sm leading-relaxed text-ink-soft">
-              {product.description}
+          {description && (
+            <p
+              {...(lang === "en" && !product.descriptionEn ? { lang: "es" } : {})}
+              className="whitespace-pre-line text-sm leading-relaxed text-ink-soft"
+            >
+              {description}
             </p>
           )}
 
@@ -290,7 +313,7 @@ function ProductDetail({
                     : { target: "_blank", rel: "noopener noreferrer" })}
                   className="link-touche self-start text-sm font-semibold text-accent-dark"
                 >
-                  Ver tabla de tallas y cómo medirte →
+                  {t.sizeGuideLink}
                 </a>
               )}
               {product.url && (
@@ -300,7 +323,7 @@ function ProductDetail({
                   rel="noopener noreferrer"
                   className="link-touche self-start text-sm font-semibold text-accent-dark"
                 >
-                  Ver ficha{product.sizeGuide ? "" : " y tabla de tallas"} en {product.supplier} →
+                  {t.supplierSheet(product.supplier, !product.sizeGuide)}
                 </a>
               )}
             </div>
@@ -308,7 +331,7 @@ function ProductDetail({
 
           {product.sizes.length > 0 && (
             <Chips
-              legend="Talla"
+              legend={t.size}
               options={product.sizes}
               value={size}
               onChange={(v) => {
@@ -319,8 +342,9 @@ function ProductDetail({
           )}
           {product.hands.length > 0 && (
             <Chips
-              legend="Mano"
+              legend={t.hand}
               options={product.hands}
+              display={(h) => handLabel(h, lang)}
               value={hand}
               onChange={(v) => {
                 setHand(v);
@@ -332,8 +356,9 @@ function ProductDetail({
           {product.options.map((o) => (
             <Chips
               key={o.name}
-              legend={o.name}
+              legend={optionNameLabel(o.name, lang)}
               options={o.values}
+              display={(v) => optionValueLabel(v, lang)}
               value={opts[o.name] ?? ""}
               onChange={(v) => {
                 setOpts((prev) => ({ ...prev, [o.name]: v }));
@@ -343,9 +368,9 @@ function ProductDetail({
           ))}
 
           <div>
-            <p className={labelCls}>Cantidad</p>
+            <p className={labelCls}>{t.quantity}</p>
             <div className="mt-2">
-              <Stepper value={qty} onChange={setQ} label="Cantidad" />
+              <Stepper value={qty} onChange={setQ} label={t.quantity} lang={lang} />
             </div>
           </div>
 
@@ -358,7 +383,7 @@ function ProductDetail({
               onClick={add}
               className={`btn-blade w-full rounded-sm bg-accent px-6 py-3.5 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-accent-dark ${focusRing}`}
             >
-              Añadir al carrito
+              {t.addToCart}
             </button>
           </div>
         </div>
@@ -371,11 +396,14 @@ function CartPanel({
   lines,
   byId,
   onClose,
+  lang,
 }: {
   lines: CartLine[];
   byId: Map<string, ShopProduct>;
   onClose: () => void;
+  lang: Lang;
 }) {
+  const t = shopUi[lang];
   const titleId = useId();
   const [step, setStep] = useState<"cart" | "checkout" | "done">("cart");
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
@@ -389,7 +417,7 @@ function CartPanel({
     if (lines.length === 0) return;
     if (lines.length > MAX_LINES) {
       setStatus("error");
-      setMessage(`Un pedido admite como máximo ${MAX_LINES} líneas. Quita alguna.`);
+      setMessage(t.errMaxLines(MAX_LINES));
       return;
     }
     setStatus("sending");
@@ -405,6 +433,7 @@ function CartPanel({
           phone: fd.get("phone"),
           notes: fd.get("notes"),
           website: fd.get("website"),
+          ...(lang === "en" ? { lang: "en" } : {}),
           lines: lines.map((l) => ({
             product: l.productId,
             size: l.size,
@@ -422,19 +451,16 @@ function CartPanel({
         setStep("done");
       } else {
         setStatus("error");
-        setMessage(
-          data?.error ??
-            "No se pudo enviar la solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.",
-        );
+        setMessage(data?.error ?? t.errSend);
       }
     } catch {
       setStatus("error");
-      setMessage("No se pudo enviar la solicitud. Revisa tu conexión o escríbenos por WhatsApp.");
+      setMessage(t.errNetwork);
     }
   }
 
   const heading =
-    step === "done" ? "Solicitud enviada" : step === "checkout" ? "Tus datos" : "Tu carrito";
+    step === "done" ? t.headingDone : step === "checkout" ? t.headingCheckout : t.headingCart;
 
   return (
     <ShopDialog labelledBy={titleId} onClose={onClose} variant="right">
@@ -450,7 +476,7 @@ function CartPanel({
         <button
           type="button"
           onClick={onClose}
-          aria-label="Cerrar carrito"
+          aria-label={t.closeCart}
           data-autofocus
           className={`-mr-2 flex h-10 w-10 items-center justify-center text-2xl text-ink ${focusRing}`}
         >
@@ -466,29 +492,26 @@ function CartPanel({
             </svg>
           </div>
           <p role="status" className="text-base text-ink">
-            Solicitud recibida{orderId ? <> (ref. <strong className="font-mono">{orderId}</strong>)</> : null}.
+            {t.received}{orderId ? <> ({t.refLabel} <strong className="font-mono">{orderId}</strong>)</> : null}.
           </p>
-          <p className="text-sm text-ink-soft">
-            Te hemos enviado una copia por correo. El club te avisará del importe antes de
-            hacer el pedido al proveedor.
-          </p>
+          <p className="text-sm text-ink-soft">{t.copySent}</p>
           <button
             type="button"
             onClick={onClose}
             className={`mt-2 rounded-sm bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white hover:bg-accent-dark ${focusRing}`}
           >
-            Volver a la tienda
+            {t.backToShop}
           </button>
         </div>
       ) : lines.length === 0 ? (
         <div className="flex flex-1 flex-col items-center justify-center gap-4 p-8 text-center">
-          <p className="text-base text-ink-soft">Tu carrito está vacío.</p>
+          <p className="text-base text-ink-soft">{t.emptyCart}</p>
           <button
             type="button"
             onClick={onClose}
             className={`rounded-sm border border-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-accent-dark hover:bg-accent-soft ${focusRing}`}
           >
-            Seguir mirando
+            {t.keepBrowsing}
           </button>
         </div>
       ) : step === "cart" ? (
@@ -497,9 +520,8 @@ function CartPanel({
             {lines.map((l) => {
               const p = byId.get(l.productId);
               if (!p) return null;
-              const opts = [l.size && `Talla ${l.size}`, l.hand, optionsLabel(l.options)]
-                .filter(Boolean)
-                .join(" · ");
+              const opts = cartLineLabel(l, lang);
+              const pName = (lang === "en" && p.nameEn) || p.name;
               return (
                 <li key={l.key} className="flex gap-3 py-4">
                   <div className="h-20 w-20 shrink-0 overflow-hidden rounded-sm bg-accent-soft">
@@ -513,21 +535,22 @@ function CartPanel({
                     <p className="font-mono text-[11px] uppercase tracking-wide text-ink-faint">
                       {p.supplier}
                     </p>
-                    <p className="text-sm font-bold uppercase leading-tight text-ink">{p.name}</p>
+                    <p className="text-sm font-bold uppercase leading-tight text-ink">{pName}</p>
                     {opts && <p className="mt-0.5 text-xs text-ink-soft">{opts}</p>}
                     <div className="mt-auto flex items-center justify-between pt-2">
                       <Stepper
                         value={l.qty}
                         onChange={(n) => setQty(l.key, n)}
-                        label={`Cantidad de ${p.name}`}
+                        label={t.quantityOf(pName)}
+                        lang={lang}
                       />
                       <button
                         type="button"
                         onClick={() => removeLine(l.key)}
-                        aria-label={`Quitar ${p.name}${opts ? ` (${opts})` : ""}`}
+                        aria-label={t.removeLine(pName, opts)}
                         className={`px-2 py-2 text-xs font-semibold uppercase tracking-wide text-ink-faint hover:text-[#b42318] ${focusRing}`}
                       >
-                        Quitar
+                        {t.remove}
                       </button>
                     </div>
                   </div>
@@ -536,22 +559,20 @@ function CartPanel({
             })}
           </ul>
           <div className="space-y-2 border-t border-line bg-paper-raised p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
-            <p className="text-xs text-ink-soft">
-              El importe final te lo confirma el club antes de pedir al proveedor.
-            </p>
+            <p className="text-xs text-ink-soft">{t.finalAmount}</p>
             <button
               type="button"
               onClick={() => setStep("checkout")}
               className={`btn-blade w-full rounded-sm bg-accent px-6 py-3.5 text-sm font-semibold uppercase tracking-wide text-white hover:bg-accent-dark ${focusRing}`}
             >
-              Solicitar pedido ({units} {units === 1 ? "ud." : "uds."})
+              {t.requestOrder(units)}
             </button>
             <button
               type="button"
               onClick={onClose}
               className={`w-full rounded-sm px-6 py-2.5 text-sm font-semibold text-accent-dark hover:bg-accent-soft ${focusRing}`}
             >
-              Seguir mirando
+              {t.keepBrowsing}
             </button>
           </div>
         </>
@@ -567,31 +588,35 @@ function CartPanel({
               className="absolute left-[-9999px]"
             />
             <p className="rounded-sm bg-accent-soft px-3 py-2 text-xs text-ink-soft">
-              Esto es una solicitud: el club agrupa los pedidos y te avisa del importe antes de
-              pedirlo al proveedor.
+              {t.requestNote}
             </p>
             <div>
-              <label htmlFor="cart-name" className={labelCls}>Nombre del socio</label>
+              <label htmlFor="cart-name" className={labelCls}>{t.name}</label>
               <input id="cart-name" name="name" required maxLength={100} autoComplete="name" className={inputCls} />
             </div>
             <div>
-              <label htmlFor="cart-email" className={labelCls}>Correo electrónico</label>
+              <label htmlFor="cart-email" className={labelCls}>{t.email}</label>
               <input id="cart-email" name="email" type="email" required maxLength={150} autoComplete="email" className={inputCls} />
             </div>
             <div>
-              <label htmlFor="cart-phone" className={labelCls}>Teléfono</label>
+              <label htmlFor="cart-phone" className={labelCls}>{t.phone}</label>
               <input id="cart-phone" name="phone" type="tel" required maxLength={30} autoComplete="tel" className={inputCls} />
             </div>
             <div>
-              <label htmlFor="cart-notes" className={labelCls}>Notas (opcional)</label>
-              <textarea id="cart-notes" name="notes" rows={3} maxLength={1000} placeholder="Medidas, modelo preferido…" className={inputCls} />
+              <label htmlFor="cart-notes" className={labelCls}>{t.notes}</label>
+              <textarea id="cart-notes" name="notes" rows={3} maxLength={1000} placeholder={t.notesPlaceholder} className={inputCls} />
             </div>
             <label className="flex items-start gap-2 text-xs text-ink-soft">
               <input type="checkbox" required className="mt-0.5 h-4 w-4 accent-[var(--accent)]" />
               <span>
-                He leído y acepto la{" "}
-                <Link href="/politica-de-privacidad" target="_blank" className="font-semibold text-accent">
-                  política de privacidad
+                {t.privacyBefore}{" "}
+                <Link
+                  href={t.privacyHref}
+                  target="_blank"
+                  {...(lang === "en" ? { hrefLang: "es" } : {})}
+                  className="font-semibold text-accent"
+                >
+                  {t.privacyLink}
                 </Link>
               </span>
             </label>
@@ -605,7 +630,7 @@ function CartPanel({
               disabled={status === "sending"}
               className={`btn-blade w-full rounded-sm bg-accent px-6 py-3.5 text-sm font-semibold uppercase tracking-wide text-white hover:bg-accent-dark disabled:opacity-60 ${focusRing}`}
             >
-              {status === "sending" ? "Enviando…" : "Enviar solicitud de pedido"}
+              {status === "sending" ? t.sending : t.submit}
             </button>
             <button
               type="button"
@@ -616,7 +641,7 @@ function CartPanel({
               }}
               className={`w-full rounded-sm px-6 py-2.5 text-sm font-semibold text-accent-dark hover:bg-accent-soft ${focusRing}`}
             >
-              ← Volver al carrito
+              {t.backToCart}
             </button>
           </div>
         </form>
@@ -625,7 +650,16 @@ function CartPanel({
   );
 }
 
-export function ShopApp({ products, categories }: { products: ShopProduct[]; categories: string[] }) {
+export function ShopApp({
+  products,
+  categories,
+  lang = "es",
+}: {
+  products: ShopProduct[];
+  categories: string[];
+  lang?: Lang;
+}) {
+  const t = shopUi[lang];
   const store = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const [category, setCategory] = useState("Todo");
   const [query, setQuery] = useState("");
@@ -645,17 +679,22 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
       if (category === "Favoritos" ? !store.favs.includes(p.id) : category !== "Todo" && p.category !== category)
         return false;
       if (!q) return true;
-      return norm(`${p.name} ${p.supplier} ${p.category} ${p.ref}`).includes(q);
+      return norm(
+        `${p.name} ${lang === "en" ? `${p.nameEn} ${categoryLabel(p.category, lang)} ` : ""}${p.supplier} ${p.category} ${p.ref}`,
+      ).includes(q);
     });
-  }, [products, category, query, store.favs]);
+  }, [products, category, query, store.favs, lang]);
 
   const opened = openId ? byId.get(openId) : undefined;
+  // Los valores internos de los chips siguen siendo los españoles; solo cambia la etiqueta.
   const chips = ["Todo", ...categories, "Favoritos"];
+  const chipLabel = (c: string) =>
+    c === "Todo" ? t.allChip : c === "Favoritos" ? t.favChip : categoryLabel(c, lang);
 
   return (
     <>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <div className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0" role="group" aria-label="Filtrar por categoría">
+        <div className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0" role="group" aria-label={t.filterByCategory}>
           {chips.map((c) => (
             <button
               key={c}
@@ -672,7 +711,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
               }`}
             >
               {c === "Favoritos" && <Heart filled={category === c} className="h-4 w-4" />}
-              {c}
+              {chipLabel(c)}
               {c === "Favoritos" && favCount > 0 && (
                 <span className="tabular text-xs opacity-80">{favCount}</span>
               )}
@@ -680,7 +719,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
           ))}
         </div>
         <div className="relative w-full lg:max-w-xs">
-          <label htmlFor={searchId} className="sr-only">Buscar en la tienda</label>
+          <label htmlFor={searchId} className="sr-only">{t.searchLabel}</label>
           <svg aria-hidden viewBox="0 0 24 24" className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-faint" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <circle cx="11" cy="11" r="6.5" />
             <path d="M20 20l-4-4" />
@@ -693,26 +732,25 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
               setQuery(e.target.value);
               setLimit(PAGE);
             }}
-            placeholder="Buscar producto o proveedor"
+            placeholder={t.searchPlaceholder}
             className={`${inputCls} !mt-0 pl-9`}
           />
         </div>
       </div>
 
       <p className="mt-5 text-sm text-ink-faint" aria-live="polite">
-        {visible.length} {visible.length === 1 ? "producto" : "productos"}
+        {visible.length} {visible.length === 1 ? t.product : t.products}
       </p>
 
       {visible.length === 0 ? (
         <p className="mt-6 rounded-sm border border-dashed border-line p-8 text-center text-sm text-ink-soft">
-          {category === "Favoritos" && !query
-            ? "Aún no has marcado favoritos. Pulsa el corazón de un producto para guardarlo."
-            : "No hay productos que coincidan con tu búsqueda."}
+          {category === "Favoritos" && !query ? t.noFavs : t.noMatches}
         </p>
       ) : (
         <ul className="mt-3 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
           {visible.slice(0, limit).map((p) => {
             const fav = store.favs.includes(p.id);
+            const pName = (lang === "en" && p.nameEn) || p.name;
             return (
               <li
                 key={p.id}
@@ -721,7 +759,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
                 <button
                   type="button"
                   onClick={() => setOpenId(p.id)}
-                  aria-label={`Ver ${p.name}, ${p.supplier}`}
+                  aria-label={t.viewProduct(pName, p.supplier)}
                   className={`flex flex-1 flex-col text-left ${focusRing}`}
                 >
                   <div className="aspect-square w-full overflow-hidden bg-accent-soft">
@@ -742,10 +780,12 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
                       {p.supplier}
                     </p>
                     <h3 className="mt-0.5 text-base font-bold uppercase leading-tight tracking-tight text-ink sm:text-lg">
-                      {p.name}
+                      {pName}
                     </h3>
                     {p.price && (
-                      <p className="mt-auto pt-2 text-base font-bold text-accent-dark">{p.price}</p>
+                      <p className="mt-auto pt-2 text-base font-bold text-accent-dark">
+                        {priceLabel(p.price, lang)}
+                      </p>
                     )}
                   </div>
                 </button>
@@ -753,7 +793,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
                   type="button"
                   onClick={() => toggleFav(p.id)}
                   aria-pressed={fav}
-                  aria-label={fav ? `Quitar ${p.name} de favoritos` : `Añadir ${p.name} a favoritos`}
+                  aria-label={fav ? t.removeFav(pName) : t.addFav(pName)}
                   className={`absolute right-2 top-2 flex h-10 w-10 items-center justify-center rounded-full bg-paper/90 shadow-sm backdrop-blur ${
                     fav ? "text-[#d6336c]" : "text-ink-soft hover:text-[#d6336c]"
                   } ${focusRing}`}
@@ -772,7 +812,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
             onClick={() => setLimit((n) => n + PAGE)}
             className={`rounded-sm border border-accent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-accent-dark hover:bg-accent-soft ${focusRing}`}
           >
-            Ver más productos ({visible.length - limit})
+            {t.seeMore(visible.length - limit)}
           </button>
         </div>
       )}
@@ -780,7 +820,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
       <button
         type="button"
         onClick={() => setCartOpen(true)}
-        aria-label={`Abrir carrito, ${units} ${units === 1 ? "artículo" : "artículos"}`}
+        aria-label={t.openCart(units)}
         className={`fixed left-4 z-30 flex h-14 items-center gap-2 rounded-full bg-ink px-5 text-white shadow-lg shadow-black/25 transition-colors hover:bg-accent-dark lg:left-6 lg:h-12 ${focusRing}`}
         style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
       >
@@ -789,7 +829,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
           <circle cx="9.5" cy="19.5" r="1.3" />
           <circle cx="17" cy="19.5" r="1.3" />
         </svg>
-        <span className="hidden text-sm font-semibold uppercase tracking-wide sm:inline">Carrito</span>
+        <span className="hidden text-sm font-semibold uppercase tracking-wide sm:inline">{t.cart}</span>
         <span
           aria-hidden
           className={`tabular flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-xs font-bold ${
@@ -805,6 +845,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
           key={opened.id}
           product={opened}
           isFav={store.favs.includes(opened.id)}
+          lang={lang}
           onClose={() => setOpenId(null)}
           onAdded={() => {
             setOpenId(null);
@@ -812,7 +853,7 @@ export function ShopApp({ products, categories }: { products: ShopProduct[]; cat
           }}
         />
       )}
-      {cartOpen && <CartPanel lines={validLines} byId={byId} onClose={() => setCartOpen(false)} />}
+      {cartOpen && <CartPanel lines={validLines} byId={byId} onClose={() => setCartOpen(false)} lang={lang} />}
     </>
   );
 }

@@ -4,14 +4,17 @@ import { notFound } from "next/navigation";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { Photo } from "@/components/Photo";
-import { allNews, formatNewsDate, newsBySlug } from "@/content/news";
+import { allNews, formatNewsDateEn, newsBySlug, newsTypeEn } from "@/content/news";
 import { pageAlternates } from "@/content/i18n";
 import { site } from "@/content/site";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return allNews.map((n) => ({ slug: n.slug }));
+  // Con "output: export" Next exige al menos una ruta: si aún no hay noticias
+  // se genera un marcador que la página resuelve con notFound() (404).
+  const params = allNews.map((n) => ({ slug: n.slug }));
+  return params.length > 0 ? params : [{ slug: "_" }];
 }
 
 export async function generateMetadata({
@@ -23,25 +26,33 @@ export async function generateMetadata({
   const item = newsBySlug(slug);
   if (!item) return {};
   return {
-    title: item.title,
-    description: item.summary,
-    alternates: pageAlternates(`/noticias/${item.slug}`),
+    title: item.en?.title ?? item.title,
+    description: item.en?.summary ?? item.summary,
+    alternates: pageAlternates(`/en/news/${item.slug}`),
   };
 }
 
-export default async function Noticia({ params }: { params: Promise<{ slug: string }> }) {
+export default async function NewsArticleEn({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const item = newsBySlug(slug);
   if (!item) notFound();
 
+  // Sin traducción se muestra el texto español, marcado con lang="es".
+  const translated = Boolean(item.en);
+  const title = item.en?.title ?? item.title;
+  const summary = item.en?.summary ?? item.summary;
+  const paragraphs = item.en?.paragraphs ?? item.paragraphs;
+  const date = formatNewsDateEn(item.date);
+  const esAttr = translated ? {} : { lang: "es" };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    headline: item.title,
-    description: item.summary,
+    headline: title,
+    description: summary,
     datePublished: item.date,
-    inLanguage: "es",
-    mainEntityOfPage: `${site.url}/noticias/${item.slug}`,
+    inLanguage: translated ? "en" : "es",
+    mainEntityOfPage: `${site.url}/en/news/${item.slug}`,
     ...(item.image ? { image: [`${site.url}${item.image.src}`] } : {}),
     author: { "@type": "Organization", name: site.name },
     publisher: { "@type": "Organization", name: site.name, url: site.url },
@@ -50,10 +61,11 @@ export default async function Noticia({ params }: { params: Promise<{ slug: stri
   return (
     <>
       <PageHero
-        eyebrow={item.type}
-        title={item.title}
-        lede={formatNewsDate(item.date)}
-        path={`/noticias/${item.slug}`}
+        eyebrow={newsTypeEn[item.type]}
+        title={title}
+        lede={date}
+        path={`/en/news/${item.slug}`}
+        lang="en"
       />
       <Section>
         <script
@@ -63,11 +75,12 @@ export default async function Noticia({ params }: { params: Promise<{ slug: stri
         <article className="reveal mx-auto max-w-2xl">
           <p className="flex flex-wrap items-center gap-3 text-xs">
             <span className="rounded-sm bg-accent-soft px-2 py-1 font-mono uppercase tracking-[0.12em] text-accent-dark">
-              {item.type}
+              {newsTypeEn[item.type]}
             </span>
             <time dateTime={item.date} className="text-ink-faint">
-              {formatNewsDate(item.date)}
+              {date}
             </time>
+            {!translated && <span className="text-ink-faint">(in Spanish)</span>}
           </p>
           {item.image && (
             <Photo
@@ -78,16 +91,16 @@ export default async function Noticia({ params }: { params: Promise<{ slug: stri
               className="mt-6 h-auto w-full rounded-sm border border-line"
             />
           )}
-          <div className="mt-8 space-y-4 leading-relaxed text-ink-soft">
-            {item.paragraphs.map((p, i) => (
+          <div {...esAttr} className="mt-8 space-y-4 leading-relaxed text-ink-soft">
+            {paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
           <Link
-            href="/noticias"
+            href="/en/news"
             className="link-touche mt-10 inline-block text-sm font-semibold uppercase tracking-wide text-accent-dark"
           >
-            ← Volver al tablón
+            ← Back to the notice board
           </Link>
         </article>
       </Section>

@@ -77,5 +77,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  return [...spanish, ...english];
+  // Detalle de noticias en inglés (mismo slug que en español).
+  const englishNews: MetadataRoute.Sitemap = allNews.map((n) => ({
+    url: `${site.url}/en/news/${n.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.5,
+    alternates: {
+      languages: {
+        es: `${site.url}/noticias/${n.slug}`,
+        en: `${site.url}/en/news/${n.slug}`,
+        "x-default": `${site.url}/noticias/${n.slug}`,
+      },
+    },
+  }));
+
+  return [...spanish, ...english, ...englishNews];
 }

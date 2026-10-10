@@ -20,9 +20,12 @@ export type ShopProduct = {
   ref: string;
   url: string;
   sizeGuide: string;
+  /** Traducción inglesa opcional (si falta, se muestra el original). */
+  nameEn: string;
+  descriptionEn: string;
 };
 
-type RawProduct = Partial<Record<keyof ShopProduct, unknown>>;
+type RawProduct = Partial<Record<keyof ShopProduct | "name_en" | "description_en", unknown>>;
 
 const str = (v: unknown): string => (typeof v === "string" ? v.trim() : "");
 const strList = (v: unknown): string[] =>
@@ -53,6 +56,8 @@ function normalize(raw: RawProduct): ShopProduct {
     ref: str(raw.ref),
     url: str(raw.url),
     sizeGuide: str(raw.sizeGuide),
+    nameEn: str(raw.name_en),
+    descriptionEn: str(raw.description_en),
   };
 }
 
