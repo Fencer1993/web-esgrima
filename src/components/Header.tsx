@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AppInstallButton } from "@/components/AppInstallButton";
+import { Photo } from "@/components/Photo";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { whatsappLink } from "@/content/site";
@@ -141,14 +142,25 @@ export function Header({ lang = "es" }: { lang?: Lang }) {
         >
           <Link
             href={t.homeHref}
-            className="group flex items-baseline gap-1.5"
+            className="group flex items-center gap-2"
             onClick={close}
           >
-            <span className="font-display text-lg font-semibold tracking-tight text-ink">
-              Esgrima
-            </span>
-            <span className="font-display text-lg font-semibold tracking-tight text-accent">
-              Torremolinos
+            <Photo
+              src="/images/logo/logo-club-esgrima-torremolinos-256.webp"
+              alt=""
+              width={40}
+              height={40}
+              priority
+              className={`shrink-0 transition-all duration-300 ${scrolled ? "h-8 w-8" : "h-10 w-10"}`}
+            />
+            <span className="sr-only">Club de </span>
+            <span className="flex flex-col leading-none sm:flex-row sm:items-baseline sm:gap-1.5">
+              <span className="font-display text-[15px] font-semibold tracking-tight text-ink sm:text-lg">
+                Esgrima
+              </span>
+              <span className="font-display text-[15px] font-semibold tracking-tight text-accent sm:text-lg">
+                Torremolinos
+              </span>
             </span>
           </Link>
 

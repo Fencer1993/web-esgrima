@@ -51,6 +51,10 @@ export const metadata: Metadata = {
   appleWebApp: { capable: true, title: "Esgrima Torremolinos", statusBarStyle: "default" },
   other: { "apple-mobile-web-app-capable": "yes" },
   icons: {
+    icon: [
+      { url: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/favicon.ico`, sizes: "48x48" },
+      { url: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/icons/favicon-96.png`, sizes: "96x96", type: "image/png" },
+    ],
     apple: [
       {
         url: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/icons/apple-touch-icon.png`,

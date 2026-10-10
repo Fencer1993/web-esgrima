@@ -40,6 +40,14 @@ export default function Home() {
         />
         <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:py-28 ">
           <div>
+            <Photo
+              src="/images/logo/logo-club-esgrima-torremolinos-256.webp"
+              alt="Escudo del Club de Esgrima Torremolinos (CETOR)"
+              width={96}
+              height={96}
+              priority
+              className="mb-6 h-20 w-20 drop-shadow-lg sm:h-24 sm:w-24"
+            />
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
               {t.heroEyebrow}
             </p>

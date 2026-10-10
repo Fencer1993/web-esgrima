@@ -48,7 +48,7 @@ textarea{width:100%}input:focus,select:focus,textarea:focus{outline:2px solid va
 .pill{display:inline-block;padding:.1rem .5rem;border-radius:99px;background:var(--soft);font-size:.78rem;font-weight:600}
 .pill.confirmada{background:#e0f2fb;color:#0f6d98}.pill.asistio{background:#e8f5ec;color:#1f6b3b}.pill.novino{background:#fff4dc;color:#8a5a00}.pill.nuevo{background:#e0f2fb;color:#0f6d98}.pill.cancelado{background:#fdecea;color:#a53324}.pill.entregado,.pill.recibido{background:#e8f5ec;color:#1f6b3b}
 </style></head><body>
-<header class="top"><strong>Gestión · Club de Esgrima</strong>{$links}
+<header class="top"><strong style="display:inline-flex;align-items:center;gap:8px"><img src="/images/logo/logo-club-esgrima-torremolinos-256.webp" alt="" width="32" height="32">Gestión · Club de Esgrima</strong>{$links}
 <form method="post" action="index.php"><input type="hidden" name="do" value="logout">{$csrf}<button class="ghost" type="submit">Salir</button></form></header>
 <main>
 HTML;

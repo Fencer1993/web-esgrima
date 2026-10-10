@@ -49,6 +49,10 @@ export const metadata: Metadata = {
   // Next 16 solo emite mobile-web-app-capable; iOS antiguo busca el prefijo apple-.
   other: { "apple-mobile-web-app-capable": "yes" },
   icons: {
+    icon: [
+      { url: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/favicon.ico`, sizes: "48x48" },
+      { url: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/icons/favicon-96.png`, sizes: "96x96", type: "image/png" },
+    ],
     apple: [
       {
         url: `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/icons/apple-touch-icon.png`,

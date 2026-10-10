@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AvisosToggle } from "@/components/AvisosToggle";
+import { Photo } from "@/components/Photo";
 import { InstallAppLink } from "@/components/InstallAppLink";
 import { footerLinks, navigation, site, whatsappLink } from "@/content/site";
 import { enFooterLegal, enFooterNav, footerText, ui, type Lang } from "@/content/i18n";
@@ -98,9 +99,18 @@ export function Footer({ lang = "es" }: { lang?: Lang }) {
       {/* Columnas */}
       <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr]">
         <div>
-          <p className="font-display text-2xl font-bold uppercase leading-tight tracking-tight">
-            {site.name}
-          </p>
+          <div className="flex items-center gap-4">
+            <Photo
+              src="/images/logo/logo-club-esgrima-torremolinos-256.webp"
+              alt={lang === "en" ? "Club de Esgrima Torremolinos crest" : "Escudo del Club de Esgrima Torremolinos"}
+              width={80}
+              height={80}
+              className="h-20 w-20 shrink-0"
+            />
+            <p className="font-display text-2xl font-bold uppercase leading-tight tracking-tight">
+              {site.name}
+            </p>
+          </div>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-paper/70">
             {description}
           </p>

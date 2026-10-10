@@ -1,4 +1,11 @@
 import { ImageResponse } from "next/og";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+// Escudo oficial del club (se incrusta en la imagen al generarla en el build).
+const logo = `data:image/png;base64,${readFileSync(
+  join(process.cwd(), "public/images/logo/logo-club-esgrima-torremolinos.png"),
+).toString("base64")}`;
 
 export const dynamic = "force-static";
 export const size = { width: 1200, height: 630 };
@@ -29,6 +36,13 @@ export default function OpengraphImage() {
             background: "#2e8f53",
             transform: "skewX(-12deg) translateX(60px)",
           }}
+        />
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
+        <img
+          src={logo}
+          width={330}
+          height={330}
+          style={{ position: "absolute", right: 90, top: 150, borderRadius: 9999, background: "#ffffff" }}
         />
         <div style={{ display: "flex", fontSize: 28, letterSpacing: 4, color: "#1797d1" }}>
           TORREMOLINOS · MÁLAGA

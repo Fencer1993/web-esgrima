@@ -16,7 +16,7 @@
  * /aviso-actual.php (nunca en caché) y muestra la notificación. Al pulsarla,
  * enfoca una pestaña del sitio o abre el enlace del aviso.
  */
-const VERSION = "v2";
+const VERSION = "v3";
 const PAGES = `esgrima-pages-${VERSION}`;
 const STATIC = `esgrima-static-${VERSION}`;
 const IMAGES = `esgrima-images-${VERSION}`;
