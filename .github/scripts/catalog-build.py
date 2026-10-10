@@ -10,8 +10,21 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 RAW = ROOT / "data/catalog-raw"
 OUT = ROOT / "src/content/data/tienda.json"
 IVA_ES = 1.21  # Grant y Allstar España publican precios sin IVA
-# Descuento para el socio sobre el precio sin IVA (después se suma el IVA).
-DISCOUNTS = {"Allstar": 0.05}
+# Precio para el socio: precio del proveedor sin IVA, menos un 5 %, más IVA.
+DISCOUNT = 0.05
+
+
+def member_price(net):
+    return net * (1 - DISCOUNT) * IVA_ES
+
+
+# Guantes: por normativa solo manguito de velcro; para no dar demasiadas
+# opciones se ofrecen solo estos tres (el chino económico y dos FIE).
+GLOVES_KEEP = {
+    "grant-guante-lavable-sable-electrico-eco-fie-800n-ce",
+    "grant-guante-lavable-sable-electrico-fie-800n-ce-pbt-31-37",
+    "allstar-ash800-e",
+}
 
 SIZE_KEYS = {"talla", "tallas", "tallas us", "talla (eu)", "talla de la hoja", "größe auswählen",
              "klingengröße auswählen"}
@@ -127,7 +140,7 @@ SURCHARGE = re.compile(r"\(\+\s*([\d.,]+)\s*(?:\+\s*IVA|€)?\s*\)", re.I)
 
 def with_vat(text):
     """Suplementos de Grant ("+2,69+IVA") a importe con IVA ("+3,25 €")."""
-    return SURCHARGE.sub(lambda m: "(+" + euro(float(m.group(1).replace(",", ".")) * IVA_ES) + ")", text)
+    return SURCHARGE.sub(lambda m: "(+" + euro(member_price(float(m.group(1).replace(",", ".")))) + ")", text)
 
 
 def grant_products():
@@ -150,7 +163,7 @@ def grant_products():
             o["values"] = [with_vat(v) for v in o["values"]]
         price = ""
         if p["price"]:
-            v = p["price"] * IVA_ES
+            v = member_price(p["price"])
             varies = bool(p.get("priceMax") and p["priceMax"] > p["price"]) or any(
                 "+" in x for o in options for x in o["values"])
             price = ("Desde " if varies else "") + euro(v)
@@ -188,7 +201,7 @@ def allstar_products():
         if p["price"]:
             pt = p.get("priceText", "").lower()
             net = p["price"] if re.search(r"\+\s*iva|sin iva|iva no incl", pt) else p["price"] / IVA_ES
-            v = net * (1 - DISCOUNTS.get("Allstar", 0)) * IVA_ES
+            v = member_price(net)
             varies = bool(p.get("priceMax") and p["priceMax"] > p["price"])
             price = ("Desde " if varies else "") + euro(v)
         out.append({
@@ -226,7 +239,8 @@ def villalbi_products():
         out.append({
             "id": "villalbi-" + slug(p["handle"]), "name": p["name"], "supplier": "Villalbi Esgrima",
             "category": cat, "description": "",
-            "price": (("Desde " if varies else "") + euro(p["price"])) if p["price"] else "",
+            # Villalbi publica con IVA incluido.
+            "price": (("Desde " if varies else "") + euro(member_price(p["price"] / IVA_ES))) if p["price"] else "",
             "sizes": sizes, "hands": hands, "options": options, "photo": "", "imageSource": p["image"],
             "active": True, "ref": p["sku"], "url": p["url"], "sizeGuide": guide, "imported": True,
         })
@@ -236,6 +250,8 @@ def villalbi_products():
 data = json.loads(OUT.read_text())
 old = {p["id"]: p for p in data["products"]}
 new = grant_products() + allstar_products() + villalbi_products()
+new = [p for p in new if not (p["category"] == "Guantes y manguitos" and "guante" in p["name"].lower()
+                              and p["id"] not in GLOVES_KEEP)]
 for p in new:
     p["name"] = html.unescape(p["name"]).replace("‘", "'").strip()
 ids = set()
