@@ -4,7 +4,10 @@ import { pageText } from "@/content/texts";
 import { Photo } from "@/components/Photo";
 import { Section, SectionHeading } from "@/components/Section";
 import { galleryPhoto } from "@/content/gallery";
-import { whatsappLink } from "@/content/site";
+import { site, whatsappLink } from "@/content/site";
+import { ReservaClaseGratis } from "@/components/ReservaClaseGratis";
+import reservas from "@/content/data/reservas.json";
+import type { ReservaConfig } from "@/lib/reservas";
 import claseGratis from "@/content/data/clase-gratis.json";
 
 export const metadata: Metadata = {
@@ -70,7 +73,24 @@ export default function ClaseGratis() {
         </div>
       </Section>
 
-      <Section tone="raised" className="border-t border-line">
+      <Section tone="raised" className="scroll-mt-20 border-t border-line">
+        <div id="reservar" className="scroll-mt-24">
+          <SectionHeading
+            eyebrow="Reserva online"
+            title="Reserva tu clase gratis"
+            lede="Elige grupo y día, déjanos tus datos y te llega la confirmación por correo, con un aviso el día antes. Sin compromiso."
+          />
+          <ReservaClaseGratis
+            config={reservas as ReservaConfig}
+            place={`${site.address.venue}, ${site.address.line}, ${site.address.postalCode} ${site.address.city}`}
+            mapsUrl={site.address.mapsUrl}
+            phone={site.contact.phone}
+            whatsappUrl={whatsappLink("Hola, quiero reservar una clase gratis")}
+          />
+        </div>
+      </Section>
+
+      <Section className="border-t border-line">
         <SectionHeading eyebrow="Cómo funciona" title="Tu primera clase, paso a paso" />
         <ol className="relative mx-auto max-w-3xl">
           <span

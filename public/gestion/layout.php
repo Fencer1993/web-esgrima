@@ -10,7 +10,7 @@ function h($v): string
 function gestion_header(string $title, string $active = ''): void
 {
     header('Content-Type: text/html; charset=utf-8');
-    $nav = ['index.php' => 'Panel', 'pedidos.php' => 'Pedidos', 'convocatoria.php' => 'Convocatorias', 'calendario.php' => 'Calendario'];
+    $nav = ['index.php' => 'Panel', 'pedidos.php' => 'Pedidos', 'reservas.php' => 'Clases gratis', 'convocatoria.php' => 'Convocatorias', 'calendario.php' => 'Calendario'];
     $links = '';
     foreach ($nav as $f => $label) {
         $links .= '<a href="' . $f . '"' . ($f === $active ? ' class="on"' : '') . '>' . h($label) . '</a>';
@@ -46,7 +46,7 @@ th{background:var(--soft);font-size:.75rem;text-transform:uppercase;letter-spaci
 select,input[type=text],input[type=datetime-local],textarea{font:inherit;padding:.5rem;border:1px solid var(--line);border-radius:3px;max-width:100%}
 textarea{width:100%}input:focus,select:focus,textarea:focus{outline:2px solid var(--sky);outline-offset:1px}
 .pill{display:inline-block;padding:.1rem .5rem;border-radius:99px;background:var(--soft);font-size:.78rem;font-weight:600}
-.pill.nuevo{background:#e0f2fb;color:#0f6d98}.pill.cancelado{background:#fdecea;color:#a53324}.pill.entregado,.pill.recibido{background:#e8f5ec;color:#1f6b3b}
+.pill.confirmada{background:#e0f2fb;color:#0f6d98}.pill.asistio{background:#e8f5ec;color:#1f6b3b}.pill.novino{background:#fff4dc;color:#8a5a00}.pill.nuevo{background:#e0f2fb;color:#0f6d98}.pill.cancelado{background:#fdecea;color:#a53324}.pill.entregado,.pill.recibido{background:#e8f5ec;color:#1f6b3b}
 </style></head><body>
 <header class="top"><strong>Gestión · Club de Esgrima</strong>{$links}
 <form method="post" action="index.php"><input type="hidden" name="do" value="logout">{$csrf}<button class="ghost" type="submit">Salir</button></form></header>

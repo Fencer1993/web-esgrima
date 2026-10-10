@@ -78,6 +78,17 @@ La guía de tallas (antes del catálogo) sale de `content/data/tallas.json`
 (`components/SizeGuide.tsx`); cada ficha enlaza a `#tallas-<marca>`.
 Los pedidos van a `public/pedido.php` y se gestionan en `/gestion/`.
 
+## Reserva de clase gratis
+
+`/clase-gratis` incluye la reserva online (`components/ReservaClaseGratis.tsx`,
+lógica de fechas y calendario en `lib/reservas.ts`). Los ajustes (grupos, días,
+horas, plazas por sesión, semanas de antelación, horas mínimas, días sin clase y
+"qué traer") están en `content/data/reservas.json`, editable en el panel
+("Reserva de clase gratis"). El despliegue lo copia a `reservas-config.json`
+para `public/reserva.php` (disponibilidad y reservas, guarda en
+`club-data/reservas.jsonl`) y `public/recordatorios.php` (aviso el día antes,
+lo lanza `.github/workflows/recordatorios.yml`). Listado en `/gestion/reservas.php`.
+
 ## Para asistentes de IA
 
 `/llms.txt` y `/llms-full.txt` se generan en el build desde `site.ts`,
